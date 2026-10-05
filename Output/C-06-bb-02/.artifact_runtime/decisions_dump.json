@@ -1,0 +1,47 @@
+{
+ "db": "C-06-bb-01_战斗系统缺口决策库_v1.sqlite",
+ "gaps": [
+  {
+   "gap_id": "CBT5-GAP-001",
+   "title": "词条表与商人原型配置表的衔接未闭环：商人配置表仍写法为主营词条，未指明使用哪一类词条与如何组合",
+   "level": "B1",
+   "priority_round": "C-06-bb-02 第四轮后续澄清",
+   "owner": "主策划",
+   "status": "已选候选",
+   "chosen_option_id": "CBT5-GAP-001-OPT-B",
+   "chosen_label": "B",
+   "chosen_title": "候选 B：主营词条允许多条并按任一满足匹配",
+   "chosen_detail": "主营词条可以配置多条，商品挂载其中任意一条即进入经营范围；需要收窄范围时靠物品池进一步限定。",
+   "chosen_tradeoff": "配置宽容，不容易出现空经营范围，内容侧填写成本低。代价是范围容易过宽，同类商人之间的差异要靠物品池区分，词条的筛选作用被削弱。",
+   "answer_text": "",
+   "decision_basis": "",
+   "extra_requirement": "",
+   "needs_followup": false,
+   "filled_at": "2026-09-25 17:00:05"
+  },
+  {
+   "gap_id": "CBT5-GAP-002",
+   "title": "词条与物品池的层级关系未定义：词条划定范围之后，具体商品从哪一层物品池抽取没有规则",
+   "level": "B1",
+   "priority_round": "C-06-bb-02 第四轮后续澄清",
+   "owner": "主策划",
+   "status": "已选候选",
+   "chosen_option_id": "CBT5-GAP-002-OPT-A",
+   "chosen_label": "A",
+   "chosen_title": "候选 A：词条直接对应物品池，一个词条一个池",
+   "chosen_detail": "每个用途词条对应一个物品池，商人按主营词条取对应池并从中随机抽取经营内容。词条与池一一对应，映射关系固定。",
+   "chosen_tradeoff": "映射简单，内容侧只需要维护每类的物品池，新增词条时新开一个池。代价是同一物品可能属于多个池，需要规定跨池物品的去重口径。",
+   "answer_text": "",
+   "decision_basis": "",
+   "extra_requirement": "",
+   "needs_followup": false,
+   "filled_at": "2026-09-25 17:00:20"
+  }
+ ],
+ "pending": [],
+ "stats": {
+  "total": 2,
+  "decided": 2,
+  "pending": 0
+ }
+}

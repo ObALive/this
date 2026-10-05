@@ -1,0 +1,16 @@
+库：D:\myspace\Git\mygame\Dsh\Output\C-aa-bb-01\C-aa-bb-01_跨域遗留问题决策库_v1.sqlite
+主表 1 项，归档 20 项
+
+== 主表 ==
+XDM-GAP-021 | B1 | 待裁定 | 未通关结局三种收尾情形在达成记录中的落点未定：结局类型已合并为一种，但三种情形各需一段说明文案与一条记录，落点字段没有规则
+
+== 裁定 ==
+XDM-GAP-021 | 已选候选 | XDM-GAP-021-OPT-A |  |  |  | 2026-09-27 22:20:31 | 0
+
+== meta ==
+analysis_doc | Dsh/Output/C-aa-bb-01/C-aa-bb-01_跨域遗留问题信息缺口分析_v1.md
+chapter | C-aa-bb-01
+created_at | 2026-09-27
+created_by | build_decision_db.py
+domain | 01-07 全域跨域移交与零散遗留问题
+title | C-aa-bb-01 跨域遗留问题决策库

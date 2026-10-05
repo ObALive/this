@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>决策库填写器</title>
+<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<header class="bar">
+  <div class="bar-main">
+    <div class="brand">
+      <span class="dot" aria-hidden="true"></span>
+      <h1>决策库填写器</h1>
+    </div>
+    <div class="picker">
+      <label for="db-select">数据库</label>
+      <select id="db-select" aria-label="选择决策库"></select>
+      <span id="db-meta" class="meta"></span>
+    </div>
+    <div class="bar-actions">
+      <button id="btn-refresh" type="button" class="ghost">刷新</button>
+      <a id="btn-export" class="ghost" href="#" target="_blank" rel="noopener">导出裁定 Markdown</a>
+    </div>
+  </div>
+  <div class="bar-sub">
+    <div class="progress" aria-hidden="true"><span id="progress-fill"></span></div>
+    <div class="sub-line">
+      <span id="progress-text">正在载入…</span>
+      <div class="filters" role="group" aria-label="筛选">
+        <button type="button" data-filter="all" class="chip active">全部</button>
+        <button type="button" data-filter="pending" class="chip">未裁定</button>
+        <button type="button" data-filter="decided" class="chip">已裁定</button>
+      </div>
+      <span id="save-state" class="save-state" role="status" aria-live="polite"></span>
+    </div>
+  </div>
+</header>
+
+<main id="list" class="list" aria-live="polite"></main>
+
+<footer class="foot">
+  <span>填写结果直接写入所选决策库的 decisions 表；候选写入 chosen_option_id，预期方案写入 answer_text。</span>
+  <span id="foot-db" class="mono"></span>
+</footer>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script src="/app.js"></script>
+</body>
+</html>
