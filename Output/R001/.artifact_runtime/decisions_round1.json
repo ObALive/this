@@ -1,0 +1,334 @@
+{
+ "db": "Output/R001/R001_系统设计精简缺口决策库_v1.sqlite",
+ "gaps": [
+  {
+   "gap_id": "SMP-GAP-001",
+   "title": "移除自由探索阶段后，02-40 探索系统是整体撤销还是收缩保留，区域形态、封锁机制与安全通道各自去向未定",
+   "level": "B0",
+   "priority_round": "第一轮 骨架，SMP-Q-001",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "已选候选",
+    "chosen_option_id": "SMP-GAP-001-OPT-B",
+    "chosen_label": "B",
+    "answer_text": "",
+    "decision_basis": "",
+    "extra_requirement": "区域封锁机制可以暂时不降维",
+    "filled_at": "2026-10-05 12:24:54",
+    "needs_followup": false,
+    "chosen_detail": "保留 02-40 并改写定位为承载区域划分、事件分布与事件点选入口的地图层。撤销 4.2 探索行为与事件发现、4.4 安全通道、4.5 战斗状态切换三节；保留 4.1 区域形态与当前事件池，把 4.3 封锁机制收缩为区域解锁条件，只保留区域是否可进入一个状态；地图由场景降为界面，区域以区块形式呈现其可进入的事件点。系统数为 32 不变，区域形态继续作为当前事件池的过滤维度。"
+   }
+  },
+  {
+   "gap_id": "SMP-GAP-002",
+   "title": "事件之间的空间轴未定义：玩家位置、位移成本与地图点选的操作链路，以及位置类语义的落点",
+   "level": "B0",
+   "priority_round": "第一轮 骨架，SMP-Q-001",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "已选候选",
+    "chosen_option_id": "SMP-GAP-002-OPT-C",
+    "chosen_label": "C",
+    "answer_text": "",
+    "decision_basis": "",
+    "extra_requirement": "",
+    "filled_at": "2026-10-05 12:50:16",
+    "needs_followup": false,
+    "chosen_detail": "撤销活动范围内的自由移动，同区域内的事件在地图上直接点选进入；跨区域仍由转移事件与载具租赁事件承载，两类事件作为地图上的可点击节点呈现，时间与金钱成本不变。基点重新定义为玩家最近一次结束事件的事件点，活动范围与封锁区域改为以事件点为单位的可进入范围，交通站点与道路网络保留。"
+   }
+  },
+  {
+   "gap_id": "SMP-GAP-003",
+   "title": "事件单元化后的事件数据模型未定义：事件片段概念与片段类型表的承接方式、事件配置实体的层级",
+   "level": "B0",
+   "priority_round": "第一轮 骨架，SMP-Q-001",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "已选候选",
+    "chosen_option_id": "SMP-GAP-003-OPT-A",
+    "chosen_label": "A",
+    "answer_text": "",
+    "decision_basis": "",
+    "extra_requirement": "",
+    "filled_at": "2026-10-05 12:51:40",
+    "needs_followup": false,
+    "chosen_detail": "事件成为唯一的内容单元，一个事件持有事件类型、进入条件、持续时间、结果标识与解锁产出五组配置；事件属性配置与事件分支走向配置合并为一份事件配置。片段类型表中的三类已确认类型改记为事件类型取值，原表更名为事件类型表并保留输入、状态、退出条件与输出的契约字段。术语表中的事件片段、即时反馈行动状态、战斗片段、片段类型表四个术语登记为停用，事件配置实体与事件分支走向配置两个术语随之停用。存档中的当前片段与分支位置两项替换为当前事件与事件结果暂存两项。"
+   }
+  },
+  {
+   "gap_id": "SMP-GAP-004",
+   "title": "事件内交互的切除边界未定义：功能性交互是否随对话与演出一并移除，交易与交付环节的去留",
+   "level": "B0",
+   "priority_round": "第一轮 骨架，SMP-Q-001",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "已选候选",
+    "chosen_option_id": "SMP-GAP-004-OPT-A",
+    "chosen_label": "A",
+    "answer_text": "",
+    "decision_basis": "",
+    "extra_requirement": "仍然会有包含对话的事件，但是不再作为事件的主要信息。出现的形式包括但不限于：点击商人的立绘、进行一次交易、提示资金不足时，随机出现台词；玩家在UI当中进行经营决策，UI副框中弹出一些对话框来演绎事件内角色的对话，类似于一种对UI的装饰等",
+    "filled_at": "2026-10-05 13:54:55",
+    "needs_followup": false,
+    "chosen_detail": "移除对话片段、剧情文本推进、对话选项与选项分页、快进与回顾等演出相关环节，对话片段类型从事件类型表移除。交易事件内的选择、物品交付、物品交换与装备栏、容器操作保留，即时反馈行动状态的重复操作与原子提交规则不变，交易在一笔确认内提交、事件内报价固定的规则继续有效。事件内的可操作环节按功能界面组织，不再有文本演出包装。"
+   }
+  },
+  {
+   "gap_id": "SMP-GAP-005",
+   "title": "战斗场地载体与战斗入口未定义：战斗是否仍在大世界原地展开，我方初始站位从何而来，撤退与收尾窗口回到何处",
+   "level": "B0",
+   "priority_round": "第一轮 骨架，SMP-Q-001",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "自定义方案",
+    "chosen_option_id": "",
+    "chosen_label": "",
+    "answer_text": "战场是一份独立配置的瓦片地图，进入战斗时按事件配置加载，不再有世界瓦片地图这个概念，世界地图降维成平面地图（类似于导航地图）。我方单位的初始站位由事件或战斗配置声明，可以是固定阵位或由玩家在布置阶段按移动规则调整；撤退成功后回到地图界面，本场战斗按未完成处理，事件停留在未完成状态，已获得的战利品保留，同时这个战斗时间的错过窗口延长，且这个战斗事件为中心，地图上一定范围内的其他事件无法进入，直到这个战斗事件被完成或者过期；收尾窗口在世界地图之外独立呈现，结束后回到地图界面。战斗行为表中的撤退结果列与场景交互行为的说明同步改写，行动力的用途去掉探索侧。\n在地图上的同一点位进入的不同战斗，战斗瓦片地图都是一样的，保证地形体验的连贯性",
+    "decision_basis": "",
+    "extra_requirement": "",
+    "filled_at": "2026-10-05 14:27:35",
+    "needs_followup": false,
+    "chosen_detail": ""
+   }
+  },
+  {
+   "gap_id": "SMP-GAP-006",
+   "title": "信息传递系统（01-20）在去剧情演出后的存废与收缩范围未定，对话模块与文本阅读状态机制的去留没有口径",
+   "level": "B0",
+   "priority_round": "第一轮 骨架，SMP-Q-001",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "自定义方案",
+    "chosen_option_id": "",
+    "chosen_label": "",
+    "answer_text": "保留这一套系统。这一套剧情演出机制从局内完全移除。并在之后的版本考虑移入线索树（demo暂时不考虑）。线索树将承载所有的剧情记录功能。对话相关内容全面退化，只需要满足SMP-GAP-004的回答补充中的要求即可",
+    "decision_basis": "",
+    "extra_requirement": "",
+    "filled_at": "2026-10-05 14:28:18",
+    "needs_followup": false,
+    "chosen_detail": ""
+   }
+  },
+  {
+   "gap_id": "SMP-GAP-007",
+   "title": "区域形态与错过后果的兑现载体未定：事件池的过滤维度、窗口期长度的决定方与错过后的世界变化形式",
+   "level": "B1",
+   "priority_round": "第二轮 配套规则，SMP-Q-002",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "已选候选",
+    "chosen_option_id": "SMP-GAP-007-OPT-B",
+    "chosen_label": "B",
+    "answer_text": "",
+    "decision_basis": "",
+    "extra_requirement": "",
+    "filled_at": "2026-10-05 14:28:18",
+    "needs_followup": false,
+    "chosen_detail": "区域形态继续作为当前事件池的过滤条件与窗口期长度的决定方，形态取值与转变规则保留，转变仍以场景变化包装事件执行。表现层改写为玩家在地图界面通过该区域可进入的事件与窗口期长度变化感知形态，不再要求地形变化的表现。"
+   }
+  },
+  {
+   "gap_id": "SMP-GAP-008",
+   "title": "事件结果设计的数据结构未定义：单元化后事件内不同行为如何被记录、记录以什么字段承载并如何被后续内容消费",
+   "level": "B0",
+   "priority_round": "第一轮 骨架，SMP-Q-001",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "自定义方案",
+    "chosen_option_id": "",
+    "chosen_label": "",
+    "answer_text": "这部分的详细内容留待之后的环节设计，这些设计议案过于接近代码结构设计了，不属于本阶段工作",
+    "decision_basis": "",
+    "extra_requirement": "",
+    "filled_at": "2026-10-05 15:13:02",
+    "needs_followup": false,
+    "chosen_detail": ""
+   }
+  },
+  {
+   "gap_id": "SMP-GAP-009",
+   "title": "事件持续时间的决定方式未定义：剧情类阶段的时间检查点随演出移除后，非战斗事件如何占据与推进世界时间",
+   "level": "B1",
+   "priority_round": "第二轮 配套规则，SMP-Q-002",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "已选候选",
+    "chosen_option_id": "SMP-GAP-009-OPT-A",
+    "chosen_label": "A",
+    "answer_text": "",
+    "decision_basis": "",
+    "extra_requirement": "在非战斗事件里，有时候不同的行为会有不同的时间消耗，所以要预留配置接口",
+    "filled_at": "2026-10-05 15:30:52",
+    "needs_followup": false,
+    "chosen_detail": "非战斗事件在确认进入时按事件配置的时间段数一次性推进世界时间，事件内不再有时间检查点；配置中登记持续时间为一个确定值，日程表按实际推进结果记录。战斗事件沿用每累计十分钟推进一个时间段、战斗结束时向上对齐到下一个时间段边界的规则，退出时把净时长回填日程。事件内时间检查点这一术语登记为停用，自动保存的触发点在时间段推进与战斗轮次推进两类节点保持不变。"
+   }
+  },
+  {
+   "gap_id": "SMP-GAP-010",
+   "title": "事件的触发方式与进入流程未重写：地图点选后触发方式的取值集合、进入确认环节是否保留、触发方法揭示项如何改写",
+   "level": "B1",
+   "priority_round": "第二轮 配套规则，SMP-Q-002",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "已选候选",
+    "chosen_option_id": "SMP-GAP-010-OPT-B",
+    "chosen_label": "B",
+    "answer_text": "",
+    "decision_basis": "",
+    "extra_requirement": "",
+    "filled_at": "2026-10-05 15:31:30",
+    "needs_followup": false,
+    "chosen_detail": "点击事件点先在地图界面上原地展开信息面板，面板展示窗口期、参考持续时间与强制标记，玩家在面板上点击进入按钮才进入事件；一般事件可以关闭面板放弃，强制事件的面板只有进入按钮。信息呈现与进入操作合并在一处，触发方式取值集合收缩为地图点选一项。"
+   }
+  },
+  {
+   "gap_id": "SMP-GAP-011",
+   "title": "线索树（07-10）在去剧情后的定位与节点类型收缩未定：剧情类节点、传闻内容形态与叙事回顾功能如何处置",
+   "level": "B1",
+   "priority_round": "第二轮 配套规则，SMP-Q-002",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "自定义方案",
+    "chosen_option_id": "",
+    "chosen_label": "",
+    "answer_text": "线索树的功能暂时不变，功能在后续版本还要增加，将由线索树来承担剧情功能。demo版本先不考虑线索树扩容，先将玩法打磨完毕再做考虑",
+    "decision_basis": "",
+    "extra_requirement": "",
+    "filled_at": "2026-10-05 15:51:04",
+    "needs_followup": false,
+    "chosen_detail": ""
+   }
+  },
+  {
+   "gap_id": "SMP-GAP-012",
+   "title": "强制事件与场景变化包装事件在去剧情后的存废未定：三类强制事件各自保留、改写还是撤销",
+   "level": "B1",
+   "priority_round": "第二轮 配套规则，SMP-Q-002",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "已选候选",
+    "chosen_option_id": "SMP-GAP-012-OPT-B",
+    "chosen_label": "B",
+    "answer_text": "",
+    "decision_basis": "",
+    "extra_requirement": "",
+    "filled_at": "2026-10-05 15:51:57",
+    "needs_followup": false,
+    "chosen_detail": "第三类强制事件保留，其起因经过结果需要玩家调查的表述改为由线索树已解锁内容与事件结果记录承担，玩家通过线索树节点与后续事件读取调查进展，不再依赖对话。三类强制事件一律进入日程表并占用窗口期，以强制标记与其他事件区分。"
+   }
+  },
+  {
+   "gap_id": "SMP-GAP-013",
+   "title": "信息揭露与隐藏事件的呈现载体未定：位置提示、靠近展开与错过提示在无自由位移后由谁承载",
+   "level": "B1",
+   "priority_round": "第二轮 配套规则，SMP-Q-002",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "已选候选",
+    "chosen_option_id": "SMP-GAP-013-OPT-C",
+    "chosen_label": "C",
+    "answer_text": "",
+    "decision_basis": "",
+    "extra_requirement": "",
+    "filled_at": "2026-10-05 15:52:47",
+    "needs_followup": false,
+    "chosen_detail": "已解锁节点对应的事件在开新局时直接在地图上完整呈现窗口期与位置，不再有揭露等级、位置提示与错过提示的区分；剪枝封锁后该事件直接不出现。隐藏事件保留为不进入呈现列表的特例，其进度由线索树保留。"
+   }
+  },
+  {
+   "gap_id": "SMP-GAP-014",
+   "title": "移动系统（01-10）的存废与保留内容未定：活动范围、行动力探索侧用途、探索键位规格与战斗移动规则的归属",
+   "level": "B1",
+   "priority_round": "第二轮 配套规则，SMP-Q-002",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "已选候选",
+    "chosen_option_id": "SMP-GAP-014-OPT-B",
+    "chosen_label": "B",
+    "answer_text": "",
+    "decision_basis": "",
+    "extra_requirement": "",
+    "filled_at": "2026-10-05 16:00:36",
+    "needs_followup": false,
+    "chosen_detail": "保留系统并改写为承载区域、地点、事件点之间的空间关系与位移规则，负责区域解锁、旅行事件与事件点在地图界面上的布局；撤销自由移动、基点、活动范围、危险地形、安全通道与键位规格各节；战斗移动仍归战斗域。系统更名为区域与位移并同步全库引用与目录名。"
+   }
+  },
+  {
+   "gap_id": "SMP-GAP-015",
+   "title": "按阶段生效的界面属性挂载层级未重定：装备栏开放状态原挂载在事件片段上，单元化后无处安放",
+   "level": "B1",
+   "priority_round": "第二轮 配套规则，SMP-Q-002",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "已选候选",
+    "chosen_option_id": "SMP-GAP-015-OPT-A",
+    "chosen_label": "A",
+    "answer_text": "",
+    "decision_basis": "",
+    "extra_requirement": "",
+    "filled_at": "2026-10-05 16:01:26",
+    "needs_followup": false,
+    "chosen_detail": "界面开放状态由事件属性配置声明，一个事件一个开放状态；事件进入后按该状态决定装备栏是否可用，需要换装的事件整体放开，不需要换装的事件整体锁定。事件之外不存在默认开放状态，地图与日程界面下装备栏按界面属性统一开放。决策 67 由挂载在事件片段上改写为挂载在事件属性配置上，交互逻辑 75 同步改写。"
+   }
+  },
+  {
+   "gap_id": "SMP-GAP-016",
+   "title": "局生成（09-20）的生成内容未重定：地图是否仍属于生成产物、种子扰动参数表范围与交易刷新触发时点",
+   "level": "B1",
+   "priority_round": "第二轮 配套规则，SMP-Q-002",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "自定义方案",
+    "chosen_option_id": "",
+    "chosen_label": "",
+    "answer_text": "地图不随机生成，只有事件是随事件池随机生成的。地图模板完全固定",
+    "decision_basis": "",
+    "extra_requirement": "",
+    "filled_at": "2026-10-05 16:09:46",
+    "needs_followup": false,
+    "chosen_detail": ""
+   }
+  },
+  {
+   "gap_id": "SMP-GAP-017",
+   "title": "引导与开场事件的载体未定：开场事件的存废、引导提示的投放通道与教学内容的承载方式",
+   "level": "B1",
+   "priority_round": "第二轮 配套规则，SMP-Q-002",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "已选候选",
+    "chosen_option_id": "SMP-GAP-017-OPT-B",
+    "chosen_label": "B",
+    "answer_text": "",
+    "decision_basis": "",
+    "extra_requirement": "",
+    "filled_at": "2026-10-05 16:09:58",
+    "needs_followup": false,
+    "chosen_detail": "不再有开场事件，本局开始时按内容配置投放一组引导提示，世界线起点由局生成按大关进度直接确定。教学与提示都归提示通道，引导内容由关卡策划编排，系统层只提供投放位置与触发时点。"
+   }
+  },
+  {
+   "gap_id": "SMP-GAP-018",
+   "title": "本次精简的文档治理范围未定：停用术语、跨系统交互逻辑条目与设计决策登记的同步方式与时机",
+   "level": "B2",
+   "priority_round": "第三轮 文档治理，SMP-Q-003",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "已选候选",
+    "chosen_option_id": "SMP-GAP-018-OPT-A",
+    "chosen_label": "A",
+    "answer_text": "",
+    "decision_basis": "",
+    "extra_requirement": "",
+    "filled_at": "2026-10-05 16:16:35",
+    "needs_followup": false,
+    "chosen_detail": "术语表批量登记停用术语并改写正文引用，跨系统交互逻辑清单逐条改写或撤销，设计决策记录新增本次精简的全部取舍条目并写清复活条件，系统全景图与各域索引同步更新系统数、系统清单与状态列，README 的目录结构与域划分说明一并更新。全部改动在同一次回填任务中完成并一次性收口。"
+   }
+  }
+ ],
+ "stats": {
+  "total": 18,
+  "decided": 18,
+  "pending": 0
+ }
+}
