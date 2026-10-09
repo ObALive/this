@@ -1,0 +1,514 @@
+{
+ "db": "Output/S02-游戏引擎选型/S02-游戏引擎选型缺口决策库_v1.sqlite",
+ "gaps": [
+  {
+   "gap_id": "ENG-GAP-001",
+   "title": "架构改写的采用范围与强度：本次把 Unity 采用到什么程度、十章中哪些章节整体重写",
+   "level": "B0",
+   "priority_round": "第一轮 骨架，ENG-Q-001",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "已选候选",
+    "chosen_option_id": "ENG-GAP-001-OPT-A",
+    "chosen_label": "A",
+    "answer_text": "",
+    "decision_basis": "",
+    "extra_requirement": "",
+    "filled_at": "2026-10-08 15:51:26",
+    "needs_followup": false,
+    "chosen_detail": "以 Unity 的机制为骨架重排架构：现行架构中「项目自行实现」的能力逐项重判，Unity 已覆盖的改为直接采用；分层保留，但每层重新说明 Unity 侧的承载方式；第 4、6、7 章整体重写。"
+   }
+  },
+  {
+   "gap_id": "ENG-GAP-002",
+   "title": "对象模型的分工方式：数据侧、表现侧与装配侧对象分别用什么承载",
+   "level": "B0",
+   "priority_round": "第一轮 骨架，ENG-Q-001",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "已选候选",
+    "chosen_option_id": "ENG-GAP-002-OPT-C",
+    "chosen_label": "C",
+    "answer_text": "",
+    "decision_basis": "方便下游文档根据任务实际需求确认技术选型",
+    "extra_requirement": "",
+    "filled_at": "2026-10-08 15:56:56",
+    "needs_followup": false,
+    "chosen_detail": "由各系统按方便选择承载方式，架构层只给原则，不给可机械判定的分工规则。"
+   }
+  },
+  {
+   "gap_id": "ENG-GAP-003",
+   "title": "常驻对象的持有与创建方式：服务容器、启动物体与引擎场景各自承担什么",
+   "level": "B0",
+   "priority_round": "第一轮 骨架，ENG-Q-001",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "已选候选",
+    "chosen_option_id": "ENG-GAP-003-OPT-B",
+    "chosen_label": "B",
+    "answer_text": "",
+    "decision_basis": "",
+    "extra_requirement": "",
+    "filled_at": "2026-10-08 16:40:06",
+    "needs_followup": false,
+    "chosen_detail": "常驻对象的装配与依赖关系在编辑器内的资产上声明与校验；运行期由启动物体按声明顺序显式初始化各单元，不设统一容器。"
+   }
+  },
+  {
+   "gap_id": "ENG-GAP-004",
+   "title": "静态数据的载体与生成管线：设计库 13 张扩展配置表与引擎静态数据载体如何对应",
+   "level": "B0",
+   "priority_round": "第一轮 骨架，ENG-Q-001",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "已选候选",
+    "chosen_option_id": "ENG-GAP-004-OPT-B",
+    "chosen_label": "B",
+    "answer_text": "",
+    "decision_basis": "",
+    "extra_requirement": "",
+    "filled_at": "2026-10-08 16:01:43",
+    "needs_followup": false,
+    "chosen_detail": "配置内容的维护改在 Unity 编辑器内直接进行，设计库表只作为初始素材，不再作为权威来源。"
+   }
+  },
+  {
+   "gap_id": "ENG-GAP-005",
+   "title": "运行期数据的承载与持久化机制：数据域用什么承载、存档用什么序列化、落在哪里",
+   "level": "B0",
+   "priority_round": "第一轮 骨架，ENG-Q-001",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "自定义方案",
+    "chosen_option_id": "",
+    "chosen_label": "",
+    "answer_text": "Newtonsoft Json.NET + 判别字段（最主流） Unity 官方以 NuGet 包形式发布了 com.unity.nuget.newtonsoft-json——你的核查记录第 7 节已经记到它\"能力覆盖字典、属性、多态（多态需配类型白名单）、未知字段原样保留\"。多态有两条写法：\n\n    判别字段路线（推荐）：用 JsonSubTypes 这类转换器，在基类上声明 [JsonConverter(typeof(JsonSubtypes), \"Kind\")]，再逐个标注 [JsonSubtypes.KnownSubType(typeof(Dog), \"Dog\")]，序列化结果里只有你自己定义的字符串判别值，没有 CLR 类型名",
+    "decision_basis": "",
+    "extra_requirement": "",
+    "filled_at": "2026-10-08 16:52:28",
+    "needs_followup": false,
+    "chosen_detail": ""
+   }
+  },
+  {
+   "gap_id": "ENG-GAP-006",
+   "title": "事件通道的实现方式：跨模块状态广播在引擎侧由什么承载、事件登记表放在哪里",
+   "level": "B0",
+   "priority_round": "第一轮 骨架，ENG-Q-001",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "已选候选",
+    "chosen_option_id": "ENG-GAP-006-OPT-A",
+    "chosen_label": "A",
+    "answer_text": "",
+    "decision_basis": "",
+    "extra_requirement": "在选项A的基础上，把它从\"运行期登记表 + 拒绝发布\"降级为\"类型契约 + 一条对账测试\"",
+    "filled_at": "2026-10-08 20:01:25",
+    "needs_followup": false,
+    "chosen_detail": "沿用现行登记表与订阅表语义：事件名取自架构案 3.1 词表，载荷字段类别与失败语义在登记项内声明；发布与订阅经统一入口，未登记事件拒绝发布；登记表本身以可检视的资产承载，便于在编辑器内查看全部事件。"
+   }
+  },
+  {
+   "gap_id": "ENG-GAP-007",
+   "title": "资源加载与释放的体系：常驻集与场景集如何在引擎资源机制上落地",
+   "level": "B0",
+   "priority_round": "第一轮 骨架，ENG-Q-001",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "已选候选",
+    "chosen_option_id": "ENG-GAP-007-OPT-B",
+    "chosen_label": "B",
+    "answer_text": "",
+    "decision_basis": "",
+    "extra_requirement": "",
+    "filled_at": "2026-10-08 20:01:58",
+    "needs_followup": false,
+    "chosen_detail": "含常驻集在内的全部资产都经可寻址资源体系加载与释放，加载路径只有一条。"
+   }
+  },
+  {
+   "gap_id": "ENG-GAP-008",
+   "title": "界面体系的实现方案：十四个界面的清单、层级与界面栈由什么承载",
+   "level": "B0",
+   "priority_round": "第一轮 骨架，ENG-Q-001",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "已选候选",
+    "chosen_option_id": "ENG-GAP-008-OPT-B",
+    "chosen_label": "B",
+    "answer_text": "",
+    "decision_basis": "",
+    "extra_requirement": "",
+    "filled_at": "2026-10-08 20:02:28",
+    "needs_followup": false,
+    "chosen_detail": "界面栈为纯 C# 对象；界面实体是预制体，层级由 Canvas 排序控制。"
+   }
+  },
+  {
+   "gap_id": "ENG-GAP-009",
+   "title": "场景与界面承载的对应关系：引擎的场景、预制体与运行期组合分别承担哪些范围",
+   "level": "B0",
+   "priority_round": "第一轮 骨架，ENG-Q-001",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "已选候选",
+    "chosen_option_id": "ENG-GAP-009-OPT-A",
+    "chosen_label": "A",
+    "answer_text": "",
+    "decision_basis": "",
+    "extra_requirement": "",
+    "filled_at": "2026-10-08 20:04:33",
+    "needs_followup": false,
+    "chosen_detail": "一个常驻场景承载局外与地图阶段；事件场景与战斗地图各自独立成场景按需加载；其余可复用对象用预制体。"
+   }
+  },
+  {
+   "gap_id": "ENG-GAP-010",
+   "title": "程序集划分与可测试性口径：纯逻辑与引擎相关代码如何隔离",
+   "level": "B1",
+   "priority_round": "第一轮 骨架，ENG-Q-001",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "已选候选",
+    "chosen_option_id": "ENG-GAP-010-OPT-A",
+    "chosen_label": "A",
+    "answer_text": "",
+    "decision_basis": "",
+    "extra_requirement": "",
+    "filled_at": "2026-10-08 20:21:55",
+    "needs_followup": false,
+    "chosen_detail": "纯逻辑程序集不引用引擎相关程序集；表现与承载程序集引用纯逻辑程序集；分层与禁止依赖由程序集引用关系在编译期强制。"
+   }
+  },
+  {
+   "gap_id": "ENG-GAP-011",
+   "title": "分层与模块划分在引擎侧的承载方式：五层十个模块是否保留",
+   "level": "B0",
+   "priority_round": "第一轮 骨架，ENG-Q-001",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "自定义方案",
+    "chosen_option_id": "",
+    "chosen_label": "",
+    "answer_text": "这部分属于过度设计，层级划分和模块划分只是分类列出有哪些需要实现的功能，而不是强制每一类应该怎么做，更不是强制每一类之间相互数据隔离交互隔离。这些层级和类别划分将完全不介入影响程序架构和代码设计，仅仅作为提升代码易读性的自然语言标注",
+    "decision_basis": "",
+    "extra_requirement": "",
+    "filled_at": "2026-10-08 20:43:20",
+    "needs_followup": false,
+    "chosen_detail": ""
+   }
+  },
+  {
+   "gap_id": "ENG-GAP-012",
+   "title": "程序入口与启动引导的承载：引擎的入口唯一性如何与现行六阶段启动引导对应",
+   "level": "B0",
+   "priority_round": "第一轮 骨架，ENG-Q-001",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "已选候选",
+    "chosen_option_id": "ENG-GAP-012-OPT-C",
+    "chosen_label": "C",
+    "answer_text": "",
+    "decision_basis": "",
+    "extra_requirement": "",
+    "filled_at": "2026-10-08 20:45:48",
+    "needs_followup": false,
+    "chosen_detail": "六阶段直接展开为入口场景内各系统对象的初始化方法，顺序由启动物体的显式调用序列承担。"
+   }
+  },
+  {
+   "gap_id": "ENG-GAP-013",
+   "title": "常驻对象的跨场景存续与销毁顺序：对象如何跨场景存在、销毁顺序的依据",
+   "level": "B0",
+   "priority_round": "第一轮 骨架，ENG-Q-001",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "已选候选",
+    "chosen_option_id": "ENG-GAP-013-OPT-A",
+    "chosen_label": "A",
+    "answer_text": "",
+    "decision_basis": "",
+    "extra_requirement": "持有常驻对象的容器建议直接使用一个常驻场景。这个常驻场景的管理方式不等同于其他普通场景。直接将常驻对象挂载上去可以直接由Unity编译器处理这些常驻对象的加载",
+    "filled_at": "2026-10-08 21:23:45",
+    "needs_followup": false,
+    "chosen_detail": "常驻对象由容器持有，不依赖任何场景；引擎侧只有少量常驻承载对象需要跨场景存续，其数量以承载职责为限，不随系统数量增长。另补一条：常驻对象在启动引导的最早阶段显式重建，不依赖引擎的域重载提供初始状态（较新版本的新项目默认只重载场景，静态字段会跨播放会话存活）。"
+   }
+  },
+  {
+   "gap_id": "ENG-GAP-014",
+   "title": "帧循环与程序推进的关系：谁在什么时候推进游戏状态",
+   "level": "B0",
+   "priority_round": "第一轮 骨架，ENG-Q-001",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "自定义方案",
+    "chosen_option_id": "",
+    "chosen_label": "",
+    "answer_text": "这个讨论对于半回合制游戏没有意义，由于不存在即时操作，选取程序逻辑最方便的即可",
+    "decision_basis": "",
+    "extra_requirement": "",
+    "filled_at": "2026-10-09 10:06:58",
+    "needs_followup": false,
+    "chosen_detail": ""
+   }
+  },
+  {
+   "gap_id": "ENG-GAP-015",
+   "title": "数据域的变更入口与逐项切面登记：写入方列举不一致、切面登记与恢复粒度未写明",
+   "level": "B1",
+   "priority_round": "第三轮 运行，ENG-Q-003",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "已选候选",
+    "chosen_option_id": "ENG-GAP-015-OPT-B",
+    "chosen_label": "B",
+    "answer_text": "",
+    "decision_basis": "",
+    "extra_requirement": "具体的粒度和写入方不设严格限制，根据功能实现需要来定",
+    "filled_at": "2026-10-09 08:38:00",
+    "needs_followup": false,
+    "chosen_detail": "维持现行 8.2 的三条通用原则，只把「行情数据」这一处列举不一致改齐，其余逐项清单交给代码设计案。"
+   }
+  },
+  {
+   "gap_id": "ENG-GAP-016",
+   "title": "局外阶段的数据域状态与重置时点",
+   "level": "B1",
+   "priority_round": "第三轮 运行，ENG-Q-003",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "已选候选",
+    "chosen_option_id": "ENG-GAP-016-OPT-C",
+    "chosen_label": "C",
+    "answer_text": "",
+    "decision_basis": "",
+    "extra_requirement": "",
+    "filled_at": "2026-10-09 08:38:05",
+    "needs_followup": false,
+    "chosen_detail": "结算提交完成后立即释放三个域，开新局时全部重建。"
+   }
+  },
+  {
+   "gap_id": "ENG-GAP-017",
+   "title": "依赖登记遗漏与只读查询的允许项：写入型依赖一处、同层只读查询六处未落在允许清单",
+   "level": "B1",
+   "priority_round": "第三轮 运行，ENG-Q-003",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "已选候选",
+    "chosen_option_id": "ENG-GAP-017-OPT-B",
+    "chosen_label": "B",
+    "answer_text": "",
+    "decision_basis": "",
+    "extra_requirement": "",
+    "filled_at": "2026-10-09 08:39:35",
+    "needs_followup": false,
+    "chosen_detail": "两处写入型依赖按候选 A 逐条登记；同层只读查询统一为一条通则——同层只读查询不需逐条登记，只禁止写入与持有可变引用。"
+   }
+  },
+  {
+   "gap_id": "ENG-GAP-018",
+   "title": "退出与终止通道：程序退出受理与三类终止情形的落点",
+   "level": "B1",
+   "priority_round": "第三轮 运行，ENG-Q-003",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "自定义方案",
+    "chosen_option_id": "",
+    "chosen_label": "",
+    "answer_text": "一、退出侧：不设退出受理能力。\n\n    「退出游戏」即进程终止，与 Alt+F4、任务管理器结束进程、平台强制关闭同义，一律不做任何收尾承诺。\n    不新增 M01 的「程序退出受理」能力，不为阶段状态机新增终止态；6.1 的阶段取值仍为六种（地图、事件执行、战斗、收尾窗口、结算、局外）。\n    9.4 的「正常退出」序列取消；6.4 的「异常终止不执行销毁序列，以最近一次自动保存的提交结果为准」成为唯一口径。不依赖任何退出回调做存档。\n    单局存档的唯一可靠写路径是自动保存的两类节点（时间段推进、战斗轮次推进）；退出时不提交存档，退出也不构成任何提交点。\n    验收标准：任意时刻终止进程后重新启动，必须能正常启动并继续游玩；不能保证这一点即为设计失败。由此要求的实现约束有两条：① 单局存档写入必须原子（写临时文件后原子替换）；② 提交过程中断时按 7.1 的失败语义整次作废并保留上一份有效存档。\n    读档口径相应确定：自上一个自动保存节点以来的进度不恢复，未确认的操作不恢复（与 9.3 现行约束一致）。此为有意为之的设计决策，不是缺陷；该口径随本项一并写入 9.4 与 5.3。\n\n二、终止侧：三类终止情形一律沿局内循环执行。\n\n    一局游戏结束的唯一入口是「事件结束、提交事件结果」这一环节（即事件结算环节）。任何结局都在该环节成立，不另设入口。\n    战斗内只做判定，不成立结局。全队失去行动能力由 M05 判定并写入战斗结果，由 M10 的事件执行器在事件收尾时承接；事件按常规流程打完收尾窗口后进入事件结算环节，结局在该环节成立。现行 9.5.5 的步骤 1 至 4 保留，仅把措辞由「战斗内即时成立」改为「战斗内即时判定」。\n    主线中断的两类判定（错失必要主线事件、战斗失败导致主线中断）同样只产生判定结果，结局在事件结算环节成立；删除「本局终止时成立」这一入口。\n    6.6 的收敛：结算阶段的进入条件「结局成立」明确为「事件结算环节的事件结果提交」；战斗阶段的「退出到」一栏删除「结算阶段」，战斗只退回收尾窗口阶段或事件执行阶段。\n    阶段状态机的两条硬规则不变（阶段切换由当前阶段的拥有方发起、由阶段状态机执行；结算阶段封闭）。\n    三类终止情形在结局类型与大关进度两项上的写入内容相同，差异仍只落在达成记录的触发起因字段（T-013）与结算界面文案；同时成立时以即时成立的那一刻为准（现行 07-40 §3.7 口径保留）。\n\n三、不采用：候选 A（M01 增补退出受理）与候选 B（阶段状态机增补终止语义）均不采用。候选 C 的口径采用，但补入第一条第 5 点的验收标准。",
+    "decision_basis": "",
+    "extra_requirement": "本项与 REQ-SAVE-05 一并关闭（退出收尾提交与两类自动保存节点的关系按本答复确定为\"退出不提交\"）。",
+    "filled_at": "2026-10-09 09:03:07",
+    "needs_followup": false,
+    "chosen_detail": ""
+   }
+  },
+  {
+   "gap_id": "ENG-GAP-019",
+   "title": "界面清单与阶段状态机的缺口收口",
+   "level": "B2",
+   "priority_round": "第三轮 运行，ENG-Q-003",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "已选候选",
+    "chosen_option_id": "ENG-GAP-019-OPT-C",
+    "chosen_label": "C",
+    "answer_text": "",
+    "decision_basis": "",
+    "extra_requirement": "暂停毫无意义，玩家不操作游戏就不会推进，建议全域移除。如果涉及对系统设计案的修改，先编写一份修改需求提报申请，我转交给系统策划让他来完成",
+    "filled_at": "2026-10-09 09:21:08",
+    "needs_followup": false,
+    "chosen_detail": "改为一份独立的界面索引文档。"
+   }
+  },
+  {
+   "gap_id": "ENG-GAP-020",
+   "title": "事件登记口径与唯一发布方",
+   "level": "B1",
+   "priority_round": "第三轮 运行，ENG-Q-003",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "已选候选",
+    "chosen_option_id": "ENG-GAP-020-OPT-A",
+    "chosen_label": "A",
+    "answer_text": "",
+    "decision_basis": "",
+    "extra_requirement": "不需要立刻补全，即用即定，根据实际设计需求直接编写即可，做好登记表就行，不要额外管理",
+    "filled_at": "2026-10-09 09:44:09",
+    "needs_followup": false,
+    "chosen_detail": "登记表补字段构成（事件名、唯一发布方、载荷字段类别、失败语义）；对「结局成立」「结算完成」指定唯一发布方；「单位位置变化」与事件推进通知按 8.5.3 补登；条件求值不可用时该次判定按失败处理并拒绝该次入池。"
+   }
+  },
+  {
+   "gap_id": "ENG-GAP-021",
+   "title": "引擎版本基线",
+   "level": "B2",
+   "priority_round": "第二轮 配套，ENG-Q-002",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "已选候选",
+    "chosen_option_id": "ENG-GAP-021-OPT-A",
+    "chosen_label": "A",
+    "answer_text": "",
+    "decision_basis": "",
+    "extra_requirement": "",
+    "filled_at": "2026-10-09 09:44:33",
+    "needs_followup": false,
+    "chosen_detail": "在架构案 1.2 的适用范围中写明基线版本，并写明「引擎机制的判断以该基线为准，升级基线属于架构变更」。另补一条：基线取值决定异步能力的可用形态（较新版本提供可等待类型，2022 长期支持版只有协程），因此基线必须在 ENG-GAP-007 的资源加载方案落地前确定。"
+   }
+  },
+  {
+   "gap_id": "ENG-GAP-022",
+   "title": "游戏时间与引擎时间的分工",
+   "level": "B1",
+   "priority_round": "第二轮 配套，ENG-Q-002",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "已选候选",
+    "chosen_option_id": "ENG-GAP-022-OPT-A",
+    "chosen_label": "A",
+    "answer_text": "",
+    "decision_basis": "",
+    "extra_requirement": "",
+    "filled_at": "2026-10-09 09:45:38",
+    "needs_followup": false,
+    "chosen_detail": "游戏时间与战斗净时长都是纯逻辑数据，由各自持有方持有并随存档入档；帧时间只用于表现、动画与界面计时，任何影响游戏状态的判定都不得使用帧时间；战斗净时长归战斗模块并按单局状态域入档。"
+   }
+  },
+  {
+   "gap_id": "ENG-GAP-023",
+   "title": "确定性与引擎随机源的关系",
+   "level": "B1",
+   "priority_round": "第二轮 配套，ENG-Q-002",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "已选候选",
+    "chosen_option_id": "ENG-GAP-023-OPT-A",
+    "chosen_label": "A",
+    "answer_text": "",
+    "decision_basis": "",
+    "extra_requirement": "",
+    "filled_at": "2026-10-09 10:09:59",
+    "needs_followup": false,
+    "chosen_detail": "生成类消费由随机服务分流并随存档入档；表现类消费使用引擎的表现类随机，不入档、不影响游戏状态；两类消费点的归属在登记时声明。另补一条：不得使用系统基础库的随机（不保证跨运行时版本同序列，且不是线程安全的）。"
+   }
+  },
+  {
+   "gap_id": "ENG-GAP-024",
+   "title": "日志的分级、落点与引擎日志的关系",
+   "level": "B2",
+   "priority_round": "第二轮 配套，ENG-Q-002",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "已选候选",
+    "chosen_option_id": "ENG-GAP-024-OPT-A",
+    "chosen_label": "A",
+    "answer_text": "",
+    "decision_basis": "",
+    "extra_requirement": "",
+    "filled_at": "2026-10-09 10:12:14",
+    "needs_followup": false,
+    "chosen_detail": "游戏日志与引擎日志都经统一入口，按级别路由到不同落点（开发期设备输出、运行期文件落点）；崩溃现场采集明确为尽力而为。"
+   }
+  },
+  {
+   "gap_id": "ENG-GAP-025",
+   "title": "表现通道与引擎模块的边界",
+   "level": "B2",
+   "priority_round": "第二轮 配套，ENG-Q-002",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "已选候选",
+    "chosen_option_id": "ENG-GAP-025-OPT-A",
+    "chosen_label": "A",
+    "answer_text": "",
+    "decision_basis": "",
+    "extra_requirement": "",
+    "filled_at": "2026-10-09 10:12:47",
+    "needs_followup": false,
+    "chosen_detail": "各系统按标识调用引擎模块，不得自行读取音频与文本资源；文案与台词的取用仍由信息传递系统与界面共同承担。"
+   }
+  },
+  {
+   "gap_id": "ENG-GAP-026",
+   "title": "输入方案与改键、暂停的落点",
+   "level": "B1",
+   "priority_round": "第二轮 配套，ENG-Q-002",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "已选候选",
+    "chosen_option_id": "ENG-GAP-026-OPT-A",
+    "chosen_label": "A",
+    "answer_text": "",
+    "decision_basis": "",
+    "extra_requirement": "",
+    "filled_at": "2026-10-09 10:10:18",
+    "needs_followup": false,
+    "chosen_detail": "引擎负责物理设备到动作的映射（含手柄与改键能力）；项目负责动作到意图的语义化与分发；键位映射归设置侧持久化，改键写回输入映射，运行期配置只读的约束对输入映射开一个登记例外。"
+   }
+  },
+  {
+   "gap_id": "ENG-GAP-027",
+   "title": "物理与动画的使用边界",
+   "level": "B2",
+   "priority_round": "第二轮 配套，ENG-Q-002",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "已选候选",
+    "chosen_option_id": "ENG-GAP-027-OPT-A",
+    "chosen_label": "A",
+    "answer_text": "",
+    "decision_basis": "",
+    "extra_requirement": "",
+    "filled_at": "2026-10-09 10:10:26",
+    "needs_followup": false,
+    "chosen_detail": "战场的数据形态与表现形态分离；物理与动画用于位移、命中与特效的呈现，不参与规则判定。"
+   }
+  },
+  {
+   "gap_id": "ENG-GAP-028",
+   "title": "编辑器工作流与内容生产管线的架构约束",
+   "level": "B2",
+   "priority_round": "第二轮 配套，ENG-Q-002",
+   "owner": "游戏总监",
+   "decision": {
+    "status": "已选候选",
+    "chosen_option_id": "ENG-GAP-028-OPT-A",
+    "chosen_label": "A",
+    "answer_text": "",
+    "decision_basis": "",
+    "extra_requirement": "",
+    "filled_at": "2026-10-09 10:10:53",
+    "needs_followup": false,
+    "chosen_detail": "导入产物为可检视的资产；程序侧不直接读设计库表，内容侧不直接在运行时资产上改内容；校验失败即拒绝导入并报出具体表与条目。"
+   }
+  }
+ ],
+ "stats": {
+  "total": 28,
+  "decided": 28,
+  "pending": 0
+ }
+}

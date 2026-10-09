@@ -1,0 +1,71 @@
+RuntimeInitializeOnLoadMethodAttribute
+ class in
+ UnityEngine
+ /
+ Inherits from:Scripting.PreserveAttribute
+ /
+ Implemented in:UnityEngine.CoreModule
+ Leave feedback
+ Suggest a change
+ Success!
+ Thank you for helping us improve the quality of Unity Documentation. Although we cannot accept all submissions, we do read each suggested change from our users and will make updates where applicable.
+ Close
+ Submission failed
+ For some reason your suggested change could not be submitted. Please <a>try again</a> in a few minutes. And thank you for taking the time to help us improve the quality of Unity Documentation.
+ Close
+ Your name
+ Your email
+ Suggestion*
+ Submit suggestion
+ Cancel
+ Description
+ Use this attribute to get a callback when the runtime is starting up and loading the first scene.
+ Use the various options for RuntimeInitializeLoadType to control when the method is invoked in the startup sequence. 
+The following list shows the execution order of the RuntimeInitializeLoadType callbacks:
+ First various low level systems are initialized (window, assemblies, gfx etc.)
+ Then SubsystemRegistration and AfterAssembliesLoaded callbacks are invoked.
+ More setup (input systems etc.)
+ Then BeforeSplashScreen callback is invoked.
+ Now the first scene starts loading.
+ Then BeforeSceneLoad callback is invoked. Here objects of the scene is loaded but Awake() has not been called yet. All objects are considered inactive here.
+ Now Awake() and OnEnable() are invoked on MonoBehaviours.
+ Then AfterSceneLoad callback is invoked. Here objects of the scene are considered fully loaded and setup. Active objects can be found with FindObjectsByType.
+ The above details are when starting up a Player build. When entering Play mode in the Editor the same invocations are ensured.
+The default callback invocation time is RuntimeInitializeLoadType.AfterSceneLoad.
+The execution order within each of the RuntimeInitializeLoadType callbacks is not guaranteed.
+Note: Use the AlwaysLinkAssemblyAttribute on package or precompiled assemblies that contain one or more methods with the [RuntimeInitializeOnLoadMethod] attribute, but which may not contain types used directly or indirectly in any scenes built for the project.
+Additional resources: Managed code stripping
+// Demonstration of the RuntimeInitializeOnLoadMethod attribute
+using UnityEngine;
+class MyClass
+{
+ [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSplashScreen)]
+ static void OnBeforeSplashScreen()
+ {
+ Debug.Log("Before SplashScreen is shown and before the first scene is loaded.");
+ }
+ [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+ static void OnBeforeSceneLoad()
+ {
+ Debug.Log("First scene loading: Before Awake is called.");
+ }
+ [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+ static void OnAfterSceneLoad()
+ {
+ Debug.Log("First scene loaded: After Awake is called.");
+ }
+ [RuntimeInitializeOnLoadMethod]
+ static void OnRuntimeInitialized()
+ {
+ Debug.Log("Runtime initialized: First scene loaded: After Awake is called.");
+ }
+}
+ Properties
+ | Property
+ | Description
+ | loadType | Controling the callback invocation time.
+ Constructors
+ | Constructor
+ | Description
+ | RuntimeInitializeOnLoadMethodAttribute | Use the RuntimeInitializeLoadType to control when the callback is invoked.
+ Inherited Members

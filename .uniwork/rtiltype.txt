@@ -1,0 +1,26 @@
+RuntimeInitializeLoadType
+ enumeration
+ Leave feedback
+ Suggest a change
+ Success!
+ Thank you for helping us improve the quality of Unity Documentation. Although we cannot accept all submissions, we do read each suggested change from our users and will make updates where applicable.
+ Close
+ Submission failed
+ For some reason your suggested change could not be submitted. Please <a>try again</a> in a few minutes. And thank you for taking the time to help us improve the quality of Unity Documentation.
+ Close
+ Your name
+ Your email
+ Suggestion*
+ Submit suggestion
+ Cancel
+ Description
+ Specifies when to get a callback during the startup of the runtime or when entering play mode in the Editor. Used with RuntimeInitializeOnLoadMethodAttribute.
+ See the RuntimeInitializeOnLoadMethodAttribute documentation for the execution order between the various options.
+ Properties
+ | Property
+ | Description
+ | AfterSceneLoad | Callback invoked when the first scene's objects are loaded into memory and after Awake has been called.
+ | BeforeSceneLoad | Callback invoked when the first scene's objects are loaded into memory but before Awake has been called.
+ | AfterAssembliesLoaded | Callback invoked when all assemblies are loaded and preloaded assets are initialized. At this time the objects of the first scene have not been loaded yet.
+ | BeforeSplashScreen | Callback invoked before the splash screen is shown. At this time the objects of the first scene have not been loaded yet.
+ | SubsystemRegistration | Callback invoked when starting up the runtime. Called before the first scene is loaded.

@@ -1,0 +1,40 @@
+ScriptedImporterAttribute
+ class in
+ UnityEditor.AssetImporters
+ Leave feedback
+ Suggest a change
+ Success!
+ Thank you for helping us improve the quality of Unity Documentation. Although we cannot accept all submissions, we do read each suggested change from our users and will make updates where applicable.
+ Close
+ Submission failed
+ For some reason your suggested change could not be submitted. Please <a>try again</a> in a few minutes. And thank you for taking the time to help us improve the quality of Unity Documentation.
+ Close
+ Your name
+ Your email
+ Suggestion*
+ Submit suggestion
+ Cancel
+ Description
+ Class attribute used to register a custom asset importer derived from ScriptedImporter with Unity's Asset import pipeline.
+using UnityEngine;
+using UnityEditor.AssetImporters;
+[ScriptedImporter(version: 1, ext: "sphere", AllowCaching = true)]
+public class SphereImporter : ScriptedImporter
+{
+ public override void OnImportAsset(AssetImportContext ctx)
+ {
+ // ...
+ }
+}
+ Properties
+ | Property
+ | Description
+ | AllowCaching | Enable cache server uploads and downloads.
+ | fileExtensions | The list of file name extensions that this scripted importer should handle. You must not include the period character, only the extension characters such as "ext".
+ | importQueuePriority | Enables controlling the ordering of asset import based on type. Positive values delay the processing of source asset files while negative values place them earlier in the import process.
+ | overrideFileExtensions | List of file name extensions (not including the leading period character) that the scripted importer can handle in addition to the default file name extension(s).
+ | version | Importer version number used by the import layer to detect a new version of the importer.
+ Constructors
+ | Constructor
+ | Description
+ | ScriptedImporterAttribute | Use the ScriptedImporter attribute to register a custom importer derived from ScriptedImporter with Unity's Asset import pipeline.
