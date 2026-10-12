@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>玩家反馈映射库</title>
+  <link rel="stylesheet" href="/app.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <div class="eyebrow">设计资料 · 本地数据库</div>
+      <h1>玩家反馈映射库</h1>
+      <p>反馈主题与具体“玩家操作—程序反馈”映射</p>
+    </div>
+    <div class="top-actions">
+      <button id="export-button" class="button secondary" type="button">导出 JSON</button>
+      <button id="new-topic-button" class="button primary" type="button">新建反馈主题</button>
+    </div>
+  </header>
+
+  <div class="workspace">
+    <aside class="sidebar" aria-label="反馈主题列表">
+      <label class="search-label" for="search">搜索主题或具体映射</label>
+      <input id="search" type="search" placeholder="编号、行为、反馈、代码归属…" autocomplete="off">
+      <div class="list-meta"><span id="topic-count">读取中…</span><span id="db-label" title="当前数据库"></span></div>
+      <nav id="topic-list" class="topic-list" aria-label="反馈主题"></nav>
+    </aside>
+
+    <main class="main">
+      <div id="empty-state" class="empty-state">
+        <h2>选择一个反馈主题</h2>
+        <p>左侧可以搜索、查看或新建主题。每个主题下都能独立维护任意数量的具体映射。</p>
+      </div>
+
+      <div id="topic-view" hidden>
+        <div class="section-head">
+          <div><div class="eyebrow">反馈主题</div><h2 id="topic-heading">新建主题</h2></div>
+          <button id="delete-topic-button" class="button danger" type="button">删除主题</button>
+        </div>
+        <form id="topic-form" class="card form-grid">
+          <label>编号 <input name="topic_id" id="topic-id" required maxlength="40" placeholder="例如 FB-44"></label>
+          <label>排序 <input name="sort_order" id="topic-order" type="number" min="0" max="1000000" value="0"></label>
+          <label class="wide">玩家行为范围 <textarea name="player_behavior" id="topic-behavior" required rows="2" maxlength="500"></textarea></label>
+          <label class="wide">待梳理的游戏反馈主题 <textarea name="feedback_topic" id="topic-feedback" required rows="2" maxlength="500"></textarea></label>
+          <label class="wide">代码归属 <input name="code_owner" id="topic-owner" maxlength="500" placeholder="例如 M04, M08"></label>
+          <label class="wide">依据 <textarea name="source_ref" id="topic-source" rows="2" maxlength="2000"></textarea></label>
+          <div class="form-actions wide"><span id="topic-updated" class="muted"></span><button class="button primary" type="submit">保存主题</button></div>
+        </form>
+
+        <div id="mappings-section">
+          <div class="section-head subhead">
+            <div><div class="eyebrow">具体映射子表</div><h2>玩家操作 ↔ 程序反馈 <span id="mapping-count" class="count">0</span></h2></div>
+            <button id="new-mapping-button" class="button secondary" type="button">添加映射</button>
+          </div>
+          <p class="section-note">一行是一项具体映射。每个主题都可单独维护玩家操作、程序反馈、阶段、条件和备注。</p>
+          <div id="mapping-list" class="mapping-list"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <dialog id="mapping-dialog">
+    <form id="mapping-form" class="dialog-form">
+      <div class="section-head"><h2 id="mapping-heading">添加具体映射</h2><button id="close-dialog-button" class="icon-button" type="button" aria-label="关闭">×</button></div>
+      <label>具体玩家操作 <textarea name="player_action" id="mapping-action" required rows="3"></textarea></label>
+      <label>程序反馈 <textarea name="program_feedback" id="mapping-feedback" required rows="3"></textarea></label>
+      <label>阶段与上下文 <input name="context" id="mapping-context"></label>
+      <label>触发条件 <textarea name="condition_text" id="mapping-condition" rows="2"></textarea></label>
+      <label>备注 <textarea name="notes" id="mapping-notes" rows="2"></textarea></label>
+      <label>排序 <input name="sort_order" id="mapping-order" type="number" min="0" max="1000000" value="0"></label>
+      <div class="dialog-actions"><button id="cancel-dialog-button" class="button secondary" type="button">取消</button><button class="button primary" type="submit">保存映射</button></div>
+    </form>
+  </dialog>
+
+  <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+  <script src="/app.js"></script>
+</body>
+</html>

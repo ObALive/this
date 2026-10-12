@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>项目网络图 · 绘制与编辑</title>
+  <link rel="stylesheet" href="/app.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="eyebrow">开发路线依赖图</div>
+      <h1>项目网络图</h1>
+      <div class="source" id="source-label">读取中…</div>
+    </div>
+    <div class="toolbar">
+      <button type="button" class="button" id="btn-undo" title="撤销 (Ctrl+Z)">撤销</button>
+      <button type="button" class="button" id="btn-redo" title="重做 (Ctrl+Shift+Z)">重做</button>
+      <span class="sep"></span>
+      <button type="button" class="button" id="btn-fit">适配视图</button>
+      <button type="button" class="button" id="btn-relayout">清除手工挪位</button>
+      <span class="sep"></span>
+      <button type="button" class="button" id="btn-import">导入任务书</button>
+      <button type="button" class="button" id="btn-preview">预览 Markdown</button>
+      <button type="button" class="button primary" id="btn-export">导出 Markdown</button>
+    </div>
+  </header>
+
+  <div class="workspace">
+    <aside class="sidebar">
+      <section class="panel">
+        <div class="panel-head">
+          <h2>开发路线</h2>
+          <button type="button" class="icon-button" id="btn-add-section" title="新增开发路线">＋</button>
+        </div>
+        <div id="route-tree" class="route-tree"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>校验</h2>
+          <span class="counter" id="issue-counter">0</span>
+        </div>
+        <div class="legend">
+          <span class="dot error"></span>阻塞
+          <span class="dot warning"></span>提醒
+          <span class="dot info"></span>提示
+        </div>
+        <div id="issue-list" class="issue-list"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>对象索引</h2>
+          <span class="counter" id="object-counter">0</span>
+        </div>
+        <p class="hint">需要一并实现的对象，以及声明它的条目。实现路径是可选项。</p>
+        <div id="object-list" class="object-list"></div>
+      </section>
+    </aside>
+
+    <main class="canvas-wrap">
+      <svg id="canvas" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arrow-chain" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#9aa4b2"></path>
+          </marker>
+          <marker id="arrow-explicit" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#3f7dd8"></path>
+          </marker>
+        </defs>
+        <g id="world">
+          <g id="layer-bands"></g>
+          <g id="layer-edges"></g>
+          <g id="layer-nodes"></g>
+        </g>
+      </svg>
+      <div class="canvas-hint">点击节点打开详情编辑框 · 拖动空白平移 · 滚轮缩放 · 拖动节点可微调位置</div>
+      <div class="empty-canvas" id="empty-canvas" hidden>
+        <h2>网络图是空的</h2>
+        <p>导入一份任务书 Markdown，或新增一条开发路线后开始添加条目。</p>
+        <button type="button" class="button primary" id="btn-import-empty">导入任务书</button>
+      </div>
+    </main>
+  </div>
+
+  <!-- 节点详情编辑框 -->
+  <dialog id="node-dialog" class="dialog">
+    <div class="dialog-inner">
+      <header class="dialog-head">
+        <div>
+          <div class="eyebrow" id="nd-route">开发路线</div>
+          <h2 id="nd-title">条目</h2>
+        </div>
+        <button type="button" class="icon-button" id="nd-close" title="关闭">✕</button>
+      </header>
+
+      <div class="dialog-body">
+        <label class="field">
+          <span>实现目标概要<em>（节点上只显示这一行与章节索引）</em></span>
+          <input type="text" id="nd-summary" autocomplete="off">
+        </label>
+
+        <label class="field">
+          <span>实现目标说明<em>（正文；括号内的依赖与对象会在保存时重新解析）</em></span>
+          <textarea id="nd-body" rows="4"></textarea>
+        </label>
+
+        <section class="field-group">
+          <div class="group-head">
+            <span>依赖前置<em>（其他开发路线中的条目）</em></span>
+            <button type="button" class="button ghost small" id="nd-add-ref">＋ 添加依赖</button>
+          </div>
+          <div class="rows" id="nd-refs"></div>
+        </section>
+
+        <section class="field-group">
+          <div class="group-head">
+            <span>需要一并构建并实现的对象<em>（实现路径可选）</em></span>
+            <button type="button" class="button ghost small" id="nd-add-obj">＋ 添加对象</button>
+          </div>
+          <div class="rows" id="nd-objs"></div>
+        </section>
+
+        <section class="field-group" id="nd-notes-group">
+          <div class="group-head"><span>设计方式说明<em>（从正文括号中摘出）</em></span></div>
+          <div class="rows" id="nd-notes"></div>
+        </section>
+      </div>
+
+      <footer class="dialog-foot">
+        <div class="foot-left">
+          <button type="button" class="button small" id="nd-move-up">上移</button>
+          <button type="button" class="button small" id="nd-move-down">下移</button>
+          <button type="button" class="button danger small" id="nd-delete">删除条目</button>
+        </div>
+        <div class="foot-right">
+          <button type="button" class="button small" id="nd-insert-after">在此后插入新条目</button>
+          <button type="button" class="button primary" id="nd-save">保存</button>
+        </div>
+      </footer>
+    </div>
+  </dialog>
+
+  <!-- 导入对话框 -->
+  <dialog id="import-dialog" class="dialog">
+    <div class="dialog-inner">
+      <header class="dialog-head">
+        <div>
+          <div class="eyebrow">导入</div>
+          <h2>从任务书 Markdown 建立网络图</h2>
+        </div>
+        <button type="button" class="icon-button" id="import-close">✕</button>
+      </header>
+      <div class="dialog-body">
+        <p class="hint">脚本会按标题切分开发路线（章节），按编号切分条目；同一路线下的条目自动形成「依次向上依赖」；括号内的「依赖…」变成跨路线依赖，「元对象-…组件」等等变成待实现对象。</p>
+        <label class="field">
+          <span>工作区内的文件路径</span>
+          <input type="text" id="import-path" autocomplete="off" spellcheck="false">
+        </label>
+        <div class="dialog-actions">
+          <button type="button" class="button" id="import-from-file">从该文件导入</button>
+          <button type="button" class="button" id="import-reset">重新用该文件覆盖当前网络图</button>
+        </div>
+        <label class="field">
+          <span>或直接粘贴 Markdown</span>
+          <textarea id="import-text" rows="8" spellcheck="false" placeholder="## 开发路线&#10;1. 条目正文（依赖其他路线1）（元对象-某组件）"></textarea>
+        </label>
+        <div class="dialog-actions">
+          <button type="button" class="button primary" id="import-from-text">用粘贴内容建立网络图</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Markdown 预览 -->
+  <dialog id="markdown-dialog" class="dialog">
+    <div class="dialog-inner">
+      <header class="dialog-head">
+        <div>
+          <div class="eyebrow">导出预览</div>
+          <h2>当前网络图的 Markdown</h2>
+        </div>
+        <button type="button" class="icon-button" id="markdown-close">✕</button>
+      </header>
+      <div class="dialog-body">
+        <pre id="markdown-preview" class="markdown-preview"></pre>
+      </div>
+      <footer class="dialog-foot">
+        <div class="foot-left"><span class="hint" id="markdown-path"></span></div>
+        <div class="foot-right">
+          <button type="button" class="button" id="markdown-copy">复制</button>
+          <button type="button" class="button primary" id="markdown-write">写入文件</button>
+        </div>
+      </footer>
+    </div>
+  </dialog>
+
+  <div id="toast" class="toast" hidden></div>
+
+  <script src="/graph.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
