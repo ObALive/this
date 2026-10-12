@@ -3,15 +3,24 @@
  * 同路线内相邻条目依次向上依赖（chain 边），跨路线依赖走曲线（explicit 边）。 */
 (function (global) {
   const LAYOUT = {
-    colWidth: 232,
-    nodeHeight: 64,
-    gapY: 26,
+    colWidth: 176,
+    gapY: 78,
     colGap: 92,
     padX: 56,
     padTop: 104,
     padBottom: 72,
     bandHeight: 34,
     sameColBulge: 46,
+    // 节点高度由概要行数决定：索引行 + 若干概要行 + 下留白，且不低于 minHeight
+    minHeight: 52,
+    firstLineBase: 39,
+    lineStep: 17,
+    bottomPad: 9,
+    maxSummaryLines: 4,
+    summaryFontPx: 13,
+    summaryPadX: 30,
+    indexFontPx: 10.5,
+    indexPadX: 26,
   };
 
   const ROUTE_COLORS = [
@@ -68,27 +77,39 @@
       const column = { sectionId: section.id, title: section.title, x, index: colIndex, nodeIds: ids };
       columns.push(column);
 
+      // 概要按节点宽度折行，行数决定节点高度；节点自上而下按「前一个高度 + 间距」累积
+      const textUnits = (opt.colWidth - opt.summaryPadX) / opt.summaryFontPx;
+      let cursorY = opt.padTop;
       ids.forEach((id, i) => {
-        const y = opt.padTop + i * (opt.nodeHeight + opt.gapY);
         const node = byId.get(id);
         const manual = (node && node.manual) || {};
+        const summary = node ? node.summary : "";
+        const lines = wrapSummary(summary, textUnits, opt.maxSummaryLines);
+        const h = nodeHeightFor(lines.length, opt);
         positions.set(id, {
           id,
           sectionId: section.id,
           column: colIndex,
           row: i,
           x: x + (manual.dx || 0),
-          y: y + (manual.dy || 0),
+          y: cursorY + (manual.dy || 0),
           w: opt.colWidth,
-          h: opt.nodeHeight,
+          h,
           baseX: x,
-          baseY: y,
+          baseY: cursorY,
+          lines,
+          maxLines: opt.maxSummaryLines,
+          firstLineBase: opt.firstLineBase,
+          lineStep: opt.lineStep,
+          indexChars: (opt.colWidth - opt.indexPadX) / opt.indexFontPx,
           color: routeColor(section.id, sections),
           index_label: node ? node.index_label : "",
-          summary: node ? node.summary : "",
+          summary,
           has_error: !!(node && (node.refs || []).some((r) => !r.resolved)),
         });
+        cursorY += h + opt.gapY;
       });
+      column.bottom = Math.max(opt.padTop, cursorY - opt.gapY);
       colIndex += 1;
     }
 
@@ -133,7 +154,7 @@
     let width = opt.padX * 2 + Math.max(1, columns.length) * opt.colWidth + Math.max(0, columns.length - 1) * opt.colGap;
     let height = opt.padTop;
     for (const col of columns) {
-      height = Math.max(height, opt.padTop + col.nodeIds.length * (opt.nodeHeight + opt.gapY));
+      height = Math.max(height, (col.bottom || opt.padTop) + opt.padBottom);
     }
     if (!columns.length) height = 220;
     if (!columns.length) width = 520;
@@ -202,7 +223,31 @@
     return lines;
   }
 
-  global.PNLayout = { computeLayout, edgePath, arrowPath, wrapSummary, routeColor, LAYOUT };
+  // 节点高度随概要行数变化：索引行固定占高，概要每多一行加一个行距
+  function nodeHeightFor(lineCount, options) {
+    const opt = Object.assign({}, LAYOUT, options || {});
+    const lines = Math.max(1, lineCount || 0);
+    const content = opt.firstLineBase + (lines - 1) * opt.lineStep + opt.bottomPad;
+    return Math.max(opt.minHeight, content);
+  }
+
+  // 单行文本超宽时截断并加省略号，宽度按「非 ASCII 记 1 个单位」估算
+  function truncateText(text, maxWidth) {
+    const source = (text || "").trim();
+    if (!source || !(maxWidth > 0)) return source;
+    const widthOf = (ch) => (/[\x00-\xff]/.test(ch) ? 0.56 : 1);
+    let w = 0;
+    let out = "";
+    for (const ch of source) {
+      const cw = widthOf(ch);
+      if (w + cw > maxWidth - 1) return out + "…";
+      out += ch;
+      w += cw;
+    }
+    return out;
+  }
+
+  global.PNLayout = { computeLayout, edgePath, arrowPath, wrapSummary, truncateText, nodeHeightFor, routeColor, LAYOUT };
   if (typeof module !== "undefined" && module.exports) {
     module.exports = global.PNLayout;
   }

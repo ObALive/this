@@ -1,0 +1,6 @@
+# 写入过程中的 SQLite 临时文件与损坏留档，不进入版本库。
+# `项目网络图.sqlite` 本身是数据本体，需要照常纳入版本控制。
+*.sqlite-journal
+*.sqlite-wal
+*.sqlite-shm
+*.broken-*.sqlite

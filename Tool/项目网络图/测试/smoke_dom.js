@@ -214,26 +214,44 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 (async () => {
   await sleep(900);
   const byId = (id) => documentShim.getElementById(id);
+  // 期望值全部由接口现算，避免内容增删后测试数字过期
+  const stateData = await (await fetch("/api/state")).json();
+  const model = stateData.model;
+  const rootIds = new Set(
+    model.sections.map((s) => {
+      let cur = s;
+      const seen = new Set();
+      while (cur && cur.parent_id && !seen.has(cur.id)) {
+        seen.add(cur.id);
+        cur = model.sections.find((x) => x.id === cur.parent_id);
+      }
+      return cur ? cur.id : s.id;
+    })
+  );
 
   const nodeEls = byId("layer-nodes").children;
   const edgeEls = byId("layer-edges").children;
   const bandEls = byId("layer-bands").children;
-  check("渲染出全部节点", nodeEls.length === 16, nodeEls.length);
-  check("渲染出全部依赖边", edgeEls.length === 18, edgeEls.length);
-  check("渲染出路线分组带", bandEls.length === 3, bandEls.length);
+  check("渲染出全部节点", nodeEls.length === model.nodes.length, nodeEls.length);
+  check("渲染出全部依赖边", edgeEls.length === model.edges.length, edgeEls.length);
+  check("渲染出路线分组带", bandEls.length === rootIds.size, bandEls.length);
   check(
     "节点上只写章节索引与概要",
-    nodeEls[0].children.filter((c) => c.tagName === "text").length === 3
+    nodeEls[0].children.filter((c) => c.tagName === "text").length === 1 + PNLayout.LAYOUT.maxSummaryLines
   );
-  check("侧栏列出条目", byId("route-tree").querySelectorAll(".node-row").length === 16);
+  check("侧栏列出条目", byId("route-tree").querySelectorAll(".node-row").length === model.nodes.length);
   check("有数据时隐藏空状态遮罩", byId("empty-canvas").hidden === true);
   // 回归：作者样式里的 display 会盖掉 [hidden]，必须有显式兜底
   const css = fs.readFileSync(path.join(TOOL, "app.css"), "utf-8");
   check("样式表为 [hidden] 提供兜底", /\[hidden\]\s*\{[^}]*display:\s*none/.test(css));
-  check("侧栏列出路线块", byId("route-tree").querySelectorAll(".route").length === 4);
+  check(
+    "侧栏覆盖全部路线",
+    byId("route-tree").querySelectorAll(".route").length +
+      byId("route-tree").querySelectorAll(".route-root").length === model.sections.length
+  );
   check("校验面板有内容", byId("issue-list").querySelectorAll(".issue").length > 0);
-  check("对象索引列出对象", byId("object-list").querySelectorAll(".object-item").length === 6);
-  check("对象计数正确", byId("object-counter").textContent === "6", byId("object-counter").textContent);
+  check("对象索引列出对象", byId("object-list").querySelectorAll(".object-item").length === model.stats.objects);
+  check("对象计数正确", byId("object-counter").textContent === String(model.stats.objects), byId("object-counter").textContent);
 
   // 打开某个节点的详情框
   const rows = byId("route-tree").querySelectorAll(".node-row");
@@ -243,16 +261,30 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   check("点击条目打开详情编辑框", dialog.open === true);
   check("详情框填了概要", byId("nd-summary").value.length > 0, byId("nd-summary").value);
   check("详情框填了正文", byId("nd-body").value.length > 0);
-  check("详情框列出对象行", byId("nd-objs").querySelectorAll('.row[data-role="obj"]').length === 2);
+  const objNode = model.nodes.find((n) => String(n.summary).indexOf("场景道具摆放") >= 0);
+  if (objNode) {
+    check(
+      "详情框列出对象行",
+      byId("nd-objs").querySelectorAll('.row[data-role="obj"]').length === objNode.objects.length
+    );
+  } else {
+    check("详情框列出对象行", false, "未找到「场景道具摆放」条目");
+  }
   check("其中一条带备注", byId("nd-objs").querySelectorAll(".obj-note").some((i) => i.value.length > 0));
 
   // 打开一个带依赖的节点
   const depRow = rows.find((r) => r.textContent.includes("禁行地块"));
   depRow.dispatch("click");
+  const depNode = model.nodes.find((n) => String(n.summary).indexOf("禁行地块") >= 0);
   const refs = byId("nd-refs").querySelectorAll('.row[data-role="ref"]');
-  check("详情框列出依赖行", refs.length === 1, refs.length);
+  check("详情框列出依赖行", refs.length === (depNode ? depNode.refs.length : 1), refs.length);
   check("依赖行显示已解析", refs[0].querySelector(".pill").textContent === "已解析");
-  check("依赖下拉可选到全部条目", refs[0].querySelectorAll("option").length === 17);
+  // 下拉里除全部条目外，还有一个「自动按依赖文本解析」的空值项
+  check(
+    "依赖下拉可选到全部条目",
+    refs[0].querySelectorAll("option").length === model.nodes.length + 1,
+    refs[0].querySelectorAll("option").length
+  );
 
   // 添加/删除依赖行、对象行
   byId("nd-add-ref").dispatch("click");
@@ -271,7 +303,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   byId("nd-save").dispatch("click");
   await sleep(500);
   check("保存后详情框关闭", dialog.open === false);
-  check("保存后节点数不变", byId("layer-nodes").children.length === 16);
+  check("保存后节点数不变", byId("layer-nodes").children.length === model.nodes.length);
 
   // 侧栏高亮联动
   rows[0].dispatch("mouseenter");

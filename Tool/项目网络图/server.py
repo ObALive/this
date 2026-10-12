@@ -113,26 +113,27 @@ class Handler(BaseHTTPRequestHandler):
             with LOCK:
                 if path == "/api/op":
                     model = get_model()
-                    result = M.apply_op(model, body.get("op", ""), body.get("args", {}))
-                    store.save(model)
+                    op = body.get("op", "")
+                    result = M.apply_op(model, op, body.get("args", {}))
+                    store.save(model, reason=f"操作 {op}" if op else "操作")
                     self._send(200, self._view(log=result.get("log"), extra={k: v for k, v in result.items() if k != "log"}))
                     return
                 if path == "/api/import":
                     model = store.import_from(body.get("path"), body.get("text"))
                     STATE["model"] = model
-                    store.save(model)
+                    store.save(model, reason="导入任务书", force_snapshot=True)
                     self._send(200, self._view(extra={"warnings": model.meta.get("warnings", [])}))
                     return
                 if path == "/api/reset":
                     model = store.import_from(body.get("path") or store.DEFAULT_SOURCE)
                     STATE["model"] = model
-                    store.save(model)
+                    store.save(model, reason="重置网络图", force_snapshot=True)
                     self._send(200, self._view(extra={"warnings": model.meta.get("warnings", [])}))
                     return
                 if path == "/api/export":
                     model = get_model()
                     target, text = store.export_markdown(model, body.get("path"))
-                    store.save(model)
+                    store.save(model, reason="导出 Markdown", backup=False)
                     self._send(
                         200,
                         self._view(
@@ -161,7 +162,7 @@ def main(argv: list[str] | None = None) -> int:
     model = get_model()
     view = M.serialize(model)
     print(f"工作区：{store.WORKSPACE}", flush=True)
-    print(f"数据文件：{store.DATA_FILE}", flush=True)
+    print(f"数据文件：{store.DB_FILE}", flush=True)
     print(
         f"当前网络图：{view['stats']['sections']} 条开发路线 / {view['stats']['nodes']} 个条目 / {view['stats']['edges']} 条依赖边",
         flush=True,

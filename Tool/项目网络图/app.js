@@ -168,12 +168,15 @@
     const g = svgEl("g", { class: "node" });
     g.dataset.id = info.id;
     const box = svgEl("rect", { class: "node-box", rx: 10, width: info.w, height: info.h });
-    const accent = svgEl("rect", { class: "node-accent", x: 0, y: 10, width: 3.5, height: info.h - 20, rx: 1.75, fill: info.color });
+    const accent = svgEl("rect", { class: "node-accent", x: 0, y: 10, width: 3.5, height: Math.max(12, info.h - 20), rx: 1.75, fill: info.color });
     const idx = svgEl("text", { class: "node-index", x: 14, y: 18 });
-    const s1 = svgEl("text", { class: "node-summary", x: 14, y: 39 });
-    const s2 = svgEl("text", { class: "node-summary", x: 14, y: 56 });
+    g.append(box, accent, idx);
+    // 概要行数固定按 maxLines 建，行的显隐由 updateNodeEl 填文本决定；高度随实际行数变化
+    const lineCount = Math.max(1, info.maxLines || 1);
+    for (let i = 0; i < lineCount; i += 1) {
+      g.append(svgEl("text", { class: "node-summary", x: 14, y: info.firstLineBase + i * info.lineStep }));
+    }
     // 节点上只写章节索引与实现目标概要；未解析依赖只用左侧描边提示，不写额外文字
-    g.append(box, accent, idx, s1, s2);
     g.addEventListener("pointerdown", onNodePointerDown);
     g.addEventListener("pointerenter", () => { if (!state.drag) highlightNodes(collectRelated(info.id)); });
     g.addEventListener("pointerleave", () => { if (!state.drag) { state.highlight = null; clearHighlight(); } });
@@ -185,12 +188,14 @@
     g.querySelector(".node-box").setAttribute("width", info.w);
     g.querySelector(".node-box").setAttribute("height", info.h);
     const accent = g.querySelector(".node-accent");
-    accent.setAttribute("height", info.h - 20);
+    accent.setAttribute("height", Math.max(12, info.h - 20));
     accent.setAttribute("fill", info.color);
-    g.querySelector(".node-index").textContent = info.index_label;
-    const lines = PNLayout.wrapSummary(info.summary, 15, 2);
-    g.children[3].textContent = lines[0] || "";
-    g.children[4].textContent = lines[1] || "";
+    g.querySelector(".node-index").textContent = PNLayout.truncateText(info.index_label, info.indexChars);
+    const lines = info.lines || [];
+    const summaryEls = g.querySelectorAll(".node-summary");
+    for (let i = 0; i < summaryEls.length; i += 1) {
+      summaryEls[i].textContent = lines[i] || "";
+    }
     g.style.transform = `translate(${info.x}px, ${info.y}px)`;
     g.classList.toggle("error", info.has_error);
     g.classList.toggle("active", state.editingId === info.id);

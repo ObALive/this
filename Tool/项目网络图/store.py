@@ -1,27 +1,33 @@
 """项目网络图的本地存档。
 
 - 定位工作区根目录；
-- 首次启动时从默认任务书（Task/CO系列任务/CO05.md）导入初始网络图；
-- 每次编辑自动保存，并滚动保留最近的备份。
+- 数据存放在 SQLite 库 `数据/项目网络图.sqlite`（结构见 db.py，读取方式见 读库说明.md）；
+- 首次启动时按「旧 JSON 存档 → 默认任务书」的顺序初始化；
+- 每次编辑自动写入库，并按时间限流追加整模型快照，滚动保留最近若干份；
+- 旧版 `数据/项目网络图.json` 与 `数据/备份/*.json` 只作为迁移来源保留，不再更新。
 """
 
 from __future__ import annotations
 
 import json
+import os
+import sqlite3
 import time
 from pathlib import Path
 
+import db
 import model as M
 
 TOOL_DIR = Path(__file__).resolve().parent
 DATA_DIR = TOOL_DIR / "数据"
-BACKUP_DIR = DATA_DIR / "备份"
+BACKUP_DIR = DATA_DIR / "备份"          # 旧版 JSON 备份目录，仅保留历史文件
 EXPORT_DIR = DATA_DIR / "导出"
-DATA_FILE = DATA_DIR / "项目网络图.json"
+DB_FILE = Path(os.environ.get("PN_DB") or (DATA_DIR / "项目网络图.sqlite"))
+LEGACY_JSON_FILE = DATA_DIR / "项目网络图.json"
 
 DEFAULT_SOURCE = "Task/CO系列任务/CO05.md"
-BACKUP_INTERVAL_SECONDS = 120
-BACKUP_KEEP = 30
+BACKUP_INTERVAL_SECONDS = db.SNAPSHOT_INTERVAL_SECONDS
+BACKUP_KEEP = db.SNAPSHOT_KEEP
 
 
 def find_workspace(start: Path | None = None) -> Path:
@@ -82,76 +88,66 @@ def import_from(relative_path: str | None = None, text: str | None = None) -> M.
 
 
 def load_or_seed() -> M.Model:
-    """读取本地存档；没有存档时用默认任务书初始化。"""
+    """读取库；没有库时按「旧 JSON 存档 → 默认任务书」的顺序初始化。"""
     ensure_dirs()
-    if DATA_FILE.exists():
+    if db.exists(DB_FILE):
         try:
-            data = json.loads(DATA_FILE.read_text(encoding="utf-8"))
-            m = M.model_from_dict(data)
+            m = db.load_model(DB_FILE)
             if m.nodes or m.sections:
-                M.resolve_refs(m)
                 return m
-        except (json.JSONDecodeError, KeyError, TypeError):
-            # 存档损坏时不覆盖，改名留档后重新初始化
-            broken = DATA_FILE.with_suffix(f".broken-{int(time.time())}.json")
-            DATA_FILE.replace(broken)
+        except sqlite3.DatabaseError as exc:
+            # 库损坏时不覆盖原文件，改名留档后重新初始化
+            broken = DB_FILE.with_name(
+                f"{DB_FILE.stem}.broken-{int(time.time())}{DB_FILE.suffix}"
+            )
+            DB_FILE.replace(broken)
+            print(f"[项目网络图] 库读取失败（{exc}），已改名留档：{broken.name}", flush=True)
+
+    m = _load_legacy_json()
+    if m is not None:
+        save(m, reason="迁移自旧 JSON 存档", force_snapshot=True)
+        return m
+
     source = default_source_path()
     if source.exists():
         m = import_from(relative_to_workspace(source))
     else:
         m = M.Model(title="项目网络图")
-    save(m, backup=False)
+    save(m, backup=False, reason="初始化")
     return m
 
 
-def save(m: M.Model, backup: bool = True) -> Path:
-    ensure_dirs()
-    payload = {
-        "title": m.title,
-        "source": m.source,
-        "preamble": m.preamble,
-        "aliases": m.aliases,
-        "meta": m.meta,
-        "sections": [s.to_dict() for s in m.sections],
-        "nodes": [
-            {
-                "id": n.id,
-                "section_id": n.section_id,
-                "number": n.number,
-                "summary": n.summary,
-                "body": n.body,
-                "notes": n.notes,
-                "manual": n.manual,
-                "refs": [
-                    {"raw": r.raw, "section": r.section, "number": r.number, "target_id": r.target_id}
-                    for r in n.refs
-                ],
-                "objects": [{"name": o.name, "note": o.note, "path": o.path} for o in n.objects],
-            }
-            for n in m.nodes
-        ],
-    }
-    tmp = DATA_FILE.with_suffix(".tmp")
-    tmp.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
-    tmp.replace(DATA_FILE)
-    if backup:
-        _backup(payload)
-    return DATA_FILE
+def _load_legacy_json() -> M.Model | None:
+    """读取旧版 JSON 存档，用于一次性迁移。读不出内容时返回 None。"""
+    if not LEGACY_JSON_FILE.exists():
+        return None
+    try:
+        data = json.loads(LEGACY_JSON_FILE.read_text(encoding="utf-8"))
+        m = M.model_from_dict(data)
+    except (json.JSONDecodeError, KeyError, TypeError, ValueError) as exc:
+        print(f"[项目网络图] 旧 JSON 存档无法迁移（{exc}），将按默认任务书重建", flush=True)
+        return None
+    if not (m.nodes or m.sections):
+        return None
+    M.resolve_refs(m)
+    return m
 
 
-def _backup(payload: dict) -> None:
+def save(
+    m: M.Model,
+    backup: bool = True,
+    reason: str = "",
+    force_snapshot: bool = False,
+) -> Path:
+    """把模型整体写入库。backup 为假时不追加快照（用于首次建库）。"""
     ensure_dirs()
-    existing = sorted(BACKUP_DIR.glob("项目网络图_*.json"))
-    if existing:
-        newest = existing[-1]
-        if time.time() - newest.stat().st_mtime < BACKUP_INTERVAL_SECONDS:
-            return
-    stamp = time.strftime("%Y%m%d_%H%M%S")
-    (BACKUP_DIR / f"项目网络图_{stamp}.json").write_text(
-        json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8"
+    return db.save_model(
+        DB_FILE,
+        m,
+        reason=reason,
+        backup=backup,
+        force_snapshot=force_snapshot,
     )
-    for old in sorted(BACKUP_DIR.glob("项目网络图_*.json"))[:-BACKUP_KEEP]:
-        old.unlink(missing_ok=True)
 
 
 def export_markdown(m: M.Model, relative_path: str | None = None) -> tuple[Path, str]:
@@ -169,9 +165,19 @@ def export_markdown(m: M.Model, relative_path: str | None = None) -> tuple[Path,
 
 
 def info() -> dict:
+    check = db.verify(DB_FILE) if db.exists(DB_FILE) else {"exists": False}
     return {
         "workspace": str(WORKSPACE),
-        "data_file": relative_to_workspace(DATA_FILE),
+        "data_file": relative_to_workspace(DB_FILE),
+        "db_file": relative_to_workspace(DB_FILE),
+        "db_env_override": bool(os.environ.get("PN_DB")),
+        "db_exists": bool(check.get("exists")),
+        "schema_version": str(check.get("schema_version") or db.SCHEMA_VERSION),
+        "snapshots": int((check.get("stats") or {}).get("snapshots") or 0),
+        "snapshot_keep": BACKUP_KEEP,
+        "snapshot_interval_seconds": BACKUP_INTERVAL_SECONDS,
+        "legacy_json": relative_to_workspace(LEGACY_JSON_FILE),
+        "legacy_json_exists": LEGACY_JSON_FILE.exists(),
         "export_dir": relative_to_workspace(EXPORT_DIR),
         "backup_dir": relative_to_workspace(BACKUP_DIR),
         "default_source": DEFAULT_SOURCE,

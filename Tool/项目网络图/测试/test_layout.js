@@ -64,6 +64,40 @@ check("概要折行不超过两行", lines.length <= 2);
 const longLines = PN.wrapSummary("这是一段非常非常非常漫长的实现目标概要描述文字用于测试截断", 8, 2);
 check("超长概要截断并加省略号", longLines.length === 2 && longLines[1].endsWith("…"));
 
+// 版面：节点更窄、高度随文字自适应、同列纵向间距为原来的三倍
+const OLD_GAP_Y = 26;
+const OLD_COL_WIDTH = 232;
+const heightModel = {
+  sections: [{ id: "s1", title: "瓦片地图", parent_id: null, node_ids: ["a", "b", "c"] }],
+  nodes: [
+    { id: "a", section_id: "s1", number: 1, index_label: "瓦片地图 1", summary: "平铺的地图绘制", refs: [] },
+    { id: "b", section_id: "s1", number: 2, index_label: "瓦片地图 2", summary: "禁行地块，部分瓦片地图纹理笔刷设置禁止通过", refs: [] },
+    { id: "c", section_id: "s1", number: 3, index_label: "瓦片地图 3", summary: "场景道具摆放。当部分场景道具摆放到地图上的时候，摆放位置自动设置不可移动，且设置多个角色不可处于同一格", refs: [] },
+  ],
+  edges: [],
+};
+const hLayout = PN.computeLayout(heightModel);
+const na = hLayout.positions.get("a");
+const nb = hLayout.positions.get("b");
+const nc = hLayout.positions.get("c");
+check("节点宽度已收窄", na.w === hLayout.options.colWidth && na.w < OLD_COL_WIDTH, na.w);
+check("纵向间距为原来的三倍", hLayout.options.gapY === OLD_GAP_Y * 3, hLayout.options.gapY);
+check(
+  "节点高度随概要行数自适应",
+  na.lines.length === 1 && nb.lines.length === 2 && nc.lines.length >= 3 &&
+    na.h < nb.h && nb.h < nc.h,
+  [na.h, nb.h, nc.h].join("/")
+);
+check(
+  "高度等于行数公式值",
+  na.h === PN.nodeHeightFor(1) && nb.h === PN.nodeHeightFor(2) && nc.h === PN.nodeHeightFor(nc.lines.length)
+);
+check("同列节点依次排在间距之后", nb.y === na.y + na.h + hLayout.options.gapY && nc.y === nb.y + nb.h + hLayout.options.gapY);
+check("画布高度覆盖最后一个节点", hLayout.height === nc.y + nc.h + hLayout.options.padBottom, hLayout.height);
+check("单行节点不低于最小高度", na.h >= hLayout.options.minHeight);
+check("超宽章节索引被截断", PN.truncateText("角色行为/角色移动/子路线 12", 10).endsWith("…"));
+check("未超宽章节索引保持原文", PN.truncateText("瓦片地图 1", 12) === "瓦片地图 1");
+
 check("同根路线颜色一致", PN.routeColor("s1", sampleModel().sections) === PN.routeColor("s1", sampleModel().sections));
 check("不同路线颜色不同", PN.routeColor("s1", sampleModel().sections) !== PN.routeColor("s2", sampleModel().sections));
 
