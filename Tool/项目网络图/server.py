@@ -118,16 +118,33 @@ class Handler(BaseHTTPRequestHandler):
                     store.save(model, reason=f"操作 {op}" if op else "操作")
                     self._send(200, self._view(log=result.get("log"), extra={k: v for k, v in result.items() if k != "log"}))
                     return
-                if path == "/api/import":
-                    model = store.import_from(body.get("path"), body.get("text"))
+                if path in ("/api/import", "/api/reset"):
+                    if path == "/api/import":
+                        model = store.import_from(body.get("path"), body.get("text"))
+                        reason = "导入任务书"
+                    else:
+                        model = store.import_from(body.get("path") or store.DEFAULT_SOURCE)
+                        reason = "重置网络图"
+                    current = get_model()
+                    if current.nodes and not model.nodes:
+                        if not body.get("allow_empty"):
+                            # 现行任务书可能只剩背景说明；不要因为一次误点把库里的网络图清空
+                            self._send(
+                                400,
+                                {
+                                    "ok": False,
+                                    "error": (
+                                        "该来源没有解析到任何编号条目，导入会清空现有网络图"
+                                        f"（当前 {len(current.sections)} 条路线 / {len(current.nodes)} 个条目）。"
+                                    ),
+                                    "need_confirm": "empty_import",
+                                },
+                            )
+                            return
+                        # 确认清空：先把当前非空模型存一份快照，保证还能恢复
+                        store.snapshot_current(current, reason=f"{reason}前的存档")
                     STATE["model"] = model
-                    store.save(model, reason="导入任务书", force_snapshot=True)
-                    self._send(200, self._view(extra={"warnings": model.meta.get("warnings", [])}))
-                    return
-                if path == "/api/reset":
-                    model = store.import_from(body.get("path") or store.DEFAULT_SOURCE)
-                    STATE["model"] = model
-                    store.save(model, reason="重置网络图", force_snapshot=True)
+                    store.save(model, reason=reason, force_snapshot=True)
                     self._send(200, self._view(extra={"warnings": model.meta.get("warnings", [])}))
                     return
                 if path == "/api/export":

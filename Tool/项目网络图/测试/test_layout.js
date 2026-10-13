@@ -98,6 +98,29 @@ check("单行节点不低于最小高度", na.h >= hLayout.options.minHeight);
 check("超宽章节索引被截断", PN.truncateText("角色行为/角色移动/子路线 12", 10).endsWith("…"));
 check("未超宽章节索引保持原文", PN.truncateText("瓦片地图 1", 12) === "瓦片地图 1");
 
+// 列头与嵌套：纯分组路线不占列，空的叶子子路线要能被看到
+const nestedModel = {
+  sections: [
+    { id: "p", title: "角色行为", parent_id: null, level: 1, path: "角色行为", node_ids: [] },
+    { id: "c1", title: "角色技能", parent_id: "p", level: 2, path: "角色行为/角色技能", node_ids: ["x"] },
+    { id: "c2", title: "技能子路线", parent_id: "c1", level: 3, path: "角色行为/角色技能/技能子路线", node_ids: [] },
+    { id: "d", title: "时间轴", parent_id: null, level: 1, path: "时间轴", node_ids: ["y"] },
+  ],
+  nodes: [
+    { id: "x", section_id: "c1", number: 1, index_label: "角色行为/角色技能 1", summary: "制作元技能", refs: [] },
+    { id: "y", section_id: "d", number: 1, index_label: "时间轴 1", summary: "速度属性", refs: [] },
+  ],
+  edges: [],
+};
+const nLayout = PN.computeLayout(nestedModel);
+check("纯分组路线不占列", nLayout.columns.length === 3, nLayout.columns.length);
+check("子路线排在父级之后、同级之前", nLayout.positions.get("x").column === 0 && nLayout.columns[1].title === "技能子路线");
+check("列头覆盖全部非分组路线", nLayout.heads.length === 3, nLayout.heads.length);
+check("空的叶子子路线标为还没有条目", nLayout.heads.find((h) => h.title === "技能子路线").empty === true);
+check("非空路线不标空", nLayout.heads.find((h) => h.title === "角色技能").empty === false);
+check("列头带完整章节路径", nLayout.heads.find((h) => h.title === "技能子路线").path === "角色行为/角色技能/技能子路线");
+check("列头有颜色与截断宽度", !!nLayout.heads[0].color && nLayout.heads[0].chars > 0);
+
 check("同根路线颜色一致", PN.routeColor("s1", sampleModel().sections) === PN.routeColor("s1", sampleModel().sections));
 check("不同路线颜色不同", PN.routeColor("s1", sampleModel().sections) !== PN.routeColor("s2", sampleModel().sections));
 

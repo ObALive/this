@@ -112,9 +112,10 @@ class Element {
   querySelector(selector) { return this.querySelectorAll(selector)[0] || null; }
   querySelectorAll(selector) {
     const out = [];
+    const chain = String(selector).trim().split(/\s+/).filter(Boolean);
     const walk = (node) => {
       for (const child of node.children) {
-        if (matches(child, selector)) out.push(child);
+        if (matchesChain(child, chain)) out.push(child);
         walk(child);
       }
     };
@@ -140,6 +141,21 @@ function matches(el, selector) {
   if (dataKey) {
     const key = dataKey.replace(/-([a-z])/g, (x, c) => c.toUpperCase());
     if (el.dataset[key] !== dataValue) return false;
+  }
+  return true;
+}
+
+// 支持「祖先 后代」这种带空格的选择器（只做后代匹配，够冒烟测试用）
+function matchesChain(el, chain) {
+  if (!matches(el, chain[chain.length - 1])) return false;
+  let node = el.parent;
+  for (let i = chain.length - 2; i >= 0; i -= 1) {
+    let found = false;
+    while (node) {
+      if (matches(node, chain[i])) { found = true; node = node.parent; break; }
+      node = node.parent;
+    }
+    if (!found) return false;
   }
   return true;
 }
@@ -250,6 +266,10 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
       byId("route-tree").querySelectorAll(".route-root").length === model.sections.length
   );
   check("校验面板有内容", byId("issue-list").querySelectorAll(".issue").length > 0);
+  const expectedHeads = model.sections.filter(
+    (s) => s.node_ids.length > 0 || !model.sections.some((c) => c.parent_id === s.id)
+  ).length;
+  check("列头覆盖带条目的路线与空的叶子路线", byId("layer-heads").children.length === expectedHeads, byId("layer-heads").children.length);
   check("对象索引列出对象", byId("object-list").querySelectorAll(".object-item").length === model.stats.objects);
   check("对象计数正确", byId("object-counter").textContent === String(model.stats.objects), byId("object-counter").textContent);
 
@@ -271,6 +291,38 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
     check("详情框列出对象行", false, "未找到「场景道具摆放」条目");
   }
   check("其中一条带备注", byId("nd-objs").querySelectorAll(".obj-note").some((i) => i.value.length > 0));
+  const objRowEls = byId("nd-objs").querySelectorAll('.row[data-role="obj"]');
+  check(
+    "实现路径是可调高度的文本框",
+    objRowEls.length > 0 && objRowEls.every((r) => r.querySelector(".obj-path").tagName === "textarea")
+  );
+  check(
+    "对象说明也是文本框",
+    objRowEls.length > 0 && objRowEls.every((r) => r.querySelector(".obj-note").tagName === "textarea")
+  );
+
+  // 设计说明归位：说明里点名了程序对象的节点，不该再出现「设计方式说明」分组
+  const proseNode = model.nodes.find((n) => String(n.summary).indexOf("禁行地块") >= 0);
+  if (proseNode && proseNode.notes.length === 0) {
+    const proseRow = rows.find((r) => r.textContent.indexOf("禁行地块") >= 0);
+    if (proseRow) {
+      proseRow.dispatch("click");
+      check("点名对象的说明不再单立「设计方式说明」", byId("nd-notes-group").hidden === true);
+      check(
+        "说明已归到对象下（含 Manager 标识符）",
+        byId("nd-objs").querySelectorAll(".obj-name").some((i) => /Manager/i.test(i.value)),
+        byId("nd-objs").querySelectorAll(".obj-name").map((i) => i.value).join("/")
+      );
+      check(
+        "对象里带着原正文（说明或实现路径）",
+        byId("nd-objs").querySelectorAll('.row[data-role="obj"]').some((r) =>
+          (r.querySelector(".obj-note").value + "\n" + r.querySelector(".obj-path").value).indexOf("TilemapManager") >= 0
+        )
+      );
+    }
+  } else {
+    check("点名对象的说明不再单立「设计方式说明」", true, "当前库还没做归位（服务未重启时会这样）");
+  }
 
   // 打开一个带依赖的节点
   const depRow = rows.find((r) => r.textContent.includes("禁行地块"));
@@ -319,6 +371,88 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
     byId("nd-close").dispatch("click");
   } else {
     check("点击校验项打开对应条目", false, "未找到元效果校验项");
+  }
+
+  // ---- 子路线：在已有路线下新增一条三级路线，跑完还原，避免污染数据 ----
+  const parentSection = model.sections.find((s) => s.parent_id) || null;
+  if (!parentSection) {
+    check("存在可加子路线的路线", false, "当前数据里没有带父级的路线");
+  } else {
+    const newTitle = "冒烟测试子路线";
+    const blocks = byId("route-tree").querySelectorAll(".route");
+    const parentBlock =
+      blocks.find((b) => b.querySelector(".route-title") && b.querySelector(".route-title").textContent === parentSection.title) ||
+      blocks[0];
+    const addChildBtn =
+      parentBlock &&
+      parentBlock.querySelectorAll(".route-actions button").find((b) => String(b.title).indexOf("新增子路线") >= 0);
+    check("路线标题栏有「新增子路线」入口", !!addChildBtn);
+    if (addChildBtn) {
+      window.prompt = () => newTitle;
+      addChildBtn.dispatch("click");
+      await sleep(700);
+      const after = (await (await fetch("/api/state")).json()).model;
+      const created = after.sections.find((s) => s.title === newTitle);
+      check("子路线已创建", !!created);
+      if (created) {
+        check("子路线挂在所选路线下", created.parent_id === parentSection.id, created.parent_id);
+        check("子路线层级为父级 + 1", created.level === parentSection.level + 1, created.level);
+        check("子路线路径包含父级", String(created.path).indexOf(parentSection.title) >= 0, created.path);
+        check(
+          "侧栏出现三级路线",
+          byId("route-tree").querySelectorAll(".route-title").some((t) => t.textContent === newTitle)
+        );
+        check(
+          "画布出现该路线的列头",
+          byId("layer-heads").children.some((g) => g.children[0] && g.children[0].textContent === newTitle)
+        );
+      }
+      // 还原到测试开始前的模型
+      await fetch("/api/op", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ op: "replace", args: { model } }),
+      });
+      await sleep(500);
+      const restored = (await (await fetch("/api/state")).json()).model;
+      check("测试后数据已还原", !restored.sections.some((s) => s.title === newTitle));
+    }
+  }
+
+  // ---- 删除最后一条依赖：删完不能立刻从旧模型复活（跑完还原）----
+  const oneRefNode = model.nodes.find((n) => n.refs.length === 1) || null;
+  if (!oneRefNode) {
+    check("存在只有一条依赖的条目", false, "当前数据里没有单依赖条目");
+  } else {
+    const g = byId("layer-nodes").children.find((el) => el.dataset.id === oneRefNode.id);
+    check("能在画布上找到该节点", !!g);
+    if (g) {
+      g.dispatch("pointerdown", { button: 0, clientX: 120, clientY: 120, pointerId: 1 });
+      byId("canvas").dispatch("pointerup", { clientX: 120, clientY: 120, pointerId: 1 });
+      const before = byId("nd-refs").querySelectorAll('.row[data-role="ref"]').length;
+      check("详情框里正好一条依赖", before === 1, before);
+      byId("nd-refs").querySelector('.row[data-role="ref"]').querySelector(".del").dispatch("click");
+      check(
+        "删掉最后一条依赖后不会复活",
+        byId("nd-refs").querySelectorAll('.row[data-role="ref"]').length === 0,
+        byId("nd-refs").querySelectorAll('.row[data-role="ref"]').length
+      );
+      check("删空后显示占位提示", !!byId("nd-refs").querySelector(".hint"));
+      byId("nd-save").dispatch("click");
+      await sleep(700);
+      const after = (await (await fetch("/api/state")).json()).model;
+      const saved = after.nodes.find((n) => n.id === oneRefNode.id);
+      check("保存后依赖确实从库里删掉了", saved.refs.length === 0, JSON.stringify(saved.refs));
+      // 还原
+      await fetch("/api/op", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ op: "replace", args: { model } }),
+      });
+      await sleep(500);
+      const restored = (await (await fetch("/api/state")).json()).model;
+      check("测试后依赖已还原", restored.nodes.find((n) => n.id === oneRefNode.id).refs.length === 1);
+    }
   }
 
   console.log(`\n${passed} passed, ${failed} failed`);

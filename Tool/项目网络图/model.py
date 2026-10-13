@@ -38,6 +38,41 @@ DEP_TOKEN_RE = re.compile(r"^\s*(?P<name>[^0-9，,、；;。：:\s]+?)\s*(?P<num
 OBJECT_PREFIX_RE = re.compile(r"^(元对象|元技能|元效果|元系统|元属性)\s*[-－]")
 OBJECT_WORD_RE = re.compile(r"(组件|系统|对象|管理器|Manager)")
 
+# 设计说明里点到的程序对象：CamelCase（含内部大写，如 TilemapManager、PathFinder），
+# 或带工程后缀的标识符（如 xxxManager）。单个大驼峰词（Tilemap、Unity）不算，避免把引擎名当成待实现对象。
+# 注意：中文也是 Python 的 \w，所以不能靠 \b 划分边界，改用前后不能是 ASCII 标识符字符。
+OBJECT_IDENT_RE = re.compile(
+    r"(?<![A-Za-z0-9_])"
+    r"(?:[A-Z][a-z0-9]+(?:[A-Z][a-z0-9]*)+"
+    r"|[A-Za-z][A-Za-z0-9]*(?:Manager|System|Service|Controller|Registry|Provider|Factory|Builder|Adapter|Renderer|Pool))"
+    r"(?![A-Za-z0-9_])"
+)
+# 中文写法：只认「…管理器」，不猜「…系统」「…层」这类泛称；前缀里的动词会被剥掉
+OBJECT_CJK_NAME_RE = re.compile(r"[\u4e00-\u9fa5A-Za-z0-9]{2,12}管理器")
+CJK_LEAD_STOPWORDS = (
+    "由独立的",
+    "由单独的",
+    "由统一的",
+    "调用",
+    "交给",
+    "通过",
+    "由",
+    "用",
+    "让",
+    "使",
+    "把",
+    "将",
+    "新增的",
+    "一个",
+)
+
+
+def _clean_cjk_object_name(name: str) -> str:
+    for word in CJK_LEAD_STOPWORDS:
+        if name.startswith(word) and len(name) - len(word) >= 3:
+            return name[len(word) :]
+    return name
+
 # 括号内信息的分段符
 SPLIT_RE = re.compile(r"[，,、；;]")
 
@@ -159,6 +194,21 @@ class Model:
     def section_nodes(self, section_id: str) -> list[Node]:
         return [n for n in self.nodes if n.section_id == section_id]
 
+    def child_sections(self, section_id: str | None) -> list[Section]:
+        return [s for s in self.sections if s.parent_id == section_id]
+
+    def descendants(self, section_id: str) -> list[Section]:
+        """按文档顺序返回某条路线下的全部子孙路线（不含自身）。"""
+        found: set[str] = set()
+        frontier = [section_id]
+        while frontier:
+            current = frontier.pop(0)
+            for s in self.sections:
+                if s.parent_id == current and s.id not in found:
+                    found.add(s.id)
+                    frontier.append(s.id)
+        return [s for s in self.sections if s.id in found]
+
     def section_path(self, section: Section) -> list[Section]:
         """从根到自身的标题链。"""
         chain: list[Section] = []
@@ -247,6 +297,27 @@ def _strip_spans(text: str, spans: list[dict]) -> str:
     return "".join(out)
 
 
+def _find_object_name_in(prose: str) -> str | None:
+    """从一段设计说明里找出它真正在讲的那个程序对象名。
+
+    优先 CamelCase 标识符（取出现次数最多、同次数取最长），其次「…管理器」这样的中文名；
+    找不到就返回 None，表示这段说明没有明确归属对象。
+    """
+    text = prose or ""
+    latin = OBJECT_IDENT_RE.findall(text)
+    if latin:
+        counter: dict[str, int] = {}
+        for token in latin:
+            counter[token] = counter.get(token, 0) + 1
+        best = sorted(counter.items(), key=lambda kv: (-kv[1], -len(kv[0]), kv[0]))[0][0]
+        return best
+    cjk = [_clean_cjk_object_name(n) for n in OBJECT_CJK_NAME_RE.findall(text)]
+    if cjk:
+        best = sorted({name: cjk.count(name) for name in cjk}.items(), key=lambda kv: (-kv[1], -len(kv[0]), kv[0]))[0][0]
+        return best
+    return None
+
+
 def _looks_like_object(seg: str) -> bool:
     seg = seg.strip()
     if not seg or len(seg) > 24:
@@ -254,6 +325,8 @@ def _looks_like_object(seg: str) -> bool:
     if seg.startswith("依赖"):
         return False
     if OBJECT_PREFIX_RE.match(seg):
+        return True
+    if OBJECT_IDENT_RE.fullmatch(seg):
         return True
     if seg.endswith("组件") or seg.endswith("管理器") or seg.endswith("系统") or seg.endswith("对象"):
         return True
@@ -345,8 +418,20 @@ def parse_body(body: str) -> tuple[str, str | None, list[Ref], list[ObjectItem],
             continue
 
         if len(g) > 24:
-            extracted.append(sp)
-            notes.append(g)
+            # 长段括号通常是「怎么做」的设计说明。如果它点名了某个程序对象
+            # （例如 TilemapManager），这段说明就属于那个对象，挂到对象的说明上，
+            # 不再单独立一个其他节点都没有的「设计方式说明」。
+            owner = _find_object_name_in(g)
+            if owner:
+                existing = next((o for o in objects if o.name == owner), None)
+                if existing is None:
+                    objects.append(ObjectItem(name=owner, note=g))
+                else:
+                    existing.note = (existing.note + "\n" + g).strip()
+                extracted.append(sp)
+            else:
+                extracted.append(sp)
+                notes.append(g)
 
     detail = _strip_spans(text, extracted) if extracted else text
     detail = re.sub(r"\s+", " ", detail).strip()
@@ -492,8 +577,8 @@ def parse_markdown(text: str, source: str = "", title: str = "") -> Model:
         heading = HEADING_RE.match(line)
         if heading:
             level = len(heading.group(1))
-            if level > 3:
-                level = 3
+            if level > 6:
+                level = 6
             title_text = heading.group(2).strip()
             parent = None
             while heading_stack and heading_stack[-1].level >= level:
@@ -828,7 +913,7 @@ def to_markdown(model: Model) -> str:
         lines.append("")
 
     for section in model.sections:
-        lines.append("#" * max(1, min(3, section.level)) + " " + section.title)
+        lines.append("#" * max(1, min(6, section.level)) + " " + section.title)
         if section.note.strip():
             lines.append(section.note.strip())
         for node in model.section_nodes(section.id):
@@ -936,6 +1021,33 @@ def insert_node(
     return node
 
 
+def reclassify_notes(model: Model) -> list[dict]:
+    """把「设计方式说明」里属于某个程序对象的长段说明改挂到该对象下。
+
+    规则升级后用一次：库里已存的说明不会因为重新解析正文而改变，需要在载入时归位。
+    没有点名对象的说明保持原样。
+    """
+    moves: list[dict] = []
+    for node in model.nodes:
+        if not node.notes:
+            continue
+        keep: list[str] = []
+        for text in node.notes:
+            owner = _find_object_name_in(text)
+            if not owner:
+                keep.append(text)
+                continue
+            existing = next((o for o in node.objects if o.name == owner), None)
+            if existing is None:
+                node.objects.append(ObjectItem(name=owner, note=text))
+                moves.append({"node_id": node.id, "object": owner, "merged": False})
+            else:
+                existing.note = (existing.note + "\n" + text).strip()
+                moves.append({"node_id": node.id, "object": owner, "merged": True})
+        node.notes = keep
+    return moves
+
+
 def delete_node(model: Model, node_id: str, log: list[str] | None = None) -> dict:
     node = model.node(node_id)
     if node is None:
@@ -1032,18 +1144,35 @@ def update_node(model: Model, node_id: str, payload: dict, log: list[str] | None
 def insert_section(
     model: Model,
     title: str,
-    level: int = 2,
+    level: int | None = None,
     parent_id: str | None = None,
     after_section_id: str | None = None,
+    after_subtree_of: str | None = None,
     start_number: int = 1,
     log: list[str] | None = None,
 ) -> Section:
+    """新增一条开发路线。
+
+    - 给了 parent_id 就成为该路线的子路线，层级不写时自动取父级 +1；
+    - after_subtree_of 表示插到该路线整棵子树的末尾（同级追加，不打散已有子路线）。
+    """
     log = log if log is not None else []
+    parent: Section | None = None
+    if parent_id:
+        parent = model.section(parent_id)
+        if parent is None:
+            raise ValueError(f"未知的父路线：{parent_id}")
+    if level is None:
+        level = (parent.level + 1) if parent else 2
+    level = max(1, min(6, int(level)))
+    if parent and level <= parent.level:
+        level = parent.level + 1
+
     section = Section(
         id=model.next_id("s"),
         title=title.strip() or "未命名路线",
-        level=max(1, min(3, int(level))),
-        parent_id=parent_id,
+        level=max(1, min(6, level)),
+        parent_id=parent.id if parent else None,
         start_number=int(start_number),
     )
     if after_section_id:
@@ -1051,9 +1180,16 @@ def insert_section(
         if anchor is None:
             raise ValueError(f"未知的路线：{after_section_id}")
         model.sections.insert(model.sections.index(anchor) + 1, section)
+    elif after_subtree_of:
+        anchor = model.section(after_subtree_of)
+        if anchor is None:
+            raise ValueError(f"未知的路线：{after_subtree_of}")
+        subtree = [anchor, *model.descendants(anchor.id)]
+        last = max(model.sections.index(s) for s in subtree)
+        model.sections.insert(last + 1, section)
     else:
         model.sections.append(section)
-    _log(log, f"已新增开发路线「{section.title}」")
+    _log(log, f"已新增开发路线「{section.title}」（第 {section.level} 层）")
     return section
 
 
@@ -1074,7 +1210,7 @@ def update_section(model: Model, section_id: str, payload: dict, log: list[str] 
     if "parent_id" in payload:
         section.parent_id = payload["parent_id"] or None
     if "level" in payload:
-        section.level = max(1, min(3, int(payload["level"])))
+        section.level = max(1, min(6, int(payload["level"])))
     renumber_section(model, section.id, log)
     resolve_refs(model)
     sync_all_refs(model)
@@ -1146,9 +1282,10 @@ def apply_op(model: Model, op: str, args: dict) -> dict:
         section = insert_section(
             model,
             title=args.get("title", "新开发路线"),
-            level=args.get("level", 2),
+            level=args.get("level"),
             parent_id=args.get("parent_id"),
             after_section_id=args.get("after_section_id"),
+            after_subtree_of=args.get("after_subtree_of"),
             start_number=args.get("start_number", 1),
             log=log,
         )
@@ -1163,6 +1300,18 @@ def apply_op(model: Model, op: str, args: dict) -> dict:
     if op == "move_section":
         move_section(model, args["section_id"], args.get("direction", "down"), log)
         return {"log": log}
+    if op == "reclassify_notes":
+        moves = reclassify_notes(model)
+        for item in moves:
+            node = model.node(item["node_id"])
+            label = model.index_label(node) if node else item["node_id"]
+            _log(
+                log,
+                f"{label} 的设计说明已归属对象「{item['object']}」" + ("（并入已有对象）" if item["merged"] else ""),
+            )
+        if not moves:
+            _log(log, "没有需要归位的设计说明")
+        return {"moved": moves, "log": log}
     if op == "replace":
         new_model = model_from_dict(args["model"])
         model.title = new_model.title

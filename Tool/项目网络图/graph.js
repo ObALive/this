@@ -70,11 +70,30 @@
     const positions = new Map();
     const columns = [];
 
+    // 先建立父子关系：纯分组用的路线（自己没有条目、但有子路线）不单独占一列，
+    // 它的标题由顶部带承担；空的叶子路线要占一列，好让人看到它建在了哪里。
+    const childrenOf = new Map();
+    for (const s of sections) {
+      const key = s.parent_id || null;
+      if (!childrenOf.has(key)) childrenOf.set(key, []);
+      childrenOf.get(key).push(s);
+    }
+
     let colIndex = 0;
     for (const section of sections) {
       const ids = (section.node_ids || []).filter((id) => byId.has(id));
+      if (!ids.length && (childrenOf.get(section.id) || []).length) continue;
       const x = opt.padX + colIndex * (opt.colWidth + opt.colGap);
-      const column = { sectionId: section.id, title: section.title, x, index: colIndex, nodeIds: ids };
+      const column = {
+        sectionId: section.id,
+        title: section.title,
+        path: section.path || section.title,
+        level: section.level || 1,
+        x,
+        index: colIndex,
+        nodeIds: ids,
+        color: routeColor(section.id, sections),
+      };
       columns.push(column);
 
       // 概要按节点宽度折行，行数决定节点高度；节点自上而下按「前一个高度 + 间距」累积
@@ -159,7 +178,27 @@
     if (!columns.length) height = 220;
     if (!columns.length) width = 520;
 
-    return { positions, columns, bands, edges, width, height, options: opt };
+    // 列头：只有自己带条目、或没有子路线的叶子路线才画列头；
+    // 纯分组用的父路线（例如「角色行为」）由顶部带承担标题，不重复画。
+    const heads = [];
+    for (const col of columns) {
+      const hasChildren = (childrenOf.get(col.sectionId) || []).length > 0;
+      if (!col.nodeIds.length && hasChildren) continue;
+      heads.push({
+        sectionId: col.sectionId,
+        title: col.title,
+        path: col.path,
+        level: col.level,
+        x: col.x,
+        width: opt.colWidth,
+        empty: col.nodeIds.length === 0,
+        color: col.color,
+        y: opt.padTop - 22,
+        chars: Math.max(4, Math.floor((opt.colWidth - 4) / 12)),
+      });
+    }
+
+    return { positions, columns, bands, heads, edges, width, height, options: opt };
   }
 
   function edgePath(a, b, opt) {

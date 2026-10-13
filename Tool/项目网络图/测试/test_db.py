@@ -24,7 +24,6 @@ import model as M  # noqa: E402
 import query  # noqa: E402
 
 WORKSPACE = TOOL.parent.parent
-CO05 = WORKSPACE / "Task" / "CO系列任务" / "CO05.md"
 
 SAMPLE_MARKDOWN = """# 角色行为
 
@@ -35,16 +34,16 @@ SAMPLE_MARKDOWN = """# 角色行为
 0. 四向移动，按格移动
 1. 碰撞判定（依赖角色移动0；元对象-地格占用组件，用于占位）
 
+### 移动子路线
+
+1. 子路线上的第一步
+2. 子路线上的第二步（依赖角色移动1）
+
 ## 地图
 
 1. 地图绘制
 2. 障碍（依赖不存在路线1）（这是一段超过二十四个字符的设计方式说明文字用来触发长括号摘出逻辑）
 """
-
-
-def load_co05() -> M.Model:
-    text = CO05.read_text(encoding="utf-8")
-    return M.parse_markdown(text, source=str(CO05))
 
 
 def load_sample() -> M.Model:
@@ -107,10 +106,8 @@ class TestRoundTrip(DBTestCase):
         payload = db.load_model_dict(self.path)
         self.assertEqual(norm(payload), norm(db.model_payload(model)))
 
-    def test_co05_roundtrip_and_stats(self):
-        if not CO05.exists():
-            self.skipTest("任务书不存在：%s" % CO05)
-        model = load_co05()
+    def test_sample_roundtrip_and_stats(self):
+        model = load_sample()
         self.save(model)
 
         loaded = db.load_model(self.path)
@@ -166,7 +163,7 @@ class TestRoundTrip(DBTestCase):
 class TestViewsMatchModel(DBTestCase):
     def setUp(self) -> None:
         super().setUp()
-        self.model = load_co05() if CO05.exists() else load_sample()
+        self.model = load_sample()
         self.save(self.model)
 
     def test_index_label(self):

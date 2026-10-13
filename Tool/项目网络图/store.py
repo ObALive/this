@@ -94,6 +94,16 @@ def load_or_seed() -> M.Model:
         try:
             m = db.load_model(DB_FILE)
             if m.nodes or m.sections:
+                # 说明归属规则升级后，把库里已存的设计说明归到它点名的对象下（幂等）
+                moves = M.reclassify_notes(m)
+                if moves:
+                    save(m, reason="设计说明归属对象")
+                    print(
+                        "[项目网络图] 已把 {} 段设计说明归到对应对象下：{}".format(
+                            len(moves), "、".join(sorted({x["object"] for x in moves}))
+                        ),
+                        flush=True,
+                    )
                 return m
         except sqlite3.DatabaseError as exc:
             # 库损坏时不覆盖原文件，改名留档后重新初始化
@@ -148,6 +158,12 @@ def save(
         backup=backup,
         force_snapshot=force_snapshot,
     )
+
+
+def snapshot_current(m: M.Model, reason: str) -> None:
+    """给当前模型追加快照（不改库内容），用于清空/覆盖前一类的危险操作留底。"""
+    ensure_dirs()
+    db.append_snapshot(DB_FILE, db.model_payload(m), reason=reason)
 
 
 def export_markdown(m: M.Model, relative_path: str | None = None) -> tuple[Path, str]:

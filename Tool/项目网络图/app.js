@@ -14,6 +14,7 @@
     nodeEls: new Map(),
     edgeEls: new Map(),
     bandEls: new Map(),
+    headEls: new Map(),
     highlight: null,
     drag: null,
     pan: null,
@@ -23,6 +24,7 @@
   const canvas = el("canvas");
   const world = el("world");
   const layerBands = el("layer-bands");
+  const layerHeads = el("layer-heads");
   const layerEdges = el("layer-edges");
   const layerNodes = el("layer-nodes");
 
@@ -51,7 +53,11 @@
     } catch (err) {
       throw new Error("服务返回了无法解析的内容");
     }
-    if (!res.ok || data.ok === false) throw new Error(data && data.error ? data.error : `请求失败（${res.status}）`);
+    if (!res.ok || data.ok === false) {
+      const error = new Error(data && data.error ? data.error : `请求失败（${res.status}）`);
+      if (data && data.need_confirm) error.needConfirm = data.need_confirm;
+      throw error;
+    }
     return data;
   }
 
@@ -118,6 +124,37 @@
     }
     for (const [id, g] of [...state.bandEls]) {
       if (!seenBands.has(id)) { g.remove(); state.bandEls.delete(id); }
+    }
+
+    // 列头（路线名）：每条带条目的路线、以及还没有条目的叶子路线都标出来
+    const seenHeads = new Set();
+    for (const head of layout.heads || []) {
+      seenHeads.add(head.sectionId);
+      let g = state.headEls.get(head.sectionId);
+      if (!g) {
+        g = svgEl("g", { class: "col-head" });
+        g.appendChild(svgEl("text", { class: "col-head-title" }));
+        g.appendChild(svgEl("rect", { class: "col-head-rule", rx: 1 }));
+        g.appendChild(svgEl("text", { class: "col-head-empty" }));
+        layerHeads.appendChild(g);
+        state.headEls.set(head.sectionId, g);
+      }
+      g.setAttribute("transform", `translate(${head.x}, ${head.y})`);
+      const [titleEl, ruleEl, emptyEl] = g.children;
+      const label = PNLayout.truncateText(head.title, head.chars);
+      titleEl.textContent = label;
+      titleEl.setAttribute("title", head.path);
+      const labelWidth = [...label].reduce((sum, ch) => sum + (/[\x00-\xff]/.test(ch) ? 0.56 : 1), 0) * 12;
+      ruleEl.setAttribute("x", 0);
+      ruleEl.setAttribute("y", 4);
+      ruleEl.setAttribute("width", labelWidth + 6);
+      ruleEl.setAttribute("height", 2.5);
+      ruleEl.setAttribute("fill", head.color);
+      emptyEl.setAttribute("x", labelWidth + 10);
+      emptyEl.textContent = head.empty ? "（还没有条目）" : "";
+    }
+    for (const [id, g] of [...state.headEls]) {
+      if (!seenHeads.has(id)) { g.remove(); state.headEls.delete(id); }
     }
 
     // 节点
@@ -268,36 +305,53 @@
   function renderRouteTree() {
     const tree = el("route-tree");
     tree.textContent = "";
-    const sections = state.model.sections;
     const nodes = new Map(state.model.nodes.map((n) => [n.id, n]));
-    const groups = new Map();
-    for (const s of sections) {
-      const key = s.parent_id || "__root__";
-      if (!groups.has(key)) groups.set(key, []);
-      groups.get(key).push(s);
+    const childrenOf = new Map();
+    for (const s of state.model.sections) {
+      const key = s.parent_id || null;
+      if (!childrenOf.has(key)) childrenOf.set(key, []);
+      childrenOf.get(key).push(s);
     }
-    const topLevel = groups.get("__root__") || [];
-    for (const section of topLevel) {
-      const wrap = document.createElement("div");
-      wrap.className = "route-group";
-      const children = groups.get(section.id) || [];
-      if (section.node_ids.length === 0 && children.length) {
-        const root = document.createElement("div");
-        root.className = "route-root";
-        root.textContent = section.title;
-        wrap.appendChild(root);
-        for (const child of children) wrap.appendChild(routeBlock(child, nodes, true));
-      } else {
-        wrap.appendChild(routeBlock(section, nodes, false));
-        for (const child of children) wrap.appendChild(routeBlock(child, nodes, true));
+    const appendSection = (container, section, depth) => {
+      const children = childrenOf.get(section.id) || [];
+      const hasNodes = section.node_ids.length > 0;
+      if (!hasNodes && children.length) {
+        // 只作分组用的路线（例如「角色行为」）：只画标题与操作，不画成卡片
+        container.appendChild(routeGroupHeader(section));
+        for (const child of children) appendSection(container, child, depth + 1);
+        return;
       }
-      tree.appendChild(wrap);
-    }
+      container.appendChild(routeBlock(section, nodes, depth));
+      for (const child of children) appendSection(container, child, depth + 1);
+    };
+    for (const section of childrenOf.get(null) || []) appendSection(tree, section, 0);
   }
 
-  function routeBlock(section, nodes, nested) {
+  function routeGroupHeader(section) {
+    const wrap = document.createElement("div");
+    wrap.className = "route-group";
+    const root = document.createElement("div");
+    root.className = "route-root";
+    const title = document.createElement("span");
+    title.className = "route-root-title";
+    title.textContent = section.title;
+    const actions = document.createElement("span");
+    actions.className = "route-actions";
+    actions.append(
+      miniButton("＋", "在末尾新增条目", () => addNode(section.id, null)),
+      miniButton("＋子", `在「${section.title}」下新增子路线`, () => addSubSection(section)),
+      miniButton("✎", "重命名路线", () => renameSection(section)),
+      miniButton("🗑", "删除路线", () => removeSection(section))
+    );
+    root.append(title, actions);
+    wrap.appendChild(root);
+    return wrap;
+  }
+
+  function routeBlock(section, nodes, depth) {
     const block = document.createElement("div");
-    block.className = "route" + (nested ? " nested" : "");
+    block.className = "route" + (depth > 0 ? " nested" : "");
+    if (depth > 1) block.style.marginLeft = depth * 10 + "px";
 
     const head = document.createElement("div");
     head.className = "route-head";
@@ -307,6 +361,7 @@
     const title = document.createElement("span");
     title.className = "route-title";
     title.textContent = section.title;
+    if (depth > 0) title.title = section.path;
     const count = document.createElement("span");
     count.className = "route-count";
     count.textContent = section.node_ids.length;
@@ -314,6 +369,7 @@
     actions.className = "route-actions";
     actions.append(
       miniButton("＋", "在末尾新增条目", () => addNode(section.id, null)),
+      miniButton("＋子", `在「${section.title}」下新增子路线`, () => addSubSection(section)),
       miniButton("✎", "重命名路线", () => renameSection(section)),
       miniButton("↑", "前移路线", () => op("move_section", { section_id: section.id, direction: "up" }).catch(fail)),
       miniButton("↓", "后移路线", () => op("move_section", { section_id: section.id, direction: "down" }).catch(fail)),
@@ -566,10 +622,51 @@
   }
 
   async function addSection() {
-    const title = window.prompt("新开发路线的标题（二级标题）", "新开发路线");
+    const title = window.prompt("新开发路线的标题（顶层路线）", "新开发路线");
     if (title === null || !title.trim()) return;
     try {
       await op("insert_section", { title: title.trim(), level: 2 });
+    } catch (err) {
+      fail(err);
+    }
+  }
+
+  // 找出某条路线整棵子树里文档顺序最靠后的那条路线，用于把新子路线追加在子树末尾
+  function lastDescendantId(sectionId) {
+    const sections = state.model.sections;
+    const inSubtree = new Set([sectionId]);
+    let grew = true;
+    while (grew) {
+      grew = false;
+      for (const s of sections) {
+        if (s.parent_id && inSubtree.has(s.parent_id) && !inSubtree.has(s.id)) {
+          inSubtree.add(s.id);
+          grew = true;
+        }
+      }
+    }
+    let anchor = sectionId;
+    let anchorIndex = sections.findIndex((s) => s.id === sectionId);
+    sections.forEach((s, i) => {
+      if (inSubtree.has(s.id) && i > anchorIndex) {
+        anchor = s.id;
+        anchorIndex = i;
+      }
+    });
+    return anchor;
+  }
+
+  async function addSubSection(section) {
+    const path = section.path || section.title;
+    const title = window.prompt(`在「${path}」下新增子路线的标题`, "新子路线");
+    if (title === null || !title.trim()) return;
+    try {
+      await op("insert_section", {
+        title: title.trim(),
+        parent_id: section.id,
+        level: section.level + 1,
+        after_section_id: lastDescendantId(section.id),
+      });
     } catch (err) {
       fail(err);
     }
@@ -623,6 +720,13 @@
     return select;
   }
 
+  function makeHint(text) {
+    const hint = document.createElement("div");
+    hint.className = "hint";
+    hint.textContent = text;
+    return hint;
+  }
+
   function appendRefRow(box, ref) {
     const hint = box.querySelector(".hint");
     if (hint) hint.remove();
@@ -646,8 +750,12 @@
     del.textContent = "✕";
     del.title = "删除这条依赖";
     del.addEventListener("click", () => {
+      // 只删这一行；删空时补一条占位提示，绝不能拿模型里的旧数据重画（那样这行会立刻复活，
+      // 只剩一条依赖时就永远删不掉）
       row.remove();
-      if (!box.querySelector('.row[data-role="ref"]')) renderRefRows(state.model.nodes.find((n) => n.id === state.editingId));
+      if (!box.querySelector('.row[data-role="ref"]')) {
+        box.appendChild(makeHint("没有显式依赖。同路线内相邻条目已自动依次向上依赖。"));
+      }
     });
     raw.addEventListener("input", () => {
       raw.dataset.targetId = "";
@@ -680,10 +788,7 @@
     const box = el("nd-refs");
     box.textContent = "";
     if (!node || !node.refs.length) {
-      const hint = document.createElement("div");
-      hint.className = "hint";
-      hint.textContent = "没有显式依赖。同路线内相邻条目已自动依次向上依赖。";
-      box.appendChild(hint);
+      box.appendChild(makeHint("没有显式依赖。同路线内相邻条目已自动依次向上依赖。"));
       return;
     }
     node.refs.forEach((ref) => appendRefRow(box, ref));
@@ -693,32 +798,52 @@
     const hint = box.querySelector(".hint");
     if (hint) hint.remove();
     const row = document.createElement("div");
-    row.className = "row";
+    row.className = "row obj-row";
+
+    const head = document.createElement("div");
+    head.className = "obj-head";
     const name = document.createElement("input");
     name.type = "text";
     name.className = "obj-name";
     name.value = obj.name || "";
-    name.placeholder = "元对象-某组件";
-    const path = document.createElement("input");
-    path.type = "text";
-    path.className = "obj-path";
-    path.value = obj.path || "";
-    path.placeholder = "实现路径（可选）：落在哪个对象/程序集";
-    const note = document.createElement("input");
-    note.type = "text";
-    note.className = "obj-note";
-    note.value = obj.note || "";
-    note.placeholder = "备注";
+    name.placeholder = "对象名，如 元对象-地格占用组件 / TilemapManager";
     const del = document.createElement("button");
     del.type = "button";
     del.className = "del";
     del.textContent = "✕";
     del.title = "删除这个对象";
     del.addEventListener("click", () => {
+      // 同上：删空只补占位提示，不拿模型旧数据重画
       row.remove();
-      if (!box.querySelector('.row[data-role="obj"]')) renderObjectRows(state.model.nodes.find((n) => n.id === state.editingId));
+      if (!box.querySelector('.row[data-role="obj"]')) {
+        box.appendChild(makeHint("没有声明对象。复杂对象的实现路径可以留空，之后补。"));
+      }
     });
-    row.append(name, path, note, del);
+    head.append(name, del);
+
+    const pathField = document.createElement("label");
+    pathField.className = "obj-field";
+    const pathLabel = document.createElement("span");
+    pathLabel.textContent = "实现路径（可选）：落在哪个对象 / 程序集 / 文档";
+    const path = document.createElement("textarea");
+    path.className = "obj-path";
+    path.rows = 2;
+    path.value = obj.path || "";
+    path.placeholder = "复杂对象写清落到谁头上；逻辑简单、暂不展开的可以留空";
+    pathField.append(pathLabel, path);
+
+    const noteField = document.createElement("label");
+    noteField.className = "obj-field";
+    const noteLabel = document.createElement("span");
+    noteLabel.textContent = "说明 / 备注（正文长括号里的设计说明会归到这里）";
+    const note = document.createElement("textarea");
+    note.className = "obj-note";
+    note.rows = 3;
+    note.value = obj.note || "";
+    note.placeholder = "这个对象要做什么、边界在哪";
+    noteField.append(noteLabel, note);
+
+    row.append(head, pathField, noteField);
     row.dataset.role = "obj";
     box.appendChild(row);
   }
@@ -727,10 +852,7 @@
     const box = el("nd-objs");
     box.textContent = "";
     if (!node || !node.objects.length) {
-      const hint = document.createElement("div");
-      hint.className = "hint";
-      hint.textContent = "没有声明对象。复杂对象的实现路径可以留空，之后补。";
-      box.appendChild(hint);
+      box.appendChild(makeHint("没有声明对象。复杂对象的实现路径可以留空，之后补。"));
       return;
     }
     node.objects.forEach((obj) => appendObjectRow(box, obj));
@@ -749,7 +871,11 @@
       del.type = "button";
       del.className = "del";
       del.textContent = "✕";
-      del.addEventListener("click", () => row.remove());
+      del.addEventListener("click", () => {
+        row.remove();
+        // 说明删空后把整个分组收起来，免得留一个空标题
+        if (!box.querySelector('.row[data-role="note"]')) el("nd-notes-group").hidden = true;
+      });
       row.append(area, del);
       row.dataset.role = "note";
       box.appendChild(row);
@@ -801,8 +927,9 @@
 
   // ---------------------------------------------------------------- 导入导出
   async function doImport(payload, mode) {
+    const path = mode === "reset" ? "/api/reset" : "/api/import";
     try {
-      const data = await post(mode === "reset" ? "/api/reset" : "/api/import", payload);
+      const data = await post(path, payload);
       state.history.length = 0;
       state.redo.length = 0;
       applyModel(data.model);
@@ -811,6 +938,13 @@
       else toast(`导入完成：${data.model.stats.sections} 条路线 / ${data.model.stats.nodes} 个条目`);
       fitView();
     } catch (err) {
+      if (err.needConfirm === "empty_import") {
+        // 该来源没有条目，确认后才允许覆盖
+        if (window.confirm(`${err.message}\n\n确定要用这份内容覆盖吗？（旧数据仍在快照里可恢复）`)) {
+          return doImport(Object.assign({}, payload, { allow_empty: true }), mode);
+        }
+        return;
+      }
       fail(err);
     }
   }
