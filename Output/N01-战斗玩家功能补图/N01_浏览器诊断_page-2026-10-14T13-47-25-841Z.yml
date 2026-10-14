@@ -1,0 +1,1016 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e4]: 开发路线依赖图
+      - heading "项目网络图" [level=1] [ref=e5]
+      - generic [ref=e6]: 来源：Task/N系列任务/N01-战斗玩家功能补图.md
+    - generic [ref=e7]:
+      - button "撤销" [ref=e8] [cursor=pointer]
+      - button "重做" [ref=e9] [cursor=pointer]
+      - button "适配视图" [ref=e11] [cursor=pointer]
+      - button "清除手工挪位" [ref=e12] [cursor=pointer]
+      - button "导入任务书" [ref=e14] [cursor=pointer]
+      - button "预览 Markdown" [ref=e15] [cursor=pointer]
+      - button "导出 Markdown" [ref=e16] [cursor=pointer]
+  - generic [ref=e17]:
+    - complementary [ref=e18]:
+      - generic [ref=e19]:
+        - generic [ref=e20]:
+          - heading "开发路线" [level=2] [ref=e21]
+          - button "＋" [ref=e22] [cursor=pointer]
+        - generic [ref=e23]:
+          - generic [ref=e24]:
+            - generic [ref=e25]:
+              - generic [ref=e27]: 时间轴
+              - generic [ref=e28]: "8"
+            - generic [ref=e29]:
+              - generic [ref=e30] [cursor=pointer]:
+                - generic [ref=e31]: "1"
+                - generic [ref=e32]: 多角色共用时间轴
+              - generic [ref=e33] [cursor=pointer]:
+                - generic [ref=e34]: "2"
+                - generic [ref=e35]: 制作时间轴UI
+              - generic [ref=e36] [cursor=pointer]:
+                - generic [ref=e37]: "3"
+                - generic [ref=e38]: 制作时间轴预览
+              - generic [ref=e39] [cursor=pointer]:
+                - generic [ref=e40]: "4"
+                - generic [ref=e41]: 平滑化时间轴动画
+              - generic [ref=e42] [cursor=pointer]:
+                - generic [ref=e43]: "5"
+                - generic [ref=e44]: 战斗净时长显示
+              - generic [ref=e45] [cursor=pointer]:
+                - generic [ref=e46]: "6"
+                - generic [ref=e47]: 行动后摇与速度回排
+              - generic [ref=e48] [cursor=pointer]:
+                - generic [ref=e49]: "7"
+                - generic [ref=e50]: 六类行为时机预览
+              - generic [ref=e51] [cursor=pointer]:
+                - generic [ref=e52]: "8"
+                - generic [ref=e53]: 行动机会提交边界
+          - generic [ref=e54]: 角色行为
+          - generic [ref=e57]:
+            - generic [ref=e58]:
+              - generic "角色行为/角色技能" [ref=e60]: 角色技能
+              - generic [ref=e61]: "8"
+            - generic [ref=e62]:
+              - generic [ref=e63] [cursor=pointer]:
+                - generic [ref=e64]: "1"
+                - generic [ref=e65]: 制作元技能
+              - generic [ref=e66] [cursor=pointer]:
+                - generic [ref=e67]: "2"
+                - generic [ref=e68]: 防御待机
+              - generic [ref=e69] [cursor=pointer]:
+                - generic [ref=e70]: "3"
+                - generic [ref=e71]: 指定敌对目标固定伤害
+              - generic [ref=e72] [cursor=pointer]:
+                - generic [ref=e73]: "4"
+                - generic [ref=e74]: 技能可选范围预览
+              - generic [ref=e75] [cursor=pointer]:
+                - generic [ref=e76]: "5"
+                - generic [ref=e77]: 每单位独立行动槽
+              - generic [ref=e78] [cursor=pointer]:
+                - generic [ref=e79]: "6"
+                - generic [ref=e80]: 连携成本与产出循环
+              - generic [ref=e81] [cursor=pointer]:
+                - generic [ref=e82]: "7"
+                - generic [ref=e83]: 角色行为面板并列展示
+              - generic [ref=e84] [cursor=pointer]:
+                - generic [ref=e85]: "8"
+                - generic [ref=e86]: 基础技能继承效果
+          - generic [ref=e87]:
+            - generic [ref=e88]:
+              - generic "角色行为/角色移动" [ref=e90]: 角色移动
+              - generic [ref=e91]: "5"
+            - generic [ref=e92]:
+              - generic [ref=e93] [cursor=pointer]:
+                - generic [ref=e94]: "0"
+                - generic [ref=e95]: 制作元对象和相关组件约定
+              - generic [ref=e96] [cursor=pointer]:
+                - generic [ref=e97]: "1"
+                - generic [ref=e98]: 点击地格移动
+              - generic [ref=e99] [cursor=pointer]:
+                - generic [ref=e100]: "2"
+                - generic [ref=e101]: 高亮渲染可移动的地格
+              - generic [ref=e102] [cursor=pointer]:
+                - generic [ref=e103]: "3"
+                - generic [ref=e104]: 寻路逻辑
+              - generic [ref=e105] [cursor=pointer]:
+                - generic [ref=e106]: "4"
+                - generic [ref=e107]: 移动动画
+          - generic [ref=e108]:
+            - generic [ref=e109]:
+              - generic "角色行为/角色属性" [ref=e111]: 角色属性
+              - generic [ref=e112]: "8"
+            - generic [ref=e113]:
+              - generic [ref=e114] [cursor=pointer]:
+                - generic [ref=e115]: "1"
+                - generic [ref=e116]: 固定属性
+              - generic [ref=e117] [cursor=pointer]:
+                - generic [ref=e118]: "2"
+                - generic [ref=e119]: 角色阵营划分
+              - generic [ref=e120] [cursor=pointer]:
+                - generic [ref=e121]: "3"
+                - generic [ref=e122]: 动态属性血量
+              - generic [ref=e123] [cursor=pointer]:
+                - generic [ref=e124]: "4"
+                - generic [ref=e125]: 血量变化触发状态刷新
+              - generic [ref=e126] [cursor=pointer]:
+                - generic [ref=e127]: "5"
+                - generic [ref=e128]: 生命阈值与伤势升级
+              - generic [ref=e129] [cursor=pointer]:
+                - generic [ref=e130]: "6"
+                - generic [ref=e131]: 失去行动能力限制
+              - generic [ref=e132] [cursor=pointer]:
+                - generic [ref=e133]: "7"
+                - generic [ref=e134]: 击倒后恢复行动
+              - generic [ref=e135] [cursor=pointer]:
+                - generic [ref=e136]: "8"
+                - generic [ref=e137]: 单位状态信息
+          - generic [ref=e138]:
+            - generic [ref=e139]:
+              - generic [ref=e141]: 瓦片地图
+              - generic [ref=e142]: "5"
+            - generic [ref=e143]:
+              - generic [ref=e144] [cursor=pointer]:
+                - generic [ref=e145]: "1"
+                - generic [ref=e146]: 平铺的地图绘制
+              - generic [ref=e147] [cursor=pointer]:
+                - generic [ref=e148]: "2"
+                - generic [ref=e149]: 禁行地块
+              - generic [ref=e150] [cursor=pointer]:
+                - generic [ref=e151]: "3"
+                - generic [ref=e152]: 场景障碍物
+              - generic [ref=e153] [cursor=pointer]:
+                - generic [ref=e154]: "4"
+                - generic [ref=e155]: 特殊障碍通行成本
+              - generic [ref=e156] [cursor=pointer]:
+                - generic [ref=e157]: "5"
+                - generic [ref=e158]: 地块效果
+          - generic [ref=e159]:
+            - generic [ref=e160]:
+              - generic [ref=e162]: 敌人ai
+              - generic [ref=e163]: "10"
+            - generic [ref=e164]:
+              - generic [ref=e165] [cursor=pointer]:
+                - generic [ref=e166]: "1"
+                - generic [ref=e167]: 敌我行动切换
+              - generic [ref=e168] [cursor=pointer]:
+                - generic [ref=e169]: "2"
+                - generic [ref=e170]: 普通模板攻击
+              - generic [ref=e171] [cursor=pointer]:
+                - generic [ref=e172]: "3"
+                - generic [ref=e173]: 普通模板移动
+              - generic [ref=e174] [cursor=pointer]:
+                - generic [ref=e175]: "4"
+                - generic [ref=e176]: 普通模板能力
+              - generic [ref=e177] [cursor=pointer]:
+                - generic [ref=e178]: "5"
+                - generic [ref=e179]: 普通模板防御
+              - generic [ref=e180] [cursor=pointer]:
+                - generic [ref=e181]: "6"
+                - generic [ref=e182]: 破招视觉预告
+              - generic [ref=e183] [cursor=pointer]:
+                - generic [ref=e184]: "7"
+                - generic [ref=e185]: 破招命中打断
+              - generic [ref=e186] [cursor=pointer]:
+                - generic [ref=e187]: "8"
+                - generic [ref=e188]: 读招依据已提交记录
+              - generic [ref=e189] [cursor=pointer]:
+                - generic [ref=e190]: "9"
+                - generic [ref=e191]: 敌方配置撤退
+              - generic [ref=e192] [cursor=pointer]:
+                - generic [ref=e193]: "10"
+                - generic [ref=e194]: 后续波次连续刷新
+          - generic [ref=e195]:
+            - generic [ref=e196]:
+              - generic [ref=e198]: 战斗进入与布置
+              - generic [ref=e199]: "6"
+            - generic [ref=e200]:
+              - generic [ref=e201] [cursor=pointer]:
+                - generic [ref=e202]: "1"
+                - generic [ref=e203]: 预置战斗启动
+              - generic [ref=e204] [cursor=pointer]:
+                - generic [ref=e205]: "2"
+                - generic [ref=e206]: 预置技能构筑校验
+              - generic [ref=e207] [cursor=pointer]:
+                - generic [ref=e208]: "3"
+                - generic [ref=e209]: 当前行动者操作权限
+              - generic [ref=e210] [cursor=pointer]:
+                - generic [ref=e211]: "4"
+                - generic [ref=e212]: 布置站位调整
+              - generic [ref=e213] [cursor=pointer]:
+                - generic [ref=e214]: "5"
+                - generic [ref=e215]: 伤害触发察觉
+              - generic [ref=e216] [cursor=pointer]:
+                - generic [ref=e217]: "6"
+                - generic [ref=e218]: 全员编成与护送查看
+          - generic [ref=e219]:
+            - generic [ref=e220]:
+              - generic [ref=e222]: 行为交互
+              - generic [ref=e223]: "10"
+            - generic [ref=e224]:
+              - generic [ref=e225] [cursor=pointer]:
+                - generic [ref=e226]: "1"
+                - generic [ref=e227]: 移动选择与确认
+              - generic [ref=e228] [cursor=pointer]:
+                - generic [ref=e229]: "2"
+                - generic [ref=e230]: 取消移动选择
+              - generic [ref=e231] [cursor=pointer]:
+                - generic [ref=e232]: "3"
+                - generic [ref=e233]: 待机两次点击确认
+              - generic [ref=e234] [cursor=pointer]:
+                - generic [ref=e235]: "4"
+                - generic [ref=e236]: 技能作用范围预览
+              - generic [ref=e237] [cursor=pointer]:
+                - generic [ref=e238]: "5"
+                - generic [ref=e239]: 定向技能目标确认
+              - generic [ref=e240] [cursor=pointer]:
+                - generic [ref=e241]: "6"
+                - generic [ref=e242]: 非定向技能确认
+              - generic [ref=e243] [cursor=pointer]:
+                - generic [ref=e244]: "7"
+                - generic [ref=e245]: 取消技能选择
+              - generic [ref=e246] [cursor=pointer]:
+                - generic [ref=e247]: "8"
+                - generic [ref=e248]: 无可用操作兜底
+              - generic [ref=e249] [cursor=pointer]:
+                - generic [ref=e250]: "9"
+                - generic [ref=e251]: 战场观察与详情切换
+              - generic [ref=e252] [cursor=pointer]:
+                - generic [ref=e253]: "10"
+                - generic [ref=e254]: HUD四区块
+          - generic [ref=e255]:
+            - generic [ref=e256]:
+              - generic [ref=e258]: 技能效果试验
+              - generic [ref=e259]: "5"
+            - generic [ref=e260]:
+              - generic [ref=e261] [cursor=pointer]:
+                - generic [ref=e262]: "1"
+                - generic [ref=e263]: 方向位移技能
+              - generic [ref=e264] [cursor=pointer]:
+                - generic [ref=e265]: "2"
+                - generic [ref=e266]: 三乘三范围伤害
+              - generic [ref=e267] [cursor=pointer]:
+                - generic [ref=e268]: "3"
+                - generic [ref=e269]: 目标最大生命百分比伤害
+              - generic [ref=e270] [cursor=pointer]:
+                - generic [ref=e271]: "4"
+                - generic [ref=e272]: 最终技能效果详情
+              - generic [ref=e273] [cursor=pointer]:
+                - generic [ref=e274]: "5"
+                - generic [ref=e275]: 连携多产出继承
+          - generic [ref=e276]:
+            - generic [ref=e277]:
+              - generic [ref=e279]: 行动槽规则
+              - generic [ref=e280]: "7"
+            - generic [ref=e281]:
+              - generic [ref=e282] [cursor=pointer]:
+                - generic [ref=e283]: "1"
+                - generic [ref=e284]: 基础技能字母追加
+              - generic [ref=e285] [cursor=pointer]:
+                - generic [ref=e286]: "2"
+                - generic [ref=e287]: 十格容量挤出
+              - generic [ref=e288] [cursor=pointer]:
+                - generic [ref=e289]: "3"
+                - generic [ref=e290]: 移动M延迟打断
+              - generic [ref=e291] [cursor=pointer]:
+                - generic [ref=e292]: "4"
+                - generic [ref=e293]: 槽尾精确匹配
+              - generic [ref=e294] [cursor=pointer]:
+                - generic [ref=e295]: "5"
+                - generic [ref=e296]: 手动选择连携
+              - generic [ref=e297] [cursor=pointer]:
+                - generic [ref=e298]: "6"
+                - generic [ref=e299]: 产出不自动释放
+              - generic [ref=e300] [cursor=pointer]:
+                - generic [ref=e301]: "7"
+                - generic [ref=e302]: 撤退与待机类别字母
+          - generic [ref=e303]:
+            - generic [ref=e304]:
+              - generic [ref=e306]: 效果结算
+              - generic [ref=e307]: "7"
+            - generic [ref=e308]:
+              - generic [ref=e309] [cursor=pointer]:
+                - generic [ref=e310]: "1"
+                - generic [ref=e311]: 各来源统一效果呈现
+              - generic [ref=e312] [cursor=pointer]:
+                - generic [ref=e313]: "2"
+                - generic [ref=e314]: 直接伤害结算
+              - generic [ref=e315] [cursor=pointer]:
+                - generic [ref=e316]: "3"
+                - generic [ref=e317]: 持续伤害结算
+              - generic [ref=e318] [cursor=pointer]:
+                - generic [ref=e319]: "4"
+                - generic [ref=e320]: 限时状态移除
+              - generic [ref=e321] [cursor=pointer]:
+                - generic [ref=e322]: "5"
+                - generic [ref=e323]: 装备来源效果启停
+              - generic [ref=e324] [cursor=pointer]:
+                - generic [ref=e325]: "6"
+                - generic [ref=e326]: 防护穿透分层
+              - generic [ref=e327] [cursor=pointer]:
+                - generic [ref=e328]: "7"
+                - generic [ref=e329]: 战斗结束保留效果状态
+          - generic [ref=e330]:
+            - generic [ref=e331]:
+              - generic [ref=e333]: 战斗容器操作
+              - generic [ref=e334]: "15"
+            - generic [ref=e335]:
+              - generic [ref=e336] [cursor=pointer]:
+                - generic [ref=e337]: "1"
+                - generic [ref=e338]: 容器格与携带空间
+              - generic [ref=e339] [cursor=pointer]:
+                - generic [ref=e340]: "2"
+                - generic [ref=e341]: 整叠拿取
+              - generic [ref=e342] [cursor=pointer]:
+                - generic [ref=e343]: "3"
+                - generic [ref=e344]: 半叠拿取
+              - generic [ref=e345] [cursor=pointer]:
+                - generic [ref=e346]: "4"
+                - generic [ref=e347]: 快捷转移
+              - generic [ref=e348] [cursor=pointer]:
+                - generic [ref=e349]: "5"
+                - generic [ref=e350]: 整叠放入空格
+              - generic [ref=e351] [cursor=pointer]:
+                - generic [ref=e352]: "6"
+                - generic [ref=e353]: 单个放入空格
+              - generic [ref=e354] [cursor=pointer]:
+                - generic [ref=e355]: "7"
+                - generic [ref=e356]: 同类整叠合并
+              - generic [ref=e357] [cursor=pointer]:
+                - generic [ref=e358]: "8"
+                - generic [ref=e359]: 同类单个合并
+              - generic [ref=e360] [cursor=pointer]:
+                - generic [ref=e361]: "9"
+                - generic [ref=e362]: 异类整件交换
+              - generic [ref=e363] [cursor=pointer]:
+                - generic [ref=e364]: "10"
+                - generic [ref=e365]: 装入容器物品
+              - generic [ref=e366] [cursor=pointer]:
+                - generic [ref=e367]: "11"
+                - generic [ref=e368]: 受限内容约束
+              - generic [ref=e369] [cursor=pointer]:
+                - generic [ref=e370]: "12"
+                - generic [ref=e371]: 受限容器取出
+              - generic [ref=e372] [cursor=pointer]:
+                - generic [ref=e373]: "13"
+                - generic [ref=e374]: 嵌套识别与扣除
+              - generic [ref=e375] [cursor=pointer]:
+                - generic [ref=e376]: "14"
+                - generic [ref=e377]: 落地物自动装载
+              - generic [ref=e378] [cursor=pointer]:
+                - generic [ref=e379]: "15"
+                - generic [ref=e380]: 装载溢出确认
+          - generic [ref=e381]:
+            - generic [ref=e382]:
+              - generic [ref=e384]: 库存与法术
+              - generic [ref=e385]: "13"
+            - generic [ref=e386]:
+              - generic [ref=e387] [cursor=pointer]:
+                - generic [ref=e388]: "1"
+                - generic [ref=e389]: 当前角色即时库存列表
+              - generic [ref=e390] [cursor=pointer]:
+                - generic [ref=e391]: "2"
+                - generic [ref=e392]: 技能触发选物与选目标
+              - generic [ref=e393] [cursor=pointer]:
+                - generic [ref=e394]: "3"
+                - generic [ref=e395]: 消耗品确认扣减
+              - generic [ref=e396] [cursor=pointer]:
+                - generic [ref=e397]: "4"
+                - generic [ref=e398]: 投掷资格过滤
+              - generic [ref=e399] [cursor=pointer]:
+                - generic [ref=e400]: "5"
+                - generic [ref=e401]: 伤害组件投掷
+              - generic [ref=e402] [cursor=pointer]:
+                - generic [ref=e403]: "6"
+                - generic [ref=e404]: 效果组件投掷
+              - generic [ref=e405] [cursor=pointer]:
+                - generic [ref=e406]: "7"
+                - generic [ref=e407]: 伤害效果同时投掷
+              - generic [ref=e408] [cursor=pointer]:
+                - generic [ref=e409]: "8"
+                - generic [ref=e410]: 重物投掷折算
+              - generic [ref=e411] [cursor=pointer]:
+                - generic [ref=e412]: "9"
+                - generic [ref=e413]: 整体容器投掷与落地
+              - generic [ref=e414] [cursor=pointer]:
+                - generic [ref=e415]: "10"
+                - generic [ref=e416]: 法术书详情预览
+              - generic [ref=e417] [cursor=pointer]:
+                - generic [ref=e418]: "11"
+                - generic [ref=e419]: 技能展开法术选择
+              - generic [ref=e420] [cursor=pointer]:
+                - generic [ref=e421]: "12"
+                - generic [ref=e422]: 法术确认与收起
+              - generic [ref=e423] [cursor=pointer]:
+                - generic [ref=e424]: "13"
+                - generic [ref=e425]: 关联任务物品离开提示
+          - generic [ref=e426]:
+            - generic [ref=e427]:
+              - generic [ref=e429]: 装备与遗物
+              - generic [ref=e430]: "8"
+            - generic [ref=e431]:
+              - generic [ref=e432] [cursor=pointer]:
+                - generic [ref=e433]: "1"
+                - generic [ref=e434]: 普通装备槽适配
+              - generic [ref=e435] [cursor=pointer]:
+                - generic [ref=e436]: "2"
+                - generic [ref=e437]: 技能触发换装选择
+              - generic [ref=e438] [cursor=pointer]:
+                - generic [ref=e439]: "3"
+                - generic [ref=e440]: 确认换装即时生效
+              - generic [ref=e441] [cursor=pointer]:
+                - generic [ref=e442]: "4"
+                - generic [ref=e443]: 卸下储物装备保留内容
+              - generic [ref=e444] [cursor=pointer]:
+                - generic [ref=e445]: "5"
+                - generic [ref=e446]: 遗物个体与全队启停
+              - generic [ref=e447] [cursor=pointer]:
+                - generic [ref=e448]: "6"
+                - generic [ref=e449]: 同名遗物强度裁决
+              - generic [ref=e450] [cursor=pointer]:
+                - generic [ref=e451]: "7"
+                - generic [ref=e452]: 最强来源卸下重算
+              - generic [ref=e453] [cursor=pointer]:
+                - generic [ref=e454]: "8"
+                - generic [ref=e455]: 效果增加遗物槽
+          - generic [ref=e456]:
+            - generic [ref=e457]:
+              - generic [ref=e459]: 场景搜刮
+              - generic [ref=e460]: "7"
+            - generic [ref=e461]:
+              - generic [ref=e462] [cursor=pointer]:
+                - generic [ref=e463]: "1"
+                - generic [ref=e464]: 战斗中容器搜刮
+              - generic [ref=e465] [cursor=pointer]:
+                - generic [ref=e466]: "2"
+                - generic [ref=e467]: 场景交互点
+              - generic [ref=e468] [cursor=pointer]:
+                - generic [ref=e469]: "3"
+                - generic [ref=e470]: 场地道具可拾取判定
+              - generic [ref=e471] [cursor=pointer]:
+                - generic [ref=e472]: "4"
+                - generic [ref=e473]: 危险地形战斗结算
+              - generic [ref=e474] [cursor=pointer]:
+                - generic [ref=e475]: "5"
+                - generic [ref=e476]: 高低差射程影响
+              - generic [ref=e477] [cursor=pointer]:
+                - generic [ref=e478]: "6"
+                - generic [ref=e479]: 高低差伤害影响
+              - generic [ref=e480] [cursor=pointer]:
+                - generic [ref=e481]: "7"
+                - generic [ref=e482]: 定向掩体防护
+          - generic [ref=e483]:
+            - generic [ref=e484]:
+              - generic [ref=e486]: 目标与战斗退出
+              - generic [ref=e487]: "8"
+            - generic [ref=e488]:
+              - generic [ref=e489] [cursor=pointer]:
+                - generic [ref=e490]: "1"
+                - generic [ref=e491]: 显式目标与进度
+              - generic [ref=e492] [cursor=pointer]:
+                - generic [ref=e493]: "2"
+                - generic [ref=e494]: 目标失效判定
+              - generic [ref=e495] [cursor=pointer]:
+                - generic [ref=e496]: "3"
+                - generic [ref=e497]: 玩家撤退条件
+              - generic [ref=e498] [cursor=pointer]:
+                - generic [ref=e499]: "4"
+                - generic [ref=e500]: 撤退状态保留
+              - generic [ref=e501] [cursor=pointer]:
+                - generic [ref=e502]: "5"
+                - generic [ref=e503]: 目标濒临失败预警
+              - generic [ref=e504] [cursor=pointer]:
+                - generic [ref=e505]: "6"
+                - generic [ref=e506]: 目标达成与结束门槛
+              - generic [ref=e507] [cursor=pointer]:
+                - generic [ref=e508]: "7"
+                - generic [ref=e509]: 全队失能立即终止
+              - generic [ref=e510] [cursor=pointer]:
+                - generic [ref=e511]: "8"
+                - generic [ref=e512]: 结果标识与目标清单
+          - generic [ref=e513]:
+            - generic [ref=e514]:
+              - generic [ref=e516]: 战斗收尾
+              - generic [ref=e517]: "7"
+            - generic [ref=e518]:
+              - generic [ref=e519] [cursor=pointer]:
+                - generic [ref=e520]: "1"
+                - generic [ref=e521]: 进入安全收尾窗口
+              - generic [ref=e522] [cursor=pointer]:
+                - generic [ref=e523]: "2"
+                - generic [ref=e524]: 收尾手动搜刮
+              - generic [ref=e525] [cursor=pointer]:
+                - generic [ref=e526]: "3"
+                - generic [ref=e527]: 收尾拾取落地物
+              - generic [ref=e528] [cursor=pointer]:
+                - generic [ref=e529]: "4"
+                - generic [ref=e530]: 收尾治疗
+              - generic [ref=e531] [cursor=pointer]:
+                - generic [ref=e532]: "5"
+                - generic [ref=e533]: 收尾整备
+              - generic [ref=e534] [cursor=pointer]:
+                - generic [ref=e535]: "6"
+                - generic [ref=e536]: 结束处理场地道具
+              - generic [ref=e537] [cursor=pointer]:
+                - generic [ref=e538]: "7"
+                - generic [ref=e539]: 收尾关闭与局部出口
+      - generic [ref=e540]:
+        - generic [ref=e541]:
+          - heading "校验" [level=2] [ref=e542]
+          - generic [ref=e543]: 0 / 8
+        - generic [ref=e544]: 阻塞 提醒 提示
+        - generic [ref=e548]:
+          - generic [ref=e549] [cursor=pointer]:
+            - generic [ref=e550]: 提示
+            - generic [ref=e551]: 瓦片地图 3 的对象「元对象-角色标记组件」未写实现路径（可选项）
+          - generic [ref=e552] [cursor=pointer]:
+            - generic [ref=e553]: 提示
+            - generic [ref=e554]: 瓦片地图 3 的对象「元对象-地格占用组件」未写实现路径（可选项）
+          - generic [ref=e555] [cursor=pointer]:
+            - generic [ref=e556]: 提示
+            - generic [ref=e557]: 瓦片地图 5 的对象「元效果以及相关组件约定」未写实现路径（可选项）
+          - generic [ref=e558] [cursor=pointer]:
+            - generic [ref=e559]: 提示
+            - generic [ref=e560]: 角色行为/角色技能 2 的对象「元对象-技能容器组件」未写实现路径（可选项）
+          - generic [ref=e561] [cursor=pointer]:
+            - generic [ref=e562]: 提示
+            - generic [ref=e563]: 角色行为/角色移动 0 的对象「元对象-场景纹理组件」未写实现路径（可选项）
+          - generic [ref=e564] [cursor=pointer]:
+            - generic [ref=e565]: 提示
+            - generic [ref=e566]: 角色行为/角色移动 0 的对象「元对象-场景坐标组件」未写实现路径（可选项）
+          - generic [ref=e567] [cursor=pointer]:
+            - generic [ref=e568]: 提示
+            - generic [ref=e569]: 角色行为/角色移动 2 的对象「元对象-属性值组件」未写实现路径（可选项）
+          - generic [ref=e570] [cursor=pointer]:
+            - generic [ref=e571]: 提示
+            - generic [ref=e572]: 开发路线「角色行为」下没有条目
+      - generic [ref=e573]:
+        - generic [ref=e574]:
+          - heading "对象索引" [level=2] [ref=e575]
+          - generic [ref=e576]: "10"
+        - paragraph [ref=e577]: 需要一并实现的对象，以及声明它的条目。实现路径是可选项。
+        - generic [ref=e578]:
+          - generic [ref=e579] [cursor=pointer]: 元对象-场景纹理组件 · 1 处：角色行为/角色移动 0 · 未写实现路径
+          - generic [ref=e581] [cursor=pointer]: 元对象-场景坐标组件 · 1 处：角色行为/角色移动 0 · 未写实现路径
+          - generic [ref=e583] [cursor=pointer]: 元对象-地格占用组件 · 1 处：瓦片地图 3 · 未写实现路径
+          - generic [ref=e585] [cursor=pointer]: 元对象-技能容器组件 · 1 处：角色行为/角色技能 2 · 未写实现路径
+          - generic [ref=e587] [cursor=pointer]: 元对象-角色标记组件 · 1 处：瓦片地图 3 · 未写实现路径
+          - generic [ref=e589] [cursor=pointer]: 元对象-量表组件 · 1 处：角色行为/角色属性 3 · 已写实现路径
+          - generic [ref=e591] [cursor=pointer]: 元对象-属性值组件 · 1 处：角色行为/角色移动 2 · 未写实现路径
+          - generic [ref=e593] [cursor=pointer]: 元对象-属性组件 · 1 处：角色行为/角色属性 1 · 已写实现路径
+          - generic [ref=e595] [cursor=pointer]: 元效果以及相关组件约定 · 1 处：瓦片地图 5 · 未写实现路径
+          - generic [ref=e597] [cursor=pointer]: TilemapManager · 1 处：瓦片地图 2 · 已写实现路径
+    - main [ref=e599]:
+      - img [ref=e600]:
+        - generic [ref=e601]:
+          - generic [ref=e602]:
+            - generic [ref=e603]: 时间轴
+            - generic [ref=e606]: 角色行为
+            - generic [ref=e609]: 瓦片地图
+            - generic [ref=e612]: 敌人ai
+            - generic [ref=e615]: 战斗进入与布置
+            - generic [ref=e618]: 行为交互
+            - generic [ref=e621]: 技能效果试验
+            - generic [ref=e624]: 行动槽规则
+            - generic [ref=e627]: 效果结算
+            - generic [ref=e630]: 战斗容器操作
+            - generic [ref=e633]: 库存与法术
+            - generic [ref=e636]: 装备与遗物
+            - generic [ref=e639]: 场景搜刮
+            - generic [ref=e642]: 目标与战斗退出
+            - generic [ref=e645]: 战斗收尾
+          - generic [ref=e648]:
+            - generic "时间轴" [ref=e650]
+            - generic "角色行为/角色技能" [ref=e653]: 角色技能
+            - generic "角色行为/角色移动" [ref=e656]: 角色移动
+            - generic "角色行为/角色属性" [ref=e659]: 角色属性
+            - generic "瓦片地图" [ref=e662]
+            - generic "敌人ai" [ref=e665]
+            - generic "战斗进入与布置" [ref=e668]
+            - generic "行为交互" [ref=e671]
+            - generic "技能效果试验" [ref=e674]
+            - generic "行动槽规则" [ref=e677]
+            - generic "效果结算" [ref=e680]
+            - generic "战斗容器操作" [ref=e683]
+            - generic "库存与法术" [ref=e686]
+            - generic "装备与遗物" [ref=e689]
+            - generic "场景搜刮" [ref=e692]
+            - generic "目标与战斗退出" [ref=e695]
+            - generic "战斗收尾" [ref=e698]
+          - generic [ref=e850]:
+            - generic [ref=e851] [cursor=pointer]:
+              - generic [ref=e854]: 时间轴 1
+              - generic [ref=e855]: 多角色共用时间轴
+            - generic [ref=e856] [cursor=pointer]:
+              - generic [ref=e859]: 时间轴 2
+              - generic [ref=e860]: 制作时间轴UI
+            - generic [ref=e861] [cursor=pointer]:
+              - generic [ref=e864]: 时间轴 3
+              - generic [ref=e865]: 制作时间轴预览
+            - generic [ref=e866] [cursor=pointer]:
+              - generic [ref=e869]: 时间轴 4
+              - generic [ref=e870]: 平滑化时间轴动画
+            - generic [ref=e871] [cursor=pointer]:
+              - generic [ref=e874]: 时间轴 5
+              - generic [ref=e875]: 战斗净时长显示
+            - generic [ref=e876] [cursor=pointer]:
+              - generic [ref=e879]: 时间轴 6
+              - generic [ref=e880]: 行动后摇与速度回排
+            - generic [ref=e881] [cursor=pointer]:
+              - generic [ref=e884]: 时间轴 7
+              - generic [ref=e885]: 六类行为时机预览
+            - generic [ref=e886] [cursor=pointer]:
+              - generic [ref=e889]: 时间轴 8
+              - generic [ref=e890]: 行动机会提交边界
+            - generic [ref=e891] [cursor=pointer]:
+              - generic [ref=e894]: 角色行为/角色技能 1
+              - generic [ref=e895]: 制作元技能
+            - generic [ref=e896] [cursor=pointer]:
+              - generic [ref=e899]: 角色行为/角色技能 2
+              - generic [ref=e900]: 防御待机
+            - generic [ref=e901] [cursor=pointer]:
+              - generic [ref=e904]: 角色行为/角色技能 3
+              - generic [ref=e905]: 指定敌对目标固定伤害
+            - generic [ref=e906] [cursor=pointer]:
+              - generic [ref=e909]: 角色行为/角色技能 4
+              - generic [ref=e910]: 技能可选范围预览
+            - generic [ref=e911] [cursor=pointer]:
+              - generic [ref=e914]: 角色行为/角色技能 5
+              - generic [ref=e915]: 每单位独立行动槽
+            - generic [ref=e916] [cursor=pointer]:
+              - generic [ref=e919]: 角色行为/角色技能 6
+              - generic [ref=e920]: 连携成本与产出循环
+            - generic [ref=e921] [cursor=pointer]:
+              - generic [ref=e924]: 角色行为/角色技能 7
+              - generic [ref=e925]: 角色行为面板并列展示
+            - generic [ref=e926] [cursor=pointer]:
+              - generic [ref=e929]: 角色行为/角色技能 8
+              - generic [ref=e930]: 基础技能继承效果
+            - generic [ref=e931] [cursor=pointer]:
+              - generic [ref=e934]: 角色行为/角色移动 0
+              - generic [ref=e935]: 制作元对象和相关组件约
+              - generic [ref=e936]: 定
+            - generic [ref=e937] [cursor=pointer]:
+              - generic [ref=e940]: 角色行为/角色移动 1
+              - generic [ref=e941]: 点击地格移动
+            - generic [ref=e942] [cursor=pointer]:
+              - generic [ref=e945]: 角色行为/角色移动 2
+              - generic [ref=e946]: 高亮渲染可移动的地格
+            - generic [ref=e947] [cursor=pointer]:
+              - generic [ref=e950]: 角色行为/角色移动 3
+              - generic [ref=e951]: 寻路逻辑
+            - generic [ref=e952] [cursor=pointer]:
+              - generic [ref=e955]: 角色行为/角色移动 4
+              - generic [ref=e956]: 移动动画
+            - generic [ref=e957] [cursor=pointer]:
+              - generic [ref=e960]: 角色行为/角色属性 1
+              - generic [ref=e961]: 固定属性
+            - generic [ref=e962] [cursor=pointer]:
+              - generic [ref=e965]: 角色行为/角色属性 2
+              - generic [ref=e966]: 角色阵营划分
+            - generic [ref=e967] [cursor=pointer]:
+              - generic [ref=e970]: 角色行为/角色属性 3
+              - generic [ref=e971]: 动态属性血量
+            - generic [ref=e972] [cursor=pointer]:
+              - generic [ref=e975]: 角色行为/角色属性 4
+              - generic [ref=e976]: 血量变化触发状态刷新
+            - generic [ref=e977] [cursor=pointer]:
+              - generic [ref=e980]: 角色行为/角色属性 5
+              - generic [ref=e981]: 生命阈值与伤势升级
+            - generic [ref=e982] [cursor=pointer]:
+              - generic [ref=e985]: 角色行为/角色属性 6
+              - generic [ref=e986]: 失去行动能力限制
+            - generic [ref=e987] [cursor=pointer]:
+              - generic [ref=e990]: 角色行为/角色属性 7
+              - generic [ref=e991]: 击倒后恢复行动
+            - generic [ref=e992] [cursor=pointer]:
+              - generic [ref=e995]: 角色行为/角色属性 8
+              - generic [ref=e996]: 单位状态信息
+            - generic [ref=e997] [cursor=pointer]:
+              - generic [ref=e1000]: 瓦片地图 1
+              - generic [ref=e1001]: 平铺的地图绘制
+            - generic [ref=e1002] [cursor=pointer]:
+              - generic [ref=e1005]: 瓦片地图 2
+              - generic [ref=e1006]: 禁行地块
+            - generic [ref=e1007] [cursor=pointer]:
+              - generic [ref=e1010]: 瓦片地图 3
+              - generic [ref=e1011]: 场景障碍物
+            - generic [ref=e1012] [cursor=pointer]:
+              - generic [ref=e1015]: 瓦片地图 4
+              - generic [ref=e1016]: 特殊障碍通行成本
+            - generic [ref=e1017] [cursor=pointer]:
+              - generic [ref=e1020]: 瓦片地图 5
+              - generic [ref=e1021]: 地块效果
+            - generic [ref=e1022] [cursor=pointer]:
+              - generic [ref=e1025]: 敌人ai 1
+              - generic [ref=e1026]: 敌我行动切换
+            - generic [ref=e1027] [cursor=pointer]:
+              - generic [ref=e1030]: 敌人ai 2
+              - generic [ref=e1031]: 普通模板攻击
+            - generic [ref=e1032] [cursor=pointer]:
+              - generic [ref=e1035]: 敌人ai 3
+              - generic [ref=e1036]: 普通模板移动
+            - generic [ref=e1037] [cursor=pointer]:
+              - generic [ref=e1040]: 敌人ai 4
+              - generic [ref=e1041]: 普通模板能力
+            - generic [ref=e1042] [cursor=pointer]:
+              - generic [ref=e1045]: 敌人ai 5
+              - generic [ref=e1046]: 普通模板防御
+            - generic [ref=e1047] [cursor=pointer]:
+              - generic [ref=e1050]: 敌人ai 6
+              - generic [ref=e1051]: 破招视觉预告
+            - generic [ref=e1052] [cursor=pointer]:
+              - generic [ref=e1055]: 敌人ai 7
+              - generic [ref=e1056]: 破招命中打断
+            - generic [ref=e1057] [cursor=pointer]:
+              - generic [ref=e1060]: 敌人ai 8
+              - generic [ref=e1061]: 读招依据已提交记录
+            - generic [ref=e1062] [cursor=pointer]:
+              - generic [ref=e1065]: 敌人ai 9
+              - generic [ref=e1066]: 敌方配置撤退
+            - generic [ref=e1067] [cursor=pointer]:
+              - generic [ref=e1070]: 敌人ai 10
+              - generic [ref=e1071]: 后续波次连续刷新
+            - generic [ref=e1072] [cursor=pointer]:
+              - generic [ref=e1075]: 战斗进入与布置 1
+              - generic [ref=e1076]: 预置战斗启动
+            - generic [ref=e1077] [cursor=pointer]:
+              - generic [ref=e1080]: 战斗进入与布置 2
+              - generic [ref=e1081]: 预置技能构筑校验
+            - generic [ref=e1082] [cursor=pointer]:
+              - generic [ref=e1085]: 战斗进入与布置 3
+              - generic [ref=e1086]: 当前行动者操作权限
+            - generic [ref=e1087] [cursor=pointer]:
+              - generic [ref=e1090]: 战斗进入与布置 4
+              - generic [ref=e1091]: 布置站位调整
+            - generic [ref=e1092] [cursor=pointer]:
+              - generic [ref=e1095]: 战斗进入与布置 5
+              - generic [ref=e1096]: 伤害触发察觉
+            - generic [ref=e1097] [cursor=pointer]:
+              - generic [ref=e1100]: 战斗进入与布置 6
+              - generic [ref=e1101]: 全员编成与护送查看
+            - generic [ref=e1102] [cursor=pointer]:
+              - generic [ref=e1105]: 行为交互 1
+              - generic [ref=e1106]: 移动选择与确认
+            - generic [ref=e1107] [cursor=pointer]:
+              - generic [ref=e1110]: 行为交互 2
+              - generic [ref=e1111]: 取消移动选择
+            - generic [ref=e1112] [cursor=pointer]:
+              - generic [ref=e1115]: 行为交互 3
+              - generic [ref=e1116]: 待机两次点击确认
+            - generic [ref=e1117] [cursor=pointer]:
+              - generic [ref=e1120]: 行为交互 4
+              - generic [ref=e1121]: 技能作用范围预览
+            - generic [ref=e1122] [cursor=pointer]:
+              - generic [ref=e1125]: 行为交互 5
+              - generic [ref=e1126]: 定向技能目标确认
+            - generic [ref=e1127] [cursor=pointer]:
+              - generic [ref=e1130]: 行为交互 6
+              - generic [ref=e1131]: 非定向技能确认
+            - generic [ref=e1132] [cursor=pointer]:
+              - generic [ref=e1135]: 行为交互 7
+              - generic [ref=e1136]: 取消技能选择
+            - generic [ref=e1137] [cursor=pointer]:
+              - generic [ref=e1140]: 行为交互 8
+              - generic [ref=e1141]: 无可用操作兜底
+            - generic [ref=e1142] [cursor=pointer]:
+              - generic [ref=e1145]: 行为交互 9
+              - generic [ref=e1146]: 战场观察与详情切换
+            - generic [ref=e1147] [cursor=pointer]:
+              - generic [ref=e1150]: 行为交互 10
+              - generic [ref=e1151]: HUD四区块
+            - generic [ref=e1152] [cursor=pointer]:
+              - generic [ref=e1155]: 技能效果试验 1
+              - generic [ref=e1156]: 方向位移技能
+            - generic [ref=e1157] [cursor=pointer]:
+              - generic [ref=e1160]: 技能效果试验 2
+              - generic [ref=e1161]: 三乘三范围伤害
+            - generic [ref=e1162] [cursor=pointer]:
+              - generic [ref=e1165]: 技能效果试验 3
+              - generic [ref=e1166]: 目标最大生命百分比伤害
+            - generic [ref=e1167] [cursor=pointer]:
+              - generic [ref=e1170]: 技能效果试验 4
+              - generic [ref=e1171]: 最终技能效果详情
+            - generic [ref=e1172] [cursor=pointer]:
+              - generic [ref=e1175]: 技能效果试验 5
+              - generic [ref=e1176]: 连携多产出继承
+            - generic [ref=e1177] [cursor=pointer]:
+              - generic [ref=e1180]: 行动槽规则 1
+              - generic [ref=e1181]: 基础技能字母追加
+            - generic [ref=e1182] [cursor=pointer]:
+              - generic [ref=e1185]: 行动槽规则 2
+              - generic [ref=e1186]: 十格容量挤出
+            - generic [ref=e1187] [cursor=pointer]:
+              - generic [ref=e1190]: 行动槽规则 3
+              - generic [ref=e1191]: 移动M延迟打断
+            - generic [ref=e1192] [cursor=pointer]:
+              - generic [ref=e1195]: 行动槽规则 4
+              - generic [ref=e1196]: 槽尾精确匹配
+            - generic [ref=e1197] [cursor=pointer]:
+              - generic [ref=e1200]: 行动槽规则 5
+              - generic [ref=e1201]: 手动选择连携
+            - generic [ref=e1202] [cursor=pointer]:
+              - generic [ref=e1205]: 行动槽规则 6
+              - generic [ref=e1206]: 产出不自动释放
+            - generic [ref=e1207] [cursor=pointer]:
+              - generic [ref=e1210]: 行动槽规则 7
+              - generic [ref=e1211]: 撤退与待机类别字母
+            - generic [ref=e1212] [cursor=pointer]:
+              - generic [ref=e1215]: 效果结算 1
+              - generic [ref=e1216]: 各来源统一效果呈现
+            - generic [ref=e1217] [cursor=pointer]:
+              - generic [ref=e1220]: 效果结算 2
+              - generic [ref=e1221]: 直接伤害结算
+            - generic [ref=e1222] [cursor=pointer]:
+              - generic [ref=e1225]: 效果结算 3
+              - generic [ref=e1226]: 持续伤害结算
+            - generic [ref=e1227] [cursor=pointer]:
+              - generic [ref=e1230]: 效果结算 4
+              - generic [ref=e1231]: 限时状态移除
+            - generic [ref=e1232] [cursor=pointer]:
+              - generic [ref=e1235]: 效果结算 5
+              - generic [ref=e1236]: 装备来源效果启停
+            - generic [ref=e1237] [cursor=pointer]:
+              - generic [ref=e1240]: 效果结算 6
+              - generic [ref=e1241]: 防护穿透分层
+            - generic [ref=e1242] [cursor=pointer]:
+              - generic [ref=e1245]: 效果结算 7
+              - generic [ref=e1246]: 战斗结束保留效果状态
+            - generic [ref=e1247] [cursor=pointer]:
+              - generic [ref=e1250]: 战斗容器操作 1
+              - generic [ref=e1251]: 容器格与携带空间
+            - generic [ref=e1252] [cursor=pointer]:
+              - generic [ref=e1255]: 战斗容器操作 2
+              - generic [ref=e1256]: 整叠拿取
+            - generic [ref=e1257] [cursor=pointer]:
+              - generic [ref=e1260]: 战斗容器操作 3
+              - generic [ref=e1261]: 半叠拿取
+            - generic [ref=e1262] [cursor=pointer]:
+              - generic [ref=e1265]: 战斗容器操作 4
+              - generic [ref=e1266]: 快捷转移
+            - generic [ref=e1267] [cursor=pointer]:
+              - generic [ref=e1270]: 战斗容器操作 5
+              - generic [ref=e1271]: 整叠放入空格
+            - generic [ref=e1272] [cursor=pointer]:
+              - generic [ref=e1275]: 战斗容器操作 6
+              - generic [ref=e1276]: 单个放入空格
+            - generic [ref=e1277] [cursor=pointer]:
+              - generic [ref=e1280]: 战斗容器操作 7
+              - generic [ref=e1281]: 同类整叠合并
+            - generic [ref=e1282] [cursor=pointer]:
+              - generic [ref=e1285]: 战斗容器操作 8
+              - generic [ref=e1286]: 同类单个合并
+            - generic [ref=e1287] [cursor=pointer]:
+              - generic [ref=e1290]: 战斗容器操作 9
+              - generic [ref=e1291]: 异类整件交换
+            - generic [ref=e1292] [cursor=pointer]:
+              - generic [ref=e1295]: 战斗容器操作 10
+              - generic [ref=e1296]: 装入容器物品
+            - generic [ref=e1297] [cursor=pointer]:
+              - generic [ref=e1300]: 战斗容器操作 11
+              - generic [ref=e1301]: 受限内容约束
+            - generic [ref=e1302] [cursor=pointer]:
+              - generic [ref=e1305]: 战斗容器操作 12
+              - generic [ref=e1306]: 受限容器取出
+            - generic [ref=e1307] [cursor=pointer]:
+              - generic [ref=e1310]: 战斗容器操作 13
+              - generic [ref=e1311]: 嵌套识别与扣除
+            - generic [ref=e1312] [cursor=pointer]:
+              - generic [ref=e1315]: 战斗容器操作 14
+              - generic [ref=e1316]: 落地物自动装载
+            - generic [ref=e1317] [cursor=pointer]:
+              - generic [ref=e1320]: 战斗容器操作 15
+              - generic [ref=e1321]: 装载溢出确认
+            - generic [ref=e1322] [cursor=pointer]:
+              - generic [ref=e1325]: 库存与法术 1
+              - generic [ref=e1326]: 当前角色即时库存列表
+            - generic [ref=e1327] [cursor=pointer]:
+              - generic [ref=e1330]: 库存与法术 2
+              - generic [ref=e1331]: 技能触发选物与选目标
+            - generic [ref=e1332] [cursor=pointer]:
+              - generic [ref=e1335]: 库存与法术 3
+              - generic [ref=e1336]: 消耗品确认扣减
+            - generic [ref=e1337] [cursor=pointer]:
+              - generic [ref=e1340]: 库存与法术 4
+              - generic [ref=e1341]: 投掷资格过滤
+            - generic [ref=e1342] [cursor=pointer]:
+              - generic [ref=e1345]: 库存与法术 5
+              - generic [ref=e1346]: 伤害组件投掷
+            - generic [ref=e1347] [cursor=pointer]:
+              - generic [ref=e1350]: 库存与法术 6
+              - generic [ref=e1351]: 效果组件投掷
+            - generic [ref=e1352] [cursor=pointer]:
+              - generic [ref=e1355]: 库存与法术 7
+              - generic [ref=e1356]: 伤害效果同时投掷
+            - generic [ref=e1357] [cursor=pointer]:
+              - generic [ref=e1360]: 库存与法术 8
+              - generic [ref=e1361]: 重物投掷折算
+            - generic [ref=e1362] [cursor=pointer]:
+              - generic [ref=e1365]: 库存与法术 9
+              - generic [ref=e1366]: 整体容器投掷与落地
+            - generic [ref=e1367] [cursor=pointer]:
+              - generic [ref=e1370]: 库存与法术 10
+              - generic [ref=e1371]: 法术书详情预览
+            - generic [ref=e1372] [cursor=pointer]:
+              - generic [ref=e1375]: 库存与法术 11
+              - generic [ref=e1376]: 技能展开法术选择
+            - generic [ref=e1377] [cursor=pointer]:
+              - generic [ref=e1380]: 库存与法术 12
+              - generic [ref=e1381]: 法术确认与收起
+            - generic [ref=e1382] [cursor=pointer]:
+              - generic [ref=e1385]: 库存与法术 13
+              - generic [ref=e1386]: 关联任务物品离开提示
+            - generic [ref=e1387] [cursor=pointer]:
+              - generic [ref=e1390]: 装备与遗物 1
+              - generic [ref=e1391]: 普通装备槽适配
+            - generic [ref=e1392] [cursor=pointer]:
+              - generic [ref=e1395]: 装备与遗物 2
+              - generic [ref=e1396]: 技能触发换装选择
+            - generic [ref=e1397] [cursor=pointer]:
+              - generic [ref=e1400]: 装备与遗物 3
+              - generic [ref=e1401]: 确认换装即时生效
+            - generic [ref=e1402] [cursor=pointer]:
+              - generic [ref=e1405]: 装备与遗物 4
+              - generic [ref=e1406]: 卸下储物装备保留内容
+            - generic [ref=e1407] [cursor=pointer]:
+              - generic [ref=e1410]: 装备与遗物 5
+              - generic [ref=e1411]: 遗物个体与全队启停
+            - generic [ref=e1412] [cursor=pointer]:
+              - generic [ref=e1415]: 装备与遗物 6
+              - generic [ref=e1416]: 同名遗物强度裁决
+            - generic [ref=e1417] [cursor=pointer]:
+              - generic [ref=e1420]: 装备与遗物 7
+              - generic [ref=e1421]: 最强来源卸下重算
+            - generic [ref=e1422] [cursor=pointer]:
+              - generic [ref=e1425]: 装备与遗物 8
+              - generic [ref=e1426]: 效果增加遗物槽
+            - generic [ref=e1427] [cursor=pointer]:
+              - generic [ref=e1430]: 场景搜刮 1
+              - generic [ref=e1431]: 战斗中容器搜刮
+            - generic [ref=e1432] [cursor=pointer]:
+              - generic [ref=e1435]: 场景搜刮 2
+              - generic [ref=e1436]: 场景交互点
+            - generic [ref=e1437] [cursor=pointer]:
+              - generic [ref=e1440]: 场景搜刮 3
+              - generic [ref=e1441]: 场地道具可拾取判定
+            - generic [ref=e1442] [cursor=pointer]:
+              - generic [ref=e1445]: 场景搜刮 4
+              - generic [ref=e1446]: 危险地形战斗结算
+            - generic [ref=e1447] [cursor=pointer]:
+              - generic [ref=e1450]: 场景搜刮 5
+              - generic [ref=e1451]: 高低差射程影响
+            - generic [ref=e1452] [cursor=pointer]:
+              - generic [ref=e1455]: 场景搜刮 6
+              - generic [ref=e1456]: 高低差伤害影响
+            - generic [ref=e1457] [cursor=pointer]:
+              - generic [ref=e1460]: 场景搜刮 7
+              - generic [ref=e1461]: 定向掩体防护
+            - generic [ref=e1462] [cursor=pointer]:
+              - generic [ref=e1465]: 目标与战斗退出 1
+              - generic [ref=e1466]: 显式目标与进度
+            - generic [ref=e1467] [cursor=pointer]:
+              - generic [ref=e1470]: 目标与战斗退出 2
+              - generic [ref=e1471]: 目标失效判定
+            - generic [ref=e1472] [cursor=pointer]:
+              - generic [ref=e1475]: 目标与战斗退出 3
+              - generic [ref=e1476]: 玩家撤退条件
+            - generic [ref=e1477] [cursor=pointer]:
+              - generic [ref=e1480]: 目标与战斗退出 4
+              - generic [ref=e1481]: 撤退状态保留
+            - generic [ref=e1482] [cursor=pointer]:
+              - generic [ref=e1485]: 目标与战斗退出 5
+              - generic [ref=e1486]: 目标濒临失败预警
+            - generic [ref=e1487] [cursor=pointer]:
+              - generic [ref=e1490]: 目标与战斗退出 6
+              - generic [ref=e1491]: 目标达成与结束门槛
+            - generic [ref=e1492] [cursor=pointer]:
+              - generic [ref=e1495]: 目标与战斗退出 7
+              - generic [ref=e1496]: 全队失能立即终止
+            - generic [ref=e1497] [cursor=pointer]:
+              - generic [ref=e1500]: 目标与战斗退出 8
+              - generic [ref=e1501]: 结果标识与目标清单
+            - generic [ref=e1502] [cursor=pointer]:
+              - generic [ref=e1505]: 战斗收尾 1
+              - generic [ref=e1506]: 进入安全收尾窗口
+            - generic [ref=e1507] [cursor=pointer]:
+              - generic [ref=e1510]: 战斗收尾 2
+              - generic [ref=e1511]: 收尾手动搜刮
+            - generic [ref=e1512] [cursor=pointer]:
+              - generic [ref=e1515]: 战斗收尾 3
+              - generic [ref=e1516]: 收尾拾取落地物
+            - generic [ref=e1517] [cursor=pointer]:
+              - generic [ref=e1520]: 战斗收尾 4
+              - generic [ref=e1521]: 收尾治疗
+            - generic [ref=e1522] [cursor=pointer]:
+              - generic [ref=e1525]: 战斗收尾 5
+              - generic [ref=e1526]: 收尾整备
+            - generic [ref=e1527] [cursor=pointer]:
+              - generic [ref=e1530]: 战斗收尾 6
+              - generic [ref=e1531]: 结束处理场地道具
+            - generic [ref=e1532] [cursor=pointer]:
+              - generic [ref=e1535]: 战斗收尾 7
+              - generic [ref=e1536]: 收尾关闭与局部出口
+      - generic: 点击节点打开详情编辑框 · 拖动空白平移 · 滚轮缩放 · 拖动节点可微调位置
+  - generic [ref=e1537]: 已载入：18 条开发路线 / 137 个条目 / 285 条依赖边

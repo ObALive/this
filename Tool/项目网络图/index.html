@@ -14,6 +14,10 @@
       <div class="source" id="source-label">读取中…</div>
     </div>
     <div class="toolbar">
+      <label class="dataset-picker" for="dataset-select">当前数据</label>
+      <select id="dataset-select" class="dataset-select" aria-label="选择网络图数据"></select>
+      <button type="button" class="button" id="btn-datasets">数据管理</button>
+      <span class="sep"></span>
       <button type="button" class="button" id="btn-undo" title="撤销 (Ctrl+Z)">撤销</button>
       <button type="button" class="button" id="btn-redo" title="重做 (Ctrl+Shift+Z)">重做</button>
       <span class="sep"></span>
@@ -23,6 +27,7 @@
       <button type="button" class="button" id="btn-import">导入任务书</button>
       <button type="button" class="button" id="btn-preview">预览 Markdown</button>
       <button type="button" class="button primary" id="btn-export">导出 Markdown</button>
+      <button type="button" class="button primary" id="btn-export-image">导出图片</button>
     </div>
   </header>
 
@@ -79,11 +84,39 @@
       <div class="canvas-hint">点击节点打开详情编辑框 · 拖动空白平移 · 滚轮缩放 · 拖动节点可微调位置</div>
       <div class="empty-canvas" id="empty-canvas" hidden>
         <h2>网络图是空的</h2>
-        <p>导入一份任务书 Markdown，或新增一条开发路线后开始添加条目。</p>
+        <p>先在「数据管理」中选择或新建数据，再导入任务书或添加开发路线。</p>
         <button type="button" class="button primary" id="btn-import-empty">导入任务书</button>
       </div>
     </main>
   </div>
+
+  <!-- 数据管理 -->
+  <dialog id="datasets-dialog" class="dialog">
+    <div class="dialog-inner">
+      <header class="dialog-head">
+        <div><div class="eyebrow">数据管理</div><h2>选择要渲染的网络图</h2></div>
+        <button type="button" class="icon-button" id="datasets-close" aria-label="关闭数据管理">✕</button>
+      </header>
+      <div class="dialog-body">
+        <p class="hint" id="datasets-directory"></p>
+        <div id="datasets-list" class="datasets-list"></div>
+        <section class="field-group">
+          <label class="field" for="dataset-name"><span>新建网络图</span>
+            <input type="text" id="dataset-name" placeholder="输入名称，例如：战斗系统" maxlength="80">
+          </label>
+          <button type="button" class="button primary" id="dataset-create">新建并打开</button>
+        </section>
+        <section class="field-group">
+          <label class="field" for="dataset-path"><span>加入已有数据库</span>
+            <input type="text" id="dataset-path" placeholder="工作区内的 .sqlite 文件路径" spellcheck="false">
+          </label>
+          <p class="hint">将已有网络图库复制到统一数据目录。原文件保留，后续编辑保存在这里的副本中。</p>
+          <button type="button" class="button" id="dataset-add">加入并打开</button>
+        </section>
+        <p class="hint">删除的数据移入数据目录的「已删除」文件夹；需要恢复时可从那里重新加入。</p>
+      </div>
+    </div>
+  </dialog>
 
   <!-- 节点详情编辑框 -->
   <dialog id="node-dialog" class="dialog">

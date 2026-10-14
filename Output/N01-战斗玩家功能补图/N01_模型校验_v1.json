@@ -1,0 +1,98 @@
+{
+  "issues": [
+    {
+      "level": "info",
+      "kind": "object_missing_path",
+      "node_id": "n3",
+      "text": "瓦片地图 3 的对象「元对象-角色标记组件」未写实现路径（可选项）"
+    },
+    {
+      "level": "info",
+      "kind": "object_missing_path",
+      "node_id": "n3",
+      "text": "瓦片地图 3 的对象「元对象-地格占用组件」未写实现路径（可选项）"
+    },
+    {
+      "level": "info",
+      "kind": "object_missing_path",
+      "node_id": "n5",
+      "text": "瓦片地图 5 的对象「元效果以及相关组件约定」未写实现路径（可选项）"
+    },
+    {
+      "level": "info",
+      "kind": "object_missing_path",
+      "node_id": "n7",
+      "text": "角色行为/角色技能 2 的对象「元对象-技能容器组件」未写实现路径（可选项）"
+    },
+    {
+      "level": "info",
+      "kind": "object_missing_path",
+      "node_id": "n9",
+      "text": "角色行为/角色移动 0 的对象「元对象-场景纹理组件」未写实现路径（可选项）"
+    },
+    {
+      "level": "info",
+      "kind": "object_missing_path",
+      "node_id": "n9",
+      "text": "角色行为/角色移动 0 的对象「元对象-场景坐标组件」未写实现路径（可选项）"
+    },
+    {
+      "level": "info",
+      "kind": "object_missing_path",
+      "node_id": "n11",
+      "text": "角色行为/角色移动 2 的对象「元对象-属性值组件」未写实现路径（可选项）"
+    },
+    {
+      "level": "info",
+      "kind": "empty_section",
+      "section_id": "s2",
+      "text": "开发路线「角色行为」下没有条目"
+    }
+  ],
+  "stats": {
+    "sections": 18,
+    "nodes": 137,
+    "edges": 285,
+    "chain_edges": 120,
+    "explicit_edges": 193,
+    "errors": 0,
+    "warnings": 0,
+    "infos": 8,
+    "objects": 10,
+    "objects_with_path": 3,
+    "unresolved_refs": 0,
+    "root_nodes": 4
+  },
+  "object_usage": {
+    "TilemapManager": [
+      "n2"
+    ],
+    "元对象-角色标记组件": [
+      "n3"
+    ],
+    "元对象-地格占用组件": [
+      "n3"
+    ],
+    "元效果以及相关组件约定": [
+      "n5"
+    ],
+    "元对象-技能容器组件": [
+      "n7"
+    ],
+    "元对象-场景纹理组件": [
+      "n9"
+    ],
+    "元对象-场景坐标组件": [
+      "n9"
+    ],
+    "元对象-属性值组件": [
+      "n11"
+    ],
+    "元对象-属性组件": [
+      "n18"
+    ],
+    "元对象-量表组件": [
+      "n19"
+    ]
+  }
+}

@@ -54,10 +54,106 @@ const manualModel = sampleModel();
 manualModel.nodes[0].manual = { dx: 30, dy: -12 };
 const layout2 = PN.computeLayout(manualModel);
 check(
-  "手工挪位叠加在自动坐标上",
+  "横向偏移保留，向上偏移不能越过依赖",
   layout2.positions.get("n1").x === layout.positions.get("n1").x + 30 &&
-    layout2.positions.get("n1").y === layout.positions.get("n1").y - 12
+    layout2.positions.get("n1").y === layout.positions.get("n1").y
 );
+
+// 核心约束直接检查节点矩形的上下边界，不依赖布局算法的实现步骤。
+function dependenciesBelow(model, result) {
+  return model.edges.every((edge) => {
+    const from = result.positions.get(edge.from);
+    const to = result.positions.get(edge.to);
+    return !from || !to || to.y >= from.y + from.h + result.options.gapY;
+  });
+}
+check("所有直接依赖都在依赖者上方", dependenciesBelow(sampleModel(), layout));
+check("跨路线前置会推迟整条后续路线", layout.positions.get("n1").y >= layout.positions.get("n5").y + layout.positions.get("n5").h + layout.options.gapY);
+
+const dependencyModel = {
+  sections: [
+    { id: "a", title: "依赖者", node_ids: ["a0", "a1", "a2"] },
+    { id: "b", title: "前置路线一", node_ids: ["b0", "b1"] },
+    { id: "c", title: "前置路线二", node_ids: ["c0", "c1"] },
+    { id: "d", title: "并行路线", node_ids: ["d0"] },
+  ],
+  nodes: ["a0", "a1", "a2", "b0", "b1", "c0", "c1", "d0"].map((id) => ({
+    id, summary: id === "c1" ? "较高的前置节点".repeat(12) : id, refs: [],
+  })),
+  edges: [
+    { from: "a0", to: "a1", kind: "chain" },
+    { from: "a1", to: "a2", kind: "chain" },
+    { from: "b0", to: "b1", kind: "chain" },
+    { from: "c0", to: "c1", kind: "chain" },
+    { from: "b1", to: "a0", kind: "explicit" },
+    { from: "c1", to: "a0", kind: "explicit" },
+    { from: "b0", to: "d0", kind: "explicit" },
+  ],
+};
+const depLayout = PN.computeLayout(dependencyModel);
+const latestDependency = depLayout.positions.get("c1");
+check("多个依赖按最靠下节点的底部排布", depLayout.positions.get("a0").y === latestDependency.y + latestDependency.h + depLayout.options.gapY);
+check("不同高度、多前置、多层依赖均满足上下约束", dependenciesBelow(dependencyModel, depLayout));
+check("无依赖节点在顶部并行开始", depLayout.positions.get("b0").y === depLayout.options.padTop && depLayout.positions.get("c0").y === depLayout.options.padTop);
+check("并行分支不等待无关路线", depLayout.positions.get("d0").y === depLayout.positions.get("b1").y && depLayout.positions.get("d0").y < depLayout.positions.get("a0").y);
+check("重新排布后画布覆盖全部节点", [...depLayout.positions.values()].every((p) => depLayout.height >= p.y + p.h + depLayout.options.padBottom));
+check("列底部反映依赖排布后的实际位置", depLayout.columns.every((column) => column.bottom === Math.max(...column.nodeIds.map((id) => { const p = depLayout.positions.get(id); return p.y + p.h; }))));
+
+const shuffled = JSON.parse(JSON.stringify(dependencyModel));
+shuffled.sections.reverse();
+shuffled.nodes.reverse();
+shuffled.edges.reverse();
+const shuffledLayout = PN.computeLayout(shuffled);
+check("路线、节点和边的遍历顺序不影响纵坐标", [...depLayout.positions].every(([id, p]) => shuffledLayout.positions.get(id).y === p.y));
+
+const shifted = JSON.parse(JSON.stringify(dependencyModel));
+shifted.nodes.find((n) => n.id === "c1").manual = { dy: 200 };
+shifted.nodes.find((n) => n.id === "a0").manual = { dx: 40, dy: -2000 };
+const shiftedLayout = PN.computeLayout(shifted);
+check("前置向下微调后后续节点随之下移", shiftedLayout.positions.get("a0").y === depLayout.positions.get("a0").y + 200 && shiftedLayout.positions.get("a2").y === depLayout.positions.get("a2").y + 200);
+check("已有手工偏移不能破坏依赖顺序", dependenciesBelow(shifted, shiftedLayout));
+check("手工下移计入画布高度", shiftedLayout.height === depLayout.height + 200);
+check("拖动依赖者不能越过前置", PN.constrainNodeY(depLayout, "a0", -1000) === depLayout.positions.get("a0").y);
+check("拖动前置不能越过后续节点", PN.constrainNodeY(depLayout, "c1", 100000) === depLayout.positions.get("c1").y);
+check("末端节点允许向下拖动", PN.constrainNodeY(depLayout, "a2", 100000) === 100000);
+const freeSpace = shiftedLayout.positions.get("c0").y + 20;
+check("有空隙时允许纵向微调", PN.constrainNodeY(shiftedLayout, "c0", freeSpace) === freeSpace);
+
+const invalidEdges = JSON.parse(JSON.stringify(dependencyModel));
+invalidEdges.edges.push(invalidEdges.edges[0], { from: "missing", to: "a0", kind: "explicit" });
+const invalidLayout = PN.computeLayout(invalidEdges);
+check("重复边和缺失节点不影响布局", [...depLayout.positions].every(([id, p]) => invalidLayout.positions.get(id).y === p.y) && invalidLayout.edges.length === dependencyModel.edges.length);
+
+const cyclicModel = {
+  sections: [
+    { id: "x", title: "环一", node_ids: ["x"] },
+    { id: "y", title: "环二", node_ids: ["y"] },
+    { id: "z", title: "环的下游", node_ids: ["z"] },
+  ],
+  nodes: ["x", "y", "z"].map((id) => ({ id, summary: id })),
+  edges: [
+    { from: "x", to: "y", kind: "explicit" },
+    { from: "y", to: "x", kind: "explicit" },
+    { from: "y", to: "z", kind: "explicit" },
+  ],
+};
+const cycleLayout = PN.computeLayout(cyclicModel);
+check("依赖环不会无限扩展或阻止绘图", [...cycleLayout.positions.values()].every((p) => Number.isFinite(p.y)) && cycleLayout.constraints.some((c) => c.cyclic));
+check("环外的直接依赖仍满足上下约束", cycleLayout.positions.get("z").y >= cycleLayout.positions.get("y").y + cycleLayout.positions.get("y").h + cycleLayout.options.gapY);
+const selfModel = { sections: [{ id: "s", node_ids: ["self"] }], nodes: [{ id: "self" }], edges: [{ from: "self", to: "self" }] };
+check("自身依赖有有限的回退位置", Number.isFinite(PN.computeLayout(selfModel).positions.get("self").y));
+const emptyLayout = PN.computeLayout({});
+check("空图仍能绘制", emptyLayout.positions.size === 0 && emptyLayout.height > 0 && emptyLayout.width > 0);
+
+// 深依赖链：第一列的起点依赖第二列的最后一项。
+const deepIds = Array.from({ length: 6000 }, (_, i) => `deep-${i}`);
+const deepModel = {
+  sections: [{ id: "first", node_ids: ["end"] }, { id: "long", node_ids: deepIds }],
+  nodes: ["end", ...deepIds].map((id) => ({ id, summary: id })),
+  edges: [{ from: deepIds[deepIds.length - 1], to: "end", kind: "explicit" }],
+};
+const deepLayout = PN.computeLayout(deepModel);
+check("六千项深依赖链不溢出", Number.isFinite(deepLayout.height) && deepLayout.positions.get("end").y > deepLayout.positions.get(deepIds[deepIds.length - 1]).y);
 
 const lines = PN.wrapSummary("禁行地块，部分瓦片地图纹理笔刷设置禁止通过", 15, 2);
 check("概要折行不超过两行", lines.length <= 2);

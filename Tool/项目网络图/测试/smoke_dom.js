@@ -1,6 +1,7 @@
 /* 前端冒烟测试：用一个极简 DOM 垫片加载 index.html + app.js，
  * 通过真实 HTTP 接口跑一遍「载入 → 渲染 → 打开详情框 → 读字段」的路径。
- * 运行： node Tool/项目网络图/测试/smoke_dom.js [baseUrl]
+ * 运行： node Tool/项目网络图/测试/smoke_dom.js [baseUrl] [--hover-only]
+ * --hover-only 只检查图上悬浮高亮，不执行编辑操作。
  * 需要先启动服务：python3 Tool/项目网络图/server.py --no-browser
  */
 "use strict";
@@ -257,6 +258,32 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   );
   check("侧栏列出条目", byId("route-tree").querySelectorAll(".node-row").length === model.nodes.length);
   check("有数据时隐藏空状态遮罩", byId("empty-canvas").hidden === true);
+  const markdownExport = byId("btn-export");
+  const imageExport = byId("btn-export-image");
+  check("导出图片按钮紧邻导出 Markdown", !!imageExport && imageExport.parent === markdownExport.parent &&
+    imageExport.parent.children.indexOf(imageExport) === imageExport.parent.children.indexOf(markdownExport) + 1);
+  check("导出图片按钮已绑定点击操作", (imageExport._listeners.click || []).length === 1);
+  const appSource = fs.readFileSync(path.join(TOOL, "app.js"), "utf-8");
+  check("图片导出使用完整布局与 PNG 编码", /cloneNode\(true\)/.test(appSource) &&
+    /viewBox/.test(appSource) && /toBlob/.test(appSource) && /image\/png/.test(appSource));
+  // 图上逐个悬浮：只保留自己与显式直接依赖，排除路线链、间接依赖和下游节点。
+  for (const node of model.nodes) {
+    const target = nodeEls.find((g) => g.dataset.id === node.id);
+    const expected = new Set([node.id, ...model.edges
+      .filter((edge) => edge.to === node.id && edge.kind.includes("explicit"))
+      .map((edge) => edge.from)]);
+    target.dispatch("pointerenter");
+    check(`悬浮 ${node.index_label} 只高亮自己与显式直接依赖`,
+      nodeEls.every((g) => g.classList.contains("dim") === !expected.has(g.dataset.id)));
+    target.dispatch("pointerleave");
+    check(`离开 ${node.index_label} 恢复节点与连线`,
+      nodeEls.every((g) => !g.classList.contains("dim")) &&
+      edgeEls.every((edge) => !edge.classList.contains("dim") && !edge.classList.contains("hot")));
+  }
+  if (process.argv.includes("--hover-only")) {
+    console.log(`\n${passed} passed, ${failed} failed`);
+    process.exit(failed ? 1 : 0);
+  }
   // 回归：作者样式里的 display 会盖掉 [hidden]，必须有显式兜底
   const css = fs.readFileSync(path.join(TOOL, "app.css"), "utf-8");
   check("样式表为 [hidden] 提供兜底", /\[hidden\]\s*\{[^}]*display:\s*none/.test(css));

@@ -1,0 +1,242 @@
+[
+  {
+    "op": "insert_section",
+    "args": {
+      "title": "目标类型与持续战斗",
+      "level": 1
+    }
+  },
+  {
+    "op": "insert_node",
+    "args": {
+      "section_id": "s19",
+      "summary": "全歼目标进度",
+      "body": "击杀战斗配置中的敌方单位后，显式全歼目标的进度即时变化；是否涵盖后续未刷波次以及最终敌方清除的结束判定待 G01。预置配置不得将每波清场自行当作整场胜利。\n待裁定：G01；G09。受影响验收暂不通过。"
+    }
+  },
+  {
+    "op": "insert_node",
+    "args": {
+      "section_id": "s19",
+      "summary": "指定精英目标进度",
+      "body": "配置显式击败精英目标时，仅配置声明的精英状态改变推进该目标；击败其他敌人不代替指定精英，达到已声明条件时记录达成，战斗结束时点待 G01。\n待裁定：G01；G09。受影响验收暂不通过。"
+    }
+  },
+  {
+    "op": "insert_node",
+    "args": {
+      "section_id": "s19",
+      "summary": "指定道具破坏进度",
+      "body": "配置显式破坏指定道具目标时，指定道具的已提交破坏状态推进该目标；其他道具变化不替代该目标。保全道具类目标被提前破坏时走目标失效判定；条件与阈值由目标配置提供。\n待裁定：G01；G09。受影响验收暂不通过。"
+    }
+  },
+  {
+    "op": "insert_node",
+    "args": {
+      "section_id": "s19",
+      "summary": "隐藏目标发现与达成",
+      "body": "配置为隐藏的目标不在启动时作为显式条件公开；玩家的已提交行动满足其配置条件时记录发现或达成。发现与显示的具体时点和条件缺少规则，待 G01/G09，不自行增加探索玩法。\n待裁定：G01；G09。受影响验收暂不通过。"
+    }
+  },
+  {
+    "op": "insert_node",
+    "args": {
+      "section_id": "s19",
+      "summary": "持续战斗无轮次上限",
+      "body": "目标尚未达成且敌方尚未全灭时继续按时间轴给予行动机会，系统不以战斗轮次数达到内置上限结束。临时验收可延长已配置战斗的运行次数，只验证无系统轮限，不作为新目标条件。\n待裁定：G01。受影响验收暂不通过。"
+    }
+  },
+  {
+    "op": "insert_node",
+    "args": {
+      "section_id": "s12",
+      "summary": "免疫终止状态效果",
+      "body": "目标的已配置免疫规则使状态附加无效时，按该状态的登记规则移除或停止生效，详情更新有效状态。免疫介入层与时点待 G07。\n待裁定：G07；G09。受影响验收暂不通过。"
+    }
+  },
+  {
+    "op": "insert_node",
+    "args": {
+      "section_id": "s12",
+      "summary": "解除条件移除状态",
+      "body": "已提交行为满足状态来源配置的解除条件时移除该状态并更新详情；其他尚未满足解除条件的来源状态保留。具体解除条件和触发顺序由配置及 G07 承接。\n待裁定：G07；G09。受影响验收暂不通过。"
+    }
+  },
+  {
+    "op": "insert_node",
+    "args": {
+      "section_id": "s12",
+      "summary": "投掷一次性效果移除",
+      "body": "投掷动作结算结束时移除本次一次性投掷效果，已生成的落地物按其归属保留；不因效果结束清除物品或容器内容。\n待裁定：G07；G08。受影响验收暂不通过。"
+    }
+  },
+  {
+    "op": "update_node",
+    "args": {
+      "node_id": "n138",
+      "refs": [
+        {
+          "raw": "敌人ai2",
+          "target_id": "n107"
+        },
+        {
+          "raw": "敌人ai10",
+          "target_id": "n115"
+        }
+      ],
+      "reparse": false
+    }
+  },
+  {
+    "op": "update_node",
+    "args": {
+      "node_id": "n139",
+      "refs": [
+        {
+          "raw": "敌人ai2",
+          "target_id": "n107"
+        }
+      ],
+      "reparse": false
+    }
+  },
+  {
+    "op": "update_node",
+    "args": {
+      "node_id": "n140",
+      "refs": [
+        {
+          "raw": "场景搜刮2",
+          "target_id": "n117"
+        },
+        {
+          "raw": "目标与战斗退出2",
+          "target_id": "n124"
+        }
+      ],
+      "reparse": false
+    }
+  },
+  {
+    "op": "update_node",
+    "args": {
+      "node_id": "n141",
+      "refs": [
+        {
+          "raw": "战斗进入与布置1",
+          "target_id": "n30"
+        },
+        {
+          "raw": "目标与战斗退出1",
+          "target_id": "n123"
+        }
+      ],
+      "reparse": false
+    }
+  },
+  {
+    "op": "update_node",
+    "args": {
+      "node_id": "n142",
+      "refs": [
+        {
+          "raw": "时间轴8",
+          "target_id": "n38"
+        },
+        {
+          "raw": "目标与战斗退出2",
+          "target_id": "n124"
+        }
+      ],
+      "reparse": false
+    }
+  },
+  {
+    "op": "update_node",
+    "args": {
+      "node_id": "n143",
+      "refs": [
+        {
+          "raw": "效果结算1",
+          "target_id": "n64"
+        }
+      ],
+      "reparse": false
+    }
+  },
+  {
+    "op": "update_node",
+    "args": {
+      "node_id": "n144",
+      "refs": [
+        {
+          "raw": "效果结算1",
+          "target_id": "n64"
+        }
+      ],
+      "reparse": false
+    }
+  },
+  {
+    "op": "update_node",
+    "args": {
+      "node_id": "n145",
+      "refs": [
+        {
+          "raw": "库存与法术9",
+          "target_id": "n94"
+        }
+      ],
+      "reparse": false
+    }
+  },
+  {
+    "op": "update_node",
+    "args": {
+      "node_id": "n67",
+      "body": "限时效果到达来源配置的持续时间时移除，详情更新有效状态；具体时间单位与到期触发点待 G07/G09。\n待裁定：G07 G09。受影响验收暂不通过。",
+      "reparse": false
+    }
+  },
+  {
+    "op": "update_node",
+    "args": {
+      "node_id": "n70",
+      "body": "战斗结束后保留角色生命、伤势以及配置为战斗外有效的效果；各类结束原因的收尾适用性待 G10。保存到外部存档延期。\n待裁定：G10。受影响验收暂不通过。",
+      "reparse": false
+    }
+  },
+  {
+    "op": "update_node",
+    "args": {
+      "node_id": "n128",
+      "refs": [
+        {
+          "raw": "目标与战斗退出2",
+          "target_id": "n124"
+        },
+        {
+          "raw": "目标类型与持续战斗1",
+          "target_id": "n138"
+        },
+        {
+          "raw": "目标类型与持续战斗2",
+          "target_id": "n139"
+        },
+        {
+          "raw": "目标类型与持续战斗3",
+          "target_id": "n140"
+        },
+        {
+          "raw": "目标类型与持续战斗4",
+          "target_id": "n141"
+        },
+        {
+          "raw": "目标类型与持续战斗5",
+          "target_id": "n142"
+        }
+      ],
+      "reparse": false
+    }
+  }
+]

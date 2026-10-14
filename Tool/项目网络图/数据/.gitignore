@@ -4,3 +4,7 @@
 *.sqlite-wal
 *.sqlite-shm
 *.broken-*.sqlite
+# 本机选择记录与用户删除后的恢复文件。
+数据管理.json
+数据管理.tmp
+已删除/

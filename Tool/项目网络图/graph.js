@@ -1,5 +1,5 @@
 /* 项目网络图布局：纯函数，不依赖 DOM，可单独用 node 测试。
- * 约定：一条开发路线（章节）一列，条目自上而下顺排；
+ * 约定：一条开发路线（章节）一列，节点按依赖关系自上而下排布；
  * 同路线内相邻条目依次向上依赖（chain 边），跨路线依赖走曲线（explicit 边）。 */
 (function (global) {
   const LAYOUT = {
@@ -11,6 +11,7 @@
     padBottom: 72,
     bandHeight: 34,
     sameColBulge: 46,
+    edgePortOffset: 8, // 侧边指入点上移、指出点下移，分开两类连接
     // 节点高度由概要行数决定：索引行 + 若干概要行 + 下留白，且不低于 minHeight
     minHeight: 52,
     firstLineBase: 39,
@@ -96,9 +97,8 @@
       };
       columns.push(column);
 
-      // 概要按节点宽度折行，行数决定节点高度；节点自上而下按「前一个高度 + 间距」累积
+      // 先确定列、文字与节点尺寸，再统一按依赖安排纵坐标。
       const textUnits = (opt.colWidth - opt.summaryPadX) / opt.summaryFontPx;
-      let cursorY = opt.padTop;
       ids.forEach((id, i) => {
         const node = byId.get(id);
         const manual = (node && node.manual) || {};
@@ -111,11 +111,11 @@
           column: colIndex,
           row: i,
           x: x + (manual.dx || 0),
-          y: cursorY + (manual.dy || 0),
+          y: opt.padTop,
           w: opt.colWidth,
           h,
           baseX: x,
-          baseY: cursorY,
+          baseY: opt.padTop,
           lines,
           maxLines: opt.maxSummaryLines,
           firstLineBase: opt.firstLineBase,
@@ -126,11 +126,11 @@
           summary,
           has_error: !!(node && (node.refs || []).some((r) => !r.resolved)),
         });
-        cursorY += h + opt.gapY;
       });
-      column.bottom = Math.max(opt.padTop, cursorY - opt.gapY);
       colIndex += 1;
     }
+
+    const constraints = arrangeByDependencies(positions, columns, model.edges || [], byId, opt);
 
     // 顶部路线分组带：按根章节把子列圈起来
     const bands = [];
@@ -198,14 +198,98 @@
       });
     }
 
-    return { positions, columns, bands, heads, edges, width, height, options: opt };
+    return { positions, columns, bands, heads, edges, constraints, width, height, options: opt };
+  }
+
+  function arrangeByDependencies(positions, columns, edges, byId, opt) {
+    const incoming = new Map([...positions.keys()].map((id) => [id, new Map()]));
+    const constraints = [];
+    const add = (from, to) => {
+      if (!positions.has(from) || !positions.has(to) || incoming.get(to).has(from)) return;
+      const constraint = { from, to, cyclic: false };
+      incoming.get(to).set(from, constraint);
+      constraints.push(constraint);
+    };
+    // 即使调用方未提供 chain 边，同列条目也保持顺序且不重叠。
+    for (const column of columns) {
+      for (let i = 1; i < column.nodeIds.length; i += 1) add(column.nodeIds[i - 1], column.nodeIds[i]);
+    }
+    for (const edge of edges) add(edge.from, edge.to);
+
+    // 显式栈先处理前置节点，避免长路线递归溢出。
+    // 成环时忽略返回当前访问路径的边，保留可绘制布局；环由模型校验报告。
+    const visits = new Map();
+    const order = [];
+    for (const id of positions.keys()) {
+      if (visits.has(id)) continue;
+      visits.set(id, 1);
+      const stack = [{ id, dependencies: [...incoming.get(id).values()], next: 0 }];
+      while (stack.length) {
+        const frame = stack[stack.length - 1];
+        if (frame.next < frame.dependencies.length) {
+          const constraint = frame.dependencies[frame.next++];
+          const visit = visits.get(constraint.from);
+          if (visit === 1) {
+            constraint.cyclic = true;
+          } else if (!visit) {
+            visits.set(constraint.from, 1);
+            stack.push({ id: constraint.from, dependencies: [...incoming.get(constraint.from).values()], next: 0 });
+          }
+        } else {
+          visits.set(frame.id, 2);
+          order.push(frame.id);
+          stack.pop();
+        }
+      }
+    }
+    for (const id of order) {
+      const position = positions.get(id);
+      let minimumY = opt.padTop;
+      for (const constraint of incoming.get(id).values()) {
+        if (constraint.cyclic) continue;
+        const dependency = positions.get(constraint.from);
+        minimumY = Math.max(minimumY, dependency.y + dependency.h + opt.gapY);
+      }
+      position.baseY = minimumY;
+      const dy = (byId.get(id).manual || {}).dy || 0;
+      position.y = Math.max(minimumY, minimumY + dy);
+    }
+    for (const column of columns) {
+      column.bottom = opt.padTop;
+      for (const id of column.nodeIds) {
+        const position = positions.get(id);
+        column.bottom = Math.max(column.bottom, position.y + position.h);
+      }
+    }
+    return constraints;
+  }
+
+  // 拖动只在现有前置与后续节点之间微调，始终保持依赖顺序。
+  function constrainNodeY(layout, nodeId, requestedY) {
+    const position = layout.positions.get(nodeId);
+    if (!position) return requestedY;
+    let minimumY = layout.options.padTop;
+    let maximumY = Infinity;
+    for (const constraint of layout.constraints) {
+      if (constraint.cyclic) continue;
+      if (constraint.to === nodeId) {
+        const dependency = layout.positions.get(constraint.from);
+        minimumY = Math.max(minimumY, dependency.y + dependency.h + layout.options.gapY);
+      }
+      if (constraint.from === nodeId) {
+        const dependent = layout.positions.get(constraint.to);
+        maximumY = Math.min(maximumY, dependent.y - position.h - layout.options.gapY);
+      }
+    }
+    return Math.max(minimumY, Math.min(maximumY, requestedY));
   }
 
   function edgePath(a, b, opt) {
     const aCx = a.x + a.w / 2;
     const bCx = b.x + b.w / 2;
-    const aCy = a.y + a.h / 2;
-    const bCy = b.y + b.h / 2;
+    const portOffset = opt.edgePortOffset ?? LAYOUT.edgePortOffset;
+    const aOutY = a.y + a.h / 2 + Math.min(portOffset, a.h / 4);
+    const bInY = b.y + b.h / 2 - Math.min(portOffset, b.h / 4);
 
     if (a.column === b.column) {
       if (Math.abs(a.row - b.row) === 1) {
@@ -214,14 +298,14 @@
       }
       // 同列跨行：从右侧绕行
       const bx = Math.max(a.x + a.w, b.x + b.w) + opt.sameColBulge;
-      return `M ${a.x + a.w} ${aCy} C ${bx} ${aCy} ${bx} ${bCy} ${b.x + b.w} ${bCy}`;
+      return `M ${a.x + a.w} ${aOutY} C ${bx} ${aOutY} ${bx} ${bInY} ${b.x + b.w} ${bInY}`;
     }
 
     const dir = b.column > a.column ? 1 : -1;
     const startX = dir > 0 ? a.x + a.w : a.x;
     const endX = dir > 0 ? b.x : b.x + b.w;
     const span = Math.max(40, Math.abs(endX - startX) * 0.45);
-    return `M ${startX} ${aCy} C ${startX + dir * span} ${aCy} ${endX - dir * span} ${bCy} ${endX} ${bCy}`;
+    return `M ${startX} ${aOutY} C ${startX + dir * span} ${aOutY} ${endX - dir * span} ${bInY} ${endX} ${bInY}`;
   }
 
   function arrowPath(x, y, angle, size) {
@@ -286,7 +370,7 @@
     return out;
   }
 
-  global.PNLayout = { computeLayout, edgePath, arrowPath, wrapSummary, truncateText, nodeHeightFor, routeColor, LAYOUT };
+  global.PNLayout = { computeLayout, constrainNodeY, edgePath, arrowPath, wrapSummary, truncateText, nodeHeightFor, routeColor, LAYOUT };
   if (typeof module !== "undefined" && module.exports) {
     module.exports = global.PNLayout;
   }

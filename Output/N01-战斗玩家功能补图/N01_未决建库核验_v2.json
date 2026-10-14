@@ -1,0 +1,34 @@
+[
+  {
+    "command": [
+      "D:\\anaconda3\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "D:\\myspace\\Git\\this\\Tool\\缺口决策系统\\建库工具\\build_decision_db.py",
+      "--data",
+      "D:\\myspace\\Git\\this\\Output\\N01-战斗玩家功能补图\\N01_未决建库数据_v1.json",
+      "--db",
+      "D:\\myspace\\Git\\this\\Output\\N01-战斗玩家功能补图\\N01_上游未决库_v1.sqlite"
+    ],
+    "exit_code": 0,
+    "stdout": "{\n \"missing_tables\": [],\n \"missing_views\": [],\n \"integrity\": \"ok\",\n \"foreign_key_errors\": 0,\n \"gaps\": 14,\n \"candidates\": 0,\n \"custom_rows\": 14,\n \"decisions\": 14,\n \"pending\": 14,\n \"archived\": 0,\n \"gaps_with_wrong_candidate_count\": 0,\n \"gaps_without_one_recommendation\": 0,\n \"open_gaps\": 14,\n \"open_gaps_with_candidates\": 0,\n \"empty_detail\": 0,\n \"orphan_options\": 0,\n \"problems\": [],\n \"path\": \"this/Output/N01-战斗玩家功能补图/N01_上游未决库_v1.sqlite\"\n}\n\n建库完成，校验项全部通过。可按建库说明文档的下一步启动填写器。\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "D:\\anaconda3\\python.exe",
+      "-B",
+      "-X",
+      "utf8",
+      "D:\\myspace\\Git\\this\\Tool\\缺口决策系统\\建库工具\\export_catalog.py",
+      "--db",
+      "D:\\myspace\\Git\\this\\Output\\N01-战斗玩家功能补图\\N01_上游未决库_v1.sqlite",
+      "--out-dir",
+      "D:\\myspace\\Git\\this\\Output\\N01-战斗玩家功能补图"
+    ],
+    "exit_code": 0,
+    "stdout": "库      : this/Output/N01-战斗玩家功能补图/N01_上游未决库_v1.sqlite\n缺口数  : 14\n候选清单: N01_上游未决库_候选清单_v1.md 14108 字节\n作答模板: N01_上游未决库_作答模板_v1.md 3803 字节\n",
+    "stderr": ""
+  }
+]

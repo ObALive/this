@@ -1,0 +1,3635 @@
+[
+  {
+    "key": "n1",
+    "route": "瓦片地图",
+    "summary": "平铺的地图绘制",
+    "body": "按预置战场尺寸显示连续瓦片；玩家能分辨场地格子及其坐标对应位置。此阶段每个瓦片无区别。",
+    "sources": [
+      "30:3.1"
+    ],
+    "refs": [],
+    "original": [
+      "n1"
+    ],
+    "prior": "已有完整落点",
+    "blockers": [],
+    "feature_id": "N01-F001",
+    "new_location": "瓦片地图 1",
+    "original_locations": [
+      "瓦片地图 1"
+    ],
+    "effective_blockers": []
+  },
+  {
+    "key": "n2",
+    "route": "瓦片地图",
+    "summary": "禁行地块",
+    "body": "使用原有笔刷与 TilemapManager 标注禁行瓦片；移动目的地或路径涉及禁行格时拒绝移动并提示地形阻挡。",
+    "sources": [
+      "30:3.4、3.6"
+    ],
+    "refs": [],
+    "original": [
+      "n2"
+    ],
+    "prior": "已有完整落点",
+    "blockers": [],
+    "feature_id": "N01-F002",
+    "new_location": "瓦片地图 2",
+    "original_locations": [
+      "瓦片地图 2"
+    ],
+    "effective_blockers": []
+  },
+  {
+    "key": "n3",
+    "route": "瓦片地图",
+    "summary": "场景障碍物",
+    "body": "摆放携带占用组件的场景道具后，其占用地格不能进入；尝试移动到已被另一角色占用的格子时拒绝，位置保持。沿用原对象中预制体、占用标签与编辑期生成占用数据的说明。",
+    "sources": [
+      "30:3.4、3.5"
+    ],
+    "refs": [],
+    "original": [
+      "n3"
+    ],
+    "prior": "已有完整落点",
+    "blockers": [],
+    "feature_id": "N01-F003",
+    "new_location": "瓦片地图 3",
+    "original_locations": [
+      "瓦片地图 3"
+    ],
+    "effective_blockers": []
+  },
+  {
+    "key": "n4",
+    "route": "瓦片地图",
+    "summary": "特殊障碍通行成本",
+    "body": "路径经过允许通行的特殊障碍时，按原图声明的可含小数的格数成本计入本次路径；超过行动力时该目的地不可确认。",
+    "sources": [
+      "30:3.4、3.6"
+    ],
+    "refs": [],
+    "original": [
+      "n4"
+    ],
+    "prior": "已有完整落点",
+    "blockers": [
+      "G09"
+    ],
+    "feature_id": "N01-F004",
+    "new_location": "瓦片地图 4",
+    "original_locations": [
+      "瓦片地图 4"
+    ],
+    "effective_blockers": [
+      "G09"
+    ]
+  },
+  {
+    "key": "n5",
+    "route": "瓦片地图",
+    "summary": "地块效果",
+    "body": "进入配置有地形效果的格子后，该格效果作用于角色并能在状态中观察；保留原图的元效果对象声明，正式生命周期由效果结算路线承接。",
+    "sources": [
+      "30:3.4",
+      "75:3.1、3.5"
+    ],
+    "refs": [],
+    "original": [
+      "n5"
+    ],
+    "prior": "已有但不完整",
+    "blockers": [],
+    "feature_id": "N01-F005",
+    "new_location": "瓦片地图 5",
+    "original_locations": [
+      "瓦片地图 5"
+    ],
+    "effective_blockers": [
+      "G09"
+    ]
+  },
+  {
+    "key": "n9",
+    "route": "角色移动",
+    "summary": "制作元对象和相关组件约定",
+    "body": "通过场景纹理组件与场景坐标组件将预置元对象显示在指定地图格子，渲染位置与其坐标一致。",
+    "sources": [
+      "30:3.1"
+    ],
+    "refs": [],
+    "original": [
+      "n9"
+    ],
+    "prior": "已有完整落点",
+    "blockers": [],
+    "feature_id": "N01-F006",
+    "new_location": "角色行为/角色移动 0",
+    "original_locations": [
+      "角色行为/角色移动 0"
+    ],
+    "effective_blockers": []
+  },
+  {
+    "key": "n10",
+    "route": "角色移动",
+    "summary": "点击地格移动",
+    "body": "在初始移动构建阶段，点击地格使角色移动到对应位置；正式战斗中的选择、确认和取消由行为交互的移动条目承接。",
+    "sources": [
+      "30:3.6",
+      "85:3.4"
+    ],
+    "refs": [],
+    "original": [
+      "n10"
+    ],
+    "prior": "已有但不完整",
+    "blockers": [],
+    "feature_id": "N01-F007",
+    "new_location": "角色行为/角色移动 1",
+    "original_locations": [
+      "角色行为/角色移动 1"
+    ],
+    "effective_blockers": []
+  },
+  {
+    "key": "n11",
+    "route": "角色移动",
+    "summary": "高亮渲染可移动的地格",
+    "body": "读取行动力限制，显示本次移动格数范围；已具备路径与地形能力后，合法范围须以可达性及累计通行成本筛选，不把不可达格当成可确认目的地。",
+    "sources": [
+      "30:3.6",
+      "HP:ATTR-ACT-001"
+    ],
+    "refs": [],
+    "original": [
+      "n11"
+    ],
+    "prior": "已有但不完整",
+    "blockers": [
+      "G09"
+    ],
+    "feature_id": "N01-F008",
+    "new_location": "角色行为/角色移动 2",
+    "original_locations": [
+      "角色行为/角色移动 2"
+    ],
+    "effective_blockers": [
+      "G09"
+    ]
+  },
+  {
+    "key": "n12",
+    "route": "角色移动",
+    "summary": "寻路逻辑",
+    "body": "对选定目的地寻找最短可行路径；寻路失败时禁止提交移动并提示不可达。此处为战场内部路径计算，沿用原图，与系统文档所排除的地图自动寻路入口区分。",
+    "sources": [
+      "30:3.6"
+    ],
+    "refs": [],
+    "original": [
+      "n12"
+    ],
+    "prior": "已有完整落点",
+    "blockers": [],
+    "feature_id": "N01-F009",
+    "new_location": "角色行为/角色移动 3",
+    "original_locations": [
+      "角色行为/角色移动 3"
+    ],
+    "effective_blockers": [
+      "G09"
+    ]
+  },
+  {
+    "key": "n17",
+    "route": "角色移动",
+    "summary": "移动动画",
+    "body": "确认合法移动后沿已求出的路径平移到目标格；动画终点与提交的格坐标一致。动画只表现一次移动。",
+    "sources": [
+      "30:3.6"
+    ],
+    "refs": [],
+    "original": [
+      "n17"
+    ],
+    "prior": "已有完整落点",
+    "blockers": [],
+    "feature_id": "N01-F010",
+    "new_location": "角色行为/角色移动 4",
+    "original_locations": [
+      "角色行为/角色移动 4"
+    ],
+    "effective_blockers": [
+      "G09"
+    ]
+  },
+  {
+    "key": "n18",
+    "route": "角色属性",
+    "summary": "固定属性",
+    "body": "以角色配置提供行动力、力量与行动速度，详情能读取当前值；分别为移动范围、重物投掷与行动延迟提供属性输入。",
+    "sources": [
+      "10:3.3",
+      "HP:ATTR-ACT-001、ATTR-STR-001、ATTR-SPD-001"
+    ],
+    "refs": [],
+    "original": [
+      "n18"
+    ],
+    "prior": "已有但不完整",
+    "blockers": [],
+    "feature_id": "N01-F011",
+    "new_location": "角色行为/角色属性 1",
+    "original_locations": [
+      "角色行为/角色属性 1"
+    ],
+    "effective_blockers": []
+  },
+  {
+    "key": "n20",
+    "route": "角色属性",
+    "summary": "角色阵营划分",
+    "body": "预置角色带阵营标记；玩家能分辨敌我，技能的目标类型判定与敌方选敌依据该标记。",
+    "sources": [
+      "BHV:BHV-SKILL-001",
+      "90:3.1"
+    ],
+    "refs": [],
+    "original": [
+      "n20"
+    ],
+    "prior": "已有但不完整",
+    "blockers": [],
+    "feature_id": "N01-F012",
+    "new_location": "角色行为/角色属性 2",
+    "original_locations": [
+      "角色行为/角色属性 2"
+    ],
+    "effective_blockers": []
+  },
+  {
+    "key": "n19",
+    "route": "角色属性",
+    "summary": "动态属性血量",
+    "body": "量表保存生命最大值、最小值与当前值；伤害或恢复后界面显示对应生命变化，仍沿用原量表对象。",
+    "sources": [
+      "10:3.2",
+      "HP:ATTR-HP-001"
+    ],
+    "refs": [],
+    "original": [
+      "n19"
+    ],
+    "prior": "已有但不完整",
+    "blockers": [],
+    "feature_id": "N01-F013",
+    "new_location": "角色行为/角色属性 3",
+    "original_locations": [
+      "角色行为/角色属性 3"
+    ],
+    "effective_blockers": []
+  },
+  {
+    "key": "n25",
+    "route": "角色属性",
+    "summary": "血量变化触发状态刷新",
+    "body": "量表发生已提交变动时广播原图约定的变化消息；订阅它的状态呈现及时反映新生命值。受伤和目标判定在各自节点中验收。",
+    "sources": [
+      "10:3.2、3.5"
+    ],
+    "refs": [],
+    "original": [
+      "n25"
+    ],
+    "prior": "已有但不完整",
+    "blockers": [],
+    "feature_id": "N01-F014",
+    "new_location": "角色行为/角色属性 4",
+    "original_locations": [
+      "角色行为/角色属性 4"
+    ],
+    "effective_blockers": []
+  },
+  {
+    "key": "n29",
+    "route": "角色属性",
+    "summary": "生命阈值与伤势升级",
+    "body": "生命低于配置限度时呈现受伤生命状态，并使伤势档位提升一档；伤势显示轻伤、重伤、致残。阈值跨越重复触发口径待 G03 裁定；不把原图固定 20% 伤害或二级伤势死亡作为正式规则。",
+    "sources": [
+      "10:3.2",
+      "HP:ATTR-WOUND-001"
+    ],
+    "refs": [],
+    "original": [
+      "n29"
+    ],
+    "prior": "已有但不完整",
+    "blockers": [
+      "G03",
+      "G09"
+    ],
+    "feature_id": "N01-F015",
+    "new_location": "角色行为/角色属性 5",
+    "original_locations": [
+      "角色行为/角色属性 5"
+    ],
+    "effective_blockers": [
+      "G03",
+      "G09"
+    ]
+  },
+  {
+    "key": "n13",
+    "route": "时间轴",
+    "summary": "多角色共用时间轴",
+    "body": "设置多角色并保留原图的隐性时间轴阶段；全部敌我单位在同一条时间轴上获得行动机会，详情能识别当前行动者。正式后摇与速度合成见本路线后续条目。",
+    "sources": [
+      "20:3.1"
+    ],
+    "refs": [],
+    "original": [
+      "n13"
+    ],
+    "prior": "已有但不完整",
+    "blockers": [],
+    "feature_id": "N01-F016",
+    "new_location": "时间轴 1",
+    "original_locations": [
+      "时间轴 1"
+    ],
+    "effective_blockers": []
+  },
+  {
+    "key": "n14",
+    "route": "时间轴",
+    "summary": "制作时间轴UI",
+    "body": "按配置限定未来显示次数，呈现将获行动机会的单位及本单位预计时机；超出配置显示范围的部分不展示。",
+    "sources": [
+      "20:3.5"
+    ],
+    "refs": [],
+    "original": [
+      "n14"
+    ],
+    "prior": "已有但不完整",
+    "blockers": [
+      "G09"
+    ],
+    "feature_id": "N01-F017",
+    "new_location": "时间轴 2",
+    "original_locations": [
+      "时间轴 2"
+    ],
+    "effective_blockers": [
+      "G09"
+    ]
+  },
+  {
+    "key": "n15",
+    "route": "时间轴",
+    "summary": "制作时间轴预览",
+    "body": "悬浮当前可用行动时虚化显示执行后单位的下次时机，箭头从当前位置指向预览位置；保留原图公共事件 API 的对象与时长输入以及多对象预览支持。预览不提交状态。",
+    "sources": [
+      "20:3.5",
+      "85:3.4"
+    ],
+    "refs": [],
+    "original": [
+      "n15"
+    ],
+    "prior": "已有但不完整",
+    "blockers": [
+      "G09"
+    ],
+    "feature_id": "N01-F018",
+    "new_location": "时间轴 3",
+    "original_locations": [
+      "时间轴 3"
+    ],
+    "effective_blockers": [
+      "G09"
+    ]
+  },
+  {
+    "key": "n16",
+    "route": "时间轴",
+    "summary": "平滑化时间轴动画",
+    "body": "行动时机发生已提交变化后，用平滑动画把标记移动到新位置；结束位置与计算结果一致，预览标记与实际标记可区分。",
+    "sources": [
+      "20:3.1、3.5"
+    ],
+    "refs": [],
+    "original": [
+      "n16"
+    ],
+    "prior": "已有但不完整",
+    "blockers": [],
+    "feature_id": "N01-F019",
+    "new_location": "时间轴 4",
+    "original_locations": [
+      "时间轴 4"
+    ],
+    "effective_blockers": [
+      "G09"
+    ]
+  },
+  {
+    "key": "n21",
+    "route": "时间轴",
+    "summary": "战斗净时长显示",
+    "body": "战斗中按秒累计并显示本次战斗净时长；战斗局部持有累计值，收尾窗口停止累计。世界时间推进与日程回填由延期外部系统承接。净时长的采样与暂停口径待 G09。",
+    "sources": [
+      "20:3.3",
+      "30:3.7"
+    ],
+    "refs": [],
+    "original": [
+      "n21"
+    ],
+    "prior": "已有但不完整",
+    "blockers": [
+      "G09"
+    ],
+    "feature_id": "N01-F020",
+    "new_location": "时间轴 5",
+    "original_locations": [
+      "时间轴 5"
+    ],
+    "effective_blockers": [
+      "G09"
+    ]
+  },
+  {
+    "key": "n6",
+    "route": "角色技能",
+    "summary": "制作元技能",
+    "body": "元技能与原组件约定保留；加载预置技能配置后能读取类别、目标类型、效果与后摇输入，供后续各技能行为调用。",
+    "sources": [
+      "40:3.1、8",
+      "BHV:BHV-SKILL-001"
+    ],
+    "refs": [],
+    "original": [
+      "n6"
+    ],
+    "prior": "已有但不完整",
+    "blockers": [],
+    "feature_id": "N01-F021",
+    "new_location": "角色行为/角色技能 1",
+    "original_locations": [
+      "角色行为/角色技能 1"
+    ],
+    "effective_blockers": []
+  },
+  {
+    "key": "n7",
+    "route": "角色技能",
+    "summary": "防御待机",
+    "body": "当前行动者选择并确认防御待机后，按其配置进入防御状态并结束本次行动；按待机类别追加字母且按配置后摇回排时间轴。保留动作并列与技能容器组件；具体确认操作见行为交互。",
+    "sources": [
+      "85:3.3、3.5",
+      "BHV:BHV-IDLE-001"
+    ],
+    "refs": [],
+    "original": [
+      "n7"
+    ],
+    "prior": "已有但不完整",
+    "blockers": [
+      "G09"
+    ],
+    "feature_id": "N01-F022",
+    "new_location": "角色行为/角色技能 2",
+    "original_locations": [
+      "角色行为/角色技能 2"
+    ],
+    "effective_blockers": [
+      "G09"
+    ]
+  },
+  {
+    "key": "n8",
+    "route": "角色技能",
+    "summary": "指定敌对目标固定伤害",
+    "body": "选择原图固定值伤害技能并确认合法敌方目标后，扣减该目标配置的固定生命值并显示变化。固定伤害值沿用输入；该节点仅验收指定目标伤害，另外三类原试验由技能效果试验路线承接。",
+    "sources": [
+      "BHV:BHV-SKILL-001",
+      "40:8"
+    ],
+    "refs": [],
+    "original": [
+      "n8"
+    ],
+    "prior": "已有但不完整",
+    "blockers": [
+      "G09"
+    ],
+    "feature_id": "N01-F023",
+    "new_location": "角色行为/角色技能 3",
+    "original_locations": [
+      "角色行为/角色技能 3"
+    ],
+    "effective_blockers": [
+      "G09"
+    ]
+  },
+  {
+    "key": "n23",
+    "route": "角色技能",
+    "summary": "技能可选范围预览",
+    "body": "选择技能后以外框线显示纯射程可选地格范围，沿用原图范围预览方式；它与目标是否合法分别判定，取消选择后退出预览。受影响范围另在行为交互中验收。",
+    "sources": [
+      "30:3.4",
+      "40:7"
+    ],
+    "refs": [],
+    "original": [
+      "n23"
+    ],
+    "prior": "已有但不完整",
+    "blockers": [],
+    "feature_id": "N01-F024",
+    "new_location": "角色行为/角色技能 4",
+    "original_locations": [
+      "角色行为/角色技能 4"
+    ],
+    "effective_blockers": [
+      "G09"
+    ]
+  },
+  {
+    "key": "n24",
+    "route": "角色技能",
+    "summary": "每单位独立行动槽",
+    "body": "我方每个单位独立保存已提交行动的类别序列；切换查看单位时显示对应序列，彼此不串用。正式追加、容量与打断规则由行动槽规则路线承接。",
+    "sources": [
+      "50:3.1、3.5"
+    ],
+    "refs": [],
+    "original": [
+      "n24"
+    ],
+    "prior": "已有但不完整",
+    "blockers": [],
+    "feature_id": "N01-F025",
+    "new_location": "角色行为/角色技能 5",
+    "original_locations": [
+      "角色行为/角色技能 5"
+    ],
+    "effective_blockers": [
+      "G09"
+    ]
+  },
+  {
+    "key": "n26",
+    "route": "角色技能",
+    "summary": "连携成本与产出循环",
+    "body": "在原连携构建阶段，选择已满足成本串的连携并确认后，消耗槽尾成本、执行技能效果并追加产出串；先保留无继承效果的阶段，继承效果在后续节点正式补齐。",
+    "sources": [
+      "50:3.2",
+      "40:6"
+    ],
+    "refs": [],
+    "original": [
+      "n26"
+    ],
+    "prior": "已有但不完整",
+    "blockers": [],
+    "feature_id": "N01-F026",
+    "new_location": "角色行为/角色技能 6",
+    "original_locations": [
+      "角色行为/角色技能 6"
+    ],
+    "effective_blockers": [
+      "G09"
+    ]
+  },
+  {
+    "key": "n27",
+    "route": "角色技能",
+    "summary": "角色行为面板并列展示",
+    "body": "当前行动者面板沿用原图平铺并列层级：移动一项、待机一项、四个基础技能和五个连携技能；分别的移动、待机、定向与非定向技能操作由行为交互路线承接。搜刮、场景交互和撤退保持各自可发现入口。",
+    "sources": [
+      "10:3.6",
+      "40:3.1、7",
+      "85:3.1"
+    ],
+    "refs": [],
+    "original": [
+      "n27"
+    ],
+    "prior": "已有但不完整",
+    "blockers": [
+      "G12"
+    ],
+    "feature_id": "N01-F027",
+    "new_location": "角色行为/角色技能 7",
+    "original_locations": [
+      "角色行为/角色技能 7"
+    ],
+    "effective_blockers": [
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "n28",
+    "route": "角色技能",
+    "summary": "基础技能继承效果",
+    "body": "已配置基础技能为产出对应动作类型的行为提供继承效果；基础技能被替换、配置生效时重算，技能详情显示当前构筑的最终效果。局外配置流程以预置构筑代入。",
+    "sources": [
+      "40:6、7",
+      "EFF:EFF-INHERIT-001"
+    ],
+    "refs": [],
+    "original": [
+      "n28"
+    ],
+    "prior": "已有但不完整",
+    "blockers": [
+      "G09"
+    ],
+    "feature_id": "N01-F028",
+    "new_location": "角色行为/角色技能 8",
+    "original_locations": [
+      "角色行为/角色技能 8"
+    ],
+    "effective_blockers": [
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "n22",
+    "route": "敌人ai",
+    "summary": "敌我行动切换",
+    "body": "保留原图最近敌对目标移动与待机的占位动作：轮到敌人时自动执行，行动结束后按共享时间轴转到下一行动者。正式模板行为由后续条目补齐。",
+    "sources": [
+      "90:3.1"
+    ],
+    "refs": [],
+    "original": [
+      "n22"
+    ],
+    "prior": "已有但不完整",
+    "blockers": [],
+    "feature_id": "N01-F029",
+    "new_location": "敌人ai 1",
+    "original_locations": [
+      "敌人ai 1"
+    ],
+    "effective_blockers": [
+      "G09"
+    ]
+  },
+  {
+    "key": "E01",
+    "route": "战斗进入与布置",
+    "summary": "预置战斗启动",
+    "body": "启动后以固定战场标识、队伍全员、敌方预设位置与战斗配置直接进入战斗 HUD；我方初始阵位按配置加载，同一战场标识复用同份瓦片地图。固定输入隔离招募与地图事件入口。",
+    "sources": [
+      "30:3.1、3.3",
+      "TEAM:3.4"
+    ],
+    "refs": [
+      "n1",
+      "n9",
+      "n18",
+      "n20"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [],
+    "feature_id": "N01-F030",
+    "new_location": "战斗进入与布置 1",
+    "original_locations": [],
+    "effective_blockers": []
+  },
+  {
+    "key": "E02",
+    "route": "战斗进入与布置",
+    "summary": "预置技能构筑校验",
+    "body": "读取每个主控单位的配置，四类基础技能各恰好一个、连携五个；法术不占位。若输入违背这些已定约束则报告配置缺项，不能按合法构筑验收。局外获取与配置交互延期。",
+    "sources": [
+      "40:3.1、4、5"
+    ],
+    "refs": [
+      "n6"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G09"
+    ],
+    "feature_id": "N01-F031",
+    "new_location": "战斗进入与布置 2",
+    "original_locations": [],
+    "effective_blockers": [
+      "G09"
+    ]
+  },
+  {
+    "key": "E03",
+    "route": "战斗进入与布置",
+    "summary": "当前行动者操作权限",
+    "body": "时间轴推进至单位后默认选中该单位；查看其他单位只切换详情和行动槽，其面板不显示可操作按钮且标为不可操作，无法借查看提交其行动。",
+    "sources": [
+      "10:3.6",
+      "50:3.5"
+    ],
+    "refs": [
+      "n13",
+      "n24",
+      "n27"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [],
+    "feature_id": "N01-F032",
+    "new_location": "战斗进入与布置 3",
+    "original_locations": [],
+    "effective_blockers": [
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "E04",
+    "route": "战斗进入与布置",
+    "summary": "布置站位调整",
+    "body": "未察觉且配置允许调整初始站位时，玩家按移动规则确认一次调整；消耗该单位一次行动机会、追加 M 并回排时间轴，位置变为目的格。配置采用固定阵位时直接沿用初始位置。",
+    "sources": [
+      "30:3.1、3.2",
+      "50:3.1"
+    ],
+    "refs": [
+      "M01",
+      "A01",
+      "T01"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G04"
+    ],
+    "feature_id": "N01-F033",
+    "new_location": "战斗进入与布置 4",
+    "original_locations": [],
+    "effective_blockers": [
+      "G04",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "E05",
+    "route": "战斗进入与布置",
+    "summary": "伤害触发察觉",
+    "body": "我方首次对敌方造成已提交伤害时结束布置，显示已被察觉并转为常规战斗时间轴；未造成伤害的预览与取消不会触发察觉。",
+    "sources": [
+      "30:3.2"
+    ],
+    "refs": [
+      "n8"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G04"
+    ],
+    "feature_id": "N01-F034",
+    "new_location": "战斗进入与布置 5",
+    "original_locations": [],
+    "effective_blockers": [
+      "G04",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "E06",
+    "route": "战斗进入与布置",
+    "summary": "全员编成与护送查看",
+    "body": "预置队伍全员出现在战场，不把常规 2 至 4 主控作为人数上限；配置的护送目标可被战斗波及，玩家能查看其状态，其目标进度由状态变化驱动。护送目标操作权限与 Demo 非主控排除冲突见 G11。",
+    "sources": [
+      "30:3.3、3.5",
+      "TEAM:3.2、3.4"
+    ],
+    "refs": [
+      "E03",
+      "H03"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G11"
+    ],
+    "feature_id": "N01-F035",
+    "new_location": "战斗进入与布置 6",
+    "original_locations": [],
+    "effective_blockers": [
+      "G03",
+      "G04",
+      "G08",
+      "G09",
+      "G11",
+      "G12"
+    ]
+  },
+  {
+    "key": "T01",
+    "route": "时间轴",
+    "summary": "行动后摇与速度回排",
+    "body": "一次行动结束后使用行为后摇、技能后摇与行动速度补正计算下次行动时机并回排；不同轻重动作的预览与实际均使用同一配置输入。合成公式、同刻排序等不由本图发明，见 G09。",
+    "sources": [
+      "20:3.1、3.4",
+      "HP:ATTR-SPD-001"
+    ],
+    "refs": [
+      "n6"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G09"
+    ],
+    "feature_id": "N01-F036",
+    "new_location": "时间轴 6",
+    "original_locations": [],
+    "effective_blockers": [
+      "G09"
+    ]
+  },
+  {
+    "key": "T02",
+    "route": "时间轴",
+    "summary": "六类行为时机预览",
+    "body": "移动、技能、搜刮、场景交互、撤退和防御待机在提交前均可预览本次行为后的下次时机；切换候选行为刷新预览，取消清除预览。连携同样有后摇，连携完成额外节奏奖励不参与计算。",
+    "sources": [
+      "20:3.4、3.5",
+      "BHV:六条已确认记录"
+    ],
+    "refs": [
+      "n7"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G09",
+      "G12"
+    ],
+    "feature_id": "N01-F037",
+    "new_location": "时间轴 7",
+    "original_locations": [],
+    "effective_blockers": [
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "T03",
+    "route": "时间轴",
+    "summary": "行动机会提交边界",
+    "body": "同一行动机会只受理一项确认行为；执行完成后结束该机会，再给下一单位机会。查看、选物与技能内的法术选择是同一次行为的内部步骤，不能额外送行动机会。",
+    "sources": [
+      "85:3.3、3.4",
+      "20:3.2"
+    ],
+    "refs": [
+      "n27"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [],
+    "feature_id": "N01-F038",
+    "new_location": "时间轴 8",
+    "original_locations": [],
+    "effective_blockers": [
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "H01",
+    "route": "角色属性",
+    "summary": "失去行动能力限制",
+    "body": "单位生命归零后显示失去行动能力并禁止其移动、技能和其他战斗行为；仍保留被击倒单位在时间轴上的位置。失能标记再次到达时的推进口径见 G03。",
+    "sources": [
+      "10:3.2"
+    ],
+    "refs": [
+      "n13"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G03"
+    ],
+    "feature_id": "N01-F039",
+    "new_location": "角色行为/角色属性 6",
+    "original_locations": [],
+    "effective_blockers": [
+      "G03",
+      "G09"
+    ]
+  },
+  {
+    "key": "H02",
+    "route": "角色属性",
+    "summary": "击倒后恢复行动",
+    "body": "对轻伤且被击倒单位，通过消耗物资或技能释放机会恢复生命；超过受伤限度后恢复行动能力，详情显示可行动。战斗内恢复通过技能化血量恢复承接。重伤、致残与重返时间轴的边界见 G03。",
+    "sources": [
+      "10:3.2",
+      "80:4"
+    ],
+    "refs": [
+      "I03"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G03",
+      "G09"
+    ],
+    "feature_id": "N01-F040",
+    "new_location": "角色行为/角色属性 7",
+    "original_locations": [],
+    "effective_blockers": [
+      "G03",
+      "G08",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "H03",
+    "route": "角色属性",
+    "summary": "单位状态信息",
+    "body": "单位详情分别显示当前生命状态、伤势档位、血量与有效状态；提交伤害或恢复后刷新，切换单位显示各自状态。结束战斗仍保留生命与伤势。",
+    "sources": [
+      "10:3.2、3.6"
+    ],
+    "refs": [
+      "F01"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [],
+    "feature_id": "N01-F041",
+    "new_location": "角色行为/角色属性 8",
+    "original_locations": [],
+    "effective_blockers": [
+      "G03",
+      "G08",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "M01",
+    "route": "行为交互",
+    "summary": "移动选择与确认",
+    "body": "沿用原图移动按钮交互：选中后显示范围并高亮；悬浮地格预览位置与下次时机，单击合法地格确认一次移动并结束行动机会。无法到达或行动力不足时即时显示原因，不消耗资源。",
+    "sources": [
+      "30:3.6",
+      "BHV:BHV-MOVE-001"
+    ],
+    "refs": [
+      "n17",
+      "n27",
+      "T01",
+      "n4",
+      "n3"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [],
+    "feature_id": "N01-F042",
+    "new_location": "行为交互 1",
+    "original_locations": [],
+    "effective_blockers": [
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "M02",
+    "route": "行为交互",
+    "summary": "取消移动选择",
+    "body": "沿用原图高亮期间右键或场景外左键取消，退出移动预览；角色位置、行动机会、行动槽与时机均保持确认前的值。设备绑定只沿用原图，通用原语登记见 G12。",
+    "sources": [
+      "85:3.4"
+    ],
+    "refs": [
+      "M01"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [],
+    "feature_id": "N01-F043",
+    "new_location": "行为交互 2",
+    "original_locations": [],
+    "effective_blockers": [
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "M03",
+    "route": "行为交互",
+    "summary": "待机两次点击确认",
+    "body": "沿用原图待机交互：悬浮显示时机，首次单击进入高亮，第二次单击确认防御待机并结束机会；其间其他鼠标点击退出高亮，取消不增加字母或防御效果。",
+    "sources": [
+      "BHV:BHV-IDLE-001",
+      "85:3.4"
+    ],
+    "refs": [
+      "n7",
+      "T01"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [],
+    "feature_id": "N01-F044",
+    "new_location": "行为交互 3",
+    "original_locations": [],
+    "effective_blockers": [
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "M04",
+    "route": "行为交互",
+    "summary": "技能作用范围预览",
+    "body": "选中技能后，悬浮可选地格显示实际受影响格；单体技能高亮目标格，范围技能高亮落点影响区。沿用原图红色高亮；范围预览与实际效果作用区一致。",
+    "sources": [
+      "30:3.4",
+      "40:7"
+    ],
+    "refs": [
+      "n23"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [],
+    "feature_id": "N01-F045",
+    "new_location": "行为交互 4",
+    "original_locations": [],
+    "effective_blockers": [
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "M05",
+    "route": "行为交互",
+    "summary": "定向技能目标确认",
+    "body": "沿用原图技能选择、目标悬浮与单击确认：在合法目标确认后仅提交所选技能，对配置要求的敌方、我方、自身或格子校验目标类型；超射程、地形阻挡或目标非法时提示具体原因且保持所有资源。",
+    "sources": [
+      "BHV:BHV-SKILL-001",
+      "85:3.5"
+    ],
+    "refs": [
+      "M04"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [],
+    "feature_id": "N01-F046",
+    "new_location": "行为交互 5",
+    "original_locations": [],
+    "effective_blockers": [
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "M06",
+    "route": "行为交互",
+    "summary": "非定向技能确认",
+    "body": "沿用原图非指向性技能与待机相同的两次点击确认机制；首次高亮只预览，第二次确认才释放并结束该行动机会。",
+    "sources": [
+      "85:3.4",
+      "BHV:BHV-SKILL-001"
+    ],
+    "refs": [
+      "n7"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [],
+    "feature_id": "N01-F047",
+    "new_location": "行为交互 6",
+    "original_locations": [],
+    "effective_blockers": [
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "M07",
+    "route": "行为交互",
+    "summary": "取消技能选择",
+    "body": "沿用原图高亮期间右键或场景外左键退出技能选择；撤销预览，确认前自由换目标与选择，生命、字母、道具数量和时间轴保持。",
+    "sources": [
+      "85:3.4"
+    ],
+    "refs": [
+      "n23"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [],
+    "feature_id": "N01-F048",
+    "new_location": "行为交互 7",
+    "original_locations": [],
+    "effective_blockers": [
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "M08",
+    "route": "行为交互",
+    "summary": "无可用操作兜底",
+    "body": "当前行动槽没有可用操作时仍显示可选择的防御待机与撤退；待机可推进局面，撤退保持配置条件校验且不能因兜底而免费成功。",
+    "sources": [
+      "85:3.5",
+      "A0:3.3"
+    ],
+    "refs": [
+      "n7",
+      "R03"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [],
+    "feature_id": "N01-F049",
+    "new_location": "行为交互 8",
+    "original_locations": [],
+    "effective_blockers": [
+      "G01",
+      "G02",
+      "G07",
+      "G08",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "M09",
+    "route": "行为交互",
+    "summary": "战场观察与详情切换",
+    "body": "玩家能拖动场景观察战况、点选单位查看详情；查看不提交行为，不改变当前行动者。行动槽跟随被查看单位，权限由战斗进入路线的操作权限条目统一约束。",
+    "sources": [
+      "10:3.6"
+    ],
+    "refs": [
+      "E03"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [],
+    "feature_id": "N01-F050",
+    "new_location": "行为交互 9",
+    "original_locations": [],
+    "effective_blockers": [
+      "G01",
+      "G02",
+      "G07",
+      "G08",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "M10",
+    "route": "行为交互",
+    "summary": "HUD四区块",
+    "body": "呈现战斗 HUD、行动槽、时间轴、技能面板四区块；玩家能读取当前行动者、战场状态、行动序列、未来机会及可用技能。原语、意图和全局绑定的未定项登记于 G12。",
+    "sources": [
+      "10:3.6",
+      "GLOBAL:四 全局交互与界面规范"
+    ],
+    "refs": [
+      "H03",
+      "n14",
+      "n27"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G12"
+    ],
+    "feature_id": "N01-F051",
+    "new_location": "行为交互 10",
+    "original_locations": [],
+    "effective_blockers": [
+      "G01",
+      "G02",
+      "G03",
+      "G07",
+      "G08",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "S01",
+    "route": "技能效果试验",
+    "summary": "方向位移技能",
+    "body": "使用原图固定距离方向位移技能并确认方向后，角色位移至该技能配置的落点；沿用原图试验距离。此为技能效果，字母与后摇取技能类别，不额外当作一次移动。越界和阻挡的技能位移规则见 G05。",
+    "sources": [
+      "BHV:BHV-SKILL-001",
+      "30:3.4"
+    ],
+    "refs": [
+      "n8",
+      "n17"
+    ],
+    "original": [
+      "n8"
+    ],
+    "prior": "已有但不完整",
+    "blockers": [
+      "G05",
+      "G09"
+    ],
+    "feature_id": "N01-F052",
+    "new_location": "技能效果试验 1",
+    "original_locations": [
+      "角色行为/角色技能 3"
+    ],
+    "effective_blockers": [
+      "G05",
+      "G09"
+    ]
+  },
+  {
+    "key": "S02",
+    "route": "技能效果试验",
+    "summary": "三乘三范围伤害",
+    "body": "使用原图 3×3 范围伤害技能，确认合法范围落点后对配置筛选的范围内单位产生伤害；范围外单位不受该次范围作用。试验尺寸来自原图，不把尺寸设为所有范围技能的上限。",
+    "sources": [
+      "BHV:BHV-SKILL-001",
+      "30:3.4"
+    ],
+    "refs": [
+      "n8",
+      "M04"
+    ],
+    "original": [
+      "n8"
+    ],
+    "prior": "已有但不完整",
+    "blockers": [
+      "G09"
+    ],
+    "feature_id": "N01-F053",
+    "new_location": "技能效果试验 2",
+    "original_locations": [
+      "角色行为/角色技能 3"
+    ],
+    "effective_blockers": [
+      "G05",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "S03",
+    "route": "技能效果试验",
+    "summary": "目标最大生命百分比伤害",
+    "body": "使用原图目标总生命 10% 伤害技能，对合法目标确认后按该配置比例计算伤害并显示生命变化；比例是原图组件试验输入，正式技能数值由内容配置提供。",
+    "sources": [
+      "BHV:BHV-SKILL-001",
+      "40:8"
+    ],
+    "refs": [
+      "n8"
+    ],
+    "original": [
+      "n8"
+    ],
+    "prior": "已有但不完整",
+    "blockers": [
+      "G09"
+    ],
+    "feature_id": "N01-F054",
+    "new_location": "技能效果试验 3",
+    "original_locations": [
+      "角色行为/角色技能 3"
+    ],
+    "effective_blockers": [
+      "G05",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "S04",
+    "route": "技能效果试验",
+    "summary": "最终技能效果详情",
+    "body": "查看预置技能详情时显示当前构筑下的最终效果、继承影响、有效元效果影响及后摇代价；常态面板只显示基础技能和连携，法术从武器详情另行预览。",
+    "sources": [
+      "40:6、7"
+    ],
+    "refs": [
+      "n28",
+      "F01"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G09"
+    ],
+    "feature_id": "N01-F055",
+    "new_location": "技能效果试验 4",
+    "original_locations": [],
+    "effective_blockers": [
+      "G05",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "S05",
+    "route": "技能效果试验",
+    "summary": "连携多产出继承",
+    "body": "连携产出多个同类动作时，按产出次数触发该类型基础技能的继承效果；成本串和产出串涉及的类型均参与继承，成本侧计次与重复类型边界待 G06。",
+    "sources": [
+      "40:6",
+      "50:3.3",
+      "EFF:EFF-INHERIT-001"
+    ],
+    "refs": [
+      "n28",
+      "A05"
+    ],
+    "original": [
+      "n26",
+      "n28"
+    ],
+    "prior": "已有但不完整",
+    "blockers": [
+      "G06",
+      "G09"
+    ],
+    "feature_id": "N01-F056",
+    "new_location": "技能效果试验 5",
+    "original_locations": [
+      "角色行为/角色技能 6",
+      "角色行为/角色技能 8"
+    ],
+    "effective_blockers": [
+      "G02",
+      "G05",
+      "G06",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "A01",
+    "route": "行动槽规则",
+    "summary": "基础技能字母追加",
+    "body": "确认一次基础技能后在该单位槽尾追加所属 A、B、C、D 类字母；取消或拒绝时不追加，道具或法术内部步骤不会再追加独立字母。",
+    "sources": [
+      "50:3.1",
+      "BHV:BHV-SKILL-001"
+    ],
+    "refs": [
+      "n24",
+      "n7"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [],
+    "feature_id": "N01-F057",
+    "new_location": "行动槽规则 1",
+    "original_locations": [],
+    "effective_blockers": [
+      "G09"
+    ]
+  },
+  {
+    "key": "A02",
+    "route": "行动槽规则",
+    "summary": "十格容量挤出",
+    "body": "槽尾追加使序列超过容量 10 时，按进入先后挤出最早字母直到保持容量 10；界面显示剩余顺序，多个产出字母同样遵循此容量约束。",
+    "sources": [
+      "50:3.1"
+    ],
+    "refs": [
+      "A01"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [],
+    "feature_id": "N01-F058",
+    "new_location": "行动槽规则 2",
+    "original_locations": [],
+    "effective_blockers": [
+      "G09"
+    ]
+  },
+  {
+    "key": "A03",
+    "route": "行动槽规则",
+    "summary": "移动M延迟打断",
+    "body": "确认移动、布置调整、搜刮或场景交互时追加 M；本次追加 M 保留既有序列，若提交前槽中已有 M，则后续任何行动清空该 M 及其之前序列，再按本行为规则形成结果。界面显示 M 位置与待清空范围，取消不清空。与连携校验时点的关系见 G02。",
+    "sources": [
+      "50:3.1、3.4"
+    ],
+    "refs": [
+      "M01"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G02"
+    ],
+    "feature_id": "N01-F059",
+    "new_location": "行动槽规则 3",
+    "original_locations": [],
+    "effective_blockers": [
+      "G02",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "A04",
+    "route": "行动槽规则",
+    "summary": "槽尾精确匹配",
+    "body": "逐位把槽尾与各连携成本串对照，完整顺序匹配时标记可释放，不以槽中任意位置出现同样字母作为达成。近匹配时提示下一步动作，具体视觉形态待 G12。",
+    "sources": [
+      "50:3.2、3.5"
+    ],
+    "refs": [
+      "n26"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G02",
+      "G09",
+      "G12"
+    ],
+    "feature_id": "N01-F060",
+    "new_location": "行动槽规则 4",
+    "original_locations": [],
+    "effective_blockers": [
+      "G02",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "A05",
+    "route": "行动槽规则",
+    "summary": "手动选择连携",
+    "body": "多个连携同时满足条件时，玩家手动选择其中一项并确认；删除所选成本串、执行其效果、追加产出串并按其后摇回排。仅消费一次行动机会。",
+    "sources": [
+      "50:3.2"
+    ],
+    "refs": [
+      "T01"
+    ],
+    "original": [
+      "n26"
+    ],
+    "prior": "已有但不完整",
+    "blockers": [
+      "G02",
+      "G09"
+    ],
+    "feature_id": "N01-F061",
+    "new_location": "行动槽规则 5",
+    "original_locations": [
+      "角色行为/角色技能 6"
+    ],
+    "effective_blockers": [
+      "G02",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "A06",
+    "route": "行动槽规则",
+    "summary": "产出不自动释放",
+    "body": "连携产出串追加后立即成为后续匹配输入；即使另一连携条件同时满足，也只呈现可选状态，等待玩家下一次主动选择，不能自动连续释放。",
+    "sources": [
+      "50:3.2"
+    ],
+    "refs": [
+      "A05"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [],
+    "feature_id": "N01-F062",
+    "new_location": "行动槽规则 6",
+    "original_locations": [],
+    "effective_blockers": [
+      "G02",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "A07",
+    "route": "行动槽规则",
+    "summary": "撤退与待机类别字母",
+    "body": "确认防御待机或满足条件的撤退后按各自配置类别追加字母；按容量与 M 打断统一规则更新序列，不允许玩家选择跳过追加。",
+    "sources": [
+      "50:3.1",
+      "BHV:BHV-IDLE-001、BHV-RETREAT-001"
+    ],
+    "refs": [
+      "R03"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G02",
+      "G09"
+    ],
+    "feature_id": "N01-F063",
+    "new_location": "行动槽规则 7",
+    "original_locations": [],
+    "effective_blockers": [
+      "G01",
+      "G02",
+      "G07",
+      "G08",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "F01",
+    "route": "效果结算",
+    "summary": "各来源统一效果呈现",
+    "body": "技能、道具、装备、遗物和地形附加的效果都使用元效果；详情呈现效果标识、来源、对象和有效状态，同名效果按标识匹配而非名称文案。各来源实际触发由相应行为节点验收。",
+    "sources": [
+      "75:3.1、3.2",
+      "EFF:全部已确认记录"
+    ],
+    "refs": [
+      "n5",
+      "n19"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [],
+    "feature_id": "N01-F064",
+    "new_location": "效果结算 1",
+    "original_locations": [],
+    "effective_blockers": [
+      "G09"
+    ]
+  },
+  {
+    "key": "F02",
+    "route": "效果结算",
+    "summary": "直接伤害结算",
+    "body": "确认产生直接伤害的动作后，按配置的结算层顺序与同层确定顺序计算并刷新目标血量；前层无效或已消耗效果止于该层。结算层具体顺序待 G07。",
+    "sources": [
+      "10:3.5",
+      "75:3.4"
+    ],
+    "refs": [
+      "n8"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G07",
+      "G09"
+    ],
+    "feature_id": "N01-F065",
+    "new_location": "效果结算 2",
+    "original_locations": [],
+    "effective_blockers": [
+      "G07",
+      "G09"
+    ]
+  },
+  {
+    "key": "F03",
+    "route": "效果结算",
+    "summary": "持续伤害结算",
+    "body": "目标持有持续伤害时，按已定的行动前后时点结算并显示来源及生命变化；其判定时点与结算位置须和直接伤害统一，当前正文与表不足以唯一确定该顺序，待 G07。",
+    "sources": [
+      "10:3.5",
+      "EFF:EFF-DOT-001"
+    ],
+    "refs": [
+      "F02"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G07",
+      "G09"
+    ],
+    "feature_id": "N01-F066",
+    "new_location": "效果结算 3",
+    "original_locations": [],
+    "effective_blockers": [
+      "G07",
+      "G09"
+    ]
+  },
+  {
+    "key": "F04",
+    "route": "效果结算",
+    "summary": "限时状态移除",
+    "body": "限时效果到达来源配置的持续时间时移除；满足配置解除条件或被免疫时，状态附加按登记规则停止生效，详情更新有效状态。时间单位与触发点待 G07。",
+    "sources": [
+      "75:3.5",
+      "EFF:EFF-STATE-001"
+    ],
+    "refs": [
+      "F01"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G07",
+      "G09"
+    ],
+    "feature_id": "N01-F067",
+    "new_location": "效果结算 4",
+    "original_locations": [],
+    "effective_blockers": [
+      "G07",
+      "G09"
+    ]
+  },
+  {
+    "key": "F05",
+    "route": "效果结算",
+    "summary": "装备来源效果启停",
+    "body": "装备来源启用时施加效果，卸下后移除该来源效果；其他来源保留，容器内容与效果启停独立，角色有效属性同步变化。",
+    "sources": [
+      "75:3.5",
+      "60:6"
+    ],
+    "refs": [
+      "Q03"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G09"
+    ],
+    "feature_id": "N01-F068",
+    "new_location": "效果结算 5",
+    "original_locations": [],
+    "effective_blockers": [
+      "G07",
+      "G08",
+      "G09",
+      "G12",
+      "G13"
+    ]
+  },
+  {
+    "key": "F06",
+    "route": "效果结算",
+    "summary": "防护穿透分层",
+    "body": "带防护与穿透的装备或遗物参与伤害时，按需求层与提供层的先后执行并显示最终受击结果；不得自行确定护甲与穿透层序，待 G07。",
+    "sources": [
+      "EFF:EFF-PIERCE-001",
+      "75:3.4"
+    ],
+    "refs": [
+      "F02"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G07",
+      "G09"
+    ],
+    "feature_id": "N01-F069",
+    "new_location": "效果结算 6",
+    "original_locations": [],
+    "effective_blockers": [
+      "G07",
+      "G08",
+      "G09",
+      "G12",
+      "G13"
+    ]
+  },
+  {
+    "key": "F07",
+    "route": "效果结算",
+    "summary": "战斗结束保留效果状态",
+    "body": "结束战斗后保留角色生命、伤势以及配置为战斗外有效的效果；投掷一次性效果在动作结算结束时移除。各类结束原因的收尾适用性待 G10。保存到外部存档延期。",
+    "sources": [
+      "10:3.2",
+      "75:3.5",
+      "EFF:EFF-THROW-001、EFF-ATTR-001"
+    ],
+    "refs": [
+      "F04"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G10"
+    ],
+    "feature_id": "N01-F070",
+    "new_location": "效果结算 7",
+    "original_locations": [],
+    "effective_blockers": [
+      "G07",
+      "G08",
+      "G09",
+      "G10",
+      "G12",
+      "G13"
+    ]
+  },
+  {
+    "key": "C01",
+    "route": "战斗容器操作",
+    "summary": "容器格与携带空间",
+    "body": "战斗局部物品按实例、堆叠和明确归属载体呈现；已装备储物容器提供有序背包格，嵌套容器格不累计为背包空间。查看能分辨容器顺序和当前格内数量。",
+    "sources": [
+      "ITEM:2.1、2.2、3",
+      "BAG:2、3"
+    ],
+    "refs": [
+      "n18"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [],
+    "feature_id": "N01-F071",
+    "new_location": "战斗容器操作 1",
+    "original_locations": [],
+    "effective_blockers": []
+  },
+  {
+    "key": "C02",
+    "route": "战斗容器操作",
+    "summary": "整叠拿取",
+    "body": "容器界面鼠标未悬挂且来源格有物品时，按已有整叠拿取操作使来源格清零并悬挂全部数量；空格操作无变化。战斗搜刮中的提交粒度待 G08。",
+    "sources": [
+      "OPS:ITEM-UI-001",
+      "BAG:3.1"
+    ],
+    "refs": [
+      "C01"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G08"
+    ],
+    "feature_id": "N01-F072",
+    "new_location": "战斗容器操作 2",
+    "original_locations": [],
+    "effective_blockers": [
+      "G08"
+    ]
+  },
+  {
+    "key": "C03",
+    "route": "战斗容器操作",
+    "summary": "半叠拿取",
+    "body": "来源格有物品且未悬挂时，按已有半叠拿取操作取出向上取整一半并显示剩余量；保留原背包矩阵的输入约定。",
+    "sources": [
+      "OPS:ITEM-UI-002",
+      "BAG:3.1"
+    ],
+    "refs": [],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G08"
+    ],
+    "feature_id": "N01-F073",
+    "new_location": "战斗容器操作 3",
+    "original_locations": [],
+    "effective_blockers": [
+      "G08"
+    ]
+  },
+  {
+    "key": "C04",
+    "route": "战斗容器操作",
+    "summary": "快捷转移",
+    "body": "未悬挂时快捷转移整叠，按当前可见其他容器顺序与格序装入可接收数量；无其他可见容器或完全不能装入时无变化，不自动访问队友库存。",
+    "sources": [
+      "OPS:ITEM-UI-003",
+      "BAG:3.1",
+      "80:3"
+    ],
+    "refs": [],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G08",
+      "G12"
+    ],
+    "feature_id": "N01-F074",
+    "new_location": "战斗容器操作 4",
+    "original_locations": [],
+    "effective_blockers": [
+      "G08",
+      "G12"
+    ]
+  },
+  {
+    "key": "C05",
+    "route": "战斗容器操作",
+    "summary": "整叠放入空格",
+    "body": "悬挂物品放入允许接收的空格时尽量装入，超出容量继续悬挂；完全不能接收时无变化。",
+    "sources": [
+      "OPS:ITEM-UI-004",
+      "BAG:3.2"
+    ],
+    "refs": [],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G08"
+    ],
+    "feature_id": "N01-F075",
+    "new_location": "战斗容器操作 5",
+    "original_locations": [],
+    "effective_blockers": [
+      "G08",
+      "G12"
+    ]
+  },
+  {
+    "key": "C06",
+    "route": "战斗容器操作",
+    "summary": "单个放入空格",
+    "body": "悬挂物品按已有单个放入操作使空格接收一个，悬挂数量减一；不能接收时数量和归属保持。",
+    "sources": [
+      "OPS:ITEM-UI-005",
+      "BAG:3.2"
+    ],
+    "refs": [],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G08"
+    ],
+    "feature_id": "N01-F076",
+    "new_location": "战斗容器操作 6",
+    "original_locations": [],
+    "effective_blockers": [
+      "G08",
+      "G12"
+    ]
+  },
+  {
+    "key": "C07",
+    "route": "战斗容器操作",
+    "summary": "同类整叠合并",
+    "body": "悬挂物品放入同类格时合并到组件堆叠上限，余量继续悬挂；堆叠已满时保持原数量。",
+    "sources": [
+      "OPS:ITEM-UI-006",
+      "BAG:3.2"
+    ],
+    "refs": [],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G08"
+    ],
+    "feature_id": "N01-F077",
+    "new_location": "战斗容器操作 7",
+    "original_locations": [],
+    "effective_blockers": [
+      "G08",
+      "G12"
+    ]
+  },
+  {
+    "key": "C08",
+    "route": "战斗容器操作",
+    "summary": "同类单个合并",
+    "body": "按已有单个合并操作向未满同类格加入一个；满格时无变化。",
+    "sources": [
+      "OPS:ITEM-UI-007",
+      "BAG:3.2"
+    ],
+    "refs": [],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G08"
+    ],
+    "feature_id": "N01-F078",
+    "new_location": "战斗容器操作 8",
+    "original_locations": [],
+    "effective_blockers": [
+      "G08",
+      "G12"
+    ]
+  },
+  {
+    "key": "C09",
+    "route": "战斗容器操作",
+    "summary": "异类整件交换",
+    "body": "悬挂物可完整放入异类目标格时交换两者归属，原目标物悬挂；不能完整放入时双方保持。",
+    "sources": [
+      "OPS:ITEM-UI-008",
+      "BAG:3.2"
+    ],
+    "refs": [],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G08"
+    ],
+    "feature_id": "N01-F079",
+    "new_location": "战斗容器操作 9",
+    "original_locations": [],
+    "effective_blockers": [
+      "G08",
+      "G12"
+    ]
+  },
+  {
+    "key": "C10",
+    "route": "战斗容器操作",
+    "summary": "装入容器物品",
+    "body": "对具有容器组件且允许存取的物品执行已有装入操作，按格序尽量装入，余量悬挂；无容量或关闭受限容器不提交。",
+    "sources": [
+      "OPS:ITEM-UI-009",
+      "BAG:3.2",
+      "ITEM:2.5"
+    ],
+    "refs": [],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G08"
+    ],
+    "feature_id": "N01-F080",
+    "new_location": "战斗容器操作 10",
+    "original_locations": [],
+    "effective_blockers": [
+      "G08",
+      "G12"
+    ]
+  },
+  {
+    "key": "C11",
+    "route": "战斗容器操作",
+    "summary": "受限内容约束",
+    "body": "向受限容器装物时按词条校验，任一允许词条匹配且有容量才接收；不匹配则提示原因且不提交。法术书只接受符文书页词条。",
+    "sources": [
+      "ITEM:2.3、2.4",
+      "OPS:ITEM-CTN-001",
+      "TAG:TAG-BOOKPAGE-001"
+    ],
+    "refs": [],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G08"
+    ],
+    "feature_id": "N01-F081",
+    "new_location": "战斗容器操作 11",
+    "original_locations": [],
+    "effective_blockers": [
+      "G08",
+      "G12"
+    ]
+  },
+  {
+    "key": "C12",
+    "route": "战斗容器操作",
+    "summary": "受限容器取出",
+    "body": "受限容器界面打开时按常规取物规则将内容取出至悬挂位或允许背包格；关闭时不参与系统自动检测，装备栏容器识别由库存范围条目承接。",
+    "sources": [
+      "OPS:ITEM-CTN-002",
+      "ITEM:3"
+    ],
+    "refs": [
+      "C11"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G08"
+    ],
+    "feature_id": "N01-F082",
+    "new_location": "战斗容器操作 12",
+    "original_locations": [],
+    "effective_blockers": [
+      "G08",
+      "G12"
+    ]
+  },
+  {
+    "key": "C13",
+    "route": "战斗容器操作",
+    "summary": "嵌套识别与扣除",
+    "body": "当前角色合资格容器具备嵌套调用许可时可识别与扣除其嵌套内容；关闭且无许可的嵌套容器不参与调用。嵌套格始终不作为自动装载目标，队友库存排除。具体边界配置待 G09。",
+    "sources": [
+      "ITEM:2.5、3.1、3.2",
+      "BAG:2.2",
+      "GLOBAL:二 38"
+    ],
+    "refs": [
+      "I01"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G09"
+    ],
+    "feature_id": "N01-F083",
+    "new_location": "战斗容器操作 13",
+    "original_locations": [],
+    "effective_blockers": [
+      "G08",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "C14",
+    "route": "战斗容器操作",
+    "summary": "落地物自动装载",
+    "body": "拾取配置可拾取的落地物时调用自动装载，先当前接收角色，再队友，角色内按装备栏容器和格序写入；只写入有自动装载许可的背包空间。与战斗当前角色库存范围的关系待 G08。",
+    "sources": [
+      "BAG:4",
+      "OPS:ITEM-FLOW-001、ITEM-FLOW-003"
+    ],
+    "refs": [
+      "W03"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G08"
+    ],
+    "feature_id": "N01-F084",
+    "new_location": "战斗容器操作 14",
+    "original_locations": [],
+    "effective_blockers": [
+      "G02",
+      "G08",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "C15",
+    "route": "战斗容器操作",
+    "summary": "装载溢出确认",
+    "body": "自动装载不足时展示未装入数量；取消领取保持所有归属，确认继续则部分装入与剩余落地在同一次领取中提交。玩家整理后可继续拾取。",
+    "sources": [
+      "BAG:4",
+      "OPS:ITEM-FLOW-002"
+    ],
+    "refs": [
+      "C14"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G08"
+    ],
+    "feature_id": "N01-F085",
+    "new_location": "战斗容器操作 15",
+    "original_locations": [],
+    "effective_blockers": [
+      "G02",
+      "G08",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "I01",
+    "route": "库存与法术",
+    "summary": "当前角色即时库存列表",
+    "body": "技能触发选物时只列当前行动者自己已装备且具有即时取用属性的容器内容；队友和无即时取用容器排除。按装备栏容器顺序与格序列出，装备栏容器可被识别与战斗取用资格分别判定。",
+    "sources": [
+      "80:3",
+      "ITEM:3.1"
+    ],
+    "refs": [
+      "C01",
+      "n27"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [],
+    "feature_id": "N01-F086",
+    "new_location": "库存与法术 1",
+    "original_locations": [],
+    "effective_blockers": [
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "I02",
+    "route": "库存与法术",
+    "summary": "技能触发选物与选目标",
+    "body": "选择物品使用技能后展开即时库存，玩家选物及使用对象后进行本次行动确认；效果按物品组件作为触发技能的一部分结算。初次技能确认与最终选物提交冲突登记 G08，不提前扣资源。",
+    "sources": [
+      "80:4",
+      "85:3.4"
+    ],
+    "refs": [
+      "I01",
+      "M05",
+      "F01"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G08"
+    ],
+    "feature_id": "N01-F087",
+    "new_location": "库存与法术 2",
+    "original_locations": [],
+    "effective_blockers": [
+      "G08",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "I03",
+    "route": "库存与法术",
+    "summary": "消耗品确认扣减",
+    "body": "最终确认合法物品使用时扣减堆叠，归零销毁实例并清空来源格；取消或无合法物品时不扣减、不消耗机会或字母，界面显示原因。血量恢复按该技能物品的效果执行。",
+    "sources": [
+      "80:4、8",
+      "ITEM:5"
+    ],
+    "refs": [
+      "I02"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G08",
+      "G09"
+    ],
+    "feature_id": "N01-F088",
+    "new_location": "库存与法术 3",
+    "original_locations": [],
+    "effective_blockers": [
+      "G08",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "I04",
+    "route": "库存与法术",
+    "summary": "投掷资格过滤",
+    "body": "投掷选物按伤害、效果、重物组件判断资格；禁止投掷组件优先，持有它的物品不出现在列表；没有可用物品时提示且不提交。",
+    "sources": [
+      "80:5、8",
+      "THROW:THROW-BAN-001"
+    ],
+    "refs": [
+      "I01"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [],
+    "feature_id": "N01-F089",
+    "new_location": "库存与法术 4",
+    "original_locations": [],
+    "effective_blockers": [
+      "G08",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "I05",
+    "route": "库存与法术",
+    "summary": "伤害组件投掷",
+    "body": "选带伤害投掷组件的物品并确认合法落点或目标后，按组件伤害和后摇结算，作为触发技能的这一次机会和类别字母成本；物品归属变为落地载体。",
+    "sources": [
+      "THROW:THROW-DMG-001",
+      "80:5、7"
+    ],
+    "refs": [
+      "I04",
+      "F02"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G07",
+      "G08",
+      "G09"
+    ],
+    "feature_id": "N01-F090",
+    "new_location": "库存与法术 5",
+    "original_locations": [],
+    "effective_blockers": [
+      "G07",
+      "G08",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "I06",
+    "route": "库存与法术",
+    "summary": "效果组件投掷",
+    "body": "带效果投掷组件的物品确认落点后，对组件范围内单位施加效果，范围外单位保持；该次投掷沿用触发技能的行动成本。",
+    "sources": [
+      "THROW:THROW-EFF-001",
+      "80:5"
+    ],
+    "refs": [
+      "I04",
+      "F01"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G07",
+      "G08",
+      "G09"
+    ],
+    "feature_id": "N01-F091",
+    "new_location": "库存与法术 6",
+    "original_locations": [],
+    "effective_blockers": [
+      "G07",
+      "G08",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "I07",
+    "route": "库存与法术",
+    "summary": "伤害效果同时投掷",
+    "body": "同件物品伤害与效果投掷组件并存时，两者均生效并按元效果分层结算，禁止投掷仍优先。投掷动作结束时移除一次性效果。",
+    "sources": [
+      "THROW:THROW-DMG-001、THROW-EFF-001",
+      "EFF:EFF-THROW-001"
+    ],
+    "refs": [
+      "I05",
+      "I06"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G07",
+      "G08"
+    ],
+    "feature_id": "N01-F092",
+    "new_location": "库存与法术 7",
+    "original_locations": [],
+    "effective_blockers": [
+      "G07",
+      "G08",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "I08",
+    "route": "库存与法术",
+    "summary": "重物投掷折算",
+    "body": "带重物投掷组件时，用元物品重量与角色力量比值确定伤害与后摇，比值越大两者越重且无随机因素；低于配置下限时提示并拒绝。仅预留投掷重量输入，背包不引入负重限制。",
+    "sources": [
+      "THROW:THROW-BULK-001",
+      "80:5",
+      "HP:ATTR-STR-001"
+    ],
+    "refs": [
+      "I04",
+      "n18"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G09"
+    ],
+    "feature_id": "N01-F093",
+    "new_location": "库存与法术 8",
+    "original_locations": [],
+    "effective_blockers": [
+      "G07",
+      "G08",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "I09",
+    "route": "库存与法术",
+    "summary": "整体容器投掷与落地",
+    "body": "确认容器物品投掷后，整体离开原载体并在当前战斗地点生成落地物；内容与原格位随容器保留，装备槽离开时不再计入背包空间。生成失败时不提交归属变化；消耗品投掷的扣减和落地关系见 G08。",
+    "sources": [
+      "80:5",
+      "ITEM:3、5.1",
+      "OPS:ITEM-GEN-002"
+    ],
+    "refs": [
+      "I04",
+      "C01"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G08"
+    ],
+    "feature_id": "N01-F094",
+    "new_location": "库存与法术 9",
+    "original_locations": [],
+    "effective_blockers": [
+      "G07",
+      "G08",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "I10",
+    "route": "库存与法术",
+    "summary": "法术书详情预览",
+    "body": "查看已装备法术书武器详情时可预览其全部书页法术；书属于武器及仅接受符文书页的容器，书页不占四类基础与五个连携配置位。",
+    "sources": [
+      "60:7",
+      "40:4"
+    ],
+    "refs": [
+      "C11",
+      "E02"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [],
+    "feature_id": "N01-F095",
+    "new_location": "库存与法术 10",
+    "original_locations": [],
+    "effective_blockers": [
+      "G07",
+      "G08",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "I11",
+    "route": "库存与法术",
+    "summary": "技能展开法术选择",
+    "body": "可释放法术的技能触发时单独展开已装备法术书中的全部法术，玩家选其中一个及合法目标；书为空时提示并拒绝，常态技能面板不占法术位置。",
+    "sources": [
+      "80:6、8",
+      "40:4"
+    ],
+    "refs": [
+      "I10",
+      "M05"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G08"
+    ],
+    "feature_id": "N01-F096",
+    "new_location": "库存与法术 11",
+    "original_locations": [],
+    "effective_blockers": [
+      "G07",
+      "G08",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "I12",
+    "route": "库存与法术",
+    "summary": "法术确认与收起",
+    "body": "完成法术选择与本次技能确认后按元效果释放并收起法术列表；只占触发技能的机会、后摇及类别字母，法术名称或书页不单独追加行动槽字母；取消保持所有状态。",
+    "sources": [
+      "80:6、7",
+      "40:4",
+      "50:3.1"
+    ],
+    "refs": [
+      "I11",
+      "A01"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G08",
+      "G09"
+    ],
+    "feature_id": "N01-F097",
+    "new_location": "库存与法术 12",
+    "original_locations": [],
+    "effective_blockers": [
+      "G07",
+      "G08",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "I13",
+    "route": "库存与法术",
+    "summary": "关联任务物品离开提示",
+    "body": "固定战斗局部数据标记物品满足持续任务需求时，投掷等导致其离开角色前必须提示玩家；取消保持归属，确认才继续原动作。提示不建立委托事件流或额外失败规则。",
+    "sources": [
+      "ITEM:5.3"
+    ],
+    "refs": [
+      "I09"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G08"
+    ],
+    "feature_id": "N01-F098",
+    "new_location": "库存与法术 13",
+    "original_locations": [],
+    "effective_blockers": [
+      "G07",
+      "G08",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "Q01",
+    "route": "装备与遗物",
+    "summary": "普通装备槽适配",
+    "body": "用角色配置呈现固定普通槽位，Demo 各角色种类数量一致；穿戴前同时校验装备组件槽位适配与角色槽位状态，不适配时提示且保持原装备。遗物槽扩展不会增加普通槽。",
+    "sources": [
+      "60:2",
+      "TEAM:3.5"
+    ],
+    "refs": [
+      "C01",
+      "E01"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [],
+    "feature_id": "N01-F099",
+    "new_location": "装备与遗物 1",
+    "original_locations": [],
+    "effective_blockers": []
+  },
+  {
+    "key": "Q02",
+    "route": "装备与遗物",
+    "summary": "技能触发换装选择",
+    "body": "特殊技能触发一次装备栏调整，允许选择至多一次穿戴与一次卸下；超出次数或槽位不符时拒绝额外选择。普通装备栏可按输入的开放状态查看，战斗调整通过技能入口提交；配置全局开放冲突见 G13。",
+    "sources": [
+      "60:3、4",
+      "80:8"
+    ],
+    "refs": [
+      "Q01",
+      "M05"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G08",
+      "G13"
+    ],
+    "feature_id": "N01-F100",
+    "new_location": "装备与遗物 2",
+    "original_locations": [],
+    "effective_blockers": [
+      "G08",
+      "G09",
+      "G12",
+      "G13"
+    ]
+  },
+  {
+    "key": "Q03",
+    "route": "装备与遗物",
+    "summary": "确认换装即时生效",
+    "body": "确认该次技能的调整后，装备状态、属性、背包空间和遗物效果即时生效，退出调整状态并结束一次行动机会；时间轴和字母按触发技能配置，不增加独立换装行为。取消保持装备与状态。",
+    "sources": [
+      "60:3、6",
+      "85:3.4"
+    ],
+    "refs": [
+      "Q02",
+      "A01",
+      "T01"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G08",
+      "G09"
+    ],
+    "feature_id": "N01-F101",
+    "new_location": "装备与遗物 3",
+    "original_locations": [],
+    "effective_blockers": [
+      "G08",
+      "G09",
+      "G12",
+      "G13"
+    ]
+  },
+  {
+    "key": "Q04",
+    "route": "装备与遗物",
+    "summary": "卸下储物装备保留内容",
+    "body": "卸下储物装备时，内容按原格位随整件容器改变归属，其容器格停止贡献背包空间；目的载体无法接收时不提交，不自动转存或删除内部物。",
+    "sources": [
+      "60:5、6",
+      "OPS:ITEM-EQP-002"
+    ],
+    "refs": [
+      "Q03"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G08"
+    ],
+    "feature_id": "N01-F102",
+    "new_location": "装备与遗物 4",
+    "original_locations": [],
+    "effective_blockers": [
+      "G08",
+      "G09",
+      "G12",
+      "G13"
+    ]
+  },
+  {
+    "key": "Q05",
+    "route": "装备与遗物",
+    "summary": "遗物个体与全队启停",
+    "body": "遗物装备后角色范围效果仅作用于装备者，全队范围效果作用于全队；卸下该来源后相应对象效果移除，详情能识别来源与有效对象。正面与负面词条都使用元效果。",
+    "sources": [
+      "70:2、3",
+      "75:4"
+    ],
+    "refs": [
+      "Q03",
+      "F01"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G09"
+    ],
+    "feature_id": "N01-F103",
+    "new_location": "装备与遗物 5",
+    "original_locations": [],
+    "effective_blockers": [
+      "G08",
+      "G09",
+      "G12",
+      "G13"
+    ]
+  },
+  {
+    "key": "Q06",
+    "route": "装备与遗物",
+    "summary": "同名遗物强度裁决",
+    "body": "多个已装备遗物同名效果按效果标识及强度方向解释后只启用最强项，低强项仍保留装备状态；未配置方向按数值越高越强，负面词条及诅咒采用同套判定。",
+    "sources": [
+      "70:3、3.1"
+    ],
+    "refs": [
+      "Q05"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G09"
+    ],
+    "feature_id": "N01-F104",
+    "new_location": "装备与遗物 6",
+    "original_locations": [],
+    "effective_blockers": [
+      "G08",
+      "G09",
+      "G12",
+      "G13"
+    ]
+  },
+  {
+    "key": "Q07",
+    "route": "装备与遗物",
+    "summary": "最强来源卸下重算",
+    "body": "卸下生效的同名最强遗物后，立即在剩余同名来源中重新选最强并启用；其他不同名效果照常叠加且层数按配置，不凭系统名称另设上限。",
+    "sources": [
+      "70:3"
+    ],
+    "refs": [
+      "Q06"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G09"
+    ],
+    "feature_id": "N01-F105",
+    "new_location": "装备与遗物 7",
+    "original_locations": [],
+    "effective_blockers": [
+      "G08",
+      "G09",
+      "G12",
+      "G13"
+    ]
+  },
+  {
+    "key": "Q08",
+    "route": "装备与遗物",
+    "summary": "效果增加遗物槽",
+    "body": "配置的扩槽效果生效后增加可用遗物槽，普通槽种类数量保持；玩家查看新遗物槽并按适配规则装备。扩槽来源消失时占用槽如何处理待 G14。",
+    "sources": [
+      "60:2",
+      "70:2"
+    ],
+    "refs": [
+      "Q01"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G14",
+      "G09"
+    ],
+    "feature_id": "N01-F106",
+    "new_location": "装备与遗物 8",
+    "original_locations": [],
+    "effective_blockers": [
+      "G08",
+      "G09",
+      "G12",
+      "G13",
+      "G14"
+    ]
+  },
+  {
+    "key": "D01",
+    "route": "敌人ai",
+    "summary": "普通模板攻击",
+    "body": "轮到敌方且模板选择攻击时，按模板目标权重、资源条件及空间规则攻击合法目标，刷新受击单位状态并按后摇回排；不让玩家未确认预览改变敌方依据。",
+    "sources": [
+      "90:3.1、4"
+    ],
+    "refs": [
+      "n8",
+      "T01",
+      "F02"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G07",
+      "G09"
+    ],
+    "feature_id": "N01-F107",
+    "new_location": "敌人ai 2",
+    "original_locations": [],
+    "effective_blockers": [
+      "G07",
+      "G09"
+    ]
+  },
+  {
+    "key": "D02",
+    "route": "敌人ai",
+    "summary": "普通模板移动",
+    "body": "模板选择移动时按战场可达与地形限制移位，结束后回排；无可达路线时按已提供模板的合法行为处理，不自行设计追击兜底。",
+    "sources": [
+      "90:3.1、4"
+    ],
+    "refs": [
+      "n17",
+      "T01"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G09"
+    ],
+    "feature_id": "N01-F108",
+    "new_location": "敌人ai 3",
+    "original_locations": [],
+    "effective_blockers": [
+      "G07",
+      "G09"
+    ]
+  },
+  {
+    "key": "D03",
+    "route": "敌人ai",
+    "summary": "普通模板能力",
+    "body": "模板条件允许使用能力时，对模板定义目标执行配置效果并按该动作后摇回排；资源不足时不能执行该能力。具体模板内容待 G09。",
+    "sources": [
+      "90:3.1、4"
+    ],
+    "refs": [
+      "F01",
+      "T01"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G09"
+    ],
+    "feature_id": "N01-F109",
+    "new_location": "敌人ai 4",
+    "original_locations": [],
+    "effective_blockers": [
+      "G07",
+      "G09"
+    ]
+  },
+  {
+    "key": "D04",
+    "route": "敌人ai",
+    "summary": "普通模板防御",
+    "body": "模板选择防御时进入配置防御状态并结束敌方机会；敌方按共享时间轴继续行动，敌方不使用我方行动槽连携。",
+    "sources": [
+      "90:3.1、6"
+    ],
+    "refs": [
+      "n7",
+      "T01"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G09"
+    ],
+    "feature_id": "N01-F110",
+    "new_location": "敌人ai 5",
+    "original_locations": [],
+    "effective_blockers": [
+      "G07",
+      "G09"
+    ]
+  },
+  {
+    "key": "D05",
+    "route": "敌人ai",
+    "summary": "破招视觉预告",
+    "body": "模板准备破招时在执行前显示针对目标及行为预告，使玩家能据此选技能或调整阵位；具体形态与时点规格待 G12，不能仅用命中后日志代替。",
+    "sources": [
+      "90:3.2"
+    ],
+    "refs": [
+      "A04",
+      "n14"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G09",
+      "G12"
+    ],
+    "feature_id": "N01-F111",
+    "new_location": "敌人ai 6",
+    "original_locations": [],
+    "effective_blockers": [
+      "G02",
+      "G07",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "D06",
+    "route": "敌人ai",
+    "summary": "破招命中打断",
+    "body": "破招命中正在构建连携的我方单位时按打断规则清空已积累序列，详情显示打断结果；未命中时不作命中打断。与 M 延迟清空的具体关系以及触发判定待 G02。",
+    "sources": [
+      "90:3.2、5"
+    ],
+    "refs": [
+      "D05",
+      "A03"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G02",
+      "G09"
+    ],
+    "feature_id": "N01-F112",
+    "new_location": "敌人ai 7",
+    "original_locations": [],
+    "effective_blockers": [
+      "G02",
+      "G07",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "D07",
+    "route": "敌人ai",
+    "summary": "读招依据已提交记录",
+    "body": "具备读招能力的敌人只以本次战斗已提交行动记录为依据，按模板选针对行为并给视觉预告；我方悬浮、改选与取消不进入读招记录。",
+    "sources": [
+      "90:3.3、4"
+    ],
+    "refs": [
+      "D01",
+      "T03"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G09",
+      "G12"
+    ],
+    "feature_id": "N01-F113",
+    "new_location": "敌人ai 8",
+    "original_locations": [],
+    "effective_blockers": [
+      "G02",
+      "G07",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "D08",
+    "route": "敌人ai",
+    "summary": "敌方配置撤退",
+    "body": "配置会撤退的敌人满足模板条件时在模板时机撤退并按模板声明更新战斗结果；无撤退配置的敌人不主动脱离。与目标和多波次结束关系待 G01。",
+    "sources": [
+      "90:3.4、4"
+    ],
+    "refs": [
+      "R02"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G01",
+      "G09"
+    ],
+    "feature_id": "N01-F114",
+    "new_location": "敌人ai 9",
+    "original_locations": [],
+    "effective_blockers": [
+      "G01",
+      "G02",
+      "G07",
+      "G08",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "D09",
+    "route": "敌人ai",
+    "summary": "后续波次连续刷新",
+    "body": "按战斗配置触发后续敌波刷新到既有战场，玩家保持战斗界面；波间不结算、行动槽与时间轴不重置，战斗中不加入新的我方单位。最后敌人清除但后续波未出场的结束边界待 G01。",
+    "sources": [
+      "90:3.5",
+      "30:3.8"
+    ],
+    "refs": [
+      "E01",
+      "A01",
+      "T01"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G01",
+      "G09"
+    ],
+    "feature_id": "N01-F115",
+    "new_location": "敌人ai 10",
+    "original_locations": [],
+    "effective_blockers": [
+      "G01",
+      "G02",
+      "G07",
+      "G08",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "W01",
+    "route": "场景搜刮",
+    "summary": "战斗中容器搜刮",
+    "body": "当前行动者选择可达、有可取物的场地容器或敌方遗体并确认搜刮，打开容器让玩家手动转移所需物到自己背包；未取走物保留。搜刮独立占一次机会、追加 M、后摇与移动一致。不可达或无物提示且不提交；一次搜刮多次转移提交边界见 G08。",
+    "sources": [
+      "30:3.5、3.6",
+      "BHV:BHV-INTERACT-001"
+    ],
+    "refs": [
+      "C12",
+      "M01",
+      "A03",
+      "T01"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G08",
+      "G09"
+    ],
+    "feature_id": "N01-F116",
+    "new_location": "场景搜刮 1",
+    "original_locations": [],
+    "effective_blockers": [
+      "G02",
+      "G08",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "W02",
+    "route": "场景搜刮",
+    "summary": "场景交互点",
+    "body": "当前行动者选择可达且启用的交互点并确认后执行配置战场效果；一次机会、追加 M 且后摇与移动一致，交互点状态更新。禁用或不可达时提示并保持状态。",
+    "sources": [
+      "BHV:BHV-INTERACT-002",
+      "30:3.6"
+    ],
+    "refs": [
+      "M01",
+      "A03",
+      "F01",
+      "T01"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G09"
+    ],
+    "feature_id": "N01-F117",
+    "new_location": "场景搜刮 2",
+    "original_locations": [],
+    "effective_blockers": [
+      "G02",
+      "G08",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "W03",
+    "route": "场景搜刮",
+    "summary": "场地道具可拾取判定",
+    "body": "按每件场地道具的可拾取、是否生成实例与结束处理配置判定；不可拾取时给原因，可拾取者确认后按配置生成物品或更新道具状态。具体动作归类与成本见 G08，不擅自一律当免费拾取。",
+    "sources": [
+      "30:3.5"
+    ],
+    "refs": [
+      "C01",
+      "W02"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G08",
+      "G09"
+    ],
+    "feature_id": "N01-F118",
+    "new_location": "场景搜刮 3",
+    "original_locations": [],
+    "effective_blockers": [
+      "G02",
+      "G08",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "W04",
+    "route": "场景搜刮",
+    "summary": "危险地形战斗结算",
+    "body": "单位进入配置危险地形或可通行特殊地形时，按其通行与效果规则在战斗阶段结算并显示状态变化；地形不另行推进世界时间或设地图旅行机制，时点与脱离移除见 G07。",
+    "sources": [
+      "30:3.4",
+      "GLOBAL:二 18"
+    ],
+    "refs": [
+      "n5",
+      "F01"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G07",
+      "G09"
+    ],
+    "feature_id": "N01-F119",
+    "new_location": "场景搜刮 4",
+    "original_locations": [],
+    "effective_blockers": [
+      "G02",
+      "G07",
+      "G08",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "W05",
+    "route": "场景搜刮",
+    "summary": "高低差射程影响",
+    "body": "选择不同高度的目标时，射程按战场与技能配置的高低差规则判定，合法范围预览与提交结果一致；具体格距与高度修正规则待 G09。",
+    "sources": [
+      "30:3.4"
+    ],
+    "refs": [
+      "M05"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G09"
+    ],
+    "feature_id": "N01-F120",
+    "new_location": "场景搜刮 5",
+    "original_locations": [],
+    "effective_blockers": [
+      "G02",
+      "G07",
+      "G08",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "W06",
+    "route": "场景搜刮",
+    "summary": "高低差伤害影响",
+    "body": "确认对不同高度目标攻击时，伤害按配置高低差规则修正并反馈最终结果；射程合法不代表伤害无高度修正。",
+    "sources": [
+      "30:3.4"
+    ],
+    "refs": [
+      "W05",
+      "F02"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G07",
+      "G09"
+    ],
+    "feature_id": "N01-F121",
+    "new_location": "场景搜刮 6",
+    "original_locations": [],
+    "effective_blockers": [
+      "G02",
+      "G07",
+      "G08",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "W07",
+    "route": "场景搜刮",
+    "summary": "定向掩体防护",
+    "body": "来自配置指定方向的攻击按掩体规则提供防护，其他方向按配置判定；只有阻碍属性的对象限制路径而不提供额外防护。方向和防护量待 G09。",
+    "sources": [
+      "30:3.4"
+    ],
+    "refs": [
+      "n3",
+      "F02"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G07",
+      "G09"
+    ],
+    "feature_id": "N01-F122",
+    "new_location": "场景搜刮 7",
+    "original_locations": [],
+    "effective_blockers": [
+      "G02",
+      "G07",
+      "G08",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "R01",
+    "route": "目标与战斗退出",
+    "summary": "显式目标与进度",
+    "body": "启动后展示配置中的显式目标条件；已确认的击杀、搜刮或场景状态改变即时更新相关目标进度。隐藏目标不在启动时按显式目标公开，发现与显示时点待 G01。",
+    "sources": [
+      "A0:3.1",
+      "30:3.3"
+    ],
+    "refs": [
+      "E01",
+      "W01",
+      "W02",
+      "D01"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G01",
+      "G09"
+    ],
+    "feature_id": "N01-F123",
+    "new_location": "目标与战斗退出 1",
+    "original_locations": [],
+    "effective_blockers": [
+      "G01",
+      "G02",
+      "G07",
+      "G08",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "R02",
+    "route": "目标与战斗退出",
+    "summary": "目标失效判定",
+    "body": "配置目标因目标对象消灭、道具破坏或其他失效条件不可达成时即时标为失败；全部目标失败可触发失败收场，未全部失败的目标继续跟踪。与任一目标达成和全队失能的优先关系见 G01。",
+    "sources": [
+      "A0:3.2"
+    ],
+    "refs": [
+      "R01"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G01",
+      "G09"
+    ],
+    "feature_id": "N01-F124",
+    "new_location": "目标与战斗退出 2",
+    "original_locations": [],
+    "effective_blockers": [
+      "G01",
+      "G02",
+      "G07",
+      "G08",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "R03",
+    "route": "目标与战斗退出",
+    "summary": "玩家撤退条件",
+    "body": "玩家主动选择撤退时先检查配置条件，满足后确认消耗一次机会、按撤退类别追加字母及后摇并退出战斗；条件不满足时提示原因且不提交。外部事件锁定与地图导航延期。",
+    "sources": [
+      "A0:3.3",
+      "BHV:BHV-RETREAT-001"
+    ],
+    "refs": [
+      "n27",
+      "T01"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G09"
+    ],
+    "feature_id": "N01-F125",
+    "new_location": "目标与战斗退出 3",
+    "original_locations": [],
+    "effective_blockers": [
+      "G01",
+      "G02",
+      "G07",
+      "G08",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "R04",
+    "route": "目标与战斗退出",
+    "summary": "撤退状态保留",
+    "body": "撤退成功时在战斗局部结果中保留敌人当时状态和位置、玩家已取战利品归属及本次净时长，供未来外部重入承接；已获取物不因撤退丢失。重新进入地图事件不在本阶段实现。",
+    "sources": [
+      "A0:3.3",
+      "BHV:BHV-RETREAT-001"
+    ],
+    "refs": [
+      "R03",
+      "n21",
+      "C01"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [],
+    "feature_id": "N01-F126",
+    "new_location": "目标与战斗退出 4",
+    "original_locations": [],
+    "effective_blockers": [
+      "G01",
+      "G02",
+      "G07",
+      "G08",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "R05",
+    "route": "目标与战斗退出",
+    "summary": "目标濒临失败预警",
+    "body": "关键目标状态达到配置预警阈值时，向玩家呈现具体风险原因；防御性行动改变状态后提示与当前风险同步。目标阈值不由本图赋值。",
+    "sources": [
+      "A0:3.2、5"
+    ],
+    "refs": [
+      "R02",
+      "H03"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G09",
+      "G12"
+    ],
+    "feature_id": "N01-F127",
+    "new_location": "目标与战斗退出 5",
+    "original_locations": [],
+    "effective_blockers": [
+      "G01",
+      "G02",
+      "G03",
+      "G07",
+      "G08",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "R06",
+    "route": "目标与战斗退出",
+    "summary": "目标达成与结束门槛",
+    "body": "已提交状态满足目标时记录达成；任一达成立即结束、达标可继续以及敌方全灭但目标未达成的冲突列 G01。此节点保留必要的结束判定落点，裁定前不能以任意一种选择验收通过。",
+    "sources": [
+      "A0:3.2、3.3"
+    ],
+    "refs": [
+      "R02"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G01"
+    ],
+    "feature_id": "N01-F128",
+    "new_location": "目标与战斗退出 6",
+    "original_locations": [],
+    "effective_blockers": [
+      "G01",
+      "G02",
+      "G03",
+      "G07",
+      "G08",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "R07",
+    "route": "目标与战斗退出",
+    "summary": "全队失能立即终止",
+    "body": "检测整支队伍同时失去行动能力时立即结束战斗，并在结果携带结束本局判定；主角单独失能不等同全队。普通战斗失败不附带结束本局判定。并发目标优先顺序待 G01。",
+    "sources": [
+      "10:3.2",
+      "A0:3.4"
+    ],
+    "refs": [
+      "H01",
+      "R06"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G01",
+      "G03"
+    ],
+    "feature_id": "N01-F129",
+    "new_location": "目标与战斗退出 7",
+    "original_locations": [],
+    "effective_blockers": [
+      "G01",
+      "G02",
+      "G03",
+      "G07",
+      "G08",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "R08",
+    "route": "目标与战斗退出",
+    "summary": "结果标识与目标清单",
+    "body": "战斗结束时依据已提交状态评价目标，按配置从结束方式、达成数量和具体目标确定结果标识，呈现结果及达成目标清单；战斗结束不自动发物，外部解锁及后续事件查询延期。",
+    "sources": [
+      "A0:3.2、3.5、3.6"
+    ],
+    "refs": [
+      "R06",
+      "R07",
+      "R04"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G01",
+      "G09"
+    ],
+    "feature_id": "N01-F130",
+    "new_location": "目标与战斗退出 8",
+    "original_locations": [],
+    "effective_blockers": [
+      "G01",
+      "G02",
+      "G03",
+      "G07",
+      "G08",
+      "G09",
+      "G12"
+    ]
+  },
+  {
+    "key": "Z01",
+    "route": "战斗收尾",
+    "summary": "进入安全收尾窗口",
+    "body": "适用结束原因发生后，进入地图之外的安全收尾窗口；窗口内停止敌方行动，不推进世界时间、不消耗行动机会且不限时。撤退与全队失能等结束原因的适用性待 G10。",
+    "sources": [
+      "30:3.7",
+      "A0:3.5、4"
+    ],
+    "refs": [
+      "R08"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G10"
+    ],
+    "feature_id": "N01-F131",
+    "new_location": "战斗收尾 1",
+    "original_locations": [],
+    "effective_blockers": [
+      "G01",
+      "G02",
+      "G03",
+      "G07",
+      "G08",
+      "G09",
+      "G10",
+      "G12"
+    ]
+  },
+  {
+    "key": "Z02",
+    "route": "战斗收尾",
+    "summary": "收尾手动搜刮",
+    "body": "收尾窗口内打开场地容器或敌方遗体，手动转移需要的物品，未取走的保留；使用同一容器操作，且不消耗行动机会。遗体内容由预置局部配置提供，正式生成及持久化待内容设计。",
+    "sources": [
+      "30:3.5、3.7",
+      "A0:3.5"
+    ],
+    "refs": [
+      "Z01",
+      "C12",
+      "W01"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G08",
+      "G10"
+    ],
+    "feature_id": "N01-F132",
+    "new_location": "战斗收尾 2",
+    "original_locations": [],
+    "effective_blockers": [
+      "G01",
+      "G02",
+      "G03",
+      "G07",
+      "G08",
+      "G09",
+      "G10",
+      "G12"
+    ]
+  },
+  {
+    "key": "Z03",
+    "route": "战斗收尾",
+    "summary": "收尾拾取落地物",
+    "body": "投掷形成的落地物在战斗结束后仍保留，玩家可在适用收尾窗口拾取；沿用自动装载与溢出确认，不以结束战斗为由自动清除。",
+    "sources": [
+      "80:5",
+      "ITEM:5.1"
+    ],
+    "refs": [
+      "Z01",
+      "C15",
+      "I09"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G08",
+      "G10"
+    ],
+    "feature_id": "N01-F133",
+    "new_location": "战斗收尾 3",
+    "original_locations": [],
+    "effective_blockers": [
+      "G01",
+      "G02",
+      "G03",
+      "G07",
+      "G08",
+      "G09",
+      "G10",
+      "G12"
+    ]
+  },
+  {
+    "key": "Z04",
+    "route": "战斗收尾",
+    "summary": "收尾治疗",
+    "body": "适用窗口允许治疗，按已有恢复途径与配置物资处理生命和伤势；治疗不占行动机会、不推进世界时间。伤势不会仅因结束自动清除，处理效果及资源配置待 G03/G09，世界时间恢复延期。",
+    "sources": [
+      "10:3.2",
+      "30:3.7"
+    ],
+    "refs": [
+      "Z01",
+      "H02",
+      "I03"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G03",
+      "G09",
+      "G10"
+    ],
+    "feature_id": "N01-F134",
+    "new_location": "战斗收尾 4",
+    "original_locations": [],
+    "effective_blockers": [
+      "G01",
+      "G02",
+      "G03",
+      "G07",
+      "G08",
+      "G09",
+      "G10",
+      "G12"
+    ]
+  },
+  {
+    "key": "Z05",
+    "route": "战斗收尾",
+    "summary": "收尾整备",
+    "body": "适用窗口内可按战斗外容器与装备规则整理物品、装备和法术书，已装备容器变化更新可用空间与效果；不占战斗机会。窗口开放权限冲突待 G13。",
+    "sources": [
+      "30:3.7",
+      "60:3、5、7"
+    ],
+    "refs": [
+      "Z01",
+      "Q04",
+      "I10",
+      "C12"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G10",
+      "G13"
+    ],
+    "feature_id": "N01-F135",
+    "new_location": "战斗收尾 5",
+    "original_locations": [],
+    "effective_blockers": [
+      "G01",
+      "G02",
+      "G03",
+      "G07",
+      "G08",
+      "G09",
+      "G10",
+      "G12",
+      "G13"
+    ]
+  },
+  {
+    "key": "Z06",
+    "route": "战斗收尾",
+    "summary": "结束处理场地道具",
+    "body": "战斗结束时逐件按配置的处理方式更新场地道具；投掷落地物遵守其保留规则，结束方式与场景载体冲突待 G10，具体道具配置待 G09。",
+    "sources": [
+      "30:3.5",
+      "ITEM:5.1"
+    ],
+    "refs": [
+      "Z01",
+      "W03"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G09",
+      "G10"
+    ],
+    "feature_id": "N01-F136",
+    "new_location": "战斗收尾 6",
+    "original_locations": [],
+    "effective_blockers": [
+      "G01",
+      "G02",
+      "G03",
+      "G07",
+      "G08",
+      "G09",
+      "G10",
+      "G12",
+      "G13"
+    ]
+  },
+  {
+    "key": "Z07",
+    "route": "战斗收尾",
+    "summary": "收尾关闭与局部出口",
+    "body": "玩家完成适用收尾窗口后关闭，呈现本阶段局部战斗结果与最终玩家物品及单位状态；正式返回地图、推进世界时间、事件分支和元进度写入由延期模块承接。该出口作为隔离外部系统的验收观察，不新增玩法选择。",
+    "sources": [
+      "30:3.7",
+      "A0:3.6"
+    ],
+    "refs": [
+      "Z02",
+      "Z03",
+      "Z04",
+      "Z05",
+      "Z06"
+    ],
+    "original": [],
+    "prior": "没有落点",
+    "blockers": [
+      "G10"
+    ],
+    "feature_id": "N01-F137",
+    "new_location": "战斗收尾 7",
+    "original_locations": [],
+    "effective_blockers": [
+      "G01",
+      "G02",
+      "G03",
+      "G07",
+      "G08",
+      "G09",
+      "G10",
+      "G12",
+      "G13"
+    ]
+  }
+]

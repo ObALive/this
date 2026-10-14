@@ -1,0 +1,2152 @@
+{
+  "time": "2026-10-14T22:08:26.958237+08:00",
+  "before": {
+    "sections": 19,
+    "nodes": 145,
+    "edges": 309,
+    "chain_edges": 127,
+    "explicit_edges": 210,
+    "errors": 0,
+    "warnings": 0,
+    "infos": 8,
+    "objects": 10,
+    "objects_with_path": 3,
+    "unresolved_refs": 0,
+    "root_nodes": 4
+  },
+  "after": {
+    "sections": 19,
+    "nodes": 145,
+    "edges": 245,
+    "chain_edges": 127,
+    "explicit_edges": 118,
+    "errors": 0,
+    "warnings": 0,
+    "infos": 8,
+    "objects": 10,
+    "objects_with_path": 3,
+    "unresolved_refs": 0,
+    "root_nodes": 4
+  },
+  "removed_refs": 92,
+  "changed_nodes": 72,
+  "reasons": {
+    "同一其他路线只保留最末依赖": 10,
+    "本路线自动递进已包含该上游": 55,
+    "直接上游已依赖，或其所依赖节点的直接上游已包含": 27
+  },
+  "all_ancestor_sets_equal": true,
+  "passes": 2,
+  "removed": [
+    {
+      "node": "战斗进入与布置 1",
+      "dependency": "角色行为/角色属性 1",
+      "raw": "角色属性1",
+      "reason": "同一其他路线只保留最末依赖",
+      "witness": [
+        "战斗进入与布置 1",
+        "角色行为/角色属性 2",
+        "角色行为/角色属性 1"
+      ]
+    },
+    {
+      "node": "战斗进入与布置 3",
+      "dependency": "角色行为/角色技能 5",
+      "raw": "角色技能5",
+      "reason": "同一其他路线只保留最末依赖",
+      "witness": [
+        "战斗进入与布置 3",
+        "角色行为/角色技能 7",
+        "角色行为/角色技能 5"
+      ]
+    },
+    {
+      "node": "行为交互 1",
+      "dependency": "瓦片地图 3",
+      "raw": "瓦片地图3",
+      "reason": "同一其他路线只保留最末依赖",
+      "witness": [
+        "行为交互 1",
+        "瓦片地图 4",
+        "瓦片地图 3"
+      ]
+    },
+    {
+      "node": "行动槽规则 1",
+      "dependency": "角色行为/角色技能 2",
+      "raw": "角色技能2",
+      "reason": "同一其他路线只保留最末依赖",
+      "witness": [
+        "行动槽规则 1",
+        "角色行为/角色技能 5",
+        "角色行为/角色技能 2"
+      ]
+    },
+    {
+      "node": "目标与战斗退出 1",
+      "dependency": "场景搜刮 1",
+      "raw": "场景搜刮1",
+      "reason": "同一其他路线只保留最末依赖",
+      "witness": [
+        "目标与战斗退出 1",
+        "场景搜刮 2",
+        "场景搜刮 1"
+      ]
+    },
+    {
+      "node": "目标与战斗退出 6",
+      "dependency": "目标类型与持续战斗 1",
+      "raw": "目标类型与持续战斗1",
+      "reason": "同一其他路线只保留最末依赖",
+      "witness": [
+        "目标与战斗退出 6",
+        "目标类型与持续战斗 5",
+        "目标类型与持续战斗 1"
+      ]
+    },
+    {
+      "node": "目标与战斗退出 6",
+      "dependency": "目标类型与持续战斗 2",
+      "raw": "目标类型与持续战斗2",
+      "reason": "同一其他路线只保留最末依赖",
+      "witness": [
+        "目标与战斗退出 6",
+        "目标类型与持续战斗 5",
+        "目标类型与持续战斗 2"
+      ]
+    },
+    {
+      "node": "目标与战斗退出 6",
+      "dependency": "目标类型与持续战斗 3",
+      "raw": "目标类型与持续战斗3",
+      "reason": "同一其他路线只保留最末依赖",
+      "witness": [
+        "目标与战斗退出 6",
+        "目标类型与持续战斗 5",
+        "目标类型与持续战斗 3"
+      ]
+    },
+    {
+      "node": "目标与战斗退出 6",
+      "dependency": "目标类型与持续战斗 4",
+      "raw": "目标类型与持续战斗4",
+      "reason": "同一其他路线只保留最末依赖",
+      "witness": [
+        "目标与战斗退出 6",
+        "目标类型与持续战斗 5",
+        "目标类型与持续战斗 4"
+      ]
+    },
+    {
+      "node": "目标类型与持续战斗 1",
+      "dependency": "敌人ai 2",
+      "raw": "敌人ai2",
+      "reason": "同一其他路线只保留最末依赖",
+      "witness": [
+        "目标类型与持续战斗 1",
+        "敌人ai 10",
+        "敌人ai 2"
+      ]
+    },
+    {
+      "node": "敌人ai 7",
+      "dependency": "敌人ai 6",
+      "raw": "敌人ai6",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "敌人ai 7",
+        "敌人ai 6"
+      ]
+    },
+    {
+      "node": "敌人ai 8",
+      "dependency": "敌人ai 2",
+      "raw": "敌人ai2",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "敌人ai 8",
+        "敌人ai 2"
+      ]
+    },
+    {
+      "node": "战斗进入与布置 6",
+      "dependency": "战斗进入与布置 3",
+      "raw": "战斗进入与布置3",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "战斗进入与布置 6",
+        "战斗进入与布置 3"
+      ]
+    },
+    {
+      "node": "行为交互 2",
+      "dependency": "行为交互 1",
+      "raw": "行为交互1",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "行为交互 2",
+        "行为交互 1"
+      ]
+    },
+    {
+      "node": "行为交互 5",
+      "dependency": "行为交互 4",
+      "raw": "行为交互4",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "行为交互 5",
+        "行为交互 4"
+      ]
+    },
+    {
+      "node": "行动槽规则 2",
+      "dependency": "行动槽规则 1",
+      "raw": "行动槽规则1",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "行动槽规则 2",
+        "行动槽规则 1"
+      ]
+    },
+    {
+      "node": "行动槽规则 6",
+      "dependency": "行动槽规则 5",
+      "raw": "行动槽规则5",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "行动槽规则 6",
+        "行动槽规则 5"
+      ]
+    },
+    {
+      "node": "效果结算 3",
+      "dependency": "效果结算 2",
+      "raw": "效果结算2",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "效果结算 3",
+        "效果结算 2"
+      ]
+    },
+    {
+      "node": "效果结算 4",
+      "dependency": "效果结算 1",
+      "raw": "效果结算1",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "效果结算 4",
+        "效果结算 1"
+      ]
+    },
+    {
+      "node": "效果结算 6",
+      "dependency": "效果结算 2",
+      "raw": "效果结算2",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "效果结算 6",
+        "效果结算 2"
+      ]
+    },
+    {
+      "node": "效果结算 7",
+      "dependency": "效果结算 4",
+      "raw": "效果结算4",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "效果结算 7",
+        "效果结算 4"
+      ]
+    },
+    {
+      "node": "效果结算 8",
+      "dependency": "效果结算 1",
+      "raw": "效果结算1",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "效果结算 8",
+        "效果结算 1"
+      ]
+    },
+    {
+      "node": "效果结算 9",
+      "dependency": "效果结算 1",
+      "raw": "效果结算1",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "效果结算 9",
+        "效果结算 1"
+      ]
+    },
+    {
+      "node": "战斗容器操作 2",
+      "dependency": "战斗容器操作 1",
+      "raw": "战斗容器操作1",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "战斗容器操作 2",
+        "战斗容器操作 1"
+      ]
+    },
+    {
+      "node": "战斗容器操作 12",
+      "dependency": "战斗容器操作 11",
+      "raw": "战斗容器操作11",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "战斗容器操作 12",
+        "战斗容器操作 11"
+      ]
+    },
+    {
+      "node": "战斗容器操作 15",
+      "dependency": "战斗容器操作 14",
+      "raw": "战斗容器操作14",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "战斗容器操作 15",
+        "战斗容器操作 14"
+      ]
+    },
+    {
+      "node": "库存与法术 2",
+      "dependency": "库存与法术 1",
+      "raw": "库存与法术1",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "库存与法术 2",
+        "库存与法术 1"
+      ]
+    },
+    {
+      "node": "库存与法术 3",
+      "dependency": "库存与法术 2",
+      "raw": "库存与法术2",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "库存与法术 3",
+        "库存与法术 2"
+      ]
+    },
+    {
+      "node": "库存与法术 4",
+      "dependency": "库存与法术 1",
+      "raw": "库存与法术1",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "库存与法术 4",
+        "库存与法术 1"
+      ]
+    },
+    {
+      "node": "库存与法术 5",
+      "dependency": "库存与法术 4",
+      "raw": "库存与法术4",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "库存与法术 5",
+        "库存与法术 4"
+      ]
+    },
+    {
+      "node": "库存与法术 6",
+      "dependency": "库存与法术 4",
+      "raw": "库存与法术4",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "库存与法术 6",
+        "库存与法术 4"
+      ]
+    },
+    {
+      "node": "库存与法术 7",
+      "dependency": "库存与法术 5",
+      "raw": "库存与法术5",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "库存与法术 7",
+        "库存与法术 5"
+      ]
+    },
+    {
+      "node": "库存与法术 7",
+      "dependency": "库存与法术 6",
+      "raw": "库存与法术6",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "库存与法术 7",
+        "库存与法术 6"
+      ]
+    },
+    {
+      "node": "库存与法术 8",
+      "dependency": "库存与法术 4",
+      "raw": "库存与法术4",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "库存与法术 8",
+        "库存与法术 4"
+      ]
+    },
+    {
+      "node": "库存与法术 9",
+      "dependency": "库存与法术 4",
+      "raw": "库存与法术4",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "库存与法术 9",
+        "库存与法术 4"
+      ]
+    },
+    {
+      "node": "库存与法术 11",
+      "dependency": "库存与法术 10",
+      "raw": "库存与法术10",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "库存与法术 11",
+        "库存与法术 10"
+      ]
+    },
+    {
+      "node": "库存与法术 12",
+      "dependency": "库存与法术 11",
+      "raw": "库存与法术11",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "库存与法术 12",
+        "库存与法术 11"
+      ]
+    },
+    {
+      "node": "库存与法术 13",
+      "dependency": "库存与法术 9",
+      "raw": "库存与法术9",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "库存与法术 13",
+        "库存与法术 9"
+      ]
+    },
+    {
+      "node": "装备与遗物 2",
+      "dependency": "装备与遗物 1",
+      "raw": "装备与遗物1",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "装备与遗物 2",
+        "装备与遗物 1"
+      ]
+    },
+    {
+      "node": "装备与遗物 3",
+      "dependency": "装备与遗物 2",
+      "raw": "装备与遗物2",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "装备与遗物 3",
+        "装备与遗物 2"
+      ]
+    },
+    {
+      "node": "装备与遗物 4",
+      "dependency": "装备与遗物 3",
+      "raw": "装备与遗物3",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "装备与遗物 4",
+        "装备与遗物 3"
+      ]
+    },
+    {
+      "node": "装备与遗物 5",
+      "dependency": "装备与遗物 3",
+      "raw": "装备与遗物3",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "装备与遗物 5",
+        "装备与遗物 3"
+      ]
+    },
+    {
+      "node": "装备与遗物 6",
+      "dependency": "装备与遗物 5",
+      "raw": "装备与遗物5",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "装备与遗物 6",
+        "装备与遗物 5"
+      ]
+    },
+    {
+      "node": "装备与遗物 7",
+      "dependency": "装备与遗物 6",
+      "raw": "装备与遗物6",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "装备与遗物 7",
+        "装备与遗物 6"
+      ]
+    },
+    {
+      "node": "装备与遗物 8",
+      "dependency": "装备与遗物 1",
+      "raw": "装备与遗物1",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "装备与遗物 8",
+        "装备与遗物 1"
+      ]
+    },
+    {
+      "node": "场景搜刮 3",
+      "dependency": "场景搜刮 2",
+      "raw": "场景搜刮2",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "场景搜刮 3",
+        "场景搜刮 2"
+      ]
+    },
+    {
+      "node": "场景搜刮 6",
+      "dependency": "场景搜刮 5",
+      "raw": "场景搜刮5",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "场景搜刮 6",
+        "场景搜刮 5"
+      ]
+    },
+    {
+      "node": "目标与战斗退出 2",
+      "dependency": "目标与战斗退出 1",
+      "raw": "目标与战斗退出1",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "目标与战斗退出 2",
+        "目标与战斗退出 1"
+      ]
+    },
+    {
+      "node": "目标与战斗退出 4",
+      "dependency": "目标与战斗退出 3",
+      "raw": "目标与战斗退出3",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "目标与战斗退出 4",
+        "目标与战斗退出 3"
+      ]
+    },
+    {
+      "node": "目标与战斗退出 5",
+      "dependency": "目标与战斗退出 2",
+      "raw": "目标与战斗退出2",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "目标与战斗退出 5",
+        "目标与战斗退出 2"
+      ]
+    },
+    {
+      "node": "目标与战斗退出 6",
+      "dependency": "目标与战斗退出 2",
+      "raw": "目标与战斗退出2",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "目标与战斗退出 6",
+        "目标与战斗退出 2"
+      ]
+    },
+    {
+      "node": "目标与战斗退出 7",
+      "dependency": "目标与战斗退出 6",
+      "raw": "目标与战斗退出6",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "目标与战斗退出 7",
+        "目标与战斗退出 6"
+      ]
+    },
+    {
+      "node": "目标与战斗退出 8",
+      "dependency": "目标与战斗退出 6",
+      "raw": "目标与战斗退出6",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "目标与战斗退出 8",
+        "目标与战斗退出 6"
+      ]
+    },
+    {
+      "node": "目标与战斗退出 8",
+      "dependency": "目标与战斗退出 7",
+      "raw": "目标与战斗退出7",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "目标与战斗退出 8",
+        "目标与战斗退出 7"
+      ]
+    },
+    {
+      "node": "目标与战斗退出 8",
+      "dependency": "目标与战斗退出 4",
+      "raw": "目标与战斗退出4",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "目标与战斗退出 8",
+        "目标与战斗退出 4"
+      ]
+    },
+    {
+      "node": "战斗收尾 2",
+      "dependency": "战斗收尾 1",
+      "raw": "战斗收尾1",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "战斗收尾 2",
+        "战斗收尾 1"
+      ]
+    },
+    {
+      "node": "战斗收尾 3",
+      "dependency": "战斗收尾 1",
+      "raw": "战斗收尾1",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "战斗收尾 3",
+        "战斗收尾 1"
+      ]
+    },
+    {
+      "node": "战斗收尾 4",
+      "dependency": "战斗收尾 1",
+      "raw": "战斗收尾1",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "战斗收尾 4",
+        "战斗收尾 1"
+      ]
+    },
+    {
+      "node": "战斗收尾 5",
+      "dependency": "战斗收尾 1",
+      "raw": "战斗收尾1",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "战斗收尾 5",
+        "战斗收尾 1"
+      ]
+    },
+    {
+      "node": "战斗收尾 6",
+      "dependency": "战斗收尾 1",
+      "raw": "战斗收尾1",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "战斗收尾 6",
+        "战斗收尾 1"
+      ]
+    },
+    {
+      "node": "战斗收尾 7",
+      "dependency": "战斗收尾 2",
+      "raw": "战斗收尾2",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "战斗收尾 7",
+        "战斗收尾 2"
+      ]
+    },
+    {
+      "node": "战斗收尾 7",
+      "dependency": "战斗收尾 3",
+      "raw": "战斗收尾3",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "战斗收尾 7",
+        "战斗收尾 3"
+      ]
+    },
+    {
+      "node": "战斗收尾 7",
+      "dependency": "战斗收尾 4",
+      "raw": "战斗收尾4",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "战斗收尾 7",
+        "战斗收尾 4"
+      ]
+    },
+    {
+      "node": "战斗收尾 7",
+      "dependency": "战斗收尾 5",
+      "raw": "战斗收尾5",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "战斗收尾 7",
+        "战斗收尾 5"
+      ]
+    },
+    {
+      "node": "战斗收尾 7",
+      "dependency": "战斗收尾 6",
+      "raw": "战斗收尾6",
+      "reason": "本路线自动递进已包含该上游",
+      "witness": [
+        "战斗收尾 7",
+        "战斗收尾 6"
+      ]
+    },
+    {
+      "node": "时间轴 1",
+      "dependency": "角色行为/角色属性 1",
+      "raw": "角色属性1",
+      "reason": "直接上游已依赖，或其所依赖节点的直接上游已包含",
+      "witness": [
+        "时间轴 1",
+        "角色行为/角色移动 1",
+        "角色行为/角色属性 1"
+      ]
+    },
+    {
+      "node": "敌人ai 2",
+      "dependency": "角色行为/角色技能 3",
+      "raw": "角色技能3",
+      "reason": "直接上游已依赖，或其所依赖节点的直接上游已包含",
+      "witness": [
+        "敌人ai 2",
+        "效果结算 2",
+        "角色行为/角色技能 3"
+      ]
+    },
+    {
+      "node": "敌人ai 3",
+      "dependency": "时间轴 6",
+      "raw": "时间轴6",
+      "reason": "直接上游已依赖，或其所依赖节点的直接上游已包含",
+      "witness": [
+        "敌人ai 3",
+        "敌人ai 2",
+        "时间轴 6"
+      ]
+    },
+    {
+      "node": "敌人ai 4",
+      "dependency": "时间轴 6",
+      "raw": "时间轴6",
+      "reason": "直接上游已依赖，或其所依赖节点的直接上游已包含",
+      "witness": [
+        "敌人ai 4",
+        "敌人ai 3",
+        "敌人ai 2",
+        "时间轴 6"
+      ]
+    },
+    {
+      "node": "敌人ai 7",
+      "dependency": "行动槽规则 3",
+      "raw": "行动槽规则3",
+      "reason": "直接上游已依赖，或其所依赖节点的直接上游已包含",
+      "witness": [
+        "敌人ai 7",
+        "敌人ai 6",
+        "行动槽规则 4",
+        "行动槽规则 3"
+      ]
+    },
+    {
+      "node": "战斗进入与布置 4",
+      "dependency": "时间轴 6",
+      "raw": "时间轴6",
+      "reason": "直接上游已依赖，或其所依赖节点的直接上游已包含",
+      "witness": [
+        "战斗进入与布置 4",
+        "行为交互 1",
+        "时间轴 6"
+      ]
+    },
+    {
+      "node": "行为交互 3",
+      "dependency": "时间轴 6",
+      "raw": "时间轴6",
+      "reason": "直接上游已依赖，或其所依赖节点的直接上游已包含",
+      "witness": [
+        "行为交互 3",
+        "行为交互 2",
+        "行为交互 1",
+        "时间轴 6"
+      ]
+    },
+    {
+      "node": "行为交互 8",
+      "dependency": "角色行为/角色技能 2",
+      "raw": "角色技能2",
+      "reason": "直接上游已依赖，或其所依赖节点的直接上游已包含",
+      "witness": [
+        "行为交互 8",
+        "行为交互 7",
+        "行为交互 6",
+        "角色行为/角色技能 2"
+      ]
+    },
+    {
+      "node": "行为交互 10",
+      "dependency": "角色行为/角色技能 7",
+      "raw": "角色技能7",
+      "reason": "直接上游已依赖，或其所依赖节点的直接上游已包含",
+      "witness": [
+        "行为交互 10",
+        "行为交互 9",
+        "战斗进入与布置 3",
+        "角色行为/角色技能 7"
+      ]
+    },
+    {
+      "node": "技能效果试验 2",
+      "dependency": "角色行为/角色技能 3",
+      "raw": "角色技能3",
+      "reason": "直接上游已依赖，或其所依赖节点的直接上游已包含",
+      "witness": [
+        "技能效果试验 2",
+        "技能效果试验 1",
+        "角色行为/角色技能 3"
+      ]
+    },
+    {
+      "node": "技能效果试验 3",
+      "dependency": "角色行为/角色技能 3",
+      "raw": "角色技能3",
+      "reason": "直接上游已依赖，或其所依赖节点的直接上游已包含",
+      "witness": [
+        "技能效果试验 3",
+        "技能效果试验 2",
+        "技能效果试验 1",
+        "角色行为/角色技能 3"
+      ]
+    },
+    {
+      "node": "技能效果试验 5",
+      "dependency": "角色行为/角色技能 8",
+      "raw": "角色技能8",
+      "reason": "直接上游已依赖，或其所依赖节点的直接上游已包含",
+      "witness": [
+        "技能效果试验 5",
+        "技能效果试验 4",
+        "角色行为/角色技能 8"
+      ]
+    },
+    {
+      "node": "库存与法术 6",
+      "dependency": "效果结算 1",
+      "raw": "效果结算1",
+      "reason": "直接上游已依赖，或其所依赖节点的直接上游已包含",
+      "witness": [
+        "库存与法术 6",
+        "库存与法术 5",
+        "效果结算 2",
+        "效果结算 1"
+      ]
+    },
+    {
+      "node": "场景搜刮 1",
+      "dependency": "行为交互 1",
+      "raw": "行为交互1",
+      "reason": "直接上游已依赖，或其所依赖节点的直接上游已包含",
+      "witness": [
+        "场景搜刮 1",
+        "行动槽规则 3",
+        "行为交互 1"
+      ]
+    },
+    {
+      "node": "场景搜刮 1",
+      "dependency": "时间轴 6",
+      "raw": "时间轴6",
+      "reason": "直接上游已依赖，或其所依赖节点的直接上游已包含",
+      "witness": [
+        "场景搜刮 1",
+        "行动槽规则 3",
+        "行为交互 1",
+        "时间轴 6"
+      ]
+    },
+    {
+      "node": "场景搜刮 2",
+      "dependency": "行为交互 1",
+      "raw": "行为交互1",
+      "reason": "直接上游已依赖，或其所依赖节点的直接上游已包含",
+      "witness": [
+        "场景搜刮 2",
+        "行动槽规则 3",
+        "行为交互 1"
+      ]
+    },
+    {
+      "node": "场景搜刮 2",
+      "dependency": "行动槽规则 3",
+      "raw": "行动槽规则3",
+      "reason": "直接上游已依赖，或其所依赖节点的直接上游已包含",
+      "witness": [
+        "场景搜刮 2",
+        "场景搜刮 1",
+        "行动槽规则 3"
+      ]
+    },
+    {
+      "node": "场景搜刮 4",
+      "dependency": "瓦片地图 5",
+      "raw": "瓦片地图5",
+      "reason": "直接上游已依赖，或其所依赖节点的直接上游已包含",
+      "witness": [
+        "场景搜刮 4",
+        "效果结算 1",
+        "瓦片地图 5"
+      ]
+    },
+    {
+      "node": "场景搜刮 4",
+      "dependency": "效果结算 1",
+      "raw": "效果结算1",
+      "reason": "直接上游已依赖，或其所依赖节点的直接上游已包含",
+      "witness": [
+        "场景搜刮 4",
+        "场景搜刮 3",
+        "场景搜刮 2",
+        "效果结算 1"
+      ]
+    },
+    {
+      "node": "场景搜刮 7",
+      "dependency": "效果结算 2",
+      "raw": "效果结算2",
+      "reason": "直接上游已依赖，或其所依赖节点的直接上游已包含",
+      "witness": [
+        "场景搜刮 7",
+        "场景搜刮 6",
+        "效果结算 2"
+      ]
+    },
+    {
+      "node": "目标与战斗退出 4",
+      "dependency": "时间轴 5",
+      "raw": "时间轴5",
+      "reason": "直接上游已依赖，或其所依赖节点的直接上游已包含",
+      "witness": [
+        "目标与战斗退出 4",
+        "目标与战斗退出 3",
+        "时间轴 6",
+        "时间轴 5"
+      ]
+    },
+    {
+      "node": "战斗收尾 2",
+      "dependency": "战斗容器操作 12",
+      "raw": "战斗容器操作12",
+      "reason": "直接上游已依赖，或其所依赖节点的直接上游已包含",
+      "witness": [
+        "战斗收尾 2",
+        "场景搜刮 1",
+        "战斗容器操作 12"
+      ]
+    },
+    {
+      "node": "战斗收尾 4",
+      "dependency": "库存与法术 3",
+      "raw": "库存与法术3",
+      "reason": "直接上游已依赖，或其所依赖节点的直接上游已包含",
+      "witness": [
+        "战斗收尾 4",
+        "角色行为/角色属性 7",
+        "库存与法术 3"
+      ]
+    },
+    {
+      "node": "目标类型与持续战斗 3",
+      "dependency": "场景搜刮 2",
+      "raw": "场景搜刮2",
+      "reason": "直接上游已依赖，或其所依赖节点的直接上游已包含",
+      "witness": [
+        "目标类型与持续战斗 3",
+        "目标与战斗退出 2",
+        "目标与战斗退出 1",
+        "场景搜刮 2"
+      ]
+    },
+    {
+      "node": "目标类型与持续战斗 4",
+      "dependency": "战斗进入与布置 1",
+      "raw": "战斗进入与布置1",
+      "reason": "直接上游已依赖，或其所依赖节点的直接上游已包含",
+      "witness": [
+        "目标类型与持续战斗 4",
+        "目标与战斗退出 1",
+        "战斗进入与布置 1"
+      ]
+    },
+    {
+      "node": "目标类型与持续战斗 4",
+      "dependency": "目标与战斗退出 1",
+      "raw": "目标与战斗退出1",
+      "reason": "直接上游已依赖，或其所依赖节点的直接上游已包含",
+      "witness": [
+        "目标类型与持续战斗 4",
+        "目标类型与持续战斗 3",
+        "目标与战斗退出 2",
+        "目标与战斗退出 1"
+      ]
+    },
+    {
+      "node": "目标类型与持续战斗 5",
+      "dependency": "目标与战斗退出 2",
+      "raw": "目标与战斗退出2",
+      "reason": "直接上游已依赖，或其所依赖节点的直接上游已包含",
+      "witness": [
+        "目标类型与持续战斗 5",
+        "目标类型与持续战斗 4",
+        "目标类型与持续战斗 3",
+        "目标与战斗退出 2"
+      ]
+    }
+  ],
+  "files_to_update": [
+    "Output\\N01-战斗玩家功能补图\\N01_战斗玩家功能新图_v1.sqlite",
+    "Output\\N01-战斗玩家功能补图\\N01_战斗玩家功能新图_v2.md",
+    "Output\\N01-战斗玩家功能补图\\N01_新图完整模型_v2.json",
+    "Output\\N01-战斗玩家功能补图\\N01_功能覆盖数据_v2.json",
+    "Report\\N01-战斗玩家功能补图_Report.md"
+  ],
+  "before_file_sha256": "374d21c66192c4a23d51fbc7d5ae93bcd91be7bb0682c68fd0a6b5a003faab69",
+  "checked_at": "2026-10-14T22:08:29.139382+08:00",
+  "delivery_database": "D:\\myspace\\Git\\this\\Output\\N01-战斗玩家功能补图\\N01_依赖清理新图_v1.sqlite",
+  "delivery_markdown": "D:\\myspace\\Git\\this\\Output\\N01-战斗玩家功能补图\\N01_依赖清理新图_v1.md",
+  "sqlite": {
+    "path": "D:\\myspace\\Git\\this\\Output\\N01-战斗玩家功能补图\\N01_依赖清理新图_v1.sqlite",
+    "sqlite_version": "3.41.2",
+    "exists": true,
+    "missing_tables": [],
+    "missing_views": [],
+    "integrity": "ok",
+    "foreign_key_errors": 0,
+    "schema_version": "1",
+    "updated_at": "2026-10-14 22:08:29",
+    "stats": {
+      "sections": 19,
+      "nodes": 145,
+      "refs": 118,
+      "unresolved_refs": 0,
+      "object_rows": 10,
+      "object_names": 10,
+      "objects_without_path": 7,
+      "object_names_with_path": 3,
+      "notes": 0,
+      "edges": 245,
+      "chain_edges": 127,
+      "explicit_edges": 118,
+      "root_nodes": 4,
+      "snapshots": 30
+    },
+    "duplicate_numbers": 0,
+    "nodes_without_section": 0,
+    "refs_without_node": 0,
+    "snapshot_span": "2026-10-13 09:43:22 ~ 2026-10-14 22:08:27"
+  },
+  "existing_files_unchanged": {
+    "D:\\myspace\\Git\\this\\Tool\\项目网络图\\数据\\项目网络图.sqlite": "b224896c30a5bd0da5d3f34fc0b53dca7464135200f8967279ff4dcfc336768e",
+    "D:\\myspace\\Git\\this\\Output\\N01-战斗玩家功能补图\\N01_原图一致性备份_v1.sqlite": "ffe2386f066765588db559f909e6f07b994ee1a5f221aaff09b3227b8bc45404",
+    "D:\\myspace\\Git\\this\\Output\\N01-战斗玩家功能补图\\N01_战斗玩家功能新图_v1.sqlite": "374d21c66192c4a23d51fbc7d5ae93bcd91be7bb0682c68fd0a6b5a003faab69",
+    "D:\\myspace\\Git\\this\\Output\\N01-战斗玩家功能补图\\N01_战斗玩家功能新图_v2.md": "18f253f3075c0bfb0ff522f5221447ff8c8be83ac6c29be95e4733ea93987c03",
+    "D:\\myspace\\Git\\this\\Output\\N01-战斗玩家功能补图\\N01_新图完整模型_v2.json": "c45b0fe822957dc3227839ea640a551dc4aa91a9ca632265267465f0968fa4b7",
+    "D:\\myspace\\Git\\this\\Output\\N01-战斗玩家功能补图\\N01_功能覆盖数据_v2.json": "177469f0850dbab0c7a31b42c28af92af743ce3a95f35bbd446b88777f8d9798",
+    "D:\\myspace\\Git\\this\\Report\\N01-战斗玩家功能补图_Report.md": "889e2f8537d87be322a498be4b30ba1e24d73445fca56794dd3968dfe4d319ba"
+  },
+  "all_node_content_and_number_unchanged": true,
+  "same_other_route_multiple_refs_remaining": 0,
+  "local_redundant_refs_remaining": 0,
+  "export_matches_model": true,
+  "new_database_sha256": "bc7b4e7f3e4c7c7117db2c60f600a89fc6ad120bd76592e81f116d9f74e8ecfe",
+  "api_operations": [
+    {
+      "node": "时间轴 1",
+      "args": {
+        "node_id": "n13",
+        "refs": [
+          {
+            "raw": "角色移动1",
+            "target_id": "n10"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "敌人ai 2",
+      "args": {
+        "node_id": "n107",
+        "refs": [
+          {
+            "raw": "时间轴6",
+            "target_id": "n36"
+          },
+          {
+            "raw": "效果结算2",
+            "target_id": "n65"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "敌人ai 3",
+      "args": {
+        "node_id": "n108",
+        "refs": [
+          {
+            "raw": "角色移动4",
+            "target_id": "n17"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "敌人ai 4",
+      "args": {
+        "node_id": "n109",
+        "refs": [
+          {
+            "raw": "效果结算1",
+            "target_id": "n64"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "敌人ai 7",
+      "args": {
+        "node_id": "n112",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "敌人ai 8",
+      "args": {
+        "node_id": "n113",
+        "refs": [
+          {
+            "raw": "时间轴8",
+            "target_id": "n38"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "战斗进入与布置 1",
+      "args": {
+        "node_id": "n30",
+        "refs": [
+          {
+            "raw": "瓦片地图1",
+            "target_id": "n1"
+          },
+          {
+            "raw": "角色移动0",
+            "target_id": "n9"
+          },
+          {
+            "raw": "角色属性2",
+            "target_id": "n20"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "战斗进入与布置 3",
+      "args": {
+        "node_id": "n32",
+        "refs": [
+          {
+            "raw": "时间轴1",
+            "target_id": "n13"
+          },
+          {
+            "raw": "角色技能7",
+            "target_id": "n27"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "战斗进入与布置 4",
+      "args": {
+        "node_id": "n33",
+        "refs": [
+          {
+            "raw": "行为交互1",
+            "target_id": "n42"
+          },
+          {
+            "raw": "行动槽规则1",
+            "target_id": "n57"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "战斗进入与布置 6",
+      "args": {
+        "node_id": "n35",
+        "refs": [
+          {
+            "raw": "角色属性8",
+            "target_id": "n41"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "行为交互 1",
+      "args": {
+        "node_id": "n42",
+        "refs": [
+          {
+            "raw": "角色移动4",
+            "target_id": "n17"
+          },
+          {
+            "raw": "角色技能7",
+            "target_id": "n27"
+          },
+          {
+            "raw": "时间轴6",
+            "target_id": "n36"
+          },
+          {
+            "raw": "瓦片地图4",
+            "target_id": "n4"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "行为交互 2",
+      "args": {
+        "node_id": "n43",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "行为交互 3",
+      "args": {
+        "node_id": "n44",
+        "refs": [
+          {
+            "raw": "角色技能2",
+            "target_id": "n7"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "行为交互 5",
+      "args": {
+        "node_id": "n46",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "行为交互 8",
+      "args": {
+        "node_id": "n49",
+        "refs": [
+          {
+            "raw": "目标与战斗退出3",
+            "target_id": "n125"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "行为交互 10",
+      "args": {
+        "node_id": "n51",
+        "refs": [
+          {
+            "raw": "角色属性8",
+            "target_id": "n41"
+          },
+          {
+            "raw": "时间轴2",
+            "target_id": "n14"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "技能效果试验 2",
+      "args": {
+        "node_id": "n53",
+        "refs": [
+          {
+            "raw": "行为交互4",
+            "target_id": "n45"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "技能效果试验 3",
+      "args": {
+        "node_id": "n54",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "技能效果试验 5",
+      "args": {
+        "node_id": "n56",
+        "refs": [
+          {
+            "raw": "行动槽规则5",
+            "target_id": "n61"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "行动槽规则 1",
+      "args": {
+        "node_id": "n57",
+        "refs": [
+          {
+            "raw": "角色技能5",
+            "target_id": "n24"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "行动槽规则 2",
+      "args": {
+        "node_id": "n58",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "行动槽规则 6",
+      "args": {
+        "node_id": "n62",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "效果结算 3",
+      "args": {
+        "node_id": "n66",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "效果结算 4",
+      "args": {
+        "node_id": "n67",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "效果结算 6",
+      "args": {
+        "node_id": "n69",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "效果结算 7",
+      "args": {
+        "node_id": "n70",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "效果结算 8",
+      "args": {
+        "node_id": "n143",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "效果结算 9",
+      "args": {
+        "node_id": "n144",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "战斗容器操作 2",
+      "args": {
+        "node_id": "n72",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "战斗容器操作 12",
+      "args": {
+        "node_id": "n82",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "战斗容器操作 15",
+      "args": {
+        "node_id": "n85",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "库存与法术 2",
+      "args": {
+        "node_id": "n87",
+        "refs": [
+          {
+            "raw": "行为交互5",
+            "target_id": "n46"
+          },
+          {
+            "raw": "效果结算1",
+            "target_id": "n64"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "库存与法术 3",
+      "args": {
+        "node_id": "n88",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "库存与法术 4",
+      "args": {
+        "node_id": "n89",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "库存与法术 5",
+      "args": {
+        "node_id": "n90",
+        "refs": [
+          {
+            "raw": "效果结算2",
+            "target_id": "n65"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "库存与法术 6",
+      "args": {
+        "node_id": "n91",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "库存与法术 7",
+      "args": {
+        "node_id": "n92",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "库存与法术 8",
+      "args": {
+        "node_id": "n93",
+        "refs": [
+          {
+            "raw": "角色属性1",
+            "target_id": "n18"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "库存与法术 9",
+      "args": {
+        "node_id": "n94",
+        "refs": [
+          {
+            "raw": "战斗容器操作1",
+            "target_id": "n71"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "库存与法术 11",
+      "args": {
+        "node_id": "n96",
+        "refs": [
+          {
+            "raw": "行为交互5",
+            "target_id": "n46"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "库存与法术 12",
+      "args": {
+        "node_id": "n97",
+        "refs": [
+          {
+            "raw": "行动槽规则1",
+            "target_id": "n57"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "库存与法术 13",
+      "args": {
+        "node_id": "n98",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "装备与遗物 2",
+      "args": {
+        "node_id": "n100",
+        "refs": [
+          {
+            "raw": "行为交互5",
+            "target_id": "n46"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "装备与遗物 3",
+      "args": {
+        "node_id": "n101",
+        "refs": [
+          {
+            "raw": "行动槽规则1",
+            "target_id": "n57"
+          },
+          {
+            "raw": "时间轴6",
+            "target_id": "n36"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "装备与遗物 4",
+      "args": {
+        "node_id": "n102",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "装备与遗物 5",
+      "args": {
+        "node_id": "n103",
+        "refs": [
+          {
+            "raw": "效果结算1",
+            "target_id": "n64"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "装备与遗物 6",
+      "args": {
+        "node_id": "n104",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "装备与遗物 7",
+      "args": {
+        "node_id": "n105",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "装备与遗物 8",
+      "args": {
+        "node_id": "n106",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "场景搜刮 1",
+      "args": {
+        "node_id": "n116",
+        "refs": [
+          {
+            "raw": "战斗容器操作12",
+            "target_id": "n82"
+          },
+          {
+            "raw": "行动槽规则3",
+            "target_id": "n59"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "场景搜刮 2",
+      "args": {
+        "node_id": "n117",
+        "refs": [
+          {
+            "raw": "效果结算1",
+            "target_id": "n64"
+          },
+          {
+            "raw": "时间轴6",
+            "target_id": "n36"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "场景搜刮 3",
+      "args": {
+        "node_id": "n118",
+        "refs": [
+          {
+            "raw": "战斗容器操作1",
+            "target_id": "n71"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "场景搜刮 4",
+      "args": {
+        "node_id": "n119",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "场景搜刮 6",
+      "args": {
+        "node_id": "n121",
+        "refs": [
+          {
+            "raw": "效果结算2",
+            "target_id": "n65"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "场景搜刮 7",
+      "args": {
+        "node_id": "n122",
+        "refs": [
+          {
+            "raw": "瓦片地图3",
+            "target_id": "n3"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "目标与战斗退出 1",
+      "args": {
+        "node_id": "n123",
+        "refs": [
+          {
+            "raw": "战斗进入与布置1",
+            "target_id": "n30"
+          },
+          {
+            "raw": "场景搜刮2",
+            "target_id": "n117"
+          },
+          {
+            "raw": "敌人ai2",
+            "target_id": "n107"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "目标与战斗退出 2",
+      "args": {
+        "node_id": "n124",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "目标与战斗退出 4",
+      "args": {
+        "node_id": "n126",
+        "refs": [
+          {
+            "raw": "战斗容器操作1",
+            "target_id": "n71"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "目标与战斗退出 5",
+      "args": {
+        "node_id": "n127",
+        "refs": [
+          {
+            "raw": "角色属性8",
+            "target_id": "n41"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "目标与战斗退出 6",
+      "args": {
+        "node_id": "n128",
+        "refs": [
+          {
+            "raw": "目标类型与持续战斗5",
+            "target_id": "n142"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "目标与战斗退出 7",
+      "args": {
+        "node_id": "n129",
+        "refs": [
+          {
+            "raw": "角色属性6",
+            "target_id": "n39"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "目标与战斗退出 8",
+      "args": {
+        "node_id": "n130",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "战斗收尾 2",
+      "args": {
+        "node_id": "n132",
+        "refs": [
+          {
+            "raw": "场景搜刮1",
+            "target_id": "n116"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "战斗收尾 3",
+      "args": {
+        "node_id": "n133",
+        "refs": [
+          {
+            "raw": "战斗容器操作15",
+            "target_id": "n85"
+          },
+          {
+            "raw": "库存与法术9",
+            "target_id": "n94"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "战斗收尾 4",
+      "args": {
+        "node_id": "n134",
+        "refs": [
+          {
+            "raw": "角色属性7",
+            "target_id": "n40"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "战斗收尾 5",
+      "args": {
+        "node_id": "n135",
+        "refs": [
+          {
+            "raw": "装备与遗物4",
+            "target_id": "n102"
+          },
+          {
+            "raw": "库存与法术10",
+            "target_id": "n95"
+          },
+          {
+            "raw": "战斗容器操作12",
+            "target_id": "n82"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "战斗收尾 6",
+      "args": {
+        "node_id": "n136",
+        "refs": [
+          {
+            "raw": "场景搜刮3",
+            "target_id": "n118"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "战斗收尾 7",
+      "args": {
+        "node_id": "n137",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "目标类型与持续战斗 1",
+      "args": {
+        "node_id": "n138",
+        "refs": [
+          {
+            "raw": "敌人ai10",
+            "target_id": "n115"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "目标类型与持续战斗 3",
+      "args": {
+        "node_id": "n140",
+        "refs": [
+          {
+            "raw": "目标与战斗退出2",
+            "target_id": "n124"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "目标类型与持续战斗 4",
+      "args": {
+        "node_id": "n141",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "目标类型与持续战斗 5",
+      "args": {
+        "node_id": "n142",
+        "refs": [
+          {
+            "raw": "时间轴8",
+            "target_id": "n38"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    }
+  ],
+  "git_permission_result": "本地基线提交被用户拒绝；未执行 Git 写入，保留既有产物，改为独立清理图交付。",
+  "upstream_gaps_unchanged": 14,
+  "full_coverage_achieved": false
+}

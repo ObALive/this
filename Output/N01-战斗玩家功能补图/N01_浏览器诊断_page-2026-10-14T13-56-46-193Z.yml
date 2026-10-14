@@ -1,0 +1,31 @@
+- generic [active] [ref=f1e1]:
+  - banner [ref=f1e2]:
+    - generic [ref=f1e3]:
+      - generic [ref=f1e4]: 开发路线依赖图
+      - heading "项目网络图" [level=1] [ref=f1e5]
+      - generic [ref=f1e6]: 读取中…
+    - generic [ref=f1e7]:
+      - button "撤销" [ref=f1e8] [cursor=pointer]
+      - button "重做" [ref=f1e9] [cursor=pointer]
+      - button "适配视图" [ref=f1e11] [cursor=pointer]
+      - button "清除手工挪位" [ref=f1e12] [cursor=pointer]
+      - button "导入任务书" [ref=f1e14] [cursor=pointer]
+      - button "预览 Markdown" [ref=f1e15] [cursor=pointer]
+      - button "导出 Markdown" [ref=f1e16] [cursor=pointer]
+  - generic [ref=f1e17]:
+    - complementary [ref=f1e18]:
+      - generic [ref=f1e20]:
+        - heading "开发路线" [level=2] [ref=f1e21]
+        - button "＋" [ref=f1e22] [cursor=pointer]
+      - generic [ref=f1e24]:
+        - generic [ref=f1e25]:
+          - heading "校验" [level=2] [ref=f1e26]
+          - generic [ref=f1e27]: "0"
+        - generic [ref=f1e28]: 阻塞 提醒 提示
+      - generic [ref=f1e33]:
+        - generic [ref=f1e34]:
+          - heading "对象索引" [level=2] [ref=f1e35]
+          - generic [ref=f1e36]: "0"
+        - paragraph [ref=f1e37]: 需要一并实现的对象，以及声明它的条目。实现路径是可选项。
+    - main [ref=f1e39]:
+      - generic: 点击节点打开详情编辑框 · 拖动空白平移 · 滚轮缩放 · 拖动节点可微调位置

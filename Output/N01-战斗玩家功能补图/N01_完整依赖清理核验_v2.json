@@ -1,0 +1,1069 @@
+{
+  "checked_at": "2026-10-14T22:52:23.631970+08:00",
+  "source_database": "D:\\myspace\\Git\\this\\Output\\N01-战斗玩家功能补图\\N01_依赖清理新图_v1.sqlite",
+  "source_sha256": "4c46a5650a7fbcd9f585dc1553042aacde3294eea9a87c265454541c29b7e3ea",
+  "delivery_database": "D:\\myspace\\Git\\this\\Output\\N01-战斗玩家功能补图\\N01_完整依赖清理新图_v2.sqlite",
+  "delivery_sha256": "461ba3827e820abc4e944eb768424f8d6f84778f9e11f06cbc56d3a03c0467ab",
+  "before": {
+    "sections": 19,
+    "nodes": 145,
+    "edges": 245,
+    "chain_edges": 127,
+    "explicit_edges": 118,
+    "errors": 0,
+    "warnings": 0,
+    "infos": 8,
+    "objects": 10,
+    "objects_with_path": 3,
+    "unresolved_refs": 0,
+    "root_nodes": 4
+  },
+  "after": {
+    "sections": 19,
+    "nodes": 145,
+    "edges": 210,
+    "chain_edges": 127,
+    "explicit_edges": 83,
+    "errors": 0,
+    "warnings": 0,
+    "infos": 8,
+    "objects": 10,
+    "objects_with_path": 3,
+    "unresolved_refs": 0,
+    "root_nodes": 4
+  },
+  "additional_removed_refs": 35,
+  "additional_changed_nodes": 31,
+  "passes": 2,
+  "removed": [
+    {
+      "node": "时间轴 6",
+      "dependency": "角色行为/角色技能 1",
+      "raw": "角色技能1",
+      "reason": "该依赖已由其他上游路径传递，显式重复",
+      "witness": [
+        "时间轴 6",
+        "时间轴 5",
+        "时间轴 4",
+        "时间轴 3",
+        "角色行为/角色技能 1"
+      ],
+      "path_edges": 4
+    },
+    {
+      "node": "角色行为/角色属性 8",
+      "dependency": "效果结算 1",
+      "raw": "效果结算1",
+      "reason": "该依赖已由其他上游路径传递，显式重复",
+      "witness": [
+        "角色行为/角色属性 8",
+        "角色行为/角色属性 7",
+        "库存与法术 3",
+        "库存与法术 2",
+        "效果结算 1"
+      ],
+      "path_edges": 4
+    },
+    {
+      "node": "敌人ai 4",
+      "dependency": "效果结算 1",
+      "raw": "效果结算1",
+      "reason": "该依赖已由其他上游路径传递，显式重复",
+      "witness": [
+        "敌人ai 4",
+        "敌人ai 3",
+        "敌人ai 2",
+        "效果结算 2",
+        "效果结算 1"
+      ],
+      "path_edges": 4
+    },
+    {
+      "node": "敌人ai 5",
+      "dependency": "角色行为/角色技能 2",
+      "raw": "角色技能2",
+      "reason": "该依赖已由其他上游路径传递，显式重复",
+      "witness": [
+        "敌人ai 5",
+        "敌人ai 4",
+        "敌人ai 3",
+        "敌人ai 2",
+        "敌人ai 1",
+        "角色行为/角色技能 2"
+      ],
+      "path_edges": 5
+    },
+    {
+      "node": "敌人ai 5",
+      "dependency": "时间轴 6",
+      "raw": "时间轴6",
+      "reason": "该依赖已由其他上游路径传递，显式重复",
+      "witness": [
+        "敌人ai 5",
+        "敌人ai 4",
+        "敌人ai 3",
+        "敌人ai 2",
+        "时间轴 6"
+      ],
+      "path_edges": 4
+    },
+    {
+      "node": "敌人ai 6",
+      "dependency": "时间轴 2",
+      "raw": "时间轴2",
+      "reason": "该依赖已由其他上游路径传递，显式重复",
+      "witness": [
+        "敌人ai 6",
+        "行动槽规则 4",
+        "行动槽规则 3",
+        "行为交互 1",
+        "时间轴 6",
+        "时间轴 5",
+        "时间轴 4",
+        "时间轴 3",
+        "时间轴 2"
+      ],
+      "path_edges": 8
+    },
+    {
+      "node": "敌人ai 10",
+      "dependency": "战斗进入与布置 1",
+      "raw": "战斗进入与布置1",
+      "reason": "该依赖已由其他上游路径传递，显式重复",
+      "witness": [
+        "敌人ai 10",
+        "敌人ai 9",
+        "目标与战斗退出 2",
+        "目标与战斗退出 1",
+        "战斗进入与布置 1"
+      ],
+      "path_edges": 4
+    },
+    {
+      "node": "敌人ai 10",
+      "dependency": "行动槽规则 1",
+      "raw": "行动槽规则1",
+      "reason": "该依赖已由其他上游路径传递，显式重复",
+      "witness": [
+        "敌人ai 10",
+        "敌人ai 9",
+        "敌人ai 8",
+        "敌人ai 7",
+        "敌人ai 6",
+        "行动槽规则 4",
+        "行动槽规则 3",
+        "行动槽规则 2",
+        "行动槽规则 1"
+      ],
+      "path_edges": 8
+    },
+    {
+      "node": "敌人ai 10",
+      "dependency": "时间轴 6",
+      "raw": "时间轴6",
+      "reason": "该依赖已由其他上游路径传递，显式重复",
+      "witness": [
+        "敌人ai 10",
+        "敌人ai 9",
+        "敌人ai 8",
+        "时间轴 8",
+        "时间轴 7",
+        "时间轴 6"
+      ],
+      "path_edges": 5
+    },
+    {
+      "node": "战斗进入与布置 5",
+      "dependency": "角色行为/角色技能 3",
+      "raw": "角色技能3",
+      "reason": "该依赖已由其他上游路径传递，显式重复",
+      "witness": [
+        "战斗进入与布置 5",
+        "战斗进入与布置 4",
+        "行动槽规则 1",
+        "角色行为/角色技能 5",
+        "角色行为/角色技能 4",
+        "角色行为/角色技能 3"
+      ],
+      "path_edges": 5
+    },
+    {
+      "node": "行为交互 3",
+      "dependency": "角色行为/角色技能 2",
+      "raw": "角色技能2",
+      "reason": "该依赖已由其他上游路径传递，显式重复",
+      "witness": [
+        "行为交互 3",
+        "行为交互 2",
+        "行为交互 1",
+        "角色行为/角色技能 7",
+        "角色行为/角色技能 6",
+        "角色行为/角色技能 5",
+        "角色行为/角色技能 4",
+        "角色行为/角色技能 3",
+        "角色行为/角色技能 2"
+      ],
+      "path_edges": 8
+    },
+    {
+      "node": "行为交互 4",
+      "dependency": "角色行为/角色技能 4",
+      "raw": "角色技能4",
+      "reason": "该依赖已由其他上游路径传递，显式重复",
+      "witness": [
+        "行为交互 4",
+        "行为交互 3",
+        "行为交互 2",
+        "行为交互 1",
+        "角色行为/角色技能 7",
+        "角色行为/角色技能 6",
+        "角色行为/角色技能 5",
+        "角色行为/角色技能 4"
+      ],
+      "path_edges": 7
+    },
+    {
+      "node": "行为交互 6",
+      "dependency": "角色行为/角色技能 2",
+      "raw": "角色技能2",
+      "reason": "该依赖已由其他上游路径传递，显式重复",
+      "witness": [
+        "行为交互 6",
+        "行为交互 5",
+        "行为交互 4",
+        "行为交互 3",
+        "行为交互 2",
+        "行为交互 1",
+        "角色行为/角色技能 7",
+        "角色行为/角色技能 6",
+        "角色行为/角色技能 5",
+        "角色行为/角色技能 4",
+        "角色行为/角色技能 3",
+        "角色行为/角色技能 2"
+      ],
+      "path_edges": 11
+    },
+    {
+      "node": "行为交互 7",
+      "dependency": "角色行为/角色技能 4",
+      "raw": "角色技能4",
+      "reason": "该依赖已由其他上游路径传递，显式重复",
+      "witness": [
+        "行为交互 7",
+        "行为交互 6",
+        "行为交互 5",
+        "行为交互 4",
+        "行为交互 3",
+        "行为交互 2",
+        "行为交互 1",
+        "角色行为/角色技能 7",
+        "角色行为/角色技能 6",
+        "角色行为/角色技能 5",
+        "角色行为/角色技能 4"
+      ],
+      "path_edges": 10
+    },
+    {
+      "node": "行为交互 10",
+      "dependency": "时间轴 2",
+      "raw": "时间轴2",
+      "reason": "该依赖已由其他上游路径传递，显式重复",
+      "witness": [
+        "行为交互 10",
+        "行为交互 9",
+        "行为交互 8",
+        "目标与战斗退出 3",
+        "时间轴 6",
+        "时间轴 5",
+        "时间轴 4",
+        "时间轴 3",
+        "时间轴 2"
+      ],
+      "path_edges": 8
+    },
+    {
+      "node": "行动槽规则 4",
+      "dependency": "角色行为/角色技能 6",
+      "raw": "角色技能6",
+      "reason": "该依赖已由其他上游路径传递，显式重复",
+      "witness": [
+        "行动槽规则 4",
+        "行动槽规则 3",
+        "行为交互 1",
+        "角色行为/角色技能 7",
+        "角色行为/角色技能 6"
+      ],
+      "path_edges": 4
+    },
+    {
+      "node": "行动槽规则 5",
+      "dependency": "时间轴 6",
+      "raw": "时间轴6",
+      "reason": "该依赖已由其他上游路径传递，显式重复",
+      "witness": [
+        "行动槽规则 5",
+        "行动槽规则 4",
+        "行动槽规则 3",
+        "行为交互 1",
+        "时间轴 6"
+      ],
+      "path_edges": 4
+    },
+    {
+      "node": "库存与法术 8",
+      "dependency": "角色行为/角色属性 1",
+      "raw": "角色属性1",
+      "reason": "该依赖已由其他上游路径传递，显式重复",
+      "witness": [
+        "库存与法术 8",
+        "库存与法术 7",
+        "库存与法术 6",
+        "库存与法术 5",
+        "效果结算 2",
+        "角色行为/角色技能 3",
+        "角色行为/角色属性 3",
+        "角色行为/角色属性 2",
+        "角色行为/角色属性 1"
+      ],
+      "path_edges": 8
+    },
+    {
+      "node": "库存与法术 9",
+      "dependency": "战斗容器操作 1",
+      "raw": "战斗容器操作1",
+      "reason": "该依赖已由其他上游路径传递，显式重复",
+      "witness": [
+        "库存与法术 9",
+        "库存与法术 8",
+        "库存与法术 7",
+        "库存与法术 6",
+        "库存与法术 5",
+        "库存与法术 4",
+        "库存与法术 3",
+        "库存与法术 2",
+        "库存与法术 1",
+        "战斗容器操作 1"
+      ],
+      "path_edges": 9
+    },
+    {
+      "node": "库存与法术 11",
+      "dependency": "行为交互 5",
+      "raw": "行为交互5",
+      "reason": "该依赖已由其他上游路径传递，显式重复",
+      "witness": [
+        "库存与法术 11",
+        "库存与法术 10",
+        "库存与法术 9",
+        "库存与法术 8",
+        "库存与法术 7",
+        "库存与法术 6",
+        "库存与法术 5",
+        "库存与法术 4",
+        "库存与法术 3",
+        "库存与法术 2",
+        "行为交互 5"
+      ],
+      "path_edges": 10
+    },
+    {
+      "node": "装备与遗物 3",
+      "dependency": "时间轴 6",
+      "raw": "时间轴6",
+      "reason": "该依赖已由其他上游路径传递，显式重复",
+      "witness": [
+        "装备与遗物 3",
+        "装备与遗物 2",
+        "行为交互 5",
+        "行为交互 4",
+        "行为交互 3",
+        "行为交互 2",
+        "行为交互 1",
+        "时间轴 6"
+      ],
+      "path_edges": 7
+    },
+    {
+      "node": "场景搜刮 2",
+      "dependency": "时间轴 6",
+      "raw": "时间轴6",
+      "reason": "该依赖已由其他上游路径传递，显式重复",
+      "witness": [
+        "场景搜刮 2",
+        "场景搜刮 1",
+        "行动槽规则 3",
+        "行为交互 1",
+        "时间轴 6"
+      ],
+      "path_edges": 4
+    },
+    {
+      "node": "场景搜刮 3",
+      "dependency": "战斗容器操作 1",
+      "raw": "战斗容器操作1",
+      "reason": "该依赖已由其他上游路径传递，显式重复",
+      "witness": [
+        "场景搜刮 3",
+        "场景搜刮 2",
+        "场景搜刮 1",
+        "战斗容器操作 12",
+        "战斗容器操作 11",
+        "战斗容器操作 10",
+        "战斗容器操作 9",
+        "战斗容器操作 8",
+        "战斗容器操作 7",
+        "战斗容器操作 6",
+        "战斗容器操作 5",
+        "战斗容器操作 4",
+        "战斗容器操作 3",
+        "战斗容器操作 2",
+        "战斗容器操作 1"
+      ],
+      "path_edges": 14
+    },
+    {
+      "node": "场景搜刮 7",
+      "dependency": "瓦片地图 3",
+      "raw": "瓦片地图3",
+      "reason": "该依赖已由其他上游路径传递，显式重复",
+      "witness": [
+        "场景搜刮 7",
+        "场景搜刮 6",
+        "效果结算 2",
+        "效果结算 1",
+        "瓦片地图 5",
+        "瓦片地图 4",
+        "瓦片地图 3"
+      ],
+      "path_edges": 6
+    },
+    {
+      "node": "目标与战斗退出 3",
+      "dependency": "角色行为/角色技能 7",
+      "raw": "角色技能7",
+      "reason": "该依赖已由其他上游路径传递，显式重复",
+      "witness": [
+        "目标与战斗退出 3",
+        "目标与战斗退出 2",
+        "目标与战斗退出 1",
+        "场景搜刮 2",
+        "场景搜刮 1",
+        "行动槽规则 3",
+        "行为交互 1",
+        "角色行为/角色技能 7"
+      ],
+      "path_edges": 7
+    },
+    {
+      "node": "目标与战斗退出 3",
+      "dependency": "时间轴 6",
+      "raw": "时间轴6",
+      "reason": "该依赖已由其他上游路径传递，显式重复",
+      "witness": [
+        "目标与战斗退出 3",
+        "目标与战斗退出 2",
+        "目标与战斗退出 1",
+        "敌人ai 2",
+        "时间轴 6"
+      ],
+      "path_edges": 4
+    },
+    {
+      "node": "目标与战斗退出 4",
+      "dependency": "战斗容器操作 1",
+      "raw": "战斗容器操作1",
+      "reason": "该依赖已由其他上游路径传递，显式重复",
+      "witness": [
+        "目标与战斗退出 4",
+        "目标与战斗退出 3",
+        "目标与战斗退出 2",
+        "目标与战斗退出 1",
+        "场景搜刮 2",
+        "场景搜刮 1",
+        "战斗容器操作 12",
+        "战斗容器操作 11",
+        "战斗容器操作 10",
+        "战斗容器操作 9",
+        "战斗容器操作 8",
+        "战斗容器操作 7",
+        "战斗容器操作 6",
+        "战斗容器操作 5",
+        "战斗容器操作 4",
+        "战斗容器操作 3",
+        "战斗容器操作 2",
+        "战斗容器操作 1"
+      ],
+      "path_edges": 17
+    },
+    {
+      "node": "目标与战斗退出 7",
+      "dependency": "角色行为/角色属性 6",
+      "raw": "角色属性6",
+      "reason": "该依赖已由其他上游路径传递，显式重复",
+      "witness": [
+        "目标与战斗退出 7",
+        "目标与战斗退出 6",
+        "目标与战斗退出 5",
+        "角色行为/角色属性 8",
+        "角色行为/角色属性 7",
+        "角色行为/角色属性 6"
+      ],
+      "path_edges": 5
+    },
+    {
+      "node": "战斗收尾 2",
+      "dependency": "场景搜刮 1",
+      "raw": "场景搜刮1",
+      "reason": "该依赖已由其他上游路径传递，显式重复",
+      "witness": [
+        "战斗收尾 2",
+        "战斗收尾 1",
+        "目标与战斗退出 8",
+        "目标与战斗退出 7",
+        "目标与战斗退出 6",
+        "目标类型与持续战斗 5",
+        "目标类型与持续战斗 4",
+        "目标类型与持续战斗 3",
+        "目标与战斗退出 2",
+        "目标与战斗退出 1",
+        "场景搜刮 2",
+        "场景搜刮 1"
+      ],
+      "path_edges": 11
+    },
+    {
+      "node": "战斗收尾 4",
+      "dependency": "角色行为/角色属性 7",
+      "raw": "角色属性7",
+      "reason": "该依赖已由其他上游路径传递，显式重复",
+      "witness": [
+        "战斗收尾 4",
+        "战斗收尾 3",
+        "战斗收尾 2",
+        "战斗收尾 1",
+        "目标与战斗退出 8",
+        "目标与战斗退出 7",
+        "目标与战斗退出 6",
+        "目标与战斗退出 5",
+        "角色行为/角色属性 8",
+        "角色行为/角色属性 7"
+      ],
+      "path_edges": 9
+    },
+    {
+      "node": "战斗收尾 5",
+      "dependency": "战斗容器操作 12",
+      "raw": "战斗容器操作12",
+      "reason": "该依赖已由其他上游路径传递，显式重复",
+      "witness": [
+        "战斗收尾 5",
+        "战斗收尾 4",
+        "战斗收尾 3",
+        "战斗容器操作 15",
+        "战斗容器操作 14",
+        "战斗容器操作 13",
+        "战斗容器操作 12"
+      ],
+      "path_edges": 6
+    },
+    {
+      "node": "战斗收尾 6",
+      "dependency": "场景搜刮 3",
+      "raw": "场景搜刮3",
+      "reason": "该依赖已由其他上游路径传递，显式重复",
+      "witness": [
+        "战斗收尾 6",
+        "战斗收尾 5",
+        "战斗收尾 4",
+        "战斗收尾 3",
+        "战斗容器操作 15",
+        "战斗容器操作 14",
+        "场景搜刮 3"
+      ],
+      "path_edges": 6
+    },
+    {
+      "node": "目标类型与持续战斗 2",
+      "dependency": "敌人ai 2",
+      "raw": "敌人ai2",
+      "reason": "该依赖已由其他上游路径传递，显式重复",
+      "witness": [
+        "目标类型与持续战斗 2",
+        "目标类型与持续战斗 1",
+        "敌人ai 10",
+        "敌人ai 9",
+        "目标与战斗退出 2",
+        "目标与战斗退出 1",
+        "敌人ai 2"
+      ],
+      "path_edges": 6
+    },
+    {
+      "node": "目标类型与持续战斗 3",
+      "dependency": "目标与战斗退出 2",
+      "raw": "目标与战斗退出2",
+      "reason": "该依赖已由其他上游路径传递，显式重复",
+      "witness": [
+        "目标类型与持续战斗 3",
+        "目标类型与持续战斗 2",
+        "目标类型与持续战斗 1",
+        "敌人ai 10",
+        "敌人ai 9",
+        "目标与战斗退出 2"
+      ],
+      "path_edges": 5
+    },
+    {
+      "node": "目标类型与持续战斗 5",
+      "dependency": "时间轴 8",
+      "raw": "时间轴8",
+      "reason": "该依赖已由其他上游路径传递，显式重复",
+      "witness": [
+        "目标类型与持续战斗 5",
+        "目标类型与持续战斗 4",
+        "目标类型与持续战斗 3",
+        "目标类型与持续战斗 2",
+        "目标类型与持续战斗 1",
+        "敌人ai 10",
+        "敌人ai 9",
+        "敌人ai 8",
+        "时间轴 8"
+      ],
+      "path_edges": 8
+    }
+  ],
+  "remaining_redundant_explicit_refs": [],
+  "same_target_route_multiple_refs": [],
+  "all_145_ancestor_sets_equal": true,
+  "all_node_content_and_number_unchanged": true,
+  "export_matches_model": true,
+  "timeline_3_and_6_check": [
+    {
+      "node": "时间轴 3",
+      "explicit_dependencies": [
+        "角色行为/角色技能 1"
+      ],
+      "all_upstream_contains_角色技能1": true
+    },
+    {
+      "node": "时间轴 6",
+      "explicit_dependencies": [],
+      "all_upstream_contains_角色技能1": true
+    }
+  ],
+  "existing_files_unchanged": {
+    "D:\\myspace\\Git\\this\\Tool\\项目网络图\\数据\\项目网络图.sqlite": "b224896c30a5bd0da5d3f34fc0b53dca7464135200f8967279ff4dcfc336768e",
+    "D:\\myspace\\Git\\this\\Output\\N01-战斗玩家功能补图\\N01_原图一致性备份_v1.sqlite": "ffe2386f066765588db559f909e6f07b994ee1a5f221aaff09b3227b8bc45404",
+    "D:\\myspace\\Git\\this\\Output\\N01-战斗玩家功能补图\\N01_战斗玩家功能新图_v1.sqlite": "374d21c66192c4a23d51fbc7d5ae93bcd91be7bb0682c68fd0a6b5a003faab69",
+    "D:\\myspace\\Git\\this\\Output\\N01-战斗玩家功能补图\\N01_依赖清理新图_v1.sqlite": "4c46a5650a7fbcd9f585dc1553042aacde3294eea9a87c265454541c29b7e3ea",
+    "D:\\myspace\\Git\\this\\Output\\N01-战斗玩家功能补图\\N01_依赖清理新图_v1.md": "eac2e87ebffe92b590d7f9fff4970ebd1933d74beb66ffba130052699543a219",
+    "D:\\myspace\\Git\\this\\Output\\N01-战斗玩家功能补图\\N01_依赖清理完整模型_v1.json": "a8352dbfd8403914e1c61aac73346d71c70f3e00c1cea04af6704810bd21c81f",
+    "D:\\myspace\\Git\\this\\Output\\N01-战斗玩家功能补图\\N01_依赖清理功能映射_v1.json": "b2a937b9a6541fb0b7c36e7467ad6a5a53b888dd193be82f90dbd4336fcd9377",
+    "D:\\myspace\\Git\\this\\Output\\N01-战斗玩家功能补图\\N01_依赖清理交付入口_v1.md": "9c7050a361c163a3701ef354c139acd58c43993d27e6aa78dec39285e95e02f2"
+  },
+  "sqlite": {
+    "path": "D:\\myspace\\Git\\this\\Output\\N01-战斗玩家功能补图\\N01_完整依赖清理新图_v2.sqlite",
+    "sqlite_version": "3.41.2",
+    "exists": true,
+    "missing_tables": [],
+    "missing_views": [],
+    "integrity": "ok",
+    "foreign_key_errors": 0,
+    "schema_version": "1",
+    "updated_at": "2026-10-14 22:52:23",
+    "stats": {
+      "sections": 19,
+      "nodes": 145,
+      "refs": 83,
+      "unresolved_refs": 0,
+      "object_rows": 10,
+      "object_names": 10,
+      "objects_without_path": 7,
+      "object_names_with_path": 3,
+      "notes": 0,
+      "edges": 210,
+      "chain_edges": 127,
+      "explicit_edges": 83,
+      "root_nodes": 4,
+      "snapshots": 30
+    },
+    "duplicate_numbers": 0,
+    "nodes_without_section": 0,
+    "refs_without_node": 0,
+    "snapshot_span": "2026-10-13 10:02:07 ~ 2026-10-14 22:52:22"
+  },
+  "api_operations": [
+    {
+      "node": "时间轴 6",
+      "args": {
+        "node_id": "n36",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "角色行为/角色属性 8",
+      "args": {
+        "node_id": "n41",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "敌人ai 4",
+      "args": {
+        "node_id": "n109",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "敌人ai 5",
+      "args": {
+        "node_id": "n110",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "敌人ai 6",
+      "args": {
+        "node_id": "n111",
+        "refs": [
+          {
+            "raw": "行动槽规则4",
+            "target_id": "n60"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "敌人ai 10",
+      "args": {
+        "node_id": "n115",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "战斗进入与布置 5",
+      "args": {
+        "node_id": "n34",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "行为交互 3",
+      "args": {
+        "node_id": "n44",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "行为交互 4",
+      "args": {
+        "node_id": "n45",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "行为交互 6",
+      "args": {
+        "node_id": "n47",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "行为交互 7",
+      "args": {
+        "node_id": "n48",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "行为交互 10",
+      "args": {
+        "node_id": "n51",
+        "refs": [
+          {
+            "raw": "角色属性8",
+            "target_id": "n41"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "行动槽规则 4",
+      "args": {
+        "node_id": "n60",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "行动槽规则 5",
+      "args": {
+        "node_id": "n61",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "库存与法术 8",
+      "args": {
+        "node_id": "n93",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "库存与法术 9",
+      "args": {
+        "node_id": "n94",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "库存与法术 11",
+      "args": {
+        "node_id": "n96",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "装备与遗物 3",
+      "args": {
+        "node_id": "n101",
+        "refs": [
+          {
+            "raw": "行动槽规则1",
+            "target_id": "n57"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "场景搜刮 2",
+      "args": {
+        "node_id": "n117",
+        "refs": [
+          {
+            "raw": "效果结算1",
+            "target_id": "n64"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "场景搜刮 3",
+      "args": {
+        "node_id": "n118",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "场景搜刮 7",
+      "args": {
+        "node_id": "n122",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "目标与战斗退出 3",
+      "args": {
+        "node_id": "n125",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "目标与战斗退出 4",
+      "args": {
+        "node_id": "n126",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "目标与战斗退出 7",
+      "args": {
+        "node_id": "n129",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "战斗收尾 2",
+      "args": {
+        "node_id": "n132",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "战斗收尾 4",
+      "args": {
+        "node_id": "n134",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "战斗收尾 5",
+      "args": {
+        "node_id": "n135",
+        "refs": [
+          {
+            "raw": "装备与遗物4",
+            "target_id": "n102"
+          },
+          {
+            "raw": "库存与法术10",
+            "target_id": "n95"
+          }
+        ],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "战斗收尾 6",
+      "args": {
+        "node_id": "n136",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "目标类型与持续战斗 2",
+      "args": {
+        "node_id": "n139",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "目标类型与持续战斗 3",
+      "args": {
+        "node_id": "n140",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    },
+    {
+      "node": "目标类型与持续战斗 5",
+      "args": {
+        "node_id": "n142",
+        "refs": [],
+        "reparse": false
+      },
+      "log": [
+        "依赖列表已更新"
+      ]
+    }
+  ],
+  "upstream_gaps_unchanged": 14,
+  "full_coverage_achieved": false
+}

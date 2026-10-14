@@ -1,0 +1,337 @@
+{
+  "checked_at": "2026-10-14T21:59:35.704416+08:00",
+  "status": "Blocked",
+  "full_coverage_achieved": false,
+  "original_unchanged": true,
+  "backup_unchanged": true,
+  "new_database_matches_final_check": true,
+  "all_registered_sources_unchanged": true,
+  "report_sections": 11,
+  "coverage_rows": 145,
+  "browser_rendered_nodes": 145,
+  "browser_detail_preserves_object_description": true,
+  "graph": {
+    "sections": 19,
+    "nodes": 145,
+    "edges": 309,
+    "chain_edges": 127,
+    "explicit_edges": 210,
+    "errors": 0,
+    "warnings": 0,
+    "infos": 8,
+    "objects": 10,
+    "objects_with_path": 3,
+    "unresolved_refs": 0,
+    "root_nodes": 4
+  },
+  "all_changes_inside_authorized_paths": true,
+  "git_status": "?? Output/N01-战斗玩家功能补图/N01_API操作记录_v1.json\n?? Output/N01-战斗玩家功能补图/N01_上游未决库_v1.sqlite\n?? Output/N01-战斗玩家功能补图/N01_上游未决库_作答模板_v1.md\n?? Output/N01-战斗玩家功能补图/N01_上游未决库_候选清单_v1.md\n?? Output/N01-战斗玩家功能补图/N01_交付入口_v1.md\n?? Output/N01-战斗玩家功能补图/N01_前端冒烟适配_v1.js\n?? Output/N01-战斗玩家功能补图/N01_前端核验_v1.py\n?? Output/N01-战斗玩家功能补图/N01_前端核验临时库_v1.sqlite\n?? Output/N01-战斗玩家功能补图/N01_前端核验临时库_v2.sqlite\n?? Output/N01-战斗玩家功能补图/N01_前端核验结果_v1.json\n?? Output/N01-战斗玩家功能补图/N01_前端核验结果_v2.json\n?? Output/N01-战斗玩家功能补图/N01_功能覆盖与变更对照_v1.md\n?? Output/N01-战斗玩家功能补图/N01_功能覆盖与变更对照_v2.md\n?? Output/N01-战斗玩家功能补图/N01_功能覆盖对照_v1.csv\n?? Output/N01-战斗玩家功能补图/N01_功能覆盖对照_v2.csv\n?? Output/N01-战斗玩家功能补图/N01_功能覆盖数据_v1.json\n?? Output/N01-战斗玩家功能补图/N01_功能覆盖数据_v2.json\n?? Output/N01-战斗玩家功能补图/N01_原图一致性备份_v1.sqlite\n?? Output/N01-战斗玩家功能补图/N01_原图完整模型_v1.json\n?? Output/N01-战斗玩家功能补图/N01_原图导出_v1.md\n?? Output/N01-战斗玩家功能补图/N01_基线登记_v1.json\n?? Output/N01-战斗玩家功能补图/N01_对象完整说明导出_v1.md\n?? Output/N01-战斗玩家功能补图/N01_建立基线.py\n?? Output/N01-战斗玩家功能补图/N01_建立未决库_v1.py\n?? Output/N01-战斗玩家功能补图/N01_战斗玩家功能新图_v1.md\n?? Output/N01-战斗玩家功能补图/N01_战斗玩家功能新图_v1.sqlite\n?? Output/N01-战斗玩家功能补图/N01_战斗玩家功能新图_v2.md\n?? Output/N01-战斗玩家功能补图/N01_打开新图_v1.py\n?? Output/N01-战斗玩家功能补图/N01_执行补图_v1.py\n?? Output/N01-战斗玩家功能补图/N01_收口API操作记录_v1.json\n?? Output/N01-战斗玩家功能补图/N01_收口检查_v1.py\n?? Output/N01-战斗玩家功能补图/N01_收口补充_v1.py\n?? Output/N01-战斗玩家功能补图/N01_新图完整模型_v1.json\n?? Output/N01-战斗玩家功能补图/N01_新图完整模型_v2.json\n?? Output/N01-战斗玩家功能补图/N01_新图浏览器预览_v1.png\n?? Output/N01-战斗玩家功能补图/N01_最终前端核验临时库_v1.sqlite\n?? Output/N01-战斗玩家功能补图/N01_最终前端核验结果_v1.json\n?? Output/N01-战斗玩家功能补图/N01_最终核验_v1.py\n?? Output/N01-战斗玩家功能补图/N01_最终浏览器读取_v1.json\n?? Output/N01-战斗玩家功能补图/N01_最终浏览器预览_v1.png\n?? Output/N01-战斗玩家功能补图/N01_最终详情读取_v1.json\n?? Output/N01-战斗玩家功能补图/N01_未决事项_v1.md\n?? Output/N01-战斗玩家功能补图/N01_未决建库数据_v1.json\n?? Output/N01-战斗玩家功能补图/N01_未决建库核验_v2.json\n?? Output/N01-战斗玩家功能补图/N01_核验结果_v1.json\n?? Output/N01-战斗玩家功能补图/N01_核验结果_v2.json\n?? Output/N01-战斗玩家功能补图/N01_核验适配_v1.py\n?? Output/N01-战斗玩家功能补图/N01_模型校验_v1.json\n?? Output/N01-战斗玩家功能补图/N01_模型校验_v2.json\n?? Output/N01-战斗玩家功能补图/N01_浏览器控制台_v1.txt\n?? Output/N01-战斗玩家功能补图/N01_浏览器诊断_console-2026-10-14T13-47-25-346Z.log\n?? Output/N01-战斗玩家功能补图/N01_浏览器诊断_page-2026-10-14T13-47-25-841Z.yml\n?? Output/N01-战斗玩家功能补图/N01_浏览器诊断_page-2026-10-14T13-56-46-193Z.yml\n?? Output/N01-战斗玩家功能补图/N01_浏览器读取_v1.json\n?? Output/N01-战斗玩家功能补图/N01_系统操作补充记录_v1.md\n?? Output/N01-战斗玩家功能补图/N01_补图规格_v1.py\n?? Output/N01-战斗玩家功能补图/N01_资料登记_v1.json\n?? Output/N01-战斗玩家功能补图/checkpoint_001.md\n?? Output/N01-战斗玩家功能补图/checkpoint_002.md\n?? Output/N01-战斗玩家功能补图/exception_report_01.md\n?? Output/N01-战斗玩家功能补图/system_operation_log.md\n?? Report/N01-战斗玩家功能补图_Report.md\n",
+  "files": [
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\checkpoint_001.md",
+      "bytes": 1833,
+      "sha256": "dc4501f998418398e00f492f445e61854205a93e453d7a523052ec74aa60555a"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\checkpoint_002.md",
+      "bytes": 1889,
+      "sha256": "4766851232718769dc295e149cf15e9ec13df6eaa18213f8be888e77c0048d5f"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\exception_report_01.md",
+      "bytes": 1455,
+      "sha256": "c51c76bb478c609a9dcf649f0fa1219169adb8e1f731b5dfae82aa3b845f9895"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_API操作记录_v1.json",
+      "bytes": 144462,
+      "sha256": "828eadeb5e2e9b6d0f11c33f6e072d54b9dc9866e4f6cb780a4359a8f9a88e23"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_上游未决库_v1.sqlite",
+      "bytes": 65536,
+      "sha256": "b0fae011d5f95fdad56ac4238cbfa283fcaa185ec49b9f8a2c5eed483e935d7e"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_上游未决库_作答模板_v1.md",
+      "bytes": 3803,
+      "sha256": "36274114bd41a3a9a69b90c21a2f2b480ed09fb9f1dbd5c2e859a1669c67b266"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_上游未决库_候选清单_v1.md",
+      "bytes": 14108,
+      "sha256": "2d6a5a7381b339ab5de0656cf34031daeb85e48caf601596a2ee0b81ebab0aa4"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_交付入口_v1.md",
+      "bytes": 2641,
+      "sha256": "2fd0b4dbe5470bf99b639f56d465d2f3b2672734e43d79e6b96b5dbe5a8f67f0"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_前端冒烟适配_v1.js",
+      "bytes": 20512,
+      "sha256": "7ca1e20756979c2742d4381731d26e64355203fb707db7727c58aa530147f63a"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_前端核验_v1.py",
+      "bytes": 1834,
+      "sha256": "3ef1283f8f40f303d547ef7b9312ecf44846b8ed7a3e8a17d8f46fa7303bf1c2"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_前端核验临时库_v1.sqlite",
+      "bytes": 643072,
+      "sha256": "da6dd1bc09d01111813f48a8ca74ffd7d8a6c32599b9924264d45817df631ed5"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_前端核验临时库_v2.sqlite",
+      "bytes": 643072,
+      "sha256": "1cc6e8f1328285a25646418dbb993f9f0a0e8ee7ce94fdabfcc02766410cee89"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_前端核验结果_v1.json",
+      "bytes": 2344,
+      "sha256": "9a1076f1a0e6922fc7776db939a9bb107eb61d4414cb46a832dd55dbc4e832d6"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_前端核验结果_v2.json",
+      "bytes": 2433,
+      "sha256": "1f2e6d5346300f848a67fc7a1086d3acce686c729135f687126a5b16071d7dd9"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_功能覆盖与变更对照_v1.md",
+      "bytes": 56295,
+      "sha256": "ce962a79bec7a51727722565ab663acf6b5cbda864a749ccf39be880957cace6"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_功能覆盖与变更对照_v2.md",
+      "bytes": 41230,
+      "sha256": "fcd2e02819479ede51246e42fe63ec4dbddee7811155011a04266e04b31cafb7"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_功能覆盖对照_v1.csv",
+      "bytes": 15887,
+      "sha256": "13b6a9f2e804596137248546f3721ecf106a7d87b2548e5e4b4d5286d35ee68a"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_功能覆盖对照_v2.csv",
+      "bytes": 16974,
+      "sha256": "9bcac28f82d9539130633616e46a85e938db1448cc78eb40d920fe867d20240d"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_功能覆盖数据_v1.json",
+      "bytes": 97137,
+      "sha256": "83acbc7e9c7569c83c9c8f5a62b526903734fe9c94a76009276cdc601f16347d"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_功能覆盖数据_v2.json",
+      "bytes": 115980,
+      "sha256": "177469f0850dbab0c7a31b42c28af92af743ce3a95f35bbd446b88777f8d9798"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_原图一致性备份_v1.sqlite",
+      "bytes": 507904,
+      "sha256": "ffe2386f066765588db559f909e6f07b994ee1a5f221aaff09b3227b8bc45404"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_原图完整模型_v1.json",
+      "bytes": 20183,
+      "sha256": "d5095e84a077331e6e33b89af3cc61b5cc9e34aa55503bc09d5bd67d75575bc5"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_原图导出_v1.md",
+      "bytes": 9081,
+      "sha256": "812f1c9c4a2273e13871721294818f112862d69dd26d895cce786383fcb1ac98"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_基线登记_v1.json",
+      "bytes": 2017,
+      "sha256": "8267650e9e457bd16930fe9498fa58c0bc968dfbf31323471d73752abf45a42b"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_对象完整说明导出_v1.md",
+      "bytes": 3467,
+      "sha256": "578815502431a643765121c5919f9506ab9a3ce56eb8591e60862d8d1edeeb9c"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_建立基线.py",
+      "bytes": 1963,
+      "sha256": "b522cc14ff2c5d57724f0c965211e056b300f0e9bef3ceff2b0bb77a19c1a081"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_建立未决库_v1.py",
+      "bytes": 2440,
+      "sha256": "d60a1fd10ed4fc3188635cb52588a571b26e70f4d58bf59c52678de3f66d0f29"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_战斗玩家功能新图_v1.md",
+      "bytes": 51738,
+      "sha256": "f9c19ed4e2afaa0df9fd04c84f5f10d025e0a5cf5e968720ee57f3c591e226a7"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_战斗玩家功能新图_v1.sqlite",
+      "bytes": 643072,
+      "sha256": "374d21c66192c4a23d51fbc7d5ae93bcd91be7bb0682c68fd0a6b5a003faab69"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_战斗玩家功能新图_v2.md",
+      "bytes": 54366,
+      "sha256": "18f253f3075c0bfb0ff522f5221447ff8c8be83ac6c29be95e4733ea93987c03"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_打开新图_v1.py",
+      "bytes": 688,
+      "sha256": "b99debbcdb2e0200e30542b04e678fbd5d103384cab154e443f3416638a40154"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_执行补图_v1.py",
+      "bytes": 17266,
+      "sha256": "c09252567817517ec9960c004b8029affdc5bd76ff002cbdae630e4f03929636"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_收口API操作记录_v1.json",
+      "bytes": 7019,
+      "sha256": "dc4d71aee452f257d8a60b118e3a363e92d82430cec7f18e591de2423fb055d9"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_收口检查_v1.py",
+      "bytes": 3041,
+      "sha256": "f40e9c0220ca354549ee32fbeabd6b69bb9b126287cc9c206bb881e430e66ce8"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_收口补充_v1.py",
+      "bytes": 12952,
+      "sha256": "6ebb369cb1afba9782eb57a31e05f699cb837ea8790cae5c2af081355f822176"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_新图完整模型_v1.json",
+      "bytes": 113226,
+      "sha256": "af8c4e489bc1ef58a00b1f382e25dcf568a4bc0ada8c35b8626516c55a1ba080"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_新图完整模型_v2.json",
+      "bytes": 120303,
+      "sha256": "c45b0fe822957dc3227839ea640a551dc4aa91a9ca632265267465f0968fa4b7"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_新图浏览器预览_v1.png",
+      "bytes": 462713,
+      "sha256": "8ba4370838ba45c5cbdd7816e58a2ac5f650d8b27ce730a31aea3c7724a269dd"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_最终前端核验临时库_v1.sqlite",
+      "bytes": 729088,
+      "sha256": "23e992dffecfb4ee33b80ca279321c0b957ce7e9a938e443babe5365ef43ce37"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_最终前端核验结果_v1.json",
+      "bytes": 2575,
+      "sha256": "e98aef46cdf1d6684fafa99a01ff9cadd60b42dfe24a33059ab8e8c1b560da21"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_最终核验_v1.py",
+      "bytes": 2342,
+      "sha256": "0246960bcc9cc081f54f0ad3b389e015a7dc5ec61f1cc6e1c1627ed8d62173aa"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_最终浏览器读取_v1.json",
+      "bytes": 740,
+      "sha256": "d7feb8d49caa347076de1eba560b28591c9ff1de21b4bc9dda5a3eace9ac6f08"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_最终浏览器预览_v1.png",
+      "bytes": 473862,
+      "sha256": "3463820d6bedb20436190293353ddee49d28d61c663c0e79444fa0e0ddb5da4f"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_最终详情读取_v1.json",
+      "bytes": 1288,
+      "sha256": "892915179faec73b3b874ded3fc3f943ba1a1896dcd68f0d18968da17f211b25"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_未决事项_v1.md",
+      "bytes": 12633,
+      "sha256": "47c7772b82e3b07ba1596645533a7a5aaeaa139bfa3c353b5723624a5d9ccbda"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_未决建库数据_v1.json",
+      "bytes": 16891,
+      "sha256": "ad4b48d5bab2e359b124f76c0e163d5be762951304fa3b44ec6ad54f45c9483c"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_未决建库核验_v2.json",
+      "bytes": 1833,
+      "sha256": "4836d2b4c204542aeba1190def5451922a7b8439fd06cc6a5a7be62a1300f232"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_核验结果_v1.json",
+      "bytes": 10487,
+      "sha256": "19ba849e05e23c7f97405e6ba86843ddd2beed012d70bd45e3d9b0c1ec37e2f8"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_核验结果_v2.json",
+      "bytes": 5924,
+      "sha256": "29bcf92d7604cdcb8e287892021f648914a591c9897cab5689f628dc7ab654b0"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_核验适配_v1.py",
+      "bytes": 3501,
+      "sha256": "fb2a823d613f895ab27b0b51829f0c7dcf836318e8cf257b830f7cb319c7593e"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_模型校验_v1.json",
+      "bytes": 2588,
+      "sha256": "19f0c0336a42e1d81dfc42000e2251152ed2b05803cb1a85d520861817badeaf"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_模型校验_v2.json",
+      "bytes": 2588,
+      "sha256": "9d6a9c40ce8e46b52c23ece934fd7d9b35a8cfc5baccfe1e0ff9face3e7302c8"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_浏览器控制台_v1.txt",
+      "bytes": 168,
+      "sha256": "702316456ccaa4022e61edd43550cb9acb3152c99a194be4f81ee3a470a9f7ce"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_浏览器诊断_console-2026-10-14T13-47-25-346Z.log",
+      "bytes": 138,
+      "sha256": "76a4b67a444516b4a3864636abb082ebded55dbd52be71596db65b9c1d5ae824"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_浏览器诊断_page-2026-10-14T13-47-25-841Z.yml",
+      "bytes": 53988,
+      "sha256": "57d62cb344e1c0dfa992e8b993c2af665fdc746f6bc9501c7ec70445e693f2c0"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_浏览器诊断_page-2026-10-14T13-56-46-193Z.yml",
+      "bytes": 1475,
+      "sha256": "e539fbd937ec0d3229a9c252c99903d8aa7bae9cd134632811be3747c3addae0"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_浏览器读取_v1.json",
+      "bytes": 4720,
+      "sha256": "b518e3db064a7233fbe13c0c5ac1063c66728d25b1d6dbaa100bf4ca8b23ee12"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_系统操作补充记录_v1.md",
+      "bytes": 2082,
+      "sha256": "e960c1cb462e0dde53c3cf198abbc8b88bdac70122f8d9927d2bcb5c70ca8a6c"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_补图规格_v1.py",
+      "bytes": 52344,
+      "sha256": "88fd03be693744b9e41e1da24dc74e5890ecfc7ff42c2fbdbec97f971d40b15a"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\N01_资料登记_v1.json",
+      "bytes": 5767,
+      "sha256": "9bf70ab2573e4442f2bf944bcf9ecd645188b182b36453a6b350a3227705b8f8"
+    },
+    {
+      "path": "Output\\N01-战斗玩家功能补图\\system_operation_log.md",
+      "bytes": 876,
+      "sha256": "9c1bd8c3855736e13407c4e71623fab231e1c92f146f1998dbe67f62eb494be5"
+    }
+  ],
+  "report_sha256": "889e2f8537d87be322a498be4b30ba1e24d73445fca56794dd3968dfe4d319ba"
+}

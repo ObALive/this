@@ -6,6 +6,8 @@
   const state = {
     model: null,
     config: null,
+    datasetId: null,
+    datasetBusy: false,
     layout: null,
     view: { k: 1, tx: 0, ty: 0 },
     history: [],
@@ -58,11 +60,17 @@
       if (data && data.need_confirm) error.needConfirm = data.need_confirm;
       throw error;
     }
+    if (["/api/op", "/api/import", "/api/reset", "/api/export"].includes(path) && data.dataset_id !== state.datasetId) {
+      throw new Error("数据已切换，请在当前数据中继续操作");
+    }
     return data;
   }
 
   function post(path, body) {
-    return api(path, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body || {}) });
+    if (state.datasetBusy && !path.startsWith("/api/datasets/")) {
+      return Promise.reject(new Error("正在切换数据，请稍后再操作"));
+    }
+    return api(path, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(Object.assign({ dataset_id: state.datasetId }, body || {})) });
   }
 
   async function op(name, args) {
@@ -265,18 +273,12 @@
 
   // ---------------------------------------------------------------- 高亮
   function collectRelated(nodeId) {
-    const up = new Set([nodeId]);
-    const down = new Set([nodeId]);
-    const edges = state.model.edges;
-    let changed = true;
-    while (changed) {
-      changed = false;
-      for (const e of edges) {
-        if (up.has(e.to) && !up.has(e.from)) { up.add(e.from); changed = true; }
-        if (down.has(e.from) && !down.has(e.to)) { down.add(e.to); changed = true; }
-      }
+    const ids = new Set([nodeId]);
+    // 边从前置节点指向依赖它的节点；只取显式直接依赖，不沿路线链或依赖递归扩展。
+    for (const edge of state.model.edges) {
+      if (edge.to === nodeId && edge.kind.includes("explicit")) ids.add(edge.from);
     }
-    return new Set([...up, ...down]);
+    return ids;
   }
 
   function highlightNodes(ids) {
@@ -518,7 +520,7 @@
       const info = state.layout.positions.get(state.drag.id);
       if (!info) return;
       info.x = state.drag.baseX + dx;
-      info.y = state.drag.baseY + dy;
+      info.y = PNLayout.constrainNodeY(state.layout, state.drag.id, state.drag.baseY + dy);
       const g = state.nodeEls.get(state.drag.id);
       if (g) g.style.transform = `translate(${info.x}px, ${info.y}px)`;
       redrawEdgesFor(state.drag.id);
@@ -972,6 +974,194 @@
     }
   }
 
+  async function exportImage() {
+    if (!state.layout || !state.model.nodes.length) {
+      toast("网络图是空的，暂时没有可导出的图片", true);
+      return;
+    }
+    const button = el("btn-export-image");
+    const originalText = button.textContent;
+    button.disabled = true;
+    button.textContent = "正在生成…";
+    let svgUrl = null;
+    let pngUrl = null;
+    try {
+      const width = Math.ceil(state.layout.width);
+      const height = Math.ceil(state.layout.height);
+      const clone = canvas.cloneNode(true);
+      clone.setAttribute("xmlns", SVG_NS);
+      clone.setAttribute("width", width);
+      clone.setAttribute("height", height);
+      clone.setAttribute("viewBox", `0 0 ${width} ${height}`);
+      clone.removeAttribute("class");
+
+      // 导出完整自动布局，避免把当前屏幕的平移、缩放和交互状态带进图片。
+      const clonedWorld = clone.querySelector("#world");
+      clonedWorld.removeAttribute("style");
+      clonedWorld.setAttribute("transform", "translate(0 0) scale(1)");
+      clone.querySelectorAll(".dim, .hot, .active").forEach((node) => {
+        node.classList.remove("dim", "hot", "active");
+      });
+
+      const styleResponse = await fetch("/app.css");
+      if (!styleResponse.ok) throw new Error("读取网络图样式失败");
+      const style = document.createElementNS(SVG_NS, "style");
+      style.textContent = await styleResponse.text();
+      clone.querySelector("defs").appendChild(style);
+      const background = document.createElementNS(SVG_NS, "rect");
+      background.setAttribute("x", "0");
+      background.setAttribute("y", "0");
+      background.setAttribute("width", width);
+      background.setAttribute("height", height);
+      background.setAttribute("fill", "#f5f6f8");
+      clone.insertBefore(background, clonedWorld);
+
+      const source = new XMLSerializer().serializeToString(clone);
+      svgUrl = URL.createObjectURL(new Blob([source], { type: "image/svg+xml;charset=utf-8" }));
+      const image = new Image();
+      await new Promise((resolve, reject) => {
+        image.onload = resolve;
+        image.onerror = () => reject(new Error("网络图图片渲染失败"));
+        image.src = svgUrl;
+      });
+
+      // 默认以 2 倍像素导出；超大网络图自动缩小，避免超过浏览器画布限制。
+      const scale = Math.min(2, 16384 / width, 16384 / height, Math.sqrt(32000000 / (width * height)));
+      const output = document.createElement("canvas");
+      output.width = Math.max(1, Math.floor(width * scale));
+      output.height = Math.max(1, Math.floor(height * scale));
+      const context = output.getContext("2d");
+      if (!context) throw new Error("浏览器无法创建图片画布");
+      context.scale(scale, scale);
+      context.drawImage(image, 0, 0, width, height);
+      const blob = await new Promise((resolve, reject) => {
+        output.toBlob((value) => value ? resolve(value) : reject(new Error("PNG 编码失败")), "image/png");
+      });
+      pngUrl = URL.createObjectURL(blob);
+      const now = new Date();
+      const stamp = [now.getFullYear(), String(now.getMonth() + 1).padStart(2, "0"), String(now.getDate()).padStart(2, "0")].join("") +
+        "-" + [String(now.getHours()).padStart(2, "0"), String(now.getMinutes()).padStart(2, "0"), String(now.getSeconds()).padStart(2, "0")].join("");
+      const link = document.createElement("a");
+      link.href = pngUrl;
+      link.download = `项目网络图-${stamp}.png`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      toast(`已导出 PNG 图片（${output.width} × ${output.height}）`);
+    } catch (err) {
+      fail(err);
+    } finally {
+      if (svgUrl) URL.revokeObjectURL(svgUrl);
+      if (pngUrl) setTimeout(() => URL.revokeObjectURL(pngUrl), 1000);
+      button.disabled = false;
+      button.textContent = originalText;
+    }
+  }
+
+  // ---------------------------------------------------------------- 数据管理
+  function renderDatasets() {
+    const entries = (state.config && state.config.datasets) || [];
+    const select = el("dataset-select");
+    select.textContent = "";
+    if (!entries.length) {
+      const option = document.createElement("option");
+      option.textContent = "请新建网络图";
+      option.value = "";
+      select.appendChild(option);
+    }
+    const list = el("datasets-list");
+    list.textContent = "";
+    el("datasets-directory").textContent = `数据目录：${(state.config && state.config.data_dir) || ""}`;
+    for (const entry of entries) {
+      const name = entry.id.replace(/\.sqlite$/, "");
+      const option = document.createElement("option");
+      option.value = entry.id;
+      option.textContent = name;
+      select.appendChild(option);
+      const row = document.createElement("div");
+      row.className = "dataset-item" + (entry.id === state.datasetId ? " current" : "");
+      const description = document.createElement("div");
+      description.className = "dataset-description";
+      const title = document.createElement("strong");
+      title.textContent = name;
+      const detail = document.createElement("span");
+      detail.className = "hint";
+      detail.textContent = `${entry.nodes} 个节点${entry.id === state.datasetId ? " · 当前打开" : ""}`;
+      description.append(title, detail);
+      const actions = document.createElement("div");
+      actions.className = "dataset-actions";
+      const open = document.createElement("button");
+      open.type = "button";
+      open.className = "button small";
+      open.textContent = "打开";
+      open.addEventListener("click", () => datasetAction("select", { id: entry.id }));
+      const remove = document.createElement("button");
+      remove.type = "button";
+      remove.className = "button danger small";
+      remove.textContent = "删除";
+      remove.addEventListener("click", () => {
+        if (window.confirm(`删除网络图「${name}」？文件将移入「已删除」目录，可恢复。`)) {
+          datasetAction("delete", { id: entry.id });
+        }
+      });
+      actions.append(open, remove);
+      row.append(description, actions);
+      list.appendChild(row);
+    }
+    select.value = state.datasetId || "";
+  }
+
+  function applyDataset(data) {
+    const changed = state.datasetId !== data.dataset_id;
+    if (changed) {
+      for (const id of ["node-dialog", "import-dialog", "markdown-dialog"]) closeDialog(el(id));
+      state.history.length = 0;
+      state.redo.length = 0;
+      state.editingId = null;
+      state.drag = null;
+      state.pan = null;
+      clearHighlight();
+      for (const node of state.nodeEls.values()) node.classList.remove("active");
+      canvas.classList.remove("dragging");
+    }
+    state.datasetId = data.dataset_id || null;
+    state.config = data.config;
+    applyModel(data.model);
+    renderDatasets();
+    if (changed) fitView();
+  }
+
+  async function datasetAction(action, args) {
+    if (state.datasetBusy) return;
+    if (el("node-dialog").open && !window.confirm("当前条目有尚未保存的编辑，切换数据会丢弃这些编辑。继续？")) {
+      renderDatasets();
+      return;
+    }
+    state.datasetBusy = true;
+    try {
+      const data = await post(`/api/datasets/${action}`, args);
+      applyDataset(data);
+      if (action !== "delete") closeDialog(el("datasets-dialog"));
+      if (action === "create") el("dataset-name").value = "";
+      if (action === "add") el("dataset-path").value = "";
+      toast(action === "delete" ? "已移入「已删除」目录" : "已打开网络图");
+    } catch (err) {
+      renderDatasets();
+      fail(err);
+    } finally {
+      state.datasetBusy = false;
+    }
+  }
+
+  async function showDatasets() {
+    try {
+      applyDataset(await api("/api/state"));
+      el("datasets-dialog").showModal();
+    } catch (err) {
+      fail(err);
+    }
+  }
+
   // ---------------------------------------------------------------- 撤销
   async function undo() {
     if (!state.history.length) { toast("没有可撤销的操作"); return; }
@@ -1016,6 +1206,13 @@
 
   // ---------------------------------------------------------------- 绑定
   function bind() {
+    el("btn-datasets").addEventListener("click", showDatasets);
+    el("datasets-close").addEventListener("click", () => closeDialog(el("datasets-dialog")));
+    el("dataset-select").addEventListener("change", () => {
+      if (el("dataset-select").value) datasetAction("select", { id: el("dataset-select").value });
+    });
+    el("dataset-create").addEventListener("click", () => datasetAction("create", { title: el("dataset-name").value.trim() }));
+    el("dataset-add").addEventListener("click", () => datasetAction("add", { path: el("dataset-path").value.trim() }));
     el("btn-undo").addEventListener("click", undo);
     el("btn-redo").addEventListener("click", redo);
     el("btn-fit").addEventListener("click", fitView);
@@ -1047,6 +1244,7 @@
 
     el("btn-preview").addEventListener("click", showMarkdownPreview);
     el("btn-export").addEventListener("click", writeMarkdown);
+    el("btn-export-image").addEventListener("click", exportImage);
     el("markdown-close").addEventListener("click", () => closeDialog(el("markdown-dialog")));
     el("markdown-write").addEventListener("click", writeMarkdown);
     el("markdown-copy").addEventListener("click", async () => {
@@ -1147,11 +1345,11 @@
     bind();
     try {
       const data = await api("/api/state");
-      state.config = data.config;
-      applyModel(data.model);
+      applyDataset(data);
       fitView();
       const s = data.model.stats;
       toast(`已载入：${s.sections} 条开发路线 / ${s.nodes} 个条目 / ${s.edges} 条依赖边`);
+      el("datasets-dialog").showModal();
     } catch (err) {
       fail(err);
     }

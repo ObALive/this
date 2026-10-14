@@ -93,6 +93,8 @@ def load_or_seed() -> M.Model:
     if db.exists(DB_FILE):
         try:
             m = db.load_model(DB_FILE)
+            if not m.nodes and not m.sections:
+                return m
             if m.nodes or m.sections:
                 # 说明归属规则升级后，把库里已存的设计说明归到它点名的对象下（幂等）
                 moves = M.reclassify_notes(m)

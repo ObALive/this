@@ -15,6 +15,7 @@ from urllib.parse import urlparse
 
 import model as M
 import store
+import datasets
 
 STATIC = {
     "/": ("index.html", "text/html; charset=utf-8"),
@@ -27,11 +28,12 @@ STATIC = {
 
 LOCK = threading.Lock()
 STATE: dict = {"model": None}
+CATALOG: datasets.Catalog | None = None
 
 
 def get_model() -> M.Model:
     if STATE["model"] is None:
-        STATE["model"] = store.load_or_seed()
+        STATE["model"] = M.Model(title="请选择或新建网络图") if CATALOG and not CATALOG.active_id else store.load_or_seed()
     return STATE["model"]
 
 
@@ -57,7 +59,7 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header("X-Content-Type-Options", "nosniff")
         self.send_header(
             "Content-Security-Policy",
-            "default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; frame-ancestors 'none'",
+            "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' blob: data:; object-src 'none'; frame-ancestors 'none'",
         )
         self.end_headers()
         self.wfile.write(raw)
@@ -78,6 +80,8 @@ class Handler(BaseHTTPRequestHandler):
     def _view(self, log: list[str] | None = None, extra: dict | None = None) -> dict:
         model = get_model()
         payload = {"ok": True, "model": M.serialize(model), "log": log or []}
+        if CATALOG:
+            payload["dataset_id"] = CATALOG.active_id
         if extra:
             payload.update(extra)
         return payload
@@ -96,7 +100,14 @@ class Handler(BaseHTTPRequestHandler):
                 return
             if path == "/api/state":
                 with LOCK:
-                    self._send(200, self._view(extra={"config": store.info()}))
+                    config = store.info() if not CATALOG or CATALOG.active_id else {"default_source": store.DEFAULT_SOURCE}
+                    if CATALOG:
+                        config.update(CATALOG.info())
+                    self._send(200, self._view(extra={"config": config}))
+                return
+            if path == "/api/datasets" and CATALOG:
+                with LOCK:
+                    self._send(200, {"ok": True, **CATALOG.info()})
                 return
             if path == "/api/markdown":
                 with LOCK:
@@ -111,6 +122,31 @@ class Handler(BaseHTTPRequestHandler):
         try:
             body = self._json_body()
             with LOCK:
+                if CATALOG and "dataset_id" in body and body["dataset_id"] != CATALOG.active_id:
+                    self._send(409, {"ok": False, "error": "当前数据已在其他页面切换，请刷新后再操作"})
+                    return
+                if path.startswith("/api/datasets/") and CATALOG:
+                    if path == "/api/datasets/select":
+                        STATE["model"] = CATALOG.select(body.get("id"))
+                    elif path == "/api/datasets/create":
+                        STATE["model"] = CATALOG.create(body.get("title"))
+                    elif path == "/api/datasets/add":
+                        source = store.resolve_in_workspace(body.get("path"), must_exist=True)
+                        STATE["model"] = CATALOG.add_existing(source)
+                    elif path == "/api/datasets/delete":
+                        current = CATALOG.active_id
+                        replacement = CATALOG.delete(body.get("id"))
+                        if current != CATALOG.active_id:
+                            STATE["model"] = replacement
+                    else:
+                        self._send(404, {"ok": False, "error": "未知数据管理操作"})
+                        return
+                    config = store.info() if CATALOG.active_id else {"default_source": store.DEFAULT_SOURCE}
+                    config.update(CATALOG.info())
+                    self._send(200, self._view(extra={"config": config}))
+                    return
+                if CATALOG and not CATALOG.active_id:
+                    raise ValueError("请先选择或新建一份网络图数据")
                 if path == "/api/op":
                     model = get_model()
                     op = body.get("op", "")
@@ -169,17 +205,20 @@ class Handler(BaseHTTPRequestHandler):
 
 
 def main(argv: list[str] | None = None) -> int:
+    global CATALOG
     parser = argparse.ArgumentParser(description="项目网络图绘制与编辑工具")
     parser.add_argument("--port", type=int, default=8791, help="监听端口（默认 8791）")
     parser.add_argument("--no-browser", action="store_true", help="不自动打开浏览器")
     parser.add_argument("--host", default="127.0.0.1")
     args = parser.parse_args(argv)
 
+    CATALOG, STATE["model"] = datasets.initialize()
     store.ensure_dirs()
     model = get_model()
     view = M.serialize(model)
     print(f"工作区：{store.WORKSPACE}", flush=True)
-    print(f"数据文件：{store.DB_FILE}", flush=True)
+    print(f"数据目录：{CATALOG.directory}", flush=True)
+    print(f"当前数据：{store.DB_FILE if CATALOG.active_id else '请在界面中选择或新建'}", flush=True)
     print(
         f"当前网络图：{view['stats']['sections']} 条开发路线 / {view['stats']['nodes']} 个条目 / {view['stats']['edges']} 条依赖边",
         flush=True,
