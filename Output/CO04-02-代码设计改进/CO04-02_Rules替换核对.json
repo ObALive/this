@@ -1,0 +1,20 @@
+{
+  "baseline": "2e418b1ec12986778b364c4b12fb92b71bb8d5bf",
+  "nr06_main_chapters": 15,
+  "active_explicit_references_checked": 135,
+  "nr06_body_matches_approved_candidate": true,
+  "nr02_unchanged": true,
+  "rules_content_sha256": {
+    "01_规范总则.md": "01dfa2d290649a521bb1e4dbad91615623f64762ae126ddb7a802a0bb66dafc0",
+    "02_任务执行规范.md": "08c4efd368594197441e0fffe3bcf07373f75c50a48eb1a38cd1f841884d0c1a",
+    "03_文档编辑规范.md": "489671d9fe15934c41a1beffe22479f252ffc25e5189f4176b354d258d69d553",
+    "04_规范目录维护规范.md": "c6b0e827ab5f2422ced5eb539d657f74190e9dc31f21eedab48ceea770f185a6",
+    "05_文档库组织规范.md": "1ff8fd645a51f53a0435fdc3086855b77f60dec4f4cfaba7eb7df63dc30c6074",
+    "06_代码设计案编辑规范.md": "0695fb0fd2e5f2e1156c6e3dc14dd839c8ff49aee380e903fd80107604deb58b",
+    "07_架构设计案编辑规范.md": "e1b07c423d89f74f865423169bbe37870ef0b16f5344d184405e2de76831441e",
+    "08_交互原语与交互语义设计规范.md": "c5a34baaea3dca3eea498d90d014a28d7b3de66fba8f74faaf5b9b15ce1936ac",
+    "BaseRules.md": "274be0500926e299246f17e1cb031778d598a68f2493cc4ad98370f48cc6822e",
+    "README.md": "28f694390806283fab8e1887c224a57385189abd13302db838bebd5d5927eafd"
+  },
+  "errors": []
+}
