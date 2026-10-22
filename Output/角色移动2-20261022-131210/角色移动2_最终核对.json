@@ -1,0 +1,11 @@
+{
+  "retained_prior_files": {
+    "Assets/Editor/GridMovementVerification.cs": true,
+    "Assets/Scenes/01.Field.unity": true,
+    "Assets/GameData/MetaObjects/Player.asset": true
+  },
+  "database_unchanged": true,
+  "head": "e422970858e2fa27b94c8389467300dc01092474",
+  "distance": "Manhattan, per latest user correction",
+  "verification": "MOVEMENT_RANGE PASS: 43 assertions\nAttribute regression: 37 assertions PASS\nMETAOBJECT_VERIFY PASS：共检查 1 个元对象预置，失败 0 项。\n  OK PersistanceScene/Player\n\nRuntime errors/exceptions: 0\nDistance: Manhattan; AP5 -> 60 destination cells; origin excluded.\n"
+}

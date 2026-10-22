@@ -1,0 +1,1 @@
+32x32 frame; two-pixel border; translucent fill; Sprite and collider-free Tile created.

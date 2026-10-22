@@ -1,0 +1,21 @@
+{
+  "dataset": "N01_完整依赖清理新图_v2.sqlite",
+  "result_hash": "ba35d5d360f08abbdadac63094e7003751426372887c3107f48957c68639db3b",
+  "stats": {
+    "sections": 24,
+    "nodes": 149,
+    "edges": 229,
+    "chain_edges": 128,
+    "explicit_edges": 101,
+    "errors": 0,
+    "warnings": 0,
+    "infos": 11,
+    "objects": 11,
+    "objects_with_path": 3,
+    "unresolved_refs": 0,
+    "root_nodes": 4
+  },
+  "export": "Output/N03-回合与战场观察设计调整/N03_网络图导出.md",
+  "api": "/api/op replace；/api/export",
+  "service": "复用已有127.0.0.1:8791服务；未启停服务或切换数据库"
+}

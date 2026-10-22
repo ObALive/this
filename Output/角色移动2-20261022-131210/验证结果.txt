@@ -1,0 +1,7 @@
+MOVEMENT_RANGE PASS: 43 assertions
+Attribute regression: 37 assertions PASS
+METAOBJECT_VERIFY PASS：共检查 1 个元对象预置，失败 0 项。
+  OK PersistanceScene/Player
+
+Runtime errors/exceptions: 0
+Distance: Manhattan; AP5 -> 60 destination cells; origin excluded.

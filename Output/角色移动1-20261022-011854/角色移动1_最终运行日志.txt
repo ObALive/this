@@ -1,0 +1,181 @@
+CHARACTER_ATTRIBUTES PASS: 37 checks (configuration and runtime logic).
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+CharacterAttributesVerification:VerifyMenu () (at Assets/Editor/CharacterAttributesVerification.cs:74)
+GridMovementVerification:Run () (at Assets/Editor/GridMovementVerification.cs:138)
+GridMovementVerification:ProcessRequest () (at Assets/Editor/GridMovementVerification.cs:63)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()
+
+(Filename: Assets/Editor/CharacterAttributesVerification.cs Line: 74)
+
+Opening scene 'Assets/Scenes/PersistanceScene.unity'
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+Loaded scene 'Assets/Scenes/PersistanceScene.unity'
+	Deserialize:            1.727 ms
+	Integration:            218.096 ms
+	Integration of assets:  0.002 ms
+	Thread Wait Time:       0.009 ms
+	Total Operation Time:   219.833 ms
+Unloading 253 unused Assets / (199.1 KB). Loaded Objects now: 5580.
+Memory consumption went from 173.4 MB to 173.2 MB.
+Total: 10.239100 ms (FindLiveObjects: 0.386500 ms CreateObjectMapping: 0.416400 ms MarkObjects: 8.958500 ms  DeleteObjects: 0.477000 ms)
+
+SpriteAtlasPacking completed in 0.009219 sec
+Reloading assemblies for play mode.
+Reloading assemblies after forced synchronous recompile.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  0.869 seconds
+Refreshing native plugins compatible for Editor in 5.07 ms, found 1 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+[MODES] Loading mode Default (0) for mode-current-id-My project
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.539 seconds
+Domain Reload Profiling: 2408ms
+	BeginReloadAssembly (655ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (98ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (371ms)
+	RebuildCommonClasses (33ms)
+	RebuildNativeTypeToScriptingClass (12ms)
+	initialDomainReloadingComplete (29ms)
+	LoadAllAssembliesAndSetupDomain (140ms)
+		LoadAssemblies (260ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (11ms)
+			TypeCache.Refresh (4ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (5ms)
+	FinalizeReload (1539ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (567ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (6ms)
+			SetLoadedEditorAssemblies (5ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (167ms)
+			ProcessInitializeOnLoadAttributes (299ms)
+			ProcessInitializeOnLoadMethodAttributes (87ms)
+			AfterProcessingInitializeOnLoad (3ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (554ms)
+Asset Pipeline Refresh (id=5418317e8d926ee41a93e1106bd3ecbb): Total: 2.683 seconds - Initiated by StopAssetImportingV2(ForceSynchronousImport | ForceDomainReload)
+	Summary:
+		Imports: total=0 (actual=0, local cache=0, cache server=0)
+		Asset DB Process Time: managed=0 ms, native=219 ms
+		Asset DB Callback time: managed=18 ms, native=1 ms
+		Scripting: domain reloads=1, domain reload time=2441 ms, compile time=2 ms, other=0 ms
+		Project Asset Count: scripts=4616, non-scripts=3356
+		Asset File Changes: new=0, changed=0, moved=0, deleted=0
+		Scan Filter Count: 0
+	InvokeBeforeRefreshCallbacks: 1.654ms
+	ApplyChangesToAssetFolders: 0.106ms
+	Scan: 0.001ms
+	OnSourceAssetsModified: 0.001ms
+	GetAllGuidsForCategorization: 1.060ms
+	CategorizeAssets: 97.575ms
+	ImportOutOfDateAssets: 1571.651ms (1563.199ms without children)
+		CompileScripts: 1.877ms
+		CollectScriptTypesHashes: 0.166ms
+		ReloadNativeAssets: 0.820ms
+		UnloadImportedAssets: 1.633ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 2.053ms
+		InitializingProgressBar: 0.000ms
+		PostProcessAllAssetNotificationsAddChangedAssets: 0.001ms
+		OnDemandSchedulerStart: 1.902ms
+	PostProcessAllAssets: 18.535ms
+	GatherAllCurrentPrimaryArtifactRevisions: 0.300ms
+	UnloadStreamsBegin: 0.140ms
+	PersistCurrentRevisions: 0.242ms
+	UnloadStreamsEnd: 0.056ms
+	GenerateScriptTypeHashes: 1.726ms
+	Untracked: 991.894ms
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+Loaded scene 'Temp/__Backupscenes/0.backup'
+	Deserialize:            1.900 ms
+	Integration:            259.115 ms
+	Integration of assets:  0.003 ms
+	Thread Wait Time:       0.006 ms
+	Total Operation Time:   261.023 ms
+Loaded scene 'Assets/Scenes/01.Field.unity'
+	Deserialize:            42.006 ms
+	Integration:            17.937 ms
+	Integration of assets:  0.022 ms
+	Thread Wait Time:       620.598 ms
+	Total Operation Time:   680.563 ms
+Loaded scene 'Assets/Scenes/UI.unity'
+	Deserialize:            18.452 ms
+	Integration:            33.634 ms
+	Integration of assets:  1.023 ms
+	Thread Wait Time:       173.398 ms
+	Total Operation Time:   226.508 ms
+GRID_MOVEMENT PASS: 38
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+GridMovementVerification:Finish (System.Exception) (at Assets/Editor/GridMovementVerification.cs:367)
+GridMovementVerification:Tick () (at Assets/Editor/GridMovementVerification.cs:258)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions ()
+
+(Filename: Assets/Editor/GridMovementVerification.cs Line: 367)
+
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+Unloading 109 Unused Serialized files (Serialized files now loaded: 0)
+Loaded scene 'Temp/__Backupscenes/0.backup'
+	Deserialize:            1.107 ms
+	Integration:            210.381 ms
+	Integration of assets:  0.001 ms
+	Thread Wait Time:       0.006 ms
+	Total Operation Time:   211.495 ms
+Unloading 222 unused Assets / (0.6 MB). Loaded Objects now: 5601.
+Memory consumption went from 176.2 MB to 175.6 MB.
+Total: 10.108200 ms (FindLiveObjects: 0.424000 ms CreateObjectMapping: 0.445200 ms MarkObjects: 8.466900 ms  DeleteObjects: 0.771100 ms)
+
+[Licensing::Client] Successfully resolved entitlement details
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+Loaded scene 'Assets/Scenes/PersistanceScene.unity'
+	Deserialize:            1.905 ms
+	Integration:            204.092 ms
+	Integration of assets:  0.002 ms
+	Thread Wait Time:       0.005 ms
+	Total Operation Time:   206.005 ms
+Unloading 1 unused Assets / (11.3 KB). Loaded Objects now: 5601.
+Memory consumption went from 172.9 MB to 172.9 MB.
+Total: 8.660800 ms (FindLiveObjects: 0.431400 ms CreateObjectMapping: 0.353400 ms MarkObjects: 7.841200 ms  DeleteObjects: 0.033800 ms)
+
+Loaded scene 'Assets/Scenes/01.Field.unity'
+	Deserialize:            8.639 ms
+	Integration:            36.377 ms
+	Integration of assets:  0.004 ms
+	Thread Wait Time:       0.086 ms
+	Total Operation Time:   45.107 ms
+Loaded scene 'Assets/Scenes/UI.unity'
+	Deserialize:            5.055 ms
+	Integration:            8.116 ms
+	Integration of assets:  0.003 ms
+	Thread Wait Time:       31.516 ms
+	Total Operation Time:   44.689 ms
+Loaded scene 'Assets/Scenes/Template.unity'
+	Deserialize:            2.841 ms
+	Integration:            0.636 ms
+	Integration of assets:  0.001 ms
+	Thread Wait Time:       36.875 ms
+	Total Operation Time:   40.354 ms

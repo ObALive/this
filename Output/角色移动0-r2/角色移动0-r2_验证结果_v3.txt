@@ -1,0 +1,108 @@
+角色移动0-r2 验证结果 v3（组件私有状态 + 方法改动 + Debug Panel 验收入口）
+执行日期：2026-10-18（Asia/Shanghai）
+Unity 工程：D:\myspace\Git\mygame（分支 dsh-move-1）
+Unity：2022.3.62f3c1
+
+一、本版改动
+1. 移除 v2 的序列化字段变化监听（MetaObjectPreset.Update + appliedCell）与预置上的 cell 字段。
+2. 关键状态改为组件私有，只能经组件方法改动：
+   - SceneCoordinateComponent：private Vector2Int cell；唯一入口 SetCell(Vector2Int)；
+     SetCell 内直接调用 ApplyToScene()，把锚点移动到格子中心。
+   - SceneTextureComponent：private Sprite texture、private string texturePath；
+     唯一入口 SetTexture(Sprite) 与 SetTexturePath(string)；两者内部直接调用 ApplyToScene()，
+     把纹理写到场景 SpriteRenderer。
+3. 预置只做转发与承载：MetaObjectPreset.SetCell 转发给坐标组件的 SetCell；
+   初始格子改为按物体在场景中的摆放位置换算（不再有可编辑的 cell 字段），
+   绑定前调用 SetCell 会暂存，绑定后按暂存值初始化。
+4. 验收入口：DebugPanel 增加“元对象”面板，显示元对象标识、格子、位置、纹理，
+   提供格子输入 + 应用、← → ↑ ↓、切换纹理、回到初始格子；所有按钮都调用上述组件方法。
+
+二、编译
+refresh_unity（mode=force、scope=all、compile=request、wait_for_ready）完成，编辑器 ready。
+编译错误 0；除 MCP 插件自身的 WebSocket 警告外无 warning。
+
+三、Play Mode 状态探针
+preset=Player scene=PersistanceScene
+definition=CHAR_PLAYER/玩家角色
+cell=(7, -4) isBound=True pending=False
+grid=01.Field/Grid cellSize=(1.00, 1.00, 0.00)
+renderer=BodyWalkDown_0 sprite=BodyWalkDown_0
+instance=CHAR_PLAYER components=2
+  component=SceneTextureComponent owner=CHAR_PLAYER bound=True
+  component=SceneCoordinateComponent owner=CHAR_PLAYER bound=True
+coordinateCell=(7, -4)
+expected=(7.5000, -3.5000, 0.0000)
+actual=(7.5000, -3.5000, 0.0000)
+delta=0.000000
+texturePath=Assets/M Studio/Art/Characters/Player/Body/BodyWalkDown.png
+texture=BodyWalkDown_0
+playerMovementEnabled=False
+childRenderer=BodyWalkDown_0 sprite=BodyWalkDown_0
+childRenderer=HairWalkDown_0 sprite=HairWalkDown_0
+childRenderer=ArmWalkDown_0 sprite=ArmWalkDown_0
+childRenderer=Character_Shadow sprite=Character_Shadow
+
+四、行为用例（Play Mode 内执行，14 条）
+INFO loadedGrids=2 gridScene=01.Field
+TEST A1 PASS resolve real asset path
+TEST A2 PASS missing path returns null
+TEST A3 PASS blank path returns null
+TEST B1 PASS unresolved texture keeps existing sprite
+TEST B2 PASS temp preset anchored at cell (3, 3) center
+TEST C1 PASS missing grid keeps pending and does not move object
+TEST D1 PASS null grid rejects world position
+TEST E1 PASS same type replaces and detaches previous
+TEST F1 PASS preset.SetCell moves anchor to new cell center and restores
+TEST F2 PASS Rebuild recreates instance, components and position
+TEST G1 PASS coordinate.SetCell applies immediately and restores
+TEST H1 PASS texture.SetTexture applies immediately and restores
+TEST H2 PASS SetTexturePath rejects missing path and keeps texture
+TEST H3 PASS SetTexture rejects null and keeps texture
+RESULT failures=0
+
+说明：G1 验证组件级入口 SceneCoordinateComponent.SetCell 立即改位置；
+H1 验证 SceneTextureComponent.SetTexture 立即改渲染器 Sprite；
+H2/H3 验证非法路径与空纹理被拒绝且保留原纹理。
+用例中的临时对象与临时定义在用例结束时 DestroyImmediate，未写入工程资产。
+
+五、编辑器自检菜单 Tools/Meta Object/Verify Play Mode Wiring
+METAOBJECT_VERIFY PASS：共检查 1 个元对象预置，失败 0 项。
+  OK PersistanceScene/Player
+自检同时核对：对象实际所在格子 == 坐标组件记录的格子；锚点 == 格子中心；
+渲染器 Sprite == 组件当前纹理；按 TexturePath 仍可解析。
+
+六、Debug Panel 验收面板
+截图：角色移动0-r2_运行截图_v2.png
+面板内容（Play Mode）：
+  元对象 CHAR_PLAYER
+  格子 (7, -4)
+  位置 7.50,-3.50
+  纹理 BodyWalkDown_0
+  [7] [-4] [应用]；[←][→][↑][↓]；[切换纹理]；[回到初始格子]
+按钮调用链：
+  [应用]/方向键/回到初始格子 -> MetaObjectPreset.SetCell -> SceneCoordinateComponent.SetCell -> ApplyToScene
+  [切换纹理] -> SceneTextureComponent.SetTexture -> ApplyToScene
+
+面板处理器复验（反射调用面板私有方法，模拟面板路径）：
+panelApplyMoved=True resetMoved=True textureChanged=True textureBack=True componentTexture=BodyWalkDown_0
+说明：输入 (6,-4) 后“应用”使预置移动到 (6,-4) 中心；“回到初始格子”回到 (7,-4)；
+“切换纹理”改变渲染器 Sprite，连续四次循环后恢复原纹理，组件当前纹理为 BodyWalkDown_0。
+
+七、场景与字段收敛
+重新保存 PersistanceScene 后，MetaObjectPreset 不再序列化 cell 与 adoptCurrentCellOnAwake；
+运行时探针 hasCellField=False、hasAdoptField=False。
+初始格子由 Player 在场景中的位置 (7.91,-3.78) 换算为 (7,-4)，Play Mode 锚点落在 (7.5,-3.5)。
+退出 Play Mode 后四个场景 dirty=False，无临时对象残留。
+
+八、预期失败路径日志（仅来自临时用例）
+[MetaObject] 场景纹理无法解析，已保留渲染器原有显示：'Assets/__missing_texture__.png'（MetaObjectBadTextureTest）
+[MetaObject] 已加载场景中存在 2 个 Grid，无法确定地图网格：MetaObjectNoGridTest。请显式指定 grid 或正确的 gridSceneName。
+[MetaObject] 场景纹理路径无效，已保留原纹理：'Assets/__missing_texture__.png'
+[MetaObject] 场景纹理组件拒绝把纹理设为空值。
+以上均来自用例 B1/C1/H2/H3，真实 Player 预置无错误或警告。
+
+九、未覆盖
+1. 未在打包后的 Player 中运行；01.Field 不在 Build Settings。
+2. 非 Resources 纹理路径在打包运行不可解析（编辑器内可用）；当前 Player 使用直接 Sprite。
+3. 注册表、实体类型登记、能力类别、挂载契约与存档未实现。
+4. Debug Panel 为 IMGUI 调试面板，未做正式界面适配；面板处理器已通过反射调用复验，按钮的鼠标事件本身未自动化。

@@ -1,0 +1,4 @@
+System.InvalidOperationException: snapshot includes only painted cells
+  at GridMovementVerification.Check (System.Boolean condition, System.String message) [0x00016] in D:\myspace\Git\mygame\Assets\Editor\GridMovementVerification.cs:307 
+  at GridMovementVerification.VerifyMapConversion () [0x000d2] in D:\myspace\Git\mygame\Assets\Editor\GridMovementVerification.cs:169 
+  at GridMovementVerification.Run () [0x00016] in D:\myspace\Git\mygame\Assets\Editor\GridMovementVerification.cs:127 

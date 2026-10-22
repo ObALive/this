@@ -1,0 +1,6 @@
+CHARACTER_ATTRIBUTES PASS: 52 assertions
+METAOBJECT_VERIFY PASS：共检查 1 个元对象预置，失败 0 项。
+  OK PersistanceScene/Player
+
+Play Mode advanced to frame 11
+Screenshot present: True

@@ -1,0 +1,44 @@
+Manhattan movement range verification
+PASS 1: existing scene map, attributes and frame asset wired
+PASS 2: AP5 Manhattan diamond contains 60 destinations
+PASS 3: signed diagonal distance uses sum rather than maximum
+PASS 4: distance does not overflow integer endpoints
+PASS 5: unchanged input does not rebuild range
+PASS 6: range rejection preserves coordinate, transform and AP
+PASS 7: off-map destination rejected before range check
+PASS 8: current cell is harmless no-op
+PASS 9: fractional AP1.9 floors to one
+PASS 10: same-frame AP0 invalidates stale destinations before command
+PASS 11: negative AP has no destinations
+PASS 12: huge finite AP is bounded by painted map
+PASS 13: attribute overflow clears range and rejects movement
+PASS 14: preset rebuild releases old component and range uses current attributes
+PASS 15: small map AP2 has 12 destinations under transformed nonunit Grid
+PASS 16: map rebuild removes hole from selectable destinations
+PASS 17: diamond clipped to map corner
+PASS 18: empty map invalidates stale range
+PASS 19: map rebuild recovery keeps distant cell outside budget
+PASS 20: real scene renders 60 destinations for AP 5 with one configured tile
+PASS 21: overlay excludes origin and Manhattan exterior; draws boundary
+PASS 22: separate overlay on map Grid renders above foreground decoration
+PASS 23: diagonal displacement of total five accepted
+PASS 24: move clears old range and draws range around new position
+PASS 25: attribute modifier refreshes solver and rendering without movement
+PASS 26: AP 1 rejects diagonal neighbor
+PASS 27: disabling view clears visible cells
+PASS 28: view enable redraws unchanged solver version
+PASS 29: disabled map rejects command
+PASS 30: disabled map clears solver and visible range
+PASS 31: map enable restores range and overlay
+PASS 32: disabled solver clears view and rejects command
+PASS 33: solver enable restores range
+PASS 34: original ground tiles and map snapshot unchanged throughout highlighting
+PASS 35: screen exterior not dispatched
+PASS 36: debug UI continues blocking map input
+PASS 37: visible highlighted cell click reaches coordinate component once without consuming AP
+PASS 38: lifecycle click sample is visible and unobstructed
+PASS 39: disabled movement unsubscribes input
+PASS 40: movement re-enable restores a single input subscription
+PASS 41: Play Mode screenshot saved
+PASS 42: meta object scene regression
+PASS 43: zero runtime errors/exceptions

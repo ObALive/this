@@ -1,0 +1,80 @@
+角色移动0-r2 验证结果 v4（多对象角色换成单一占位角色）
+执行日期：2026-10-19（Asia/Shanghai）
+Unity 工程：D:\myspace\Git\mygame（分支 dsh-move-1）
+Unity：2022.3.62f3c1
+
+一、本次改动
+1. 把原来的多对象角色（Player 根节点 + Body/Hair/Arm/Shadow 四个 SpriteRenderer 子对象，
+   以及 SortingGroup、BoxCollider2D、Rigidbody2D、Player、TriggerItemFader、ItemPickup、MetaObjectPreset）
+   整体保存为预制体 Assets/Prefabs/Player_Layered.prefab，并从 PersistanceScene 撤下。
+2. 在原位置放置单一空对象 Player，只挂必要组件：Transform + SpriteRenderer + MetaObjectPreset。
+3. SpriteRenderer：sortingLayer=Instance、sortingOrder=0、sprite 为空。
+4. 场景中 Virtual Camera 的 m_Follow 与 m_LookAt 从旧 Player 转到新 Player（共 2 处引用）。
+5. 元对象定义 Player.asset 的纹理配置清空：texturePath 为空、sprite 为空，等待用户赋值。
+6. SceneTextureComponent 对“纹理故意留空”不再报错；只有配置了路径却解析失败才报错。
+   MetaObjectVerification 同步允许空纹理配置。
+
+二、预制体
+path=Assets/Prefabs/Player_Layered.prefab
+prefabChildren=5（Player + BodyWalkDown_0 + HairWalkDown_0 + ArmWalkDown_0 + Character_Shadow）
+components=Transform、SortingGroup、BoxCollider2D、Rigidbody2D、Player、TriggerItemFader、ItemPickup、MetaObjectPreset
+renderer=BodyWalkDown_0 sprite=BodyWalkDown_0
+renderer=HairWalkDown_0 sprite=HairWalkDown_0
+renderer=ArmWalkDown_0 sprite=ArmWalkDown_0
+renderer=Character_Shadow sprite=Character_Shadow
+
+三、场景中的新 Player（编辑模式）
+player=True pos=(7.500, -3.500, 0.000) scene=PersistanceScene
+childCount=0
+component=Transform
+component=SpriteRenderer
+component=MetaObjectPreset
+preset.definition=Player
+preset.gridSceneName=01.Field
+preset.spriteRenderer=Player
+preset.rebuildOnAwake=True
+rendererSprite=<null>
+rendererSorting=Instance/0
+REF Virtual Camera :: CinemachineVirtualCamera.m_LookAt
+REF Virtual Camera :: CinemachineVirtualCamera.m_Follow
+
+四、定义资产
+definition=True components=2
+texturePath=''
+textureSprite=<null>
+
+五、Play Mode 验证
+preset=Player scene=PersistanceScene
+definition=CHAR_PLAYER
+cell=(7, -4) isBound=True pending=False
+grid=01.Field/Grid
+expected=(7.5000, -3.5000, 0.0000) actual=(7.5000, -3.5000, 0.0000) delta=0.000000
+renderer=Player sprite=<null>
+texture=<null> path=''
+coordinateCell=(7, -4)
+camera=(7.500, -3.500, -30.000)
+debugPanel=True
+
+控制台：无 error / warning（纹理留空不再产生“无法解析”的错误日志）。
+
+编辑器自检菜单 Tools/Meta Object/Verify Play Mode Wiring：
+METAOBJECT_VERIFY PASS：共检查 1 个元对象预置，失败 0 项。
+  OK PersistanceScene/Player
+
+截图：角色移动0-r2_运行截图_v3.png
+画面中多对象角色已不在场景；Debug Panel 元对象面板显示：
+  元对象 CHAR_PLAYER
+  格子 (7, -4)
+  位置 7.50,-3.50
+  纹理 <无>
+
+六、纹理由用户赋值
+入口：Assets/GameData/MetaObjects/Player.asset → ComponentDefinitions 第 1 项
+（SceneTextureComponentDefinition）→ 填 sprite，或填 texturePath（Assets/ 工程路径或 Resources 相对路径）。
+赋值后进入 Play Mode，SceneTextureComponent 会把纹理写到新 Player 的 SpriteRenderer；
+Debug Panel 的“纹理”一行会显示对应 Sprite 名称。
+
+七、未覆盖
+1. 新 Player 只保留显示所需组件，不再有碰撞体、刚体、WASD、拾取与淡出组件；这些属于被撤下的多对象角色预制体。
+2. 未在打包后的 Player 中运行；01.Field 不在 Build Settings。
+3. 纹理未赋值前角色不可见，这是本版预期状态。

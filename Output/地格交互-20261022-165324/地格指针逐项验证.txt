@@ -1,0 +1,29 @@
+Grid pointer interaction verification
+PASS 1: two visible clickable cells found in real scene
+PASS 2: normal, hover and pressed opacity are distinct and increasing
+PASS 3: initial cell uses normal opacity
+PASS 4: hover affects only the pointed clickable cell
+PASS 5: mouse down changes opacity without moving or dispatching
+PASS 6: holding does not repeat activation
+PASS 7: release in original cell activates once and moves to it
+PASS 8: release without new down cannot activate twice
+PASS 9: leaving viewport while held immediately restores normal opacity
+PASS 10: release outside dispatches no click
+PASS 11: drag to another cell clears original press and does not press the new cell
+PASS 12: release over another clickable cell does not activate either cell
+PASS 13: returning while held does not rearm a cancelled press
+PASS 14: release after leaving and returning still does not click
+PASS 15: press outside then drag in cannot create a click
+PASS 16: sample point is covered by existing debug UI
+PASS 17: drag over UI restores original opacity and cancels click
+PASS 18: AP change removing destination clears feedback and cancels pending click
+PASS 19: changed range context cancels even when original cell remains in range
+PASS 20: disabling input clears pointer state and restores normal color
+PASS 21: input re-enable cannot revive previous press
+PASS 22: focus loss cancels press and click
+PASS 23: disabled map clears gesture and visible tiles
+PASS 24: map recovery cannot complete a cancelled click
+PASS 25: feedback preserves tint, map and restored Manhattan range
+PASS 26: moving hover to another cell restores the previous cell
+PASS 27: leaving all clickable cells clears hover
+PASS 28: all cancelled gestures preserve position and action points

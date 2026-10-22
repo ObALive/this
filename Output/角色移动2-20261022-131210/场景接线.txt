@@ -1,0 +1,4 @@
+Player: MovementRange + MovementRangeOverlay with frame tile.
+Saved current PersistanceScene in place, preserving existing renderer binding and sprite: Barrel (UnityEngine.Sprite)
+Other scenes were not saved or reloaded.
+Distance rule: Manhattan, per user correction.

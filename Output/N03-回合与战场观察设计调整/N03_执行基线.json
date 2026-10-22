@@ -1,0 +1,45 @@
+{
+  "task": "N03-回合与战场观察设计调整",
+  "dataset": "N01_完整依赖清理新图_v2.sqlite",
+  "model_hash": "235c0d7130a0c5256a070dd405542801058849496e96e71cb29059e79cf5f5a5",
+  "candidate_hash": "ba35d5d360f08abbdadac63094e7003751426372887c3107f48957c68639db3b",
+  "head": "33f6fb7fd407d3134df34fff22af3939d46154b4",
+  "original_stats": {
+    "sections": 19,
+    "nodes": 146,
+    "edges": 211,
+    "chain_edges": 128,
+    "explicit_edges": 83,
+    "errors": 0,
+    "warnings": 0,
+    "infos": 7,
+    "objects": 10,
+    "objects_with_path": 4,
+    "unresolved_refs": 0,
+    "root_nodes": 4
+  },
+  "candidate_stats": {
+    "sections": 24,
+    "nodes": 149,
+    "edges": 229,
+    "chain_edges": 128,
+    "explicit_edges": 101,
+    "errors": 0,
+    "warnings": 0,
+    "infos": 11,
+    "objects": 11,
+    "objects_with_path": 3,
+    "unresolved_refs": 0,
+    "root_nodes": 4
+  },
+  "view_ancestors_before": 62,
+  "view_ancestors_after": 41,
+  "checks": [
+    "无未解析与环",
+    "引用原文重解析目标一致",
+    "逻辑不依赖UI",
+    "查看不依赖撤退",
+    "敌人AI依赖新时间轴1",
+    "保留未改节点与用户既有修改"
+  ]
+}

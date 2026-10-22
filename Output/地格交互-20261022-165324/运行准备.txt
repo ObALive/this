@@ -1,0 +1,2 @@
+Rebound transient meta-object after script reload; preserved current cell and sprite.
+Rebound transient meta-object after script reload; preserved current cell and sprite.

@@ -1,0 +1,66 @@
+角色移动0-r2 验证结果 v2（验收修正）
+执行日期：2026-10-18（Asia/Shanghai）
+Unity 工程：D:\myspace\Git\mygame（分支 dsh-move-1）
+Unity：2022.3.62f3c1
+
+一、验收反馈与复现
+反馈：在运行时修改 Player 的 `cell` 变量，角色位置没有移动。
+复现（修复前，Play Mode）：
+  cellField=(7, -2) positionBefore=(7.500, -3.500, 0.000) positionNow=(7.500, -3.500, 0.000)
+  expectedForNewCell=(7.500, -1.500, 0.000) isBound=True
+  after 2s: cellField=(7, -2) position=(7.500, -3.500, 0.000)
+结论：直接改 `MetaObjectPreset` 的序列化字段 `cell` 只写入字段，不经过 `SetCell`，
+预置没有监听字段变化，因此场景坐标组件与对象位置都不更新。
+
+二、修复
+`MetaObjectPreset` 增加字段变化监听：
+- 新增 `appliedCell` 记录最近一次真正写入坐标组件的格子；
+- `Update()` 在已绑定时比较 `cell` 与 `appliedCell`，不一致即调用 `ApplyCell()`；
+- `Cell` 属性由只读改为可写（`set => SetCell(value)`）；
+- `SetCell`、`BindGrid`、`TryBind` 统一经 `ApplyCell()` 并同步 `appliedCell`。
+未绑定或等待 Grid 时只记录字段值，绑定成功后由 `TryBind` 统一应用；字段值未变化时不重复写入。
+
+三、修复后验证（Play Mode，真实 Player 预置）
+
+1. 初始状态
+cellField=(7, -4) coordinateCell=(7, -4) position=(7.500, -3.500, 0.000) expected=(7.500, -3.500, 0.000) delta=0.0000
+
+2. 直接改序列化字段（等价 Inspector 修改）
+setField=(7,-2) cellField=(7, -2) positionNow=(7.500, -3.500, 0.000)   ← 同一调用内 Update 尚未执行
+after 1s:
+cellField=(7, -2) coordinateCell=(7, -2) position=(7.500, -1.500, 0.000) expected=(7.500, -1.500, 0.000) delta=0.0000
+
+3. 通过 Cell 属性赋值（代码侧）
+propertySetter cellField=(5, -3) coordinateCell=(5, -3) position=(5.500, -2.500, 0.000) expected=(5.500, -2.500, 0.000) delta=0.0000
+
+4. 改回 (7,-4)
+restoreRequested cellField=(7, -4)
+after 1s:
+cellField=(7, -4) coordinateCell=(7, -4) position=(7.500, -3.500, 0.000) expected=(7.500, -3.500, 0.000) delta=0.0000
+
+四、回归
+- 编辑器自检菜单 Tools/Meta Object/Verify Play Mode Wiring：
+  METAOBJECT_VERIFY PASS：共检查 1 个元对象预置，失败 0 项。
+    OK PersistanceScene/Player
+- 行为用例（Play Mode 内执行）：
+  INFO loadedGrids=2 gridScene=01.Field
+  TEST A1 PASS resolve real asset path
+  TEST A2 PASS missing path returns null
+  TEST A3 PASS blank path returns null
+  TEST B1 PASS unresolved texture keeps existing sprite
+  TEST B2 PASS temp preset anchored at cell (3, 3) center
+  TEST C1 PASS missing grid keeps pending and does not move object
+  TEST D1 PASS null grid rejects world position
+  TEST E1 PASS same type replaces and detaches previous
+  TEST F1 PASS SetCell moves anchor to new cell center and restores
+  TEST F2 PASS Rebuild recreates instance, components and position
+  RESULT failures=0
+- 编译：0 error / 0 warning。
+- 控制台仅有用例 B1/C1 的两条预期失败日志；真实 Player 预置无错误或警告。
+- 退出 Play Mode 后四个场景 dirty=False，场景仍保存 cell=(7,-4)，无临时对象残留。
+
+五、覆盖说明
+- 直接改字段、Inspector 改字段、代码通过 `SetCell` / `Cell` 属性赋值三条路径都已验证。
+- 修改在下一帧生效（同一调用内不会立即移动，属于 Update 时序，不是失败）。
+- 未绑定 / 等待 Grid 时修改 cell：只记录，绑定成功后按最新值定位（由 TryBind 使用 `cell`）。
+- 未做打包运行验证，限制同 v1。

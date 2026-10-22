@@ -1,0 +1,6 @@
+Start: (7, -4)
+First screen selection: (9, -4)
+Second screen selection: (10, -4)
+Final cell: (10, -4)
+Final world: (10.50, -3.50, 0.00)
+Input dispatches: 3

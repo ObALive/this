@@ -1,0 +1,92 @@
+[
+  {
+    "path": "系统设计文档/06-战斗/10-战斗总览/10_战斗总览设计.md",
+    "head_exists": true,
+    "before_sha256": "3dd14755138cf4e9bcfcccee84cac20f7ba05b5dc2e62ea39a070535e1b42681",
+    "after_sha256": "b32d6fb34a41a9657c26f5eaea362fb8c800dddb6ec4c533074e0ef9709c5440"
+  },
+  {
+    "path": "系统设计文档/06-战斗/85-战斗行为系统/85_战斗行为系统设计.md",
+    "head_exists": true,
+    "before_sha256": "d1c3537df42633348a1e599fe9d05585fa873aac7bd44bdd6c97f5f694ad9e7a",
+    "after_sha256": "5796ab9054eb8744ca46707b65f7563418bae4db0360264cdbb10d9a1b06985c"
+  },
+  {
+    "path": "系统设计文档/06-战斗/20-时间轴与行动顺序/20_时间轴与行动顺序设计.md",
+    "head_exists": true,
+    "before_sha256": "0da6ce9de4b58f2917f8ff644a383c7b3e200550d5c4b4b94fd9cf9f345f8743",
+    "after_sha256": "6555b4aacef9847db40cc7e1d6766069456e98ac82873607d715b1cc4d5bfa5f"
+  },
+  {
+    "path": "系统设计文档/01-通用系统/70-元技能/70_元技能设计补充说明.md",
+    "head_exists": true,
+    "before_sha256": "264d04567445af298cf9c8b66f5087b36c869a8b5d395227bf474dbbec9bf649",
+    "after_sha256": "675a9b3979079ddf1e15b8cb5d0eeea0f9efb66dce0eee77785cf8dc0550a181"
+  },
+  {
+    "path": "系统设计文档/06-战斗/40-技能系统/40_技能系统设计.md",
+    "head_exists": true,
+    "before_sha256": "7e24c80c292cde6001fb947305aa821ac2047c26fea493da593aeff7b78548ed",
+    "after_sha256": "a082d19b4eaa67c80bce03b9dcfc6ee170dafd636d2de941b3d59e3b5ba93976"
+  },
+  {
+    "path": "系统设计文档/06-战斗/75-元效果系统/75_元效果系统设计.md",
+    "head_exists": true,
+    "before_sha256": "fae8c5ec1942515aae66c840495898f17793cbe3f99085c9f2be6a68d02025ef",
+    "after_sha256": "c4d9c2a4e9624f96338af21465b57b322221039978fa5300d90e2e85784a15d3"
+  },
+  {
+    "path": "系统设计文档/06-战斗/90-敌人与AI/90_敌人与AI设计.md",
+    "head_exists": true,
+    "before_sha256": "018dee7a0e0b6b377c2535d8d0256205ff056e68c0b4b48086287ee0f3c52821",
+    "after_sha256": "dc134c80e295945d3bab1474e5f754f8798774deb1dc66cc22b58ece5f2b2539"
+  },
+  {
+    "path": "系统设计文档/00-总览/02_术语表.md",
+    "head_exists": true,
+    "before_sha256": "b91e3a8e14820354a11ee6fce8356100f5b57ea39c409db565cad93ac216f045",
+    "after_sha256": "62888c706883ec847b09ac23b6ba75d21339763f962a795f8f3864070a3428a8"
+  },
+  {
+    "path": "系统设计文档/01-通用系统/01_通用系统索引.md",
+    "head_exists": true,
+    "before_sha256": "ec30aee53736bc064f0458a6a68a26f534d1e5ce707d71898dde860313f60a74",
+    "after_sha256": "628491c36e6500855d3d4d8206a2f29a3b83b7c2969e3e23f31cae94e3fb8a00"
+  },
+  {
+    "path": "系统设计文档/06-战斗/06_战斗索引.md",
+    "head_exists": true,
+    "before_sha256": "cb9d16d657c441b4a5a1cfd95ddae76175b28dc2dccf60265a7783915488edd4",
+    "after_sha256": "60787ffb175ba80e85addd93c79dea5a79d4da32927a8e726a69ea3f5e6daee5"
+  },
+  {
+    "path": "系统设计文档/00-总览/00_系统全景图.md",
+    "head_exists": true,
+    "before_sha256": "c1c11ae1f5772a923ad1bb6b9226143c04d6d7123af4f7007ddbc64e367462bd",
+    "after_sha256": "0cfd5803e89df0556d025792a0a8b0f244697cb41fc2fa7cbec76274d1a5174c"
+  },
+  {
+    "path": "系统设计文档/00-总览/01_设计原则与跨系统交互逻辑.md",
+    "head_exists": true,
+    "before_sha256": "ada5eebdc83c4b184cc5df36fb1ce544bad293965c69404a70d1195137c301d3",
+    "after_sha256": "b4efafcff8a8ae359711a2c59f2c9520da46d0e8a8d35ea90fb320e1a73c9b46"
+  },
+  {
+    "path": "架构设计文档/架构设计案.md",
+    "head_exists": true,
+    "before_sha256": "f35670f71be8c9a48a9b0c07fa96098ea0a54b0af62d60b2a1b34241cb292879",
+    "after_sha256": "0db5531b368de898cf29bd055745cc764cc67ccbc0696b917f145c331b303628"
+  },
+  {
+    "path": "架构设计文档/界面索引.md",
+    "head_exists": true,
+    "before_sha256": "757a34414348a12b9b2785e8c8953ef04962b6f0aef0413ae278dd93bc36d6c4",
+    "after_sha256": "a7b1288a10880bb67c65e28d6463a99ca75e4ca3da0423fc3fe13813f0241239"
+  },
+  {
+    "path": "系统设计文档/README.md",
+    "head_exists": true,
+    "before_sha256": "2054756c01b2311a6f00b91a1eb881772f351476d1ba031399fa71f10db72e93",
+    "after_sha256": "58b57a2c7026e15fabb5d62658683ff8e6dd273e6658323d6eba0886c07d593b"
+  }
+]

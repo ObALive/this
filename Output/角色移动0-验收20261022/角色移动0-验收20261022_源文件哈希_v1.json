@@ -1,0 +1,62 @@
+[
+  {
+    "Path": "D:\\myspace\\Git\\mygame\\Assets\\Scenes\\01.Field.unity",
+    "Hash": "CF9136522841E57CB51498C60C128AF0898DD83C013956AB53F4B8B66B48E4F8"
+  },
+  {
+    "Path": "D:\\myspace\\Git\\mygame\\Assets\\Scenes\\PersistanceScene.unity",
+    "Hash": "2D15F72F24A79F8D31AF4E206256DF5C3CEEAD87B5191D68D96F313D919D7DD4"
+  },
+  {
+    "Path": "D:\\myspace\\Git\\mygame\\Assets\\Scenes\\Template.unity",
+    "Hash": "578889BD12D3D9BAC155523A15FC9AE13599F4688B79024CD5B2B4F3CD064445"
+  },
+  {
+    "Path": "D:\\myspace\\Git\\mygame\\Assets\\Scenes\\UI.unity",
+    "Hash": "B62BA7D66F872A1C27584418564AC735A749119820328B28C9CE38B96C0DF2FB"
+  },
+  {
+    "Path": "D:\\myspace\\Git\\mygame\\Assets\\Script\\MetaObjects\\MetaObjectComponent.cs",
+    "Hash": "E5D785A485C9F507BC6AB985FC28B26A481270D53DF246DB279BDB62023BF88C"
+  },
+  {
+    "Path": "D:\\myspace\\Git\\mygame\\Assets\\Script\\MetaObjects\\MetaObjectComponentDefinition.cs",
+    "Hash": "51B1B5FD85AB8E9406F8198A296FFBDA3AB0A5069FEF13365F2B7193811C2F62"
+  },
+  {
+    "Path": "D:\\myspace\\Git\\mygame\\Assets\\Script\\MetaObjects\\MetaObjectDefinition.cs",
+    "Hash": "5C582663D22305C9F055995F407D3A5D365544B70D7C9A81ECD74532CA4C3471"
+  },
+  {
+    "Path": "D:\\myspace\\Git\\mygame\\Assets\\Script\\MetaObjects\\MetaObjectInstance.cs",
+    "Hash": "58DEC26BF92A41E5BE4C38A036596724B1E73AB5AE617846FEB723E4401DE3DB"
+  },
+  {
+    "Path": "D:\\myspace\\Git\\mygame\\Assets\\Script\\MetaObjects\\MetaObjectPreset.cs",
+    "Hash": "E5238BE58D05610AEEC283456B250F0D11A6FB1767E8EDD07315E01E9EC8FAEA"
+  },
+  {
+    "Path": "D:\\myspace\\Git\\mygame\\Assets\\Script\\MetaObjects\\SceneCoordinateComponent.cs",
+    "Hash": "AC4D3E96A958171A60A39282D5193C18F033E354DE6D3CC31D711D9D077E354A"
+  },
+  {
+    "Path": "D:\\myspace\\Git\\mygame\\Assets\\Script\\MetaObjects\\SceneTextureComponent.cs",
+    "Hash": "3A43B56B2DA807AD823C452C0E14F7E6F8A0608BBBEEBC93FD8E7D341FD07292"
+  },
+  {
+    "Path": "D:\\myspace\\Git\\mygame\\Assets\\GameData\\MetaObjects\\Player.asset",
+    "Hash": "50E91DB02EB184C44A8D56302071A774DB30258D6BA44481D910139FCA2379DE"
+  },
+  {
+    "Path": "D:\\myspace\\Git\\mygame\\Assets\\Editor\\MetaObjectVerification.cs",
+    "Hash": "3085AD76AEB5C4CCB8C9E9ADDD440643C667086E133B561F1D5A515EBC47BBCF"
+  },
+  {
+    "Path": "D:\\myspace\\Git\\mygame\\Assets\\Script\\Debug\\DebugPanel.cs",
+    "Hash": "2C57345BC32501D3C17F24BDF89F81FBF1F5606F110BE7F02E22BD2AC0F1A176"
+  },
+  {
+    "Path": "D:\\myspace\\Git\\mygame\\Assets\\Prefabs\\Player_Layered.prefab",
+    "Hash": "5C657D6D069509933B3728AD9A37230DC1E992DF11A3D6E8B9214DAEA6369DC5"
+  }
+]

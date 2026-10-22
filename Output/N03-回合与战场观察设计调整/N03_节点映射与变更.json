@@ -1,0 +1,234 @@
+[
+  {
+    "id": "n6",
+    "before": "角色行为/角色技能 1",
+    "after": "角色行为/角色技能 1",
+    "summary": "制作元技能",
+    "body_changed": true,
+    "objects_changed": true,
+    "refs_changed": false
+  },
+  {
+    "id": "n13",
+    "before": "时间轴 1",
+    "after": "时间轴/逻辑 1",
+    "action": "合并删除；全部引用重定向"
+  },
+  {
+    "id": "n14",
+    "before": "时间轴 2",
+    "after": "时间轴/UI 1",
+    "summary": "制作时间轴UI",
+    "body_changed": false,
+    "objects_changed": false,
+    "refs_changed": true
+  },
+  {
+    "id": "n15",
+    "before": "时间轴 3",
+    "after": "时间轴/UI 2",
+    "summary": "制作时间轴预览",
+    "body_changed": false,
+    "objects_changed": false,
+    "refs_changed": true
+  },
+  {
+    "id": "n16",
+    "before": "时间轴 4",
+    "after": "时间轴/UI 3",
+    "summary": "平滑化时间轴动画",
+    "body_changed": false,
+    "objects_changed": false,
+    "refs_changed": true
+  },
+  {
+    "id": "n21",
+    "before": "时间轴 5",
+    "after": "时间轴/UI 4",
+    "summary": "战斗净时长显示",
+    "body_changed": true,
+    "objects_changed": false,
+    "refs_changed": true
+  },
+  {
+    "id": "n36",
+    "before": "时间轴 6",
+    "after": "时间轴/逻辑 1",
+    "summary": "共享时间轴调度与行动回排",
+    "body_changed": true,
+    "objects_changed": true,
+    "refs_changed": true
+  },
+  {
+    "id": "n37",
+    "before": "时间轴 7",
+    "after": "时间轴/UI 5",
+    "summary": "六类行为时机预览",
+    "body_changed": false,
+    "objects_changed": false,
+    "refs_changed": true
+  },
+  {
+    "id": "n38",
+    "before": "时间轴 8",
+    "after": "时间轴/逻辑 2",
+    "summary": "行动机会提交边界",
+    "body_changed": true,
+    "objects_changed": false,
+    "refs_changed": true
+  },
+  {
+    "id": "n39",
+    "before": "角色行为/角色属性 6",
+    "after": "角色行为/角色属性 6",
+    "summary": "失去行动能力限制",
+    "body_changed": true,
+    "objects_changed": false,
+    "refs_changed": true
+  },
+  {
+    "id": "n40",
+    "before": "角色行为/角色属性 7",
+    "after": "角色行为/角色属性 7",
+    "summary": "击倒后恢复行动",
+    "body_changed": true,
+    "objects_changed": false,
+    "refs_changed": true
+  },
+  {
+    "id": "n22",
+    "before": "敌人ai 1",
+    "after": "敌人ai 1",
+    "summary": "敌我行动切换",
+    "body_changed": true,
+    "objects_changed": false,
+    "refs_changed": true
+  },
+  {
+    "id": "n107",
+    "before": "敌人ai 2",
+    "after": "敌人ai 2",
+    "summary": "普通模板攻击",
+    "body_changed": false,
+    "objects_changed": false,
+    "refs_changed": true
+  },
+  {
+    "id": "n113",
+    "before": "敌人ai 8",
+    "after": "敌人ai 8",
+    "summary": "读招依据已提交记录",
+    "body_changed": false,
+    "objects_changed": false,
+    "refs_changed": true
+  },
+  {
+    "id": "n115",
+    "before": "敌人ai 10",
+    "after": "敌人ai 10",
+    "summary": "后续波次连续刷新",
+    "body_changed": true,
+    "objects_changed": false,
+    "refs_changed": true
+  },
+  {
+    "id": "n32",
+    "before": "战斗进入与布置 3",
+    "after": "战斗进入与布置 3",
+    "summary": "当前行动者操作权限",
+    "body_changed": true,
+    "objects_changed": false,
+    "refs_changed": true
+  },
+  {
+    "id": "n42",
+    "before": "行为交互 1",
+    "after": "行为交互 1",
+    "summary": "移动选择与确认",
+    "body_changed": false,
+    "objects_changed": false,
+    "refs_changed": true
+  },
+  {
+    "id": "n50",
+    "before": "行为交互 9",
+    "after": "战场观察/单位详情 1",
+    "summary": "战场观察与详情切换",
+    "body_changed": true,
+    "objects_changed": false,
+    "refs_changed": true
+  },
+  {
+    "id": "n51",
+    "before": "行为交互 10",
+    "after": "行为交互 9",
+    "summary": "HUD四区块",
+    "body_changed": false,
+    "objects_changed": false,
+    "refs_changed": false
+  },
+  {
+    "id": "n66",
+    "before": "效果结算 3",
+    "after": "效果结算 3",
+    "summary": "持续伤害结算",
+    "body_changed": true,
+    "objects_changed": false,
+    "refs_changed": true
+  },
+  {
+    "id": "n67",
+    "before": "效果结算 4",
+    "after": "效果结算 4",
+    "summary": "限时状态移除",
+    "body_changed": true,
+    "objects_changed": false,
+    "refs_changed": true
+  },
+  {
+    "id": "n129",
+    "before": "目标与战斗退出 7",
+    "after": "目标与战斗退出 7",
+    "summary": "全队失能立即终止",
+    "body_changed": true,
+    "objects_changed": false,
+    "refs_changed": true
+  },
+  {
+    "id": "n130",
+    "before": "目标与战斗退出 8",
+    "after": "目标与战斗退出 8",
+    "summary": "结果标识与目标清单",
+    "body_changed": true,
+    "objects_changed": false,
+    "refs_changed": true
+  },
+  {
+    "id": "n147",
+    "before": "",
+    "after": "时间轴/逻辑 3",
+    "summary": "战斗净时长累计",
+    "action": "新增"
+  },
+  {
+    "id": "n148",
+    "before": "",
+    "after": "时间轴/逻辑 4",
+    "summary": "轮次保存与恢复接入边界",
+    "action": "新增"
+  },
+  {
+    "id": "n149",
+    "before": "",
+    "after": "战场观察/镜头 1",
+    "summary": "战场镜头平移和缩放",
+    "action": "新增"
+  },
+  {
+    "id": "n150",
+    "before": "",
+    "after": "战场观察/镜头 2",
+    "summary": "镜头定位当前行动者",
+    "action": "新增"
+  }
+]

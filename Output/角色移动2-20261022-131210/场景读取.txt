@@ -1,0 +1,6 @@
+Playing: False
+Assets/Scenes/PersistanceScene.unity, loaded=True, dirty=False
+Assets/Scenes/01.Field.unity, loaded=True, dirty=False
+Assets/Scenes/UI.unity, loaded=True, dirty=True
+Assets/Scenes/Template.unity, loaded=True, dirty=False
+PersistanceScene/Player, renderer binding=Player (UnityEngine.SpriteRenderer), renderer sprite=Barrel (UnityEngine.Sprite)

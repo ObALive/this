@@ -1,0 +1,59 @@
+{
+  "database": "D:\\myspace\\Git\\this\\Tool\\项目网络图\\数据\\N01_完整依赖清理新图_v2.sqlite",
+  "sha256": "17f84006bc47b270abefce9252da0151655b7cf0dec100dfb6f4a74c61a6083f",
+  "node": {
+    "id": "n18",
+    "seq": 28,
+    "section_id": "s7",
+    "section_path": "角色行为/角色属性",
+    "index_label": "角色行为/角色属性 1",
+    "number": 1,
+    "summary": "固定属性",
+    "body": "以角色配置提供行动力、力量与行动速度，详情能读取当前值；分别为移动范围、重物投掷与行动延迟提供属性输入。",
+    "summary_is_auto": 0,
+    "manual": "{}",
+    "auto_position": 1,
+    "ref_count": 0,
+    "unresolved_ref_count": 0,
+    "object_count": 1,
+    "note_count": 0
+  },
+  "objects": [
+    {
+      "node_id": "n18",
+      "seq": 1,
+      "name": "元对象-属性组件",
+      "note": "",
+      "path": "主要保存一个静态的属性值。出于方便后续添加装备和效果buff等内容的考虑，组件要具备数值修正的能力，也就是能够计算各个来源对属性值的调整，然后在属性值被调用的时候计算调整后的属性值。"
+    }
+  ],
+  "notes": [],
+  "refs": [],
+  "direct_prerequisites": [],
+  "dependants": [
+    {
+      "from_id": "n18",
+      "to_id": "n10",
+      "kind": "explicit",
+      "raw": "角色属性1",
+      "from_index_label": "角色行为/角色属性 1",
+      "to_index_label": "角色行为/角色移动 1"
+    },
+    {
+      "from_id": "n18",
+      "to_id": "n20",
+      "kind": "chain",
+      "raw": null,
+      "from_index_label": "角色行为/角色属性 1",
+      "to_index_label": "角色行为/角色属性 2"
+    },
+    {
+      "from_id": "n18",
+      "to_id": "n71",
+      "kind": "explicit",
+      "raw": "角色属性1",
+      "from_index_label": "角色行为/角色属性 1",
+      "to_index_label": "战斗容器操作 1"
+    }
+  ]
+}

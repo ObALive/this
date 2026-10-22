@@ -1,0 +1,222 @@
+{
+  "database": "D:\\myspace\\Git\\this\\Tool\\项目网络图\\数据\\N01_完整依赖清理新图_v2.sqlite",
+  "sha256": "77272c18da3499be5c2db4e2cc9cdb79542874d00b5be7f5e2c8535551863cc6",
+  "nodes": {
+    "n10": {
+      "node": {
+        "id": "n10",
+        "seq": 16,
+        "section_id": "s4",
+        "section_path": "角色行为/角色移动",
+        "index_label": "角色行为/角色移动 1",
+        "number": 1,
+        "summary": "点击地格移动",
+        "body": "在初始移动构建阶段，点击地格使角色移动到对应位置；正式战斗中的选择、确认和取消由行为交互的移动条目承接",
+        "summary_is_auto": 0,
+        "manual": "{}",
+        "auto_position": 1,
+        "ref_count": 2,
+        "unresolved_ref_count": 0,
+        "object_count": 1,
+        "note_count": 0
+      },
+      "node_refs": [
+        {
+          "node_id": "n10",
+          "seq": 1,
+          "raw": "地图1",
+          "section": "瓦片地图",
+          "number": 1,
+          "target_id": "n1",
+          "reason": ""
+        },
+        {
+          "node_id": "n10",
+          "seq": 2,
+          "raw": "角色属性1",
+          "section": "角色属性",
+          "number": 1,
+          "target_id": "n18",
+          "reason": ""
+        }
+      ],
+      "node_objects": [
+        {
+          "node_id": "n10",
+          "seq": 1,
+          "name": "TilemapManager",
+          "note": "",
+          "path": "增用 Tilemap作为地图编辑层，TilemapManager作为地图逻辑转换层 的设计方式。开发阶段通过Unity Tilemap笔刷绘制地图地形，Tilemap仅负责记录各个坐标位置上的瓦片类型和视觉表现。运行时由独立的TilemapManager读取Tilemap中的绘制信息，根据预设的瓦片类型与游戏逻辑数据之间的映射关系，将地图转换为游戏内部可查询的地图数据结构。例如，将某类沼泽瓦片转换为对应坐标上的“沼泽地形数据”。玩家或其他游戏对象进行地图交互时，不直接访问Tilemap，而是通过坐标向TilemapManager查询当前位置对应的地图状态，由TilemapManager解析该位置的地形、环境等信息，并通知对应系统执行后续逻辑处理，例如调用状态管理系统为处于沼泽区域的玩家施加移动速度降低效果。"
+        }
+      ],
+      "node_notes": []
+    },
+    "n1": {
+      "node": {
+        "id": "n1",
+        "seq": 1,
+        "section_id": "s1",
+        "section_path": "瓦片地图",
+        "index_label": "瓦片地图 1",
+        "number": 1,
+        "summary": "平铺的地图绘制",
+        "body": "按预置战场尺寸显示连续瓦片；玩家能分辨场地格子及其坐标对应位置。此阶段每个瓦片无区别。",
+        "summary_is_auto": 0,
+        "manual": "{}",
+        "auto_position": 1,
+        "ref_count": 0,
+        "unresolved_ref_count": 0,
+        "object_count": 0,
+        "note_count": 0
+      },
+      "node_refs": [],
+      "node_objects": [],
+      "node_notes": []
+    },
+    "n9": {
+      "node": {
+        "id": "n9",
+        "seq": 15,
+        "section_id": "s4",
+        "section_path": "角色行为/角色移动",
+        "index_label": "角色行为/角色移动 0",
+        "number": 0,
+        "summary": "制作元对象和相关组件约定",
+        "body": "通过场景纹理组件与场景坐标组件将预置元对象显示在指定地图格子，渲染位置与其坐标一致",
+        "summary_is_auto": 0,
+        "manual": "{}",
+        "auto_position": 1,
+        "ref_count": 0,
+        "unresolved_ref_count": 0,
+        "object_count": 2,
+        "note_count": 0
+      },
+      "node_refs": [],
+      "node_objects": [
+        {
+          "node_id": "n9",
+          "seq": 1,
+          "name": "元对象-场景纹理组件",
+          "note": "1. 组件保存角色渲染在场景上的纹理，2. 获取脚本挂载的物体上的纹理组件（sprite renderer），将保存的纹理路径对应的纹理赋值到纹理组件上",
+          "path": ""
+        },
+        {
+          "node_id": "n9",
+          "seq": 2,
+          "name": "元对象-场景坐标组件",
+          "note": "确认对象渲染的位置，将对象的锚点渲染在地图网格的格子中心",
+          "path": ""
+        }
+      ],
+      "node_notes": []
+    },
+    "n18": {
+      "node": {
+        "id": "n18",
+        "seq": 28,
+        "section_id": "s7",
+        "section_path": "角色行为/角色属性",
+        "index_label": "角色行为/角色属性 1",
+        "number": 1,
+        "summary": "固定属性",
+        "body": "以角色配置提供行动力、力量与行动速度，详情能读取当前值；分别为移动范围、重物投掷与行动延迟提供属性输入。",
+        "summary_is_auto": 0,
+        "manual": "{}",
+        "auto_position": 1,
+        "ref_count": 0,
+        "unresolved_ref_count": 0,
+        "object_count": 1,
+        "note_count": 0
+      },
+      "node_refs": [],
+      "node_objects": [
+        {
+          "node_id": "n18",
+          "seq": 1,
+          "name": "元对象-属性组件",
+          "note": "",
+          "path": "主要保存一个静态的属性值。出于方便后续添加装备和效果buff等内容的考虑，组件要具备数值修正的能力，也就是能够计算各个来源对属性值的调整，然后在属性值被调用的时候计算调整后的属性值。"
+        }
+      ],
+      "node_notes": []
+    },
+    "n11": {
+      "node": {
+        "id": "n11",
+        "seq": 17,
+        "section_id": "s4",
+        "section_path": "角色行为/角色移动",
+        "index_label": "角色行为/角色移动 2",
+        "number": 2,
+        "summary": "高亮渲染可移动的地格",
+        "body": "读取行动力限制，显示本次移动格数范围；已具备路径与地形能力后，合法范围须以可达性及累计通行成本筛选，不把不可达格当成可确认目的地。\n待裁定：G09 配置内容与数值输入缺失。本条先承接已定部分，受影响验收暂不通过。",
+        "summary_is_auto": 0,
+        "manual": "{}",
+        "auto_position": 1,
+        "ref_count": 0,
+        "unresolved_ref_count": 0,
+        "object_count": 1,
+        "note_count": 0
+      },
+      "node_refs": [],
+      "node_objects": [
+        {
+          "node_id": "n11",
+          "seq": 1,
+          "name": "元对象-属性值组件",
+          "note": "",
+          "path": ""
+        }
+      ],
+      "node_notes": []
+    },
+    "n12": {
+      "node": {
+        "id": "n12",
+        "seq": 18,
+        "section_id": "s4",
+        "section_path": "角色行为/角色移动",
+        "index_label": "角色行为/角色移动 3",
+        "number": 3,
+        "summary": "寻路逻辑",
+        "body": "对选定目的地寻找最短可行路径；寻路失败时禁止提交移动并提示不可达。此处为战场内部路径计算，沿用原图，与系统文档所排除的地图自动寻路入口区分。",
+        "summary_is_auto": 0,
+        "manual": "{}",
+        "auto_position": 1,
+        "ref_count": 0,
+        "unresolved_ref_count": 0,
+        "object_count": 0,
+        "note_count": 0
+      },
+      "node_refs": [],
+      "node_objects": [],
+      "node_notes": []
+    }
+  },
+  "edges": [
+    {
+      "from_id": "n1",
+      "to_id": "n10",
+      "kind": "explicit",
+      "raw": "地图1",
+      "from_index_label": "瓦片地图 1",
+      "to_index_label": "角色行为/角色移动 1"
+    },
+    {
+      "from_id": "n18",
+      "to_id": "n10",
+      "kind": "explicit",
+      "raw": "角色属性1",
+      "from_index_label": "角色行为/角色属性 1",
+      "to_index_label": "角色行为/角色移动 1"
+    },
+    {
+      "from_id": "n9",
+      "to_id": "n10",
+      "kind": "chain",
+      "raw": null,
+      "from_index_label": "角色行为/角色移动 0",
+      "to_index_label": "角色行为/角色移动 1"
+    }
+  ]
+}

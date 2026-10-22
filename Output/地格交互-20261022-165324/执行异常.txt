@@ -1,0 +1,9 @@
+2026-10-22T09:09:33.6385478Z
+System.InvalidOperationException: Exit Play Mode first.
+  at MovementRangeVerification.Run () [0x000fe] in D:\myspace\Git\mygame\Assets\Editor\MovementRangeVerification.cs:120 
+  at MovementRangeVerification.ProcessRequest () [0x0012e] in D:\myspace\Git\mygame\Assets\Editor\MovementRangeVerification.cs:62 
+2026-10-22T09:19:00.3350838Z
+System.NullReferenceException: Object reference not set to an instance of an object
+  at GridPointerVerification.Verify (MetaObjectPreset player, System.String directory) [0x0006c] in D:\myspace\Git\mygame\Assets\Editor\GridPointerVerification.cs:53 
+  at GridPointerVerification.VerifyLive (System.String directory) [0x00084] in D:\myspace\Git\mygame\Assets\Editor\GridPointerVerification.cs:32 
+  at MovementRangeVerification.ProcessRequest () [0x00147] in D:\myspace\Git\mygame\Assets\Editor\MovementRangeVerification.cs:63 

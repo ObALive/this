@@ -1,0 +1,71 @@
+角色移动0-r2 验证结果 v1
+执行日期：2026-10-18（Asia/Shanghai）
+Unity 工程：D:\myspace\Git\mygame（分支 dsh-move-1，执行前基线 14bb652，与 main 同一提交）
+Unity：2022.3.62f3c1；程序集：Assembly-CSharp / Assembly-CSharp-Editor
+资料库：D:\myspace\Git\this
+
+一、编译
+refresh_unity（mode=force、scope=all、compile=request、wait_for_ready）完成，编辑器 ready。
+编译错误 0；进入 Play Mode 前控制台无 error / warning。
+
+二、Play Mode 状态探针（真实 Player 预置）
+preset=Player scene=PersistanceScene
+definition=CHAR_PLAYER/玩家角色
+cell=(7, -4) isBound=True pending=False
+grid=01.Field/Grid cellSize=(1.00, 1.00, 0.00)
+renderer=BodyWalkDown_0 sprite=BodyWalkDown_0
+instance=CHAR_PLAYER components=2
+  component=SceneTextureComponent owner=CHAR_PLAYER bound=True
+  component=SceneCoordinateComponent owner=CHAR_PLAYER bound=True
+coordinateCell=(7, -4)
+expected=(7.5000, -3.5000, 0.0000)
+actual=(7.5000, -3.5000, 0.0000)
+delta=0.000000
+texturePath=Assets/M Studio/Art/Characters/Player/Body/BodyWalkDown.png
+assignedSprite=BodyWalkDown_0
+resolvedSprite=BodyWalkDown_0
+playerMovementEnabled=False
+bodySprite=BodyWalkDown_0
+childRenderer=BodyWalkDown_0 sprite=BodyWalkDown_0
+childRenderer=HairWalkDown_0 sprite=HairWalkDown_0
+childRenderer=ArmWalkDown_0 sprite=ArmWalkDown_0
+childRenderer=Character_Shadow sprite=Character_Shadow
+
+三、编辑器自检菜单 Tools/Meta Object/Verify Play Mode Wiring
+METAOBJECT_VERIFY PASS：共检查 1 个元对象预置，失败 0 项。
+  OK PersistanceScene/Player
+
+四、行为用例（在 Play Mode 内由 execute_code 执行）
+INFO loadedGrids=2 gridScene=01.Field
+TEST A1 PASS resolve real asset path
+TEST A2 PASS missing path returns null
+TEST A3 PASS blank path returns null
+TEST B1 PASS unresolved texture keeps existing sprite
+TEST B2 PASS temp preset anchored at cell (3, 3) center
+TEST C1 PASS missing grid keeps pending and does not move object
+TEST D1 PASS null grid rejects world position
+TEST E1 PASS same type replaces and detaches previous
+TEST F1 PASS SetCell moves anchor to new cell center and restores
+TEST F2 PASS Rebuild recreates instance, components and position
+RESULT failures=0
+
+说明：B、C、D、E 用例使用运行时临时 GameObject、临时 ScriptableObject 定义与临时 MetaObjectInstance；
+用例结束时已 DestroyImmediate，未写入工程资产，未改动已接线的 Player 预置（F1 的换格在同一用例内还原，
+F2 的 Rebuild 也恢复到原格子与原 Sprite）。
+
+五、预期失败路径日志（Play Mode 内，仅来自临时用例）
+[MetaObject] 场景纹理无法解析，已保留渲染器原有显示：'Assets/__missing_texture__.png'（MetaObjectBadTextureTest）
+[MetaObject] 已加载场景中存在 2 个 Grid，无法确定地图网格：MetaObjectNoGridTest。请显式指定 grid 或正确的 gridSceneName。
+两条均为用例 B1 / C1 的预期日志；真实 Player 预置没有产生任何 error 或 warning。
+
+六、相机与画面
+Camera.main 位置 (7.500, -3.500, -30.000)；Player 在视口坐标 (0.500, 0.500)，即画面正中。
+截图：角色移动0-r2_运行截图_v1.png（退出 Play Mode 前截取；截图时临时隐藏 MainCanvas 便于观察，
+退出 Play Mode 后运行时状态整体丢弃，工程场景未改动）。
+
+七、未覆盖与未验证
+1. 未在打包后的 Player 中运行：01.Field 不在 Build Settings，打包运行不会加载地图场景，预置会保持挂起。
+2. 纹理按路径解析在非 Resources 的工程路径上依赖编辑器 AssetDatabase；打包运行需要改走 Resources 或资源服务。
+   当前 Player 定义同时保存了直接 Sprite，因此不依赖路径解析也能显示。
+3. 存档 / 恢复、对象与组件注册表、实体类型登记、组件能力类别与挂载契约未实现（本节点只建立运行时约定与两个组件）。
+4. 未做性能与多对象批量实例化验证。

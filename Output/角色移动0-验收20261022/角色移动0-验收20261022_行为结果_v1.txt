@@ -1,0 +1,30 @@
+UTC 2026-10-21T16:38:01.9908222Z frames=1->11
+PASS scene preset count count=1
+INITIAL bound=True grid=01.Field/Grid cell=(7, -4) position=(7.50, -3.50, 0.00)
+PASS single-object player 
+PASS initial binding 
+PASS cell center 
+PASS empty texture intentional 
+PASS camera wiring 
+PASS old layered prefab preserved 
+METAOBJECT_VERIFY PASS：共检查 1 个元对象预置，失败 0 项。
+  OK PersistanceScene/Player
+
+CAPTURE 角色移动0-验收20261022_空纹理_v1.png (Camera.Render; UI/IMGUI excluded)
+PASS preset.SetCell moves 
+PASS coordinate.SetCell moves 
+PASS existing sprite available sprites=8
+PASS SetTexture assigns renderer 
+PASS debug panel exists 
+FAIL debug texture cycle changes sprite before=BodyWalkDown_0 after=BodyWalkDown_0
+PASS invalid path rejected and preserved 
+PASS null rejected and preserved 
+PASS path assignment 
+CAPTURE 角色移动0-验收20261022_赋纹理并改坐标_v1.png (Camera.Render; UI/IMGUI excluded)
+FAIL repeated TryBind preserves component coordinate before=(9, -4) after=(8, -4)
+PASS Rebuild releases old components 
+FAIL runtime component replacement remains usable presetBound=True componentBound=False position=(7.50, -3.50, 0.00)
+FAIL component ownership isolation B component owner=null
+FAIL disabled object unbinds components 
+FAIL verification rejects zero targets METAOBJECT_VERIFY PASS：共检查 0 个元对象预置，失败 0 项。
+RESULT failures=6 exit=1

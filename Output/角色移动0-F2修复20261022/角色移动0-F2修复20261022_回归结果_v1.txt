@@ -1,0 +1,18 @@
+UTC=2026-10-21T16:52:32.3241460Z frame=1->11
+PASS scene initial binding 
+PASS F2 exact sequence cell=(9, -4)
+PASS repeat bind stable 
+PASS preset setter then bind 
+PASS explicit zero cell preserved 
+PASS rebuild preserves latest coordinate 
+PASS prebind SetCell consumed 
+PASS prebind cache does not replay 
+PASS rebuild keeps cell with crossing offset 
+PASS repeated rebuild offset stable 
+PASS component setter and offset repeat bind 
+PASS texture binding unaffected 
+PASS scene wiring remains valid 
+METAOBJECT_VERIFY PASS：共检查 1 个元对象预置，失败 0 项。
+  OK PersistanceScene/Player
+
+RESULT failures=0

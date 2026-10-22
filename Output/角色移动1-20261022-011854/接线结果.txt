@@ -1,0 +1,5 @@
+SETUP PASS
+Map cells: 1334
+Player input/controller attached
+Camera and debug blocker assigned
+Map/UI included in Build Settings

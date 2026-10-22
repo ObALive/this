@@ -1,0 +1,17 @@
+{
+  "D:\\myspace\\Git\\mygame\\Assets\\Script\\TilemapManager.cs": "b9abccfd7abb8acedede803f954aa3e7e630bcbc72aefc0b62a66aa4cfe39835",
+  "D:\\myspace\\Git\\mygame\\Assets\\Script\\TilemapManager.cs.meta": "c2e04e860c54e65e22cfe508d01326460a86a38fe64f39ae93864857a60264b3",
+  "D:\\myspace\\Git\\mygame\\Assets\\Script\\Player\\GridClickInput.cs": "3399123f5001b18256ca79b101f1b4a9f993e73cee3b77fc53d57e9210bec2de",
+  "D:\\myspace\\Git\\mygame\\Assets\\Script\\Player\\GridClickInput.cs.meta": "6088379a146d0ab416c15bb77788774df5135e7013c8497835c5e29c5ebc73f7",
+  "D:\\myspace\\Git\\mygame\\Assets\\Script\\Player\\CharacterMovementController.cs": "a1da538e69a8e0b47cb0e3dd277c5316ae768ecfede90f0a2647b696bcffb935",
+  "D:\\myspace\\Git\\mygame\\Assets\\Script\\Player\\CharacterMovementController.cs.meta": "cabd4f8c8798391e932c5bbf28da34ef044b027c1cfd95dd4901af22d7672227",
+  "D:\\myspace\\Git\\mygame\\Assets\\Editor\\GridMovementVerification.cs": "ef72eaeada4ecbe695088d66c8d7d9116aafe3a104ecaf4d3cee515230968973",
+  "D:\\myspace\\Git\\mygame\\Assets\\Editor\\GridMovementVerification.cs.meta": "7ab46ff17eeccb64a984d4a6700f7868f2561349dc46acda8ccd732f1243dee7",
+  "D:\\myspace\\Git\\mygame\\Assets\\Script\\Debug\\DebugPanel.cs": "384ea4c1ad164e0a34be6ea188c98bedc59b464626ac9913fbb8e5b300370e5d",
+  "D:\\myspace\\Git\\mygame\\Assets\\Script\\GameManager.cs": "7ed5d9abb90604922f55f6931cc4d5a8b97114886a23875f5d9b9d730fcec88d",
+  "D:\\myspace\\Git\\mygame\\Assets\\Script\\Utilities\\SwitchBounds.cs": "beccce27e4e4ab390238565a4c00c3a3d451762c6e908b5139a863e98af3d922",
+  "D:\\myspace\\Git\\mygame\\Assets\\GameData\\MetaObjects\\Player.asset": "25c402f1ddb8730eabfb9bd99f3f4ecf5f91504e67e2b2b104c271395304bf09",
+  "D:\\myspace\\Git\\mygame\\Assets\\Scenes\\01.Field.unity": "ebf27e3d38b62a9a25b6c29ad6a0d52bcdb8c31e1d9e82893a8f2d264877ee3a",
+  "D:\\myspace\\Git\\mygame\\Assets\\Scenes\\PersistanceScene.unity": "6aa05907a89f4cde5c574dabe8edc55abeb468ff94898c4f6ff9e65c84b1d9ae",
+  "D:\\myspace\\Git\\mygame\\ProjectSettings\\EditorBuildSettings.asset": "b58a3380d9b3b298c865ddd8334de57f3eb6e69d52177ad2265b093d1c43ef0d"
+}

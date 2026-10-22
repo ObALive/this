@@ -1,0 +1,9 @@
+{
+  "Assets/Script/Player/CharacterMovementController.cs": "a1da538e69a8e0b47cb0e3dd277c5316ae768ecfede90f0a2647b696bcffb935",
+  "Assets/Script/TilemapManager.cs": "b9abccfd7abb8acedede803f954aa3e7e630bcbc72aefc0b62a66aa4cfe39835",
+  "Assets/Script/Debug/DebugPanel.cs": "384ea4c1ad164e0a34be6ea188c98bedc59b464626ac9913fbb8e5b300370e5d",
+  "Assets/Editor/GridMovementVerification.cs": "ef72eaeada4ecbe695088d66c8d7d9116aafe3a104ecaf4d3cee515230968973",
+  "Assets/Scenes/PersistanceScene.unity": "6aa05907a89f4cde5c574dabe8edc55abeb468ff94898c4f6ff9e65c84b1d9ae",
+  "Assets/Scenes/01.Field.unity": "ebf27e3d38b62a9a25b6c29ad6a0d52bcdb8c31e1d9e82893a8f2d264877ee3a",
+  "Assets/GameData/MetaObjects/Player.asset": "25c402f1ddb8730eabfb9bd99f3f4ecf5f91504e67e2b2b104c271395304bf09"
+}

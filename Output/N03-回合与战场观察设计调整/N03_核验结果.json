@@ -1,0 +1,321 @@
+{
+  "date": "2026-10-22",
+  "stats": {
+    "sections": 24,
+    "nodes": 149,
+    "edges": 229,
+    "chain_edges": 128,
+    "explicit_edges": 101,
+    "errors": 0,
+    "warnings": 0,
+    "infos": 11,
+    "objects": 11,
+    "objects_with_path": 3,
+    "unresolved_refs": 0,
+    "root_nodes": 4
+  },
+  "changed_design_files": 15,
+  "checks": [
+    {
+      "check": "SQLite完整性",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "外键完整性",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "无未解析引用或依赖环",
+      "passed": true,
+      "evidence": "{'sections': 24, 'nodes': 149, 'edges': 229, 'chain_edges': 128, 'explicit_edges': 101, 'errors': 0, 'warnings': 0, 'infos': 11, 'objects': 11, 'objects_with_path': 3, 'unresolved_refs': 0, 'root_nodes': 4}"
+    },
+    {
+      "check": "无警告",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "原时间轴1独立节点删除",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "原6成为逻辑1",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "TimeLineManager职责归入新1",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "元技能统一生命周期",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "查看节点仅抽出镜头内容",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "平移缩放合并为一个节点",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "镜头定位独立节点",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "净时长累计和显示分离",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "保存恢复接入边界登记",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "总量",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "时间轴逻辑不直接或传递依赖UI",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "详情查看解除撤退前置",
+      "passed": true,
+      "evidence": "前置数量：62→41"
+    },
+    {
+      "check": "AI以新时间轴1为前置",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "全部引用文本可独立解析",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "图导出与库一致",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "落库模型与候选一致",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "可复原：系统设计文档/06-战斗/10-战斗总览/10_战斗总览设计.md",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "无替换字符：系统设计文档/06-战斗/10-战斗总览/10_战斗总览设计.md",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "可复原：系统设计文档/06-战斗/85-战斗行为系统/85_战斗行为系统设计.md",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "无替换字符：系统设计文档/06-战斗/85-战斗行为系统/85_战斗行为系统设计.md",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "可复原：系统设计文档/06-战斗/20-时间轴与行动顺序/20_时间轴与行动顺序设计.md",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "无替换字符：系统设计文档/06-战斗/20-时间轴与行动顺序/20_时间轴与行动顺序设计.md",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "可复原：系统设计文档/01-通用系统/70-元技能/70_元技能设计补充说明.md",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "无替换字符：系统设计文档/01-通用系统/70-元技能/70_元技能设计补充说明.md",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "可复原：系统设计文档/06-战斗/40-技能系统/40_技能系统设计.md",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "无替换字符：系统设计文档/06-战斗/40-技能系统/40_技能系统设计.md",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "可复原：系统设计文档/06-战斗/75-元效果系统/75_元效果系统设计.md",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "无替换字符：系统设计文档/06-战斗/75-元效果系统/75_元效果系统设计.md",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "可复原：系统设计文档/06-战斗/90-敌人与AI/90_敌人与AI设计.md",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "无替换字符：系统设计文档/06-战斗/90-敌人与AI/90_敌人与AI设计.md",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "可复原：系统设计文档/00-总览/02_术语表.md",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "无替换字符：系统设计文档/00-总览/02_术语表.md",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "可复原：系统设计文档/01-通用系统/01_通用系统索引.md",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "无替换字符：系统设计文档/01-通用系统/01_通用系统索引.md",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "可复原：系统设计文档/06-战斗/06_战斗索引.md",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "无替换字符：系统设计文档/06-战斗/06_战斗索引.md",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "可复原：系统设计文档/00-总览/00_系统全景图.md",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "无替换字符：系统设计文档/00-总览/00_系统全景图.md",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "可复原：系统设计文档/00-总览/01_设计原则与跨系统交互逻辑.md",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "无替换字符：系统设计文档/00-总览/01_设计原则与跨系统交互逻辑.md",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "可复原：架构设计文档/架构设计案.md",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "无替换字符：架构设计文档/架构设计案.md",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "可复原：架构设计文档/界面索引.md",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "无替换字符：架构设计文档/界面索引.md",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "可复原：系统设计文档/README.md",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "无替换字符：系统设计文档/README.md",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "新增引用落点存在",
+      "passed": true,
+      "evidence": "[]"
+    },
+    {
+      "check": "系统设计新增内容无越界引用及过程编号",
+      "passed": true,
+      "evidence": "[]"
+    },
+    {
+      "check": "术语编号唯一",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "新术语登记齐全",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "交互与角色行为边界已定义",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "正式状态与UI延伸及表现区分",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "元技能生命周期权威定义存在",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "架构模块及协作同步",
+      "passed": true,
+      "evidence": ""
+    },
+    {
+      "check": "Git差异空白检查",
+      "passed": true,
+      "evidence": ""
+    }
+  ],
+  "passed": true,
+  "limits": [
+    "核验设计与网络图，未实现或运行Unity战斗程序",
+    "技术路径及未定规则输入按用户决定留到节点实施时讨论",
+    "已有其他任务的过程文件与代码设计案未被改写"
+  ]
+}
