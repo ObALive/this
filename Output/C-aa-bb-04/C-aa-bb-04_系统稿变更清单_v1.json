@@ -1,0 +1,82 @@
+[
+  {
+    "path": "系统设计文档/06-战斗/75-元效果系统/75_元效果系统设计.md",
+    "before_sha256": "c4d9c2a4e9624f96338af21465b57b322221039978fa5300d90e2e85784a15d3",
+    "after_sha256": "c790fbb1469dd0aeb8bd60874959aa4d3dbd4447daeb645b6b95c5a8e2dd191d"
+  },
+  {
+    "path": "系统设计文档/06-战斗/40-技能系统/40_技能系统设计.md",
+    "before_sha256": "a082d19b4eaa67c80bce03b9dcfc6ee170dafd636d2de941b3d59e3b5ba93976",
+    "after_sha256": "646f210cb507a982e0c306de5648c6799befcf801e6327d9a8af7ebb1138ca74"
+  },
+  {
+    "path": "系统设计文档/01-通用系统/70-元技能/70_元技能设计补充说明.md",
+    "before_sha256": "675a9b3979079ddf1e15b8cb5d0eeea0f9efb66dce0eee77785cf8dc0550a181",
+    "after_sha256": "724f5e684ea6c9da28b9de2eb594f0386fdd79465f41fb0d6911dc792bbf5e20"
+  },
+  {
+    "path": "系统设计文档/06-战斗/80-技能与库存联动/80_技能与库存联动设计.md",
+    "before_sha256": "1d4ae8810ec0d68a55b187aaa4ef25766211d1b226381e2c4c51b28bd21f1c18",
+    "after_sha256": "3d648018cab0b50fae5165403dcf49b1712bca1cccd6f0082ebd3c401d1e41df"
+  },
+  {
+    "path": "系统设计文档/06-战斗/60-装备系统/60_装备系统设计.md",
+    "before_sha256": "f77a7275d0c282e7a827d47defe678a072d1c007fccde82984c4581dcc3417ea",
+    "after_sha256": "c0b14bee29e2d7129b72b20f0ec76397e22013fae09ad9ebd8d748aecd12236b"
+  },
+  {
+    "path": "系统设计文档/06-战斗/70-遗物系统/70_遗物系统设计.md",
+    "before_sha256": "c6833fe4f7190ebbefc823dd20ff1d9db4ca09dc97f6686f28eff4ccd44f37de",
+    "after_sha256": "115628e4a186fce7b18459462cea2ec3dae960c5e39e4fee101a70473b42d9c1"
+  },
+  {
+    "path": "系统设计文档/06-战斗/10-战斗总览/10_战斗总览设计.md",
+    "before_sha256": "b32d6fb34a41a9657c26f5eaea362fb8c800dddb6ec4c533074e0ef9709c5440",
+    "after_sha256": "aea2ad4c956350255ea5f1c8f423898098edc2ef7521a4096b737dbec669c4c6"
+  },
+  {
+    "path": "系统设计文档/05-运营与经济/05-物品系统/05_物品系统设计.md",
+    "before_sha256": "316528af2b1bd217ca2b8ef747a0f732476afd99a6674e44533896c336d3ae6e",
+    "after_sha256": "a24870e33c4ae246525db7bc03670c30580285eba8185c656ec7c4986bb56a1e"
+  },
+  {
+    "path": "系统设计文档/01-通用系统/30_元对象与组件设计补充说明.md",
+    "before_sha256": "2ebb5046d320f19e3dbbabb6229adeff94e83a6d63de7ed612ea1029ecd44455",
+    "after_sha256": "bfa4483d3f2c48ef399a8813de492ed130ab0b319b7a995ec4b31478f9aeb831"
+  },
+  {
+    "path": "系统设计文档/06-战斗/75-元效果系统/75_元效果表.csv",
+    "before_sha256": "97862d79eb42df32e91ea74ff75e50c98db7c422d782cf7abf32fd2085cdaa56",
+    "after_sha256": "4940ef8a6775b1ec4073d0d58a1c2e30230142828cdea4fcd0c7003aea7f124b"
+  },
+  {
+    "path": "系统设计文档/06-战斗/80-技能与库存联动/80_投掷组件表.csv",
+    "before_sha256": "0f68235f37a673dea29927cff591569c327132ab00d0a3c504908b6932c8e9b0",
+    "after_sha256": "0916fc51331173cd7b927095730f3fcfdf5717a954a6353dc7a3c0bde04d80a5"
+  },
+  {
+    "path": "系统设计文档/00-总览/02_术语表.md",
+    "before_sha256": "62888c706883ec847b09ac23b6ba75d21339763f962a795f8f3864070a3428a8",
+    "after_sha256": "71c14191da9c1ae2b471f13fab5f5cf48fbc8b1cf284c47ab33b58c5465c0385"
+  },
+  {
+    "path": "系统设计文档/00-总览/01_设计原则与跨系统交互逻辑.md",
+    "before_sha256": "b4efafcff8a8ae359711a2c59f2c9520da46d0e8a8d35ea90fb320e1a73c9b46",
+    "after_sha256": "db662b0ba04e08635f519ff18f7d348df9d52c390395de4d29755cf2b4b8c099"
+  },
+  {
+    "path": "系统设计文档/06-战斗/06_战斗索引.md",
+    "before_sha256": "60787ffb175ba80e85addd93c79dea5a79d4da32927a8e726a69ea3f5e6daee5",
+    "after_sha256": "95be44ad38a1d4822077e0288b00b245d9820a8bb5a23d453cbdfb3834b88c06"
+  },
+  {
+    "path": "系统设计文档/05-运营与经济/05_运营与经济索引.md",
+    "before_sha256": "4f06921a010519f9b7436d2361dc7d5d24e1f9349890b8c0d7cc7cb34f62cd78",
+    "after_sha256": "c83fd134e4b31aca629096054468809fb80646fbc0dd67064efe469fb59eece1"
+  },
+  {
+    "path": "系统设计文档/00-总览/00_系统全景图.md",
+    "before_sha256": "0cfd5803e89df0556d025792a0a8b0f244697cb41fc2fa7cbec76274d1a5174c",
+    "after_sha256": "6d7f0c38a9f7e2a890d96a321db0b90f9a177d80ba786443eaea82a1ada9cfee"
+  }
+]

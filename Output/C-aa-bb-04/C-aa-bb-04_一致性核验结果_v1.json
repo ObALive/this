@@ -1,0 +1,91 @@
+[
+  {
+    "check": "三个设计库的正文与路径使用最终命名",
+    "passed": true,
+    "detail": []
+  },
+  {
+    "check": "相关文档引用均可解析",
+    "passed": true,
+    "detail": {
+      "checked": 95,
+      "unresolved": []
+    }
+  },
+  {
+    "check": "泛化职责及一次性投掷元效果引用查漏",
+    "passed": true,
+    "detail": []
+  },
+  {
+    "check": "CSV 列数及唯一 ID：系统设计文档/06-战斗/75-元持续效果系统/75_元持续效果表.csv",
+    "passed": true,
+    "detail": {
+      "columns": 15,
+      "rows": 6
+    }
+  },
+  {
+    "check": "CSV 列数及唯一 ID：系统设计文档/06-战斗/80-技能与库存联动/80_投掷组件表.csv",
+    "passed": true,
+    "detail": {
+      "columns": 13,
+      "rows": 5
+    }
+  },
+  {
+    "check": "元持续效果清单保留五项持续规则及扩展项",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "持续规则原有叠加与期限配置保持",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "投掷资格、伤害基础、后摇基础及组件 ID 保持",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "四份受影响技术稿及索引明确待修订",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "执行契约及混合分层缺口具有关闭条件",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "两种实例的生效、挂载与销毁边界有明确陈述",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "本任务过程编号未进入三个设计库",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "45 份设计库文件均有已提交原稿依据",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "包含新路径文件在内无行尾空白",
+    "passed": true,
+    "detail": []
+  },
+  {
+    "check": "git diff --check",
+    "passed": true,
+    "detail": ""
+  },
+  {
+    "check": "已跟踪文件变更范围保持隔离",
+    "passed": true,
+    "detail": []
+  }
+]

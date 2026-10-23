@@ -1,0 +1,87 @@
+[
+  {
+    "path": "架构设计文档/架构设计案.md",
+    "before_sha256": "0db5531b368de898cf29bd055745cc764cc67ccbc0696b917f145c331b303628",
+    "after_sha256": "9020940e20bf0ff6a7f1832514dd69ab45678d875b6828d63e2429325d543434"
+  },
+  {
+    "path": "Code_Design/06-战斗/75_元效果系统代码设计案.md",
+    "before_sha256": "bed428da1819dc8551c19a22dbb1ab67a389bcd1f5e453cdc399edd56d120cda",
+    "after_sha256": "053a5a5a5b4215bab6bf34a7115f17a23c04ccbaf4825f4e2b4da3ea52925a95"
+  },
+  {
+    "path": "Code_Design/00-架构单元/M09_全局能力代码设计案.md",
+    "before_sha256": "09645fb6993998cd1fcc39ce0df5a53e295ecea7ceeb76503502454fb74a0cc3",
+    "after_sha256": "5775d7b99881c0138279eaeed806a33b685af83629de0db5d5565dc9aec6046e"
+  },
+  {
+    "path": "Code_Design/01-通用系统/70_元技能代码设计案.md",
+    "before_sha256": "f7c79de14d59e7f71a8590dfa7d110caf6a136e2fbac6add23c3ea2f71ee95df",
+    "after_sha256": "ca7417271ec1392bc950397007bb4e7958175c4acee3ba303f120f1cbbfc258c"
+  },
+  {
+    "path": "Code_Design/06-战斗/40_技能系统代码设计案.md",
+    "before_sha256": "b4b45865d6ed88decc926604f37219c5c445406236f08389f12be04f5034f43b",
+    "after_sha256": "0c99b852f07ba3017de03dba23de38ebacd715f797ad8f60f1b31651b1982c6f"
+  },
+  {
+    "path": "Code_Design/06-战斗/80_技能与库存联动代码设计案.md",
+    "before_sha256": "b8acb90283d63ff98e0be4bbd57ff3bbc67acbdffa64d62a70e4184efb08f693",
+    "after_sha256": "e4c83b452830d181a344ef28322c6f26249a6c856c26f46de68af033e05d6d6f"
+  },
+  {
+    "path": "Code_Design/05-运营与经济/05_物品系统代码设计案.md",
+    "before_sha256": "02903ac73b04682c9223078bed42698f7984e2efa93a0717949372e4958599a5",
+    "after_sha256": "8cd32d254004b1e3f76290f95a35f90238a7d63ed05ebf5b6477742a8aab30fc"
+  },
+  {
+    "path": "Code_Design/01-通用系统/30_元对象与组件代码设计案.md",
+    "before_sha256": "43291f6760328cfd8e2212f852437f2802a53b38e80682c1bb8e449606f202d3",
+    "after_sha256": "3f8698e529a2f76e2d1d16edc3a4ab8f50e2841e6b92fd9a907d85987e9ddbda"
+  },
+  {
+    "path": "Code_Design/06-战斗/10_战斗总览代码设计案.md",
+    "before_sha256": "fc63b4c27a2791d6124d964959e7aee7558c51cf21d2215e53e324aafa882067",
+    "after_sha256": "e8362d390daa77b105bfc8f2b3191b7fcfa659c97008398aabb5591c7855c273"
+  },
+  {
+    "path": "Code_Design/06-战斗/60_装备系统代码设计案.md",
+    "before_sha256": "98081311a31ad661255cfaa3196335f8669ebae3c83af933223f11c19f892e37",
+    "after_sha256": "c26f86f7793da742898a88a3afb9e3732653d5d53af515e9b481e2ed27f3e3f3"
+  },
+  {
+    "path": "Code_Design/00-架构单元/M04_对象与经济代码设计案.md",
+    "before_sha256": "c4a23c1fe822895ba647fb4be814e32d8c79877f8f9208ca73374fdad7317863",
+    "after_sha256": "ffd0a968454d46c46c36f3d550244deac0fa9612cf96a6eb5a2be27e76acf664"
+  },
+  {
+    "path": "Code_Design/00-架构单元/M05_战斗代码设计案.md",
+    "before_sha256": "5feffdac8d34ad2ab4a3c0b5819e740c3cb7da7b45116f17f2f161f94f33b96f",
+    "after_sha256": "f4a6d7bdce40c954b9eb01289ab7f0b8a7e96aa71296c6f8da1ae09841c7dca3"
+  },
+  {
+    "path": "Code_Design/00-架构单元/M07_队伍与角色代码设计案.md",
+    "before_sha256": "7570682035d0bdfa2a4d3515b8b628cb5fa8a15ba20cc918071cbc6f39506951",
+    "after_sha256": "151483f62bc859278fe7a4487ad3be93f32732fc046af0c67777e0bb4984ab8e"
+  },
+  {
+    "path": "Code_Design/00-架构单元/M08_界面与信息代码设计案.md",
+    "before_sha256": "0b9a3a25a0edcf165f831f81e5b9da6b4a179968281ffff8ab658a7593523170",
+    "after_sha256": "2c98c358cc61942a973d21d1fc0c814e4d7840808c48cd369739607b60cb6c73"
+  },
+  {
+    "path": "Code_Design/05-运营与经济/10_金钱与货物代码设计案.md",
+    "before_sha256": "1d83f73b1025b6aa2d283cc4ee21b95b3c40584419bffb65de24c2fc8d1ca969",
+    "after_sha256": "1e46bef8d107c383ee9b627aadd28c30cfab44ab521f7b9a7e1b42375ada3672"
+  },
+  {
+    "path": "Code_Design/06-战斗/30_战场与战棋规则代码设计案.md",
+    "before_sha256": "0ebdcd25d9f1b9699d8367bffd231abe0de53ca2114f60971326597a822a417d",
+    "after_sha256": "68d0ed4debbd79e7c55449c80f6c4e279bd06f4a3bc146b756108fa44c0b5710"
+  },
+  {
+    "path": "Code_Design/README.md",
+    "before_sha256": "e53f8715c88be92dcebbff8926ffc0612165f7f94a9114940153682886284027",
+    "after_sha256": "68bbad1c409bc9486a99a3d6c727ce5d27e39f54ba74dc1cc432534a37393314"
+  }
+]
