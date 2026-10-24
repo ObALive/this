@@ -1,0 +1,1006 @@
+{
+  "date": "2026-10-24",
+  "workspace_head": "0a1248ca8c1db6808d7056bf4d7b178f7ade644c",
+  "workspace_status": "M \"Report/CO06-\\344\\273\\243\\347\\240\\201\\350\\256\\276\\350\\256\\241\\346\\241\\210\\350\\241\\245\\351\\275\\220_\\344\\273\\273\\345\\212\\241\\344\\271\\246\\347\\274\\226\\345\\210\\266_Report.md\"\n M \"Rules/01_\\350\\247\\204\\350\\214\\203\\346\\200\\273\\345\\210\\231.md\"\n M \"Rules/03_\\346\\226\\207\\346\\241\\243\\347\\274\\226\\350\\276\\221\\350\\247\\204\\350\\214\\203.md\"\n M \"Rules/05_\\346\\226\\207\\346\\241\\243\\345\\272\\223\\347\\273\\204\\347\\273\\207\\350\\247\\204\\350\\214\\203.md\"\n M \"Rules/06_\\344\\273\\243\\347\\240\\201\\350\\256\\276\\350\\256\\241\\346\\241\\210\\347\\274\\226\\350\\276\\221\\350\\247\\204\\350\\214\\203.md\"\n M Rules/README.md\n M \"Task/CO\\347\\263\\273\\345\\210\\227\\344\\273\\273\\345\\212\\241/CO06-\\344\\273\\243\\347\\240\\201\\350\\256\\276\\350\\256\\241\\346\\241\\210\\350\\241\\245\\351\\275\\220.md\"\n M \"Tool/\\351\\241\\271\\347\\233\\256\\347\\275\\221\\347\\273\\234\\345\\233\\276/\\346\\225\\260\\346\\215\\256/N01_\\345\\256\\214\\346\\225\\264\\344\\276\\235\\350\\265\\226\\346\\270\\205\\347\\220\\206\\346\\226\\260\\345\\233\\276_v2.sqlite\"\n?? \"Output/10-\\344\\273\\243\\347\\240\\201\\350\\257\\264\\346\\230\\216\\347\\273\\223\\346\\236\\204\\350\\246\\201\\346\\261\\202\\350\\241\\245\\345\\205\\205/\"\n?? \"Output/CO06-\\347\\273\\223\\346\\236\\204\\351\\207\\215\\345\\206\\231/\"\n?? \"Report/10-\\344\\273\\243\\347\\240\\201\\350\\257\\264\\346\\230\\216\\347\\273\\223\\346\\236\\204\\350\\246\\201\\346\\261\\202\\350\\241\\245\\345\\205\\205_Report.md\"",
+  "source_head": "c744a32b59973f9888d69447bbd2775fccf064f4",
+  "source_status": "M \"Assets/M Studio/Art/Trees/Tree_G.prefab\"\n M \"Assets/M Studio/Art/Trees/Tree_Y.prefab\"\n M Logs/AssetImportWorker0.log\n M Logs/AssetImportWorker1.log\n M Logs/shadercompiler-AssetImportWorker0.log",
+  "projects": {
+    "Assembly-CSharp": {
+      "path": "Assembly-CSharp.csproj",
+      "sha256": "5fca0a24426692e20ae69ae2aceda7054b227ddd69b68b10d76d87e87ff100f5",
+      "assembly_name": [],
+      "compile": [],
+      "projects": [],
+      "references": []
+    },
+    "Assembly-CSharp-Editor": {
+      "path": "Assembly-CSharp-Editor.csproj",
+      "sha256": "2835d0c819812b7ebebb833c19243d43a14d2e16fe14bbac35a71943c8b49dde",
+      "assembly_name": [],
+      "compile": [],
+      "projects": [],
+      "references": []
+    },
+    "Assembly-CSharp-firstpass": {
+      "path": "Assembly-CSharp-firstpass.csproj",
+      "sha256": "33a2bb7dc914ee928af06fd3ee1c7d67150657c125a78a0b267f9f7df9c3758a",
+      "assembly_name": [],
+      "compile": [],
+      "projects": [],
+      "references": []
+    }
+  },
+  "assets_asmdefs": [],
+  "sources": [
+    {
+      "path": "Assets/Script/MetaObjects/MetaObjectDefinition.cs",
+      "sha256": "5ddb35e652218a03d7ca02b05a91610cc672f94ce8bcb8aace3954f1ab5a4ca4",
+      "document": "10_MetaObject类型与组件底座代码设计案.md",
+      "namespace": [],
+      "types": [
+        {
+          "kind": "class",
+          "type": "MetaObjectDefinition",
+          "bases": "ScriptableObject",
+          "line": 10
+        }
+      ],
+      "in_assembly_csharp": false
+    },
+    {
+      "path": "Assets/Script/MetaObjects/MetaObjectInstance.cs",
+      "sha256": "abd66056932e8bc0096e290cc719daf398e0997fc5c6f013ee2b435e42174e65",
+      "document": "10_MetaObject类型与组件底座代码设计案.md",
+      "namespace": [],
+      "types": [
+        {
+          "kind": "class",
+          "type": "MetaObjectInstance",
+          "bases": "",
+          "line": 13
+        },
+        {
+          "kind": "class",
+          "type": "MessageSubscription",
+          "bases": "",
+          "line": 25
+        }
+      ],
+      "in_assembly_csharp": false
+    },
+    {
+      "path": "Assets/Script/MetaObjects/MetaObjectComponentDefinition.cs",
+      "sha256": "2729868504cdf50cd7617dd1af42af650dd44b04a3fbf7937f2cf6909e91ef83",
+      "document": "10_MetaObject类型与组件底座代码设计案.md",
+      "namespace": [],
+      "types": [
+        {
+          "kind": "class",
+          "type": "MetaObjectComponentDefinition",
+          "bases": "",
+          "line": 12
+        }
+      ],
+      "in_assembly_csharp": false
+    },
+    {
+      "path": "Assets/Script/MetaObjects/MetaObjectComponent.cs",
+      "sha256": "2e6241b975aeae2c1af176c680c6b238395f3db8d8a559d0961d21cb5fb61caf",
+      "document": "10_MetaObject类型与组件底座代码设计案.md",
+      "namespace": [],
+      "types": [
+        {
+          "kind": "class",
+          "type": "MetaObjectComponent",
+          "bases": "",
+          "line": 22
+        }
+      ],
+      "in_assembly_csharp": false
+    },
+    {
+      "path": "Assets/Script/MetaObjects/MetaObjectPreset.cs",
+      "sha256": "5bed30fede9e1416133dd8029b28501d9d91d805cdaba00d2de72a1e509771ed",
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "namespace": [],
+      "types": [
+        {
+          "kind": "class",
+          "type": "MetaObjectPreset",
+          "bases": "MonoBehaviour",
+          "line": 14
+        }
+      ],
+      "in_assembly_csharp": false
+    },
+    {
+      "path": "Assets/Script/MetaObjects/SceneCoordinateComponent.cs",
+      "sha256": "cc3c6ec9e4989733078d5bc0a2d3b955891a77ea26089b54d852a67a2a10526a",
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "namespace": [],
+      "types": [
+        {
+          "kind": "class",
+          "type": "SceneCoordinateComponentDefinition",
+          "bases": "MetaObjectComponentDefinition",
+          "line": 10
+        },
+        {
+          "kind": "class",
+          "type": "SceneCoordinateComponent",
+          "bases": "MetaObjectComponent",
+          "line": 39
+        }
+      ],
+      "in_assembly_csharp": false
+    },
+    {
+      "path": "Assets/Script/MetaObjects/SceneTextureComponent.cs",
+      "sha256": "5b2dd8d870fce9ca3a66afbfda8edd9cd6fa4d20926566e55e1c70ac765eaab4",
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "namespace": [],
+      "types": [
+        {
+          "kind": "enum",
+          "type": "HorizontalFacing",
+          "bases": "",
+          "line": 6
+        },
+        {
+          "kind": "class",
+          "type": "SceneTextureComponentDefinition",
+          "bases": "MetaObjectComponentDefinition",
+          "line": 19
+        },
+        {
+          "kind": "class",
+          "type": "SceneTextureComponent",
+          "bases": "MetaObjectComponent",
+          "line": 67
+        }
+      ],
+      "in_assembly_csharp": false
+    },
+    {
+      "path": "Assets/Script/MetaObjects/MovementFacingComponent.cs",
+      "sha256": "c52a98ff9f418471607f0c53e99808371e1ef39bedad951ec714ecfb8c03722f",
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "namespace": [],
+      "types": [
+        {
+          "kind": "class",
+          "type": "MovementFacingComponentDefinition",
+          "bases": "MetaObjectComponentDefinition",
+          "line": 5
+        },
+        {
+          "kind": "class",
+          "type": "MovementFacingComponent",
+          "bases": "MetaObjectComponent",
+          "line": 18
+        }
+      ],
+      "in_assembly_csharp": false
+    },
+    {
+      "path": "Assets/Script/MetaObjects/AttributeComponent.cs",
+      "sha256": "c2c549cdc4f52d4691322d7fb69531791c2c61d45d02f8bc9569943dc5c464ca",
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "namespace": [],
+      "types": [
+        {
+          "kind": "enum",
+          "type": "CharacterAttribute",
+          "bases": "",
+          "line": 6
+        },
+        {
+          "kind": "class",
+          "type": "AttributeComponentDefinition",
+          "bases": "MetaObjectComponentDefinition",
+          "line": 15
+        },
+        {
+          "kind": "class",
+          "type": "AttributeComponent",
+          "bases": "MetaObjectComponent",
+          "line": 45
+        }
+      ],
+      "in_assembly_csharp": false
+    },
+    {
+      "path": "Assets/Script/MetaObjects/CellChanged.cs",
+      "sha256": "74c6d613479ae4223fdb3c154d51bab6572a07605e9c43bbf8d1b44cf29b37e5",
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "namespace": [],
+      "types": [
+        {
+          "kind": "struct",
+          "type": "CellChanged",
+          "bases": "",
+          "line": 7
+        }
+      ],
+      "in_assembly_csharp": false
+    },
+    {
+      "path": "Assets/Script/MetaObjects/MovementCompleted.cs",
+      "sha256": "d94acc065465b6e327a12dbf404dfb237c4fcdfa59d898dd44a3a58606dfc7ef",
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "namespace": [],
+      "types": [
+        {
+          "kind": "struct",
+          "type": "MovementCompleted",
+          "bases": "",
+          "line": 7
+        }
+      ],
+      "in_assembly_csharp": false
+    },
+    {
+      "path": "Assets/Script/Battle/MetaActionDefinition.cs",
+      "sha256": "a60cbdb03f2288ec341357b45cd91e92c65fa9a837ad195fdc147a769667641a",
+      "document": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "namespace": [],
+      "types": [
+        {
+          "kind": "class",
+          "type": "MetaActionDefinition",
+          "bases": "MetaObjectDefinition",
+          "line": 5
+        }
+      ],
+      "in_assembly_csharp": false
+    },
+    {
+      "path": "Assets/Script/Battle/MetaActionInstance.cs",
+      "sha256": "264daf9bffb8ca8fcb8f1e44eab60f1e1d55b576f1fbf5b30f68c4b59031247a",
+      "document": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "namespace": [],
+      "types": [
+        {
+          "kind": "class",
+          "type": "MetaActionInstance",
+          "bases": "MetaObjectInstance",
+          "line": 7
+        }
+      ],
+      "in_assembly_csharp": false
+    },
+    {
+      "path": "Assets/Script/Battle/MetaActionComponents.cs",
+      "sha256": "6c01db6ca5a19cd20bee55788595a20664e9c4798a24d958c596080d895d8826",
+      "document": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "namespace": [],
+      "types": [
+        {
+          "kind": "class",
+          "type": "MetaActionComponent",
+          "bases": "MetaObjectComponent",
+          "line": 5
+        },
+        {
+          "kind": "class",
+          "type": "MetaActionComponentDefinition",
+          "bases": "MetaObjectComponentDefinition",
+          "line": 6
+        },
+        {
+          "kind": "enum",
+          "type": "ActionResult",
+          "bases": "",
+          "line": 12
+        },
+        {
+          "kind": "enum",
+          "type": "ActionTargetKind",
+          "bases": "",
+          "line": 14
+        },
+        {
+          "kind": "interface",
+          "type": "IMovementCapability",
+          "bases": "",
+          "line": 17
+        },
+        {
+          "kind": "class",
+          "type": "ActionExecutionContext",
+          "bases": "",
+          "line": 25
+        },
+        {
+          "kind": "class",
+          "type": "ActionTargetComponentDefinition",
+          "bases": "MetaActionComponentDefinition",
+          "line": 38
+        },
+        {
+          "kind": "class",
+          "type": "ActionTargetComponent",
+          "bases": "MetaActionComponent",
+          "line": 42
+        },
+        {
+          "kind": "class",
+          "type": "ActionRecoveryComponentDefinition",
+          "bases": "MetaActionComponentDefinition",
+          "line": 51
+        },
+        {
+          "kind": "class",
+          "type": "ActionRecoveryComponent",
+          "bases": "MetaActionComponent",
+          "line": 58
+        },
+        {
+          "kind": "class",
+          "type": "ActionEffectComponent",
+          "bases": "MetaActionComponent",
+          "line": 65
+        },
+        {
+          "kind": "class",
+          "type": "MovementEffectComponentDefinition",
+          "bases": "MetaActionComponentDefinition",
+          "line": 71
+        },
+        {
+          "kind": "class",
+          "type": "MovementEffectComponent",
+          "bases": "ActionEffectComponent",
+          "line": 75
+        }
+      ],
+      "in_assembly_csharp": false
+    },
+    {
+      "path": "Assets/Script/MetaObjects/MovementActionComponent.cs",
+      "sha256": "4da10c684788fdc001f3b753e2c597ae9a3f150a2f7a2e6b2c6545637b469e4c",
+      "document": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "namespace": [],
+      "types": [
+        {
+          "kind": "class",
+          "type": "ActionHolderComponent",
+          "bases": "MetaObjectComponent",
+          "line": 5
+        },
+        {
+          "kind": "class",
+          "type": "MovementActionComponentDefinition",
+          "bases": "MetaObjectComponentDefinition",
+          "line": 34
+        },
+        {
+          "kind": "class",
+          "type": "MovementActionComponent",
+          "bases": "ActionHolderComponent",
+          "line": 41
+        }
+      ],
+      "in_assembly_csharp": false
+    },
+    {
+      "path": "Assets/Script/Battle/MetaActionLifecycle.cs",
+      "sha256": "23f94aa6b3559fb97cbc3351cec219ac863696097c608ed1ad644f2923c89661",
+      "document": "40_MetaActionLifecycle统一执行入口代码设计案.md",
+      "namespace": [],
+      "types": [
+        {
+          "kind": "enum",
+          "type": "MetaActionPhase",
+          "bases": "",
+          "line": 3
+        },
+        {
+          "kind": "class",
+          "type": "MetaActionLifecycle",
+          "bases": "",
+          "line": 9
+        }
+      ],
+      "in_assembly_csharp": false
+    },
+    {
+      "path": "Assets/Script/Battle/TimeLineManager.cs",
+      "sha256": "b6501c7f39a20d14d0975c59746ad1c31d653a2582f2aa91943034f02fde224c",
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "namespace": [],
+      "types": [
+        {
+          "kind": "class",
+          "type": "TimelineParticipant",
+          "bases": "",
+          "line": 5
+        },
+        {
+          "kind": "struct",
+          "type": "TimelineMarker",
+          "bases": "",
+          "line": 20
+        },
+        {
+          "kind": "class",
+          "type": "TimeLineManager",
+          "bases": "",
+          "line": 33
+        },
+        {
+          "kind": "class",
+          "type": "Entry",
+          "bases": "",
+          "line": 35
+        }
+      ],
+      "in_assembly_csharp": false
+    },
+    {
+      "path": "Assets/Script/Battle/BattleTimelineController.cs",
+      "sha256": "8d31034e7f08175851f2e0c4419181fb944af8155895cba549e42729df577658",
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "namespace": [],
+      "types": [
+        {
+          "kind": "class",
+          "type": "BattleTimelineController",
+          "bases": "MonoBehaviour",
+          "line": 8
+        },
+        {
+          "kind": "class",
+          "type": "Binding",
+          "bases": "",
+          "line": 11
+        }
+      ],
+      "in_assembly_csharp": false
+    },
+    {
+      "path": "Assets/Script/Battle/BattleTimelineConfiguration.cs",
+      "sha256": "f59ed6c2ca891e086f978ae1175d1995ec9210c3af35e97037bdaa025898884b",
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "namespace": [],
+      "types": [
+        {
+          "kind": "class",
+          "type": "BattleTimelineConfiguration",
+          "bases": "ScriptableObject",
+          "line": 6
+        },
+        {
+          "kind": "class",
+          "type": "Unit",
+          "bases": "",
+          "line": 9
+        }
+      ],
+      "in_assembly_csharp": false
+    },
+    {
+      "path": "Assets/Script/Battle/BattleBehaviorDefinition.cs",
+      "sha256": "cf22f69c3e6c1f2902b99d36a2002f7755da4189a8923248ec79a3e832afeb25",
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "namespace": [],
+      "types": [
+        {
+          "kind": "class",
+          "type": "BattleBehaviorDefinition",
+          "bases": "ScriptableObject",
+          "line": 6
+        },
+        {
+          "kind": "class",
+          "type": "ActionTiming",
+          "bases": "",
+          "line": 15
+        }
+      ],
+      "in_assembly_csharp": false
+    },
+    {
+      "path": "Assets/Script/GameManager.cs",
+      "sha256": "7c8779cc8cd303393947ceccb950e770add7ce362bfadf2fe5673b97687f700b",
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "namespace": [],
+      "types": [
+        {
+          "kind": "class",
+          "type": "GameManager",
+          "bases": "MonoBehaviour",
+          "line": 6
+        }
+      ],
+      "in_assembly_csharp": false
+    },
+    {
+      "path": "Assets/Script/Debug/DebugPanel.cs",
+      "sha256": "f619b442f699ff9fb7c9c15bfde4c66d6da662f9f05bca5b25a029d231d20f5b",
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "namespace": [],
+      "types": [
+        {
+          "kind": "class",
+          "type": "DebugPanel",
+          "bases": "MonoBehaviour",
+          "line": 6
+        }
+      ],
+      "in_assembly_csharp": false
+    },
+    {
+      "path": "Assets/Script/TilemapManager.cs",
+      "sha256": "75dd78f9c2f79149dc5100cf111043bdd23fe138553b65e47ecca5a64a4ca30f",
+      "document": "60_地图与移动适配类型代码设计案.md",
+      "namespace": [],
+      "types": [
+        {
+          "kind": "struct",
+          "type": "MapCellData",
+          "bases": "",
+          "line": 7
+        },
+        {
+          "kind": "class",
+          "type": "TilemapManager",
+          "bases": "MonoBehaviour",
+          "line": 24
+        },
+        {
+          "kind": "struct",
+          "type": "TileTerrainMapping",
+          "bases": "",
+          "line": 27
+        }
+      ],
+      "in_assembly_csharp": false
+    },
+    {
+      "path": "Assets/Script/Player/GridClickInput.cs",
+      "sha256": "e186912dc2c3f695757b0db01032a27f0f12300d5e2222c3368ee23151f0c26f",
+      "document": "60_地图与移动适配类型代码设计案.md",
+      "namespace": [],
+      "types": [
+        {
+          "kind": "class",
+          "type": "GridClickInput",
+          "bases": "MonoBehaviour",
+          "line": 12
+        }
+      ],
+      "in_assembly_csharp": false
+    },
+    {
+      "path": "Assets/Script/Player/CharacterMovementController.cs",
+      "sha256": "67ec2eb2c9ecbbc5a3d9d2b28c455dc9ab9751ade7d5c0b9a352d1ba42f66269",
+      "document": "60_地图与移动适配类型代码设计案.md",
+      "namespace": [],
+      "types": [
+        {
+          "kind": "enum",
+          "type": "CellMoveResult",
+          "bases": "",
+          "line": 4
+        },
+        {
+          "kind": "class",
+          "type": "CharacterMovementController",
+          "bases": "MonoBehaviour",
+          "line": 20
+        },
+        {
+          "kind": "class",
+          "type": "MovementCapability",
+          "bases": "IMovementCapability",
+          "line": 109
+        }
+      ],
+      "in_assembly_csharp": false
+    },
+    {
+      "path": "Assets/Script/Player/MovementRange.cs",
+      "sha256": "89a69df33f678f21bb919783bc49d60ef8cf825564aacebae86fe55bc5316b5a",
+      "document": "60_地图与移动适配类型代码设计案.md",
+      "namespace": [],
+      "types": [
+        {
+          "kind": "class",
+          "type": "MovementRange",
+          "bases": "MonoBehaviour",
+          "line": 12
+        }
+      ],
+      "in_assembly_csharp": false
+    },
+    {
+      "path": "Assets/Script/Player/MovementRangeOverlay.cs",
+      "sha256": "9735e91d589469ea97463fd27f5c466f3fd3da92c596eebe70a517f7e0c82989",
+      "document": "60_地图与移动适配类型代码设计案.md",
+      "namespace": [],
+      "types": [
+        {
+          "kind": "class",
+          "type": "MovementRangeOverlay",
+          "bases": "MonoBehaviour",
+          "line": 7
+        }
+      ],
+      "in_assembly_csharp": false
+    }
+  ],
+  "assets": {
+    "Assets/GameData/Battle.meta": "ccd786e53b72833e12789b12d98f39f319138c3b40d2e90c9e5ef612d1157eb4",
+    "Assets/GameData/Char_SO.asset": "008ec738f13aeb627f2d0e8841909389162b25b5410ef1ad5fa35284929ecede",
+    "Assets/GameData/Char_SO.asset.meta": "1bb80488bcdde2dece5b97be209fa9b0812b35ce9fd5952dec52b5942c17c1cf",
+    "Assets/GameData/Inventory.meta": "d563a6c6758ad2dc2f274a8ab30c1b0afce0249e54cb2a1e00f3c94ad9f91bdd",
+    "Assets/GameData/MetaObjects.meta": "1103c65dae50cf16b3f0ad91b814cddd5e4857f175b98288fe14b812e3f61b82",
+    "Assets/GameData/Movement.meta": "ca533aaa1d36236666e45cf3025e57a5d2cecc94ecae21b0b08b1e849ce883c5",
+    "Assets/GameData/Battle/DemoTimeline.asset": "057bc79b8d7f885c50b883979f5b5a082723f7960c76b1e9816a97cfade5cc7c",
+    "Assets/GameData/Battle/DemoTimeline.asset.meta": "e422dfe5ce0cf17b429c995f5b1b86c6a1366962dcb112abbb4eeafd226e571b",
+    "Assets/GameData/Battle/MovementAction.asset": "1380e00c269fb7bd0c811a1b28af86ff8f7eb5273498027f5a96d9751a975034",
+    "Assets/GameData/Battle/MovementAction.asset.meta": "7080931ec861efd40de86f9e272be0d5d6e4824155a51b4627b8312ca2ccd348",
+    "Assets/GameData/Battle/MovementTiming.asset": "da80020878f7cafcd3c27a7fb22d4bf9142fee53ae7de7d17e3e0094ff6c40be",
+    "Assets/GameData/Battle/MovementTiming.asset.meta": "d3b35d94fc96275ceb56b0e103711bac5c90e1de918fe3be1ba3e4905d71ba6a",
+    "Assets/GameData/Battle/Unit_02_Timeline.asset": "f9ac88fe26f707af7defd69dc04fcbcb074e97ea94bed98e562622baa486a1b2",
+    "Assets/GameData/Battle/Unit_02_Timeline.asset.meta": "236a60bc8d551cc36d1991c70132d55d3f1080a30467552aac98ab009aa8897a",
+    "Assets/GameData/Battle/Unit_03_Timeline.asset": "784d0eb45d4584fffd0e90c38d1ed58d526e6123e0c06e00985910aa62d25203",
+    "Assets/GameData/Battle/Unit_03_Timeline.asset.meta": "6a79c5fbeca86409e2c58975a8112140e9a33c8e9e2907a20a8df9d9b9003f6d",
+    "Assets/GameData/Inventory/Bags.meta": "a4121490b5f4818e193d0de456b4c268bb5fc226f1ba36c8d3ec5afc6278b31c",
+    "Assets/GameData/Inventory/Components.meta": "81fc2744f3459be80518b1d5ffcc010512606e2af3c05b3cb72c24dcc6a57760",
+    "Assets/GameData/Inventory/ItemDataList_SO.asset": "675982be776dff9b419f9207786724233eacd052c771a76d7b0c803b635be456",
+    "Assets/GameData/Inventory/ItemDataList_SO.asset.meta": "c0f982fde624510b7b86df4ded2f2773bf51420d8916746e4cce09de1f4fb979",
+    "Assets/GameData/Inventory/Bags/BagSturcture_SO.asset": "ccbb4f02bbac6f7af091f8fbd92d19d24cd2de767af8d7c0e401d0fefb6e708d",
+    "Assets/GameData/Inventory/Bags/BagSturcture_SO.asset.meta": "d6a194d4153325e3d6e3bc7da6017813951d4aa5653903ecb64e9ec8704c2c48",
+    "Assets/GameData/Inventory/Bags/PlayerBag.asset": "0da6bf24cb948817ea8845c24b033930b9da85eb8fd4ce52d91c2c1475f598a7",
+    "Assets/GameData/Inventory/Bags/PlayerBag.asset.meta": "4ed361c6211532320ee66913f34a7ba3ba10ecbb6798cdbc1ad98b5ee954db8e",
+    "Assets/GameData/Inventory/Components/MeterComponentData_SO.asset": "b288117209b4e322a67680bd6d41c35a6ffe7c38de09d197b479ccb1a20194ad",
+    "Assets/GameData/Inventory/Components/MeterComponentData_SO.asset.meta": "f120fbbca1e87f813a3de722083dc3b3297f23ebc83c196babd178f9410f64aa",
+    "Assets/GameData/MetaObjects/Player.asset": "6a0f62fc9e39134b687aeb96b6116225e3fafbdbceac98575e3f7751c1f868e1",
+    "Assets/GameData/MetaObjects/Player.asset.meta": "8671249edf0fd90ded20a7b396ff20bda20e1511197a224c39d82689ec55ecc1",
+    "Assets/GameData/Movement/MovementRangeFrame.png": "a8bbf762ac65ea6f7db7126c2875c296d3daa7d25ffad59f7b4c8d7e041db237",
+    "Assets/GameData/Movement/MovementRangeFrame.png.meta": "5692749a718c1ae203923302420a493b87e03cbaec52e97f4de414821926bb00",
+    "Assets/GameData/Movement/MovementRangeTile.asset": "19330668174b3fd15d7c5024c7c54f5ff86b7b30470adcf6c244be1dfde56467",
+    "Assets/GameData/Movement/MovementRangeTile.asset.meta": "ecd57aad6fc61c8229430c3d37ef2c17c8dce1b7fab10b02b522d26d19fcc93a",
+    "Assets/Scenes/01.Field.unity": "220354f13f64bacba95985c262ff82c9348f127eb0c2f44071421a1f40380725",
+    "Assets/Scenes/PersistanceScene.unity": "b0679dc388373c746d2b12c50403976f3423d85263239d5c8a1059ca76caef81",
+    "Assets/Scenes/Template.unity": "16c154b43ab0796c1c1e1bf2ef58e18228d083c7bc1c5428886aaf19382ce97b",
+    "Assets/Scenes/UI.unity": "e09c5be3ee0df1913219ad69213b4e6025fe2acd54bebc91fd5bdd935610f533",
+    "ProjectSettings/EditorBuildSettings.asset": "b58a3380d9b3b298c865ddd8334de57f3eb6e69d52177ad2265b093d1c43ef0d",
+    "ProjectSettings/TagManager.asset": "a722fb4ddf83b6e6ae9451805fe4a56e74017da7bf33a816798f5e818dedb84e",
+    "ProjectSettings/ProjectVersion.txt": "93eba324bad77e6764a40d1b8a2020e7b69424102a2b2f3b17b69afdf7dd67a0",
+    "Assets/M Studio/Art/Characters/Player/Body/QinRuofu/asfzxfzxd_0.prefab": "a4afcd95a50687f9a44176d80c54ad77f32bb99f4a1880335f1633afc12231ce"
+  },
+  "database": {
+    "path": "D:\\myspace\\Git\\this\\Tool\\项目网络图\\数据\\N01_完整依赖清理新图_v2.sqlite",
+    "sha256": "1cf017f9a63cd7299679198122722994dd6641016a9e34887969a5dd01996d59",
+    "nodes": [
+      {
+        "id": "n36",
+        "seq": 1,
+        "section_id": "s20",
+        "number": 1,
+        "summary": "共享时间轴调度与行动回排",
+        "body": "场景中存在多个参战角色，敌我全部单位共用一条时间轴。根据战斗配置初始化行动标记并选出首个行动者；单位完成行动后，以行为后摇、技能后摇及行动速度补正计算其下一次行动时机并回排，再按时间轴排序选取下一行动者并授予行动机会。暂时为移动行为设置一个临时属性，这个属性记录在执行移动行为之后，再次轮到自己回合需要等待多少游戏时间。当前行动者可以通过基础调试信息验收，调度独立于UI、预览和动画。实际回排与预览使用一致的计算规则和配置输入。具体实现路径在实施本节点时讨论，沿用架构已定约束；未给定的规则和配置输入届时明确，不以临时输入替代正式规则",
+        "manual": "{}",
+        "summary_is_auto": 0,
+        "status": "已实现",
+        "route": "逻辑",
+        "node_refs": [
+          {
+            "node_id": "n36",
+            "seq": 1,
+            "raw": "角色移动1",
+            "section": "角色移动",
+            "number": 1,
+            "target_id": "n10",
+            "reason": ""
+          }
+        ],
+        "node_objects": [
+          {
+            "node_id": "n36",
+            "seq": 1,
+            "name": "TimeLineManager",
+            "note": "战斗行动顺序与当前行动机会的唯一管理入口；管理多角色行动标记、初始化排序、行动后回排和下一行动者选取。保存ElectedObject作为当前行动者的权威状态，查看对象和技能目标不改写该值。我方获授机会后等待玩家决策，敌方交由AI决策；角色行为的生命周期、触发与生效时机由元动作统一管理。数据与表现分离，具体字段之外的结构、算法与协作路径在实施节点时讨论。",
+            "path": ""
+          }
+        ],
+        "node_notes": []
+      },
+      {
+        "id": "n6",
+        "seq": 10,
+        "section_id": "s3",
+        "number": 1,
+        "summary": "制作元动作",
+        "body": "元动作与原组件约定保留；加载预置技能配置后能读取类别、目标类型、效果与后摇输入，供后续各技能行为调用。 元动作统一管理角色行为的生命周期、触发时机、生效时机及完成或终止的交接，方便统一校验；各类行为沿用自身行为契约及效果结算职责。具体实现路径在实施本节点时讨论，沿用架构已定约束；未给定的规则和配置输入届时明确，不以临时输入替代正式规则。 将角色的移动行为也封装为一个技能",
+        "manual": "{}",
+        "summary_is_auto": 0,
+        "status": "已实现",
+        "route": "角色技能",
+        "node_refs": [],
+        "node_objects": [
+          {
+            "node_id": "n6",
+            "seq": 1,
+            "name": "元动作",
+            "note": "角色行为生命周期的统一管理对象；触发、生效、完成与终止的具体协议在节点实施时讨论。",
+            "path": ""
+          }
+        ],
+        "node_notes": []
+      },
+      {
+        "id": "n9",
+        "seq": 19,
+        "section_id": "s4",
+        "number": 0,
+        "summary": "制作元对象和相关组件约定",
+        "body": "通过场景纹理组件与场景坐标组件将预置元对象显示在指定地图格子，渲染位置与其坐标一致",
+        "manual": "{}",
+        "summary_is_auto": 0,
+        "status": "已实现",
+        "route": "角色移动",
+        "node_refs": [],
+        "node_objects": [
+          {
+            "node_id": "n9",
+            "seq": 1,
+            "name": "元对象-场景纹理组件",
+            "note": "1. 组件保存角色渲染在场景上的纹理，2. 获取脚本挂载的物体上的纹理组件（sprite renderer），将保存的纹理路径对应的纹理赋值到纹理组件上",
+            "path": ""
+          },
+          {
+            "node_id": "n9",
+            "seq": 2,
+            "name": "元对象-场景坐标组件",
+            "note": "确认对象渲染的位置，将对象的锚点渲染在地图网格的格子中心",
+            "path": ""
+          }
+        ],
+        "node_notes": []
+      },
+      {
+        "id": "n10",
+        "seq": 20,
+        "section_id": "s4",
+        "number": 1,
+        "summary": "点击地格移动",
+        "body": "在初始移动构建阶段，点击地格使角色移动到对应位置；正式战斗中的选择、确认和取消由行为交互的移动条目承接",
+        "manual": "{}",
+        "summary_is_auto": 0,
+        "status": "已实现",
+        "route": "角色移动",
+        "node_refs": [
+          {
+            "node_id": "n10",
+            "seq": 1,
+            "raw": "地图1",
+            "section": "瓦片地图",
+            "number": 1,
+            "target_id": "n1",
+            "reason": ""
+          },
+          {
+            "node_id": "n10",
+            "seq": 2,
+            "raw": "角色属性1",
+            "section": "角色属性",
+            "number": 1,
+            "target_id": "n18",
+            "reason": ""
+          }
+        ],
+        "node_objects": [
+          {
+            "node_id": "n10",
+            "seq": 1,
+            "name": "TilemapManager",
+            "note": "",
+            "path": "增用 Tilemap作为地图编辑层，TilemapManager作为地图逻辑转换层 的设计方式。开发阶段通过Unity Tilemap笔刷绘制地图地形，Tilemap仅负责记录各个坐标位置上的瓦片类型和视觉表现。运行时由独立的TilemapManager读取Tilemap中的绘制信息，根据预设的瓦片类型与游戏逻辑数据之间的映射关系，将地图转换为游戏内部可查询的地图数据结构。例如，将某类沼泽瓦片转换为对应坐标上的“沼泽地形数据”。玩家或其他游戏对象进行地图交互时，不直接访问Tilemap，而是通过坐标向TilemapManager查询当前位置对应的地图状态，由TilemapManager解析该位置的地形、环境等信息，并通知对应系统执行后续逻辑处理，例如调用状态管理系统为处于沼泽区域的玩家施加移动速度降低效果。"
+          }
+        ],
+        "node_notes": []
+      },
+      {
+        "id": "n11",
+        "seq": 21,
+        "section_id": "s4",
+        "number": 2,
+        "summary": "高亮渲染可移动的地格",
+        "body": "读取行动力限制（保存于元属性），计算本次点击中可达格子的范围，并高亮显示标出。已具备路径与地形能力后，合法范围须以可达性及累计通行成本筛选，不把不可达格当成可确认目的地。 考虑在原有的tilemap基础上叠一层半透明框形纹理。高亮即为渲染这一格上的该高亮纹理。 纹理有明显外框线，玩家可以确认具体格子单元",
+        "manual": "{}",
+        "summary_is_auto": 0,
+        "status": "已实现",
+        "route": "角色移动",
+        "node_refs": [],
+        "node_objects": [],
+        "node_notes": []
+      },
+      {
+        "id": "n18",
+        "seq": 24,
+        "section_id": "s7",
+        "number": 1,
+        "summary": "固定属性",
+        "body": "以角色配置提供行动力、力量与行动速度，详情能读取当前值；分别为移动范围、重物投掷与行动延迟提供属性输入",
+        "manual": "{}",
+        "summary_is_auto": 0,
+        "status": "已实现",
+        "route": "角色属性",
+        "node_refs": [],
+        "node_objects": [
+          {
+            "node_id": "n18",
+            "seq": 1,
+            "name": "元对象-属性组件",
+            "note": "",
+            "path": "主要保存一个静态的属性值。出于方便后续添加装备和效果buff等内容的考虑，组件要具备数值修正的能力，也就是能够计算各个来源对属性值的调整，然后在属性值被调用的时候计算调整后的属性值。"
+          }
+        ],
+        "node_notes": []
+      }
+    ]
+  },
+  "protected": {
+    "Rules/01_规范总则.md": "ed67e66baf547ce6f1479a0c201afcb78f24b16ce4f972a134e31a8defb86e8b",
+    "Rules/02_任务执行规范.md": "08c4efd368594197441e0fffe3bcf07373f75c50a48eb1a38cd1f841884d0c1a",
+    "Rules/03_文档编辑规范.md": "84c06f141647aa5b44a61f9cdb0731408f901e10a1f769b1bc813233c5850ddc",
+    "Rules/04_规范目录维护规范.md": "8910191690bc679ed1975d6ecec9e15dd9d838508e4ee7a3b7f53650e5a410e3",
+    "Rules/05_文档库组织规范.md": "cc669c2e403977f96157aa5f0a5cacbdb302017b5d61c2066010758ffb42201c",
+    "Rules/06_代码设计案编辑规范.md": "eff02875033545e841b133c8f9a75d946691d4386c88170c2a1340918d307aad",
+    "Rules/07_架构设计案编辑规范.md": "06cbd487fa334cc4d7d6d18d1228065da0c5683f9608c0a81c79f12496cd4d25",
+    "Rules/08_交互原语与交互语义设计规范.md": "eca72ec247e7b32c5db6aad9ea8921349a1b52a416deb1da14d7c42cd2b6c479",
+    "Rules/BaseRules.md": "333358bec07c25b058d55c6ac2fb3947265c4f19cad24b96225cb2a2306214d7",
+    "Rules/README.md": "1374698bf06144ff9bc6ca2623f80bb8b369853d24374f9c1c2b83965d62520d",
+    "Code_Design/README.md": "8622d41d51ee2544d6a475dedac58150345e863c8b36135f33cae19c48765a29",
+    "Code_Design/00-架构单元/M01-01_单元装配声明代码设计案.md": "ca875c3c0e9d6d3dfe5f44ec610018b8104d5fcf052b361943455664d35e465b",
+    "Code_Design/00-架构单元/M01-02_数据域持有代码设计案.md": "f527c4c6d91cf2169b81f665294e021349f8735eec26702bb2e58fb9c9350552",
+    "Code_Design/00-架构单元/M01-03_存档服务代码设计案.md": "34cfd8a999416ef9e19eed17683ea0ff646bd3054a37ef04325a23c1e40c418f",
+    "Code_Design/00-架构单元/M01-04_配置服务代码设计案.md": "408463cf0c8bbea6a7438b8dcbe67d47003360da58f2e9c7c5e5009ef321d4da",
+    "Code_Design/00-架构单元/M01-05_随机服务代码设计案.md": "2d6d7f32ff75cc1f085dde39cb89b10e3aa103435d22ba3171f49fa89080aa68",
+    "Code_Design/00-架构单元/M01-06_时间服务代码设计案.md": "75e1ee0478af5f21212cc633ac75a0aea93281f5aff2260835ca03b6b59b62d9",
+    "Code_Design/00-架构单元/M01-07_输入服务代码设计案.md": "9fbe0a36ea47c2b3e9ee38447bf8900464cc14b777972c397ef147c46e60ed63",
+    "Code_Design/00-架构单元/M01-08_资源服务代码设计案.md": "c42abf3d2748621127403e3b7d85ee31e661b244cce6f7f8743ee57f1e1edd49",
+    "Code_Design/00-架构单元/M01-09_场景管理服务代码设计案.md": "270c12072142e393d5e22462e4dd067d15c5ad2f269deadc7bf724ebabd1e4e8",
+    "Code_Design/00-架构单元/M01-10_日志服务代码设计案.md": "9d7abbd8099d85d3c9484e59c6b233192bc5dfdc02c165c62145d8eb380b31c3",
+    "Code_Design/00-架构单元/M01-11_事件分发器代码设计案.md": "2fc082f3d6ab63b871a88d79877a981443cd174e02bcf43f55cd80432379a296",
+    "Code_Design/00-架构单元/M01_核心与基础设施代码设计案.md": "d2f0817c3148dd77d1d437c22183a805eeb188dd8c21ca692567c97c51f18bd0",
+    "Code_Design/00-架构单元/M02_事件与生成代码设计案.md": "3cb90a283dab1f75e38b649ebb06962b81c5260e8a262aa177227003dcd640a5",
+    "Code_Design/00-架构单元/M03_探索与推进代码设计案.md": "3fd817fea9d206f2f29786efc6283bcc6f5f86221624434cadc7859063f3f896",
+    "Code_Design/00-架构单元/M04_对象与经济代码设计案.md": "3769044cdbb7907fafddabeb6f784087e52464d206a3a9a0c5c713f29b21e85e",
+    "Code_Design/00-架构单元/M05_战斗代码设计案.md": "027947c8d4fda2eafdf87d207a4875090e2e91dcce29a6eed9e706dc2a467f59",
+    "Code_Design/00-架构单元/M06_元进度与结算代码设计案.md": "f4a6e6ba4858d9284fe3b04a2614fff37aa5429bf174fc54baa2b6015f232f72",
+    "Code_Design/00-架构单元/M07_队伍与角色代码设计案.md": "485f380f3df24341d5e0591782e469550a4fd0738051b796cfc5e680d5c213d9",
+    "Code_Design/00-架构单元/M08_界面与信息代码设计案.md": "47ee343b1f90b53c45a7e919a70438acdc6b228ac76d85f0339aac6437336912",
+    "Code_Design/00-架构单元/M09_全局能力代码设计案.md": "04998baca4d79317b9bccd414845e6b64df1005f077e2e053a3d0d23f588b517",
+    "Code_Design/00-架构单元/M10_流程编排代码设计案.md": "ecf96425f17c609209e82ec9db569cefc18b3416a838084fdd412bcae617c1c7",
+    "Code_Design/01-通用系统/10_区域与位移代码设计案.md": "72c9c3b798a77362bf47d4d9169c745324584070ba7607f78a7a70b7acf02ecf",
+    "Code_Design/01-通用系统/20_信息传递系统代码设计案.md": "0e1d3e5e89d1505d418bc20fd98fb7fb1db6265e6db817013021361e934863c3",
+    "Code_Design/01-通用系统/30_元对象与组件代码设计案.md": "b213aeb4cf908c8f170a165fd034ab78928f7d65c4db54461e8ff617d93ba32f",
+    "Code_Design/01-通用系统/40_角色与小队代码设计案.md": "ec07de351bc03eba67e48745b0f02ee780aaa5d1391b5445eb731a79012037fb",
+    "Code_Design/01-通用系统/50_存档与持久化代码设计案.md": "034c2f24f52591070be7a14907d3832c50c4b4374c510b121d856e1f108c936e",
+    "Code_Design/01-通用系统/60_设置与辅助功能代码设计案.md": "77db163f09a1a69bbf130d60ec65f81c20e4ee5b4a69f7ac51a3493190fca78b",
+    "Code_Design/01-通用系统/70_元动作代码设计案.md": "1d5ebea2d35d98a5ff10277b6e2285010db7fb01f8216a54962e81a861c9f989",
+    "Code_Design/02-时间与事件/10_时间机制代码设计案.md": "cdd263335b933ee65e32cd067c84cf44c6f9abafb4b0327f4ab837280af45d5e",
+    "Code_Design/02-时间与事件/20_日程系统代码设计案.md": "e27a2966e0b3b2132756c8b534d78988d4009c463e4a9dd3e12edd1f99efd878",
+    "Code_Design/02-时间与事件/30-10_触发条件代码设计案.md": "31f35975c7c53a966f19298108c990011618527b31a01f105049c3210a6dba44",
+    "Code_Design/02-时间与事件/30_事件系统代码设计案.md": "9475f5800c0ec6157e9733fa542fe880dbfcb15f6d770abe96dbe53047f36a9d",
+    "Code_Design/02-时间与事件/40_探索系统代码设计案.md": "22eee695e2da09bfa78308a4442ec65d958436d42b68d60ef4419ab12ef1b0c2",
+    "Code_Design/05-运营与经济/05_物品系统代码设计案.md": "a07fc44133457cb478dfeaec11d938892b7f616fe1e4f9921a6985fea3ef8886",
+    "Code_Design/05-运营与经济/10_金钱与货物代码设计案.md": "3652bbfd140385800e1d6a9bef9ac05f6841eaa2d270127547a0d2bd477e9277",
+    "Code_Design/05-运营与经济/20_委托系统代码设计案.md": "235006568ad51275f5295809bb2f67694a5dbda8e94e1003817165bf4f75d56f",
+    "Code_Design/05-运营与经济/30_背包系统代码设计案.md": "dd43776ac518eef20d4c7b9d40e0e1e701de446c0771a3b9ef5e6833eb519996",
+    "Code_Design/05-运营与经济/40_仓库与银行代码设计案.md": "eeff839b60e61bd40c1eff1c82bc96e5c87136693f44d03986ef0f4bd9a6c2a4",
+    "Code_Design/06-战斗/10_战斗总览代码设计案.md": "780285db61155701204c6e9208ce30ea5008e8e07bc13236d792d63d43f57c34",
+    "Code_Design/06-战斗/20_时间轴与行动顺序代码设计案.md": "04a8ffd6f7ecba93c466e98602f0397d94fc2125a6869c744ede2b10f1372f4b",
+    "Code_Design/06-战斗/30_战场与战棋规则代码设计案.md": "9b2fdf1030c61e796dc644195cf5126e95e0eba897b1c734d96d1e989fde2a70",
+    "Code_Design/06-战斗/40_技能系统代码设计案.md": "cf47cca844889d78488346b677042c7cbe54cb6b6567651e9b62f1a75893880b",
+    "Code_Design/06-战斗/50_行动槽与连携代码设计案.md": "2a446cacf78c462799fa8914bb66a88a966c699a4602a71439e2250b65273c8f",
+    "Code_Design/06-战斗/60_装备系统代码设计案.md": "41c92a19650c624899094ffb08de313d1a9aa0755b10af883a18b6e46b922bb0",
+    "Code_Design/06-战斗/70_遗物系统代码设计案.md": "ac3d0381d38becd292949f9169e858f987da0eb0c0b925e9a31ee6fc0bfa97d4",
+    "Code_Design/06-战斗/75_元持续效果系统代码设计案.md": "8a10cbd17ab3596c08ba57e8d2e07a6a357fa468642ba91395018081380192fe",
+    "Code_Design/06-战斗/80_技能与库存联动代码设计案.md": "c8becbe6a27d62cb77724f64337a5e5f59d847ceebb915b8ff3f7c08b00c96f0",
+    "Code_Design/06-战斗/85_战斗行为系统代码设计案.md": "049742a88cbb677ab21e128ab4f3cd94cb0b7595c18c994ffb5a63c8849c1036",
+    "Code_Design/06-战斗/90_敌人与AI代码设计案.md": "ddbf56c32ce9c625da33be248e7e7c3c478d7eea53666f15d66a21f5b0037044",
+    "Code_Design/06-战斗/A0_战斗目标与结果代码设计案.md": "ce3f866f0c1eb4392544e83b8b5749f862777ce18b29c515f940613fd435c983",
+    "Code_Design/07-线索树与元进度/10_线索树核心代码设计案.md": "e3d1421762914d0b6b0cea300e691f0d637848f4076fb2b5f223ca2a73a9839e",
+    "Code_Design/07-线索树与元进度/20_剪枝系统代码设计案.md": "4748cc4bce103f2629ca62db280cbfeb69f6c75a344cad6267d1b7b7bb97d15b",
+    "Code_Design/07-线索树与元进度/30_概率池联动代码设计案.md": "44a7f0c0af5c75ad7de0d0e539e305e683cf08a0333e7dba991a0ef3ca84d5fe",
+    "Code_Design/07-线索树与元进度/40_局末结算与写入代码设计案.md": "72164e606dd1d400006a2cdb5b2bb079b06e3441b3496ec1a9f944223c7edcc7",
+    "Code_Design/09-局生成/20_局生成与种子代码设计案.md": "51500b3ed1edaad28e07573c7bb5622242f64438ea5b276f06d844e026a5a517",
+    "系统设计文档/README.md": "32e0bada8088b655763a7f5ffe689a368d889d11e46173145cbbed6f045a36f7",
+    "系统设计文档/00-总览/00_系统全景图.md": "a27f8e9719842c00e0bf0e6557abe54a668502224f0a4b7f75d05923c99d0f4f",
+    "系统设计文档/00-总览/01_设计原则与跨系统交互逻辑.md": "7cb980c8a4d0bd2191c7729a545356d2bcf9f80d0ff14c1f5a46f545f8e2a4a7",
+    "系统设计文档/00-总览/02_术语表.md": "38e88bd1c6f3135a676b730a1114d9ffffbfeeded5637f46937877586093135a",
+    "系统设计文档/01-通用系统/01_通用系统索引.md": "2150a29ac255d33a1d6d5eb3713e2d14532086f4c0927736bfe47f9bb36b166d",
+    "系统设计文档/01-通用系统/30_元对象与组件设计补充说明.md": "1b4479e1361db2a14d0d1672d3254cf8bbcf17002b01ec222cd471564b8ca5c6",
+    "系统设计文档/01-通用系统/10-区域与位移/10_区域与位移争议与待议.md": "9ebaf2e56bb62fbf5370ba9742a8a4f9428b84b8f82c34bc45b4fafdecdc8348",
+    "系统设计文档/01-通用系统/10-区域与位移/10_区域与位移设计.md": "46fff1ac6b1ffff5491227c3cd66b8277ba1b2b200529610207e29ceb9c1cfee",
+    "系统设计文档/01-通用系统/20-信息传递系统/20_信息传递系统设计.md": "3d64659bb6213845a80c8905a6d3048b734990a457365ea814718ec5caf4ddaa",
+    "系统设计文档/01-通用系统/40-角色与小队/40_角色与小队设计.md": "b7de2d7a3720fedbc09e56a12a925ff96d4c1f060e83d0fd2b3a591eee107839",
+    "系统设计文档/01-通用系统/50-存档与持久化/50_存档与持久化设计.md": "aa6bca9477710f3af0dcc0e788ee8f8435c61cf286f62d64673eb0a68cd2bfd2",
+    "系统设计文档/01-通用系统/60-设置与辅助功能/60_设置与辅助功能设计.md": "4b69b35b2d75f9220fb2dc0105c8d5167d83d29d5b4210c33ca5cee4fe68d920",
+    "系统设计文档/01-通用系统/70-元动作/70_元动作设计补充说明.md": "25f6617b869c81a9ee8c02e97e69b7561393ddd9820797008790459d8b37315c",
+    "系统设计文档/02-时间与事件/02_时间与事件索引.md": "b29a1f60a61aac6499521d87138c8c343835b79b8fe4d44c2dfcdeb2db0d02e0",
+    "系统设计文档/02-时间与事件/10-时间机制/10_时间机制设计.md": "a4cf0d7c53d1dc1a98da01897c4b4de3294bbc37effed9c96dd2df87dbd07678",
+    "系统设计文档/02-时间与事件/20-日程系统/20_日程系统设计.md": "31bb92258303c08b6eca74fc2a9930a49002ac164883a283b99742392122e1d4",
+    "系统设计文档/02-时间与事件/30-事件系统/30_事件类型表.csv": "59ca0a53bb9f139712db4b71e88d7dcb2f9e01adb408725f365e8f1c347dbd7b",
+    "系统设计文档/02-时间与事件/30-事件系统/30_事件系统设计.md": "93c9a2fc886b5989371db65095b6c14fe6ce36493bfa1f87a6bedea33cae148f",
+    "系统设计文档/02-时间与事件/30-事件系统/30-10-触发条件/30-10_触发条件设计.md": "716a1a27d3a0e5607626d7533ab1d3122aebe14b9356ed3207fb20771e98ed84",
+    "系统设计文档/02-时间与事件/40-探索系统/40_探索系统设计.md": "4bdbccf854050137ad6249a59be58d5eb192e2086272b6adf4fd1984ac570a89",
+    "系统设计文档/05-运营与经济/05_运营与经济索引.md": "971f39b214920124557529743f3f9af571b7b6e9a5d7e8db2a2e69846b56bc6f",
+    "系统设计文档/05-运营与经济/05-物品系统/05_商人原型配置表.csv": "0df49da521dc62efbf8da52ca34c972f9316d005627c010b2afcd4fd661f28fe",
+    "系统设计文档/05-运营与经济/05-物品系统/05_物品操作总表.csv": "c57a4ed160a2482985aff309fff5b0ae4dfb0f5024a77cd3d30d5868f842b632",
+    "系统设计文档/05-运营与经济/05-物品系统/05_物品系统设计.md": "02fa02a9f37cc3a1c5bb90c88790fefd7d5d2a8ef42449e7857b191f8cf99548",
+    "系统设计文档/05-运营与经济/05-物品系统/05_物品词条表.csv": "d0d8a772d545cf7a7505c78b79da9b1fe434a6e3d75cb34c8f1c8c340cac7b15",
+    "系统设计文档/05-运营与经济/10-金钱与货物/10_金钱与货物设计.md": "5b38e6aea9077405cd902f94662e85e998388b764a428dfe56eb643a6091a923",
+    "系统设计文档/05-运营与经济/20-委托系统/20_委托系统设计.md": "a7eb41d1a1c6131f5f5e353bbf63723194f7fd9a9918795e1aad9f80a2e05fc4",
+    "系统设计文档/05-运营与经济/30-背包系统/30_背包系统设计.md": "929e4506ad6d723186be044cbac6d45b7aa3300675743bb37bde03f5a014cfd6",
+    "系统设计文档/05-运营与经济/40-仓库与银行/40_仓库与银行设计.md": "947b0c2b38450fbb7d38e21f98a14d8528677104291ca2d6a9efcaa9a980eb38",
+    "系统设计文档/06-战斗/06_战斗索引.md": "e449b4ea019697039c5e1ab30821f2717910d3c89593e5715e699924b39e612e",
+    "系统设计文档/06-战斗/10-战斗总览/10_战斗总览设计.md": "8a80ad40b56d39c0f8bbf9d9350e090ad4e07bf9c5b6286cf2dfd4b954d7738b",
+    "系统设计文档/06-战斗/10-战斗总览/10_角色属性表.csv": "4c516f247d4d2ab1d401d16f7daa6f218c4c9b9965742cfad0685341663dc581",
+    "系统设计文档/06-战斗/20-时间轴与行动顺序/20_时间轴与行动顺序设计.md": "04180af554c85f56181bcf5d10a3a8747f3c58b119cae98b653d39a72dfbb7a0",
+    "系统设计文档/06-战斗/30-战场与战棋规则/30_战场与战棋规则设计.md": "7fc6bc5697933c51efc793bb4535950184eaa4a0ddc4745983005c91ae054556",
+    "系统设计文档/06-战斗/40-技能系统/40_技能系统设计.md": "8884d1145c726ac708a69a6e979d89a9782f439ed2c14c47108aa8516a4c1f0f",
+    "系统设计文档/06-战斗/50-行动槽与连携/50_行动槽与连携设计.md": "e7c476ad536419148a45d87c9f87be73ab1879b6c7db83438cf8d9d1a1b07cd0",
+    "系统设计文档/06-战斗/60-装备系统/60_装备系统设计.md": "63da91b83809e050c198c97b516ebe10206a0939b1a80cd3357028e923df22e8",
+    "系统设计文档/06-战斗/70-遗物系统/70_遗物系统设计.md": "9e3ee790b99450a2ab7f31a600951a7ae6aa7d9d8f3e05a620b19240d4fb2fa7",
+    "系统设计文档/06-战斗/75-元持续效果系统/75_元持续效果系统设计.md": "f19e40efb26b4b5ea45fbae4396d9dc3c17b29e7a7eb42386f6439d426e7b4e9",
+    "系统设计文档/06-战斗/75-元持续效果系统/75_元持续效果表.csv": "1dff7f0f3d194c4b7ddb23d5fc14222da20c2ddee58c3f98e46c154d388fe335",
+    "系统设计文档/06-战斗/80-技能与库存联动/80_技能与库存联动设计.md": "d3de77922e56bc0cbf2d4bb449b3cd214c27031180e8759201b16001d5d66443",
+    "系统设计文档/06-战斗/80-技能与库存联动/80_投掷组件表.csv": "9d825bc396f4c86d93c41364ba8a0b1c987e1a36ddad430895dc921286079918",
+    "系统设计文档/06-战斗/85-战斗行为系统/85_战斗行为系统设计.md": "8cbcc0307fc6c9f5e1a78cbe163c75b0765f675d876349d091cfca6f30acf3a3",
+    "系统设计文档/06-战斗/85-战斗行为系统/85_战斗行为表.csv": "e041dcd70f2dde22ae6ed2a9401f898bfb48ace4d109986a004ab69ecaaa8e8f",
+    "系统设计文档/06-战斗/90-敌人与AI/90_敌人与AI设计.md": "95c8bbf18f31e7c5171ca91eced5de54dee07002b87dabe52c65336dccfa3c7d",
+    "系统设计文档/06-战斗/A0-战斗目标与结果/A0_战斗目标与结果设计.md": "0add10538d731c968f6255c975a6455263da926b1cd456578941b74494de5ef4",
+    "系统设计文档/07-线索树与元进度/07_线索树与元进度索引.md": "bced800d52dadaad4a7e6253e71f852715a3264683b9da094a6a0554046cd01f",
+    "系统设计文档/07-线索树与元进度/10-线索树核心/10_传闻表.csv": "0cce080caa52b3dedee58d02f42b8d160bd40abf1a2aa1b84a9d09aab4948604",
+    "系统设计文档/07-线索树与元进度/10-线索树核心/10_线索树核心设计.md": "9b47deb6fc204ab681c56aefac43d1b340003b7a2022bc93d1cf69ce6187763c",
+    "系统设计文档/07-线索树与元进度/10-线索树核心/10_节点关系表.csv": "480be2f2608a3c35ed02d2a0a0ac6988794317a7b8a185d7f79d85a0a421bdce",
+    "系统设计文档/07-线索树与元进度/10-线索树核心/10_节点类型表.csv": "4038f77f0957974a5447b0b5a36500a4bf1ef9ff43502255f22b2f2cd1f6585c",
+    "系统设计文档/07-线索树与元进度/20-剪枝系统/20_剪枝系统设计.md": "105f731a1d5c2e1ec3cb4baa836db511292e27c307b8c44795d495a68d584dac",
+    "系统设计文档/07-线索树与元进度/30-概率池联动/30_概率池联动设计.md": "9c32c282583638bcc0e5263a35f3950489aef84086b4367c64bc6be9371ae7df",
+    "系统设计文档/07-线索树与元进度/30-概率池联动/30_概率池表.csv": "cd6b121df0170df91b2d989087d10db7b90f8777fd2152ae52ab460df27a2ebe",
+    "系统设计文档/07-线索树与元进度/40-局末结算与写入/40_局末结算与写入设计.md": "ac73858219ebc250b965a7b0fd528e8932773ee6c28a1c6f2fab7b2cb042c6ff",
+    "系统设计文档/07-线索树与元进度/40-局末结算与写入/40_结算组件表.csv": "6e125dc520495645ce61f944dcd2730992875f1c34ce8742926ead27662d7615",
+    "系统设计文档/09-局生成/09_局生成索引.md": "eaf086932703a4e182c84021c71982654ff4ed61845e9f00ea165f2376b6e6be",
+    "系统设计文档/09-局生成/20-局生成与种子/20_局生成与种子设计.md": "5f8eefae6b8d091593e578bbce947001c0aac1dfccc203ff7321c7909d903ae8",
+    "系统设计文档/_模板/系统设计文档模板.md": "fb6b42edf288ecd8d61d1fb1301af5defe0d18dc6c54d373404e048091f92f52",
+    "架构设计文档/架构设计案.md": "778a418326c45f4902df7572ec8995c5a7a1380ad8b035c4eacf8f4c66195063",
+    "架构设计文档/界面索引.md": "a7b1288a10880bb67c65e28d6463a99ca75e4ca3da0423fc3fe13813f0241239",
+    "Tool/项目网络图/app.css": "e2c671418e247648b1e2fdfc80e7999ee7016b14d9df4beb251434567601c66e",
+    "Tool/项目网络图/app.js": "578ad88d4c62a4dda35080c02e3d387ce2a143c33b25d8b83c310f6122db8736",
+    "Tool/项目网络图/datasets.py": "447672f9c7e44e33af7138d57815478c670c1b40d76cd87e565b824c4e0a18dd",
+    "Tool/项目网络图/db.py": "2e618161a82fe7c2bea0bb996a44d0317aba8736fa22f40620ea9bf9e6154af7",
+    "Tool/项目网络图/graph.js": "2515754b1fd424e1e8b5f01e9091288a34f7d82e76f794bf43ef72382331899c",
+    "Tool/项目网络图/index.html": "8841ceb7966903e841275e188ff5d1364d1bc8b77ef74a9fa289188822271507",
+    "Tool/项目网络图/model.py": "d6648d9ea1b9313fcae82c4510644946840a782837ce0440f26ad287d36256d0",
+    "Tool/项目网络图/query.py": "104a3c7a7bf657a5d1df8c2f7a65af1e192f029ed4fe9ec3cc76b01ebcd0a6cf",
+    "Tool/项目网络图/server.py": "bc6167d801216457b5d55ae090b5042372e3c79935d56e71040aa8d92c7d4b3b",
+    "Tool/项目网络图/store.py": "7a95f395af45da56c3abfa2ed5b08a64c81a6ef32e5d866859018b46436cde32",
+    "Tool/项目网络图/使用说明.md": "13a1f9d6062dc0a7117b7487210766056553a7eec7d50af809759f703152cdc9",
+    "Tool/项目网络图/读库说明.md": "cb90df3f4c5907d7edd0aad7359db1274d5eb3dfa4279a3559d1694858c15574",
+    "Tool/项目网络图/数据/.gitignore": "40031b593120b7afe6eacc0a518a60017a82d3256f3df9827a34f9c634e9a4b6",
+    "Tool/项目网络图/数据/N01_完整依赖清理新图_v2.sqlite": "1cf017f9a63cd7299679198122722994dd6641016a9e34887969a5dd01996d59",
+    "Tool/项目网络图/数据/数据管理.json": "7c225eb6e12d12192e5c22bf846e967884c81e0d174fc927440597f51db026bd",
+    "Tool/项目网络图/数据/项目网络图.json": "3972251fef804493723f04c3dd267ff57c2156607282585b3cea133afebb9f84",
+    "Tool/项目网络图/数据/备份/项目网络图_20261012_205536.json": "528dff943a30e567ab41d3a7420a5a26cf461525557a2af5f9c7b2e389c914a2",
+    "Tool/项目网络图/数据/备份/项目网络图_20261012_205814.json": "e5289f4644542bc8796b60ab4d77d20489b33ebefd8d750f46e056f77c8eb713",
+    "Tool/项目网络图/数据/备份/项目网络图_20261012_210829.json": "e5289f4644542bc8796b60ab4d77d20489b33ebefd8d750f46e056f77c8eb713",
+    "Tool/项目网络图/数据/已删除/N01_依赖清理新图_v1-d3d753ba.sqlite": "5160028ceb9dfc218593f7ea12c8be165932fb3fa887f70771d593d86e31aa2a",
+    "Tool/项目网络图/数据/已删除/N01_战斗玩家功能新图_v1-7e9e7b6c.sqlite": "fde906d779db1e0a116ce02c3bed5c54bd8d9699dc42145352e6d08bcfbaf6c9",
+    "Tool/项目网络图/数据/已删除/项目网络图-9b557c46.sqlite": "b224896c30a5bd0da5d3f34fc0b53dca7464135200f8967279ff4dcfc336768e",
+    "Tool/项目网络图/测试/smoke_dom.js": "973b95963a39a535d0e4c6996f710b4837ab5e7edd4413468e3b986930aeea7d",
+    "Tool/项目网络图/测试/test_datasets.py": "1f287d3c8692c98f46c8222d45f2c9f5043d59d105f2e5da73b5a2d88e138875",
+    "Tool/项目网络图/测试/test_db.py": "2541a87e7d4e245a57a5cf334378078752aae4d5711e71df12c49189db69b7b0",
+    "Tool/项目网络图/测试/test_inherited_dependencies.py": "959a7d9f4f23bd4ec1d7676baab97ec5ef41b9a864ee65bd612efa2b50e9b0a9",
+    "Tool/项目网络图/测试/test_layout.js": "f0183a5989d18373248727fb513401f2290ea22341717f9251c6c043dfd277db",
+    "Tool/项目网络图/测试/test_model.py": "a82028f918c1864daa77ae805efc32f22265999218b80d51a6b711ab408b469a",
+    "Tool/项目网络图/测试/test_node_status.py": "d6876e1661974542c809ae1767716e78cb6fe93ad5298ba494d1af462a8548ab"
+  },
+  "replaced_documents": "\"\\344\\273\\243\\347\\240\\201\\350\\257\\264\\346\\230\\216\\346\\226\\207\\346\\241\\243/10_\\345\\257\\271\\350\\261\\241\\344\\270\\216\\345\\234\\272\\346\\231\\257\\346\\230\\276\\347\\244\\272\\344\\273\\243\\347\\240\\201\\350\\256\\276\\350\\256\\241\\346\\241\\210.md\"\n\"\\344\\273\\243\\347\\240\\201\\350\\257\\264\\346\\230\\216\\346\\226\\207\\346\\241\\243/20_\\345\\233\\272\\345\\256\\232\\345\\261\\236\\346\\200\\247\\345\\217\\226\\345\\200\\274\\344\\273\\243\\347\\240\\201\\350\\256\\276\\350\\256\\241\\346\\241\\210.md\"\n\"\\344\\273\\243\\347\\240\\201\\350\\257\\264\\346\\230\\216\\346\\226\\207\\346\\241\\243/30_\\345\\212\\250\\344\\275\\234\\346\\211\\247\\350\\241\\214\\344\\270\\216\\344\\272\\244\\346\\216\\245\\344\\273\\243\\347\\240\\201\\350\\256\\276\\350\\256\\241\\346\\241\\210.md\"\n\"\\344\\273\\243\\347\\240\\201\\350\\257\\264\\346\\230\\216\\346\\226\\207\\346\\241\\243/40_\\347\\202\\271\\345\\207\\273\\347\\247\\273\\345\\212\\250\\344\\270\\216\\350\\214\\203\\345\\233\\264\\351\\253\\230\\344\\272\\256\\344\\273\\243\\347\\240\\201\\350\\256\\276\\350\\256\\241\\346\\241\\210.md\"\n\"\\344\\273\\243\\347\\240\\201\\350\\257\\264\\346\\230\\216\\346\\226\\207\\346\\241\\243/50_\\345\\205\\261\\344\\272\\253\\346\\227\\266\\351\\227\\264\\350\\275\\264\\344\\270\\216\\350\\241\\214\\345\\212\\250\\345\\233\\236\\346\\216\\222\\344\\273\\243\\347\\240\\201\\350\\256\\276\\350\\256\\241\\346\\241\\210.md\"\n\"\\344\\273\\243\\347\\240\\201\\350\\257\\264\\346\\230\\216\\346\\226\\207\\346\\241\\243/README.md\""
+}
