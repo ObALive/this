@@ -56,7 +56,9 @@ class Catalog:
         target = self.path(dataset_id)
         if not target.is_file():
             raise ValueError("数据不存在，请刷新数据列表")
+        db.ensure_schema(target)
         model = db.load_model(target)
+        db.clean_inherited_dependencies(target, model)
         self.active_id = dataset_id
         store.DB_FILE = target
         self.remember()

@@ -93,6 +93,7 @@ def load_or_seed() -> M.Model:
     if db.exists(DB_FILE):
         try:
             m = db.load_model(DB_FILE)
+            db.clean_inherited_dependencies(DB_FILE, m)
             if not m.nodes and not m.sections:
                 return m
             if m.nodes or m.sections:

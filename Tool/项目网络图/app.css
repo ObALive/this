@@ -204,6 +204,13 @@ body { display: flex; flex-direction: column; overflow: hidden; }
 .node.active .node-box { stroke: var(--accent); stroke-width: 2; }
 .node.error .node-box { stroke: #e0b1a9; }
 .node.dim { opacity: .28; }
+.node-status text { font-size: 10px; font-weight: 600; }
+.node-status.not-started rect { fill: #edf0f4; }
+.node-status.not-started text { fill: #5b6472; }
+.node-status.in-progress rect { fill: #e4efff; }
+.node-status.in-progress text { fill: #245fa8; }
+.node-status.completed rect { fill: #ddf3e5; }
+.node-status.completed text { fill: #23734b; }
 .node-accent { }
 .node-index { font-size: 10.5px; fill: var(--ink-soft); letter-spacing: .04em; }
 .node-summary { font-size: 13px; fill: var(--ink); font-weight: 600; }

@@ -1,0 +1,111 @@
+[
+  {
+    "database": "Tool\\项目网络图\\数据\\N01_完整依赖清理新图_v2.sqlite",
+    "backup": "Output\\项目网络图依赖清理\\20261024-013109\\N01_完整依赖清理新图_v2.sqlite",
+    "nodes": 149,
+    "removed_count": 9,
+    "removed": [
+      {
+        "node_id": "n15",
+        "target_id": "n36",
+        "raw": "时间轴/逻辑1",
+        "covered_by_node_id": "n14",
+        "covered_by_target_id": "n36",
+        "node_label": "时间轴/UI 2",
+        "target_label": "时间轴/逻辑 1",
+        "upstream_label": "时间轴/UI 1",
+        "upstream_target_label": "时间轴/逻辑 1"
+      },
+      {
+        "node_id": "n16",
+        "target_id": "n36",
+        "raw": "时间轴/逻辑1",
+        "covered_by_node_id": "n14",
+        "covered_by_target_id": "n36",
+        "node_label": "时间轴/UI 3",
+        "target_label": "时间轴/逻辑 1",
+        "upstream_label": "时间轴/UI 1",
+        "upstream_target_label": "时间轴/逻辑 1"
+      },
+      {
+        "node_id": "n37",
+        "target_id": "n36",
+        "raw": "时间轴/逻辑1",
+        "covered_by_node_id": "n21",
+        "covered_by_target_id": "n147",
+        "node_label": "时间轴/UI 5",
+        "target_label": "时间轴/逻辑 1",
+        "upstream_label": "时间轴/UI 4",
+        "upstream_target_label": "时间轴/逻辑 3"
+      },
+      {
+        "node_id": "n40",
+        "target_id": "n38",
+        "raw": "时间轴/逻辑2",
+        "covered_by_node_id": "n39",
+        "covered_by_target_id": "n38",
+        "node_label": "角色行为/角色属性 7",
+        "target_label": "时间轴/逻辑 2",
+        "upstream_label": "角色行为/角色属性 6",
+        "upstream_target_label": "时间轴/逻辑 2"
+      },
+      {
+        "node_id": "n107",
+        "target_id": "n36",
+        "raw": "时间轴/逻辑1",
+        "covered_by_node_id": "n22",
+        "covered_by_target_id": "n38",
+        "node_label": "敌人ai 2",
+        "target_label": "时间轴/逻辑 1",
+        "upstream_label": "敌人ai 1",
+        "upstream_target_label": "时间轴/逻辑 2"
+      },
+      {
+        "node_id": "n113",
+        "target_id": "n38",
+        "raw": "时间轴/逻辑2",
+        "covered_by_node_id": "n22",
+        "covered_by_target_id": "n38",
+        "node_label": "敌人ai 8",
+        "target_label": "时间轴/逻辑 2",
+        "upstream_label": "敌人ai 1",
+        "upstream_target_label": "时间轴/逻辑 2"
+      },
+      {
+        "node_id": "n115",
+        "target_id": "n38",
+        "raw": "时间轴/逻辑2",
+        "covered_by_node_id": "n22",
+        "covered_by_target_id": "n38",
+        "node_label": "敌人ai 10",
+        "target_label": "时间轴/逻辑 2",
+        "upstream_label": "敌人ai 1",
+        "upstream_target_label": "时间轴/逻辑 2"
+      },
+      {
+        "node_id": "n67",
+        "target_id": "n38",
+        "raw": "时间轴/逻辑2",
+        "covered_by_node_id": "n66",
+        "covered_by_target_id": "n38",
+        "node_label": "效果结算 4",
+        "target_label": "时间轴/逻辑 2",
+        "upstream_label": "效果结算 3",
+        "upstream_target_label": "时间轴/逻辑 2"
+      },
+      {
+        "node_id": "n130",
+        "target_id": "n38",
+        "raw": "时间轴/逻辑2",
+        "covered_by_node_id": "n129",
+        "covered_by_target_id": "n38",
+        "node_label": "目标与战斗退出 8",
+        "target_label": "时间轴/逻辑 2",
+        "upstream_label": "目标与战斗退出 7",
+        "upstream_target_label": "时间轴/逻辑 2"
+      }
+    ],
+    "remaining_redundant": 0,
+    "reachability_preserved": true
+  }
+]

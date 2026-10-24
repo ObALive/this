@@ -16,7 +16,7 @@
     minHeight: 52,
     firstLineBase: 39,
     lineStep: 17,
-    bottomPad: 9,
+    bottomPad: 29,
     maxSummaryLines: 4,
     summaryFontPx: 13,
     summaryPadX: 30,
@@ -124,6 +124,7 @@
           color: routeColor(section.id, sections),
           index_label: node ? node.index_label : "",
           summary,
+          status: node.status || "未实现",
           has_error: !!(node && (node.refs || []).some((r) => !r.resolved)),
         });
       });

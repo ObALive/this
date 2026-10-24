@@ -221,7 +221,10 @@
     for (let i = 0; i < lineCount; i += 1) {
       g.append(svgEl("text", { class: "node-summary", x: 14, y: info.firstLineBase + i * info.lineStep }));
     }
-    // 节点上只写章节索引与实现目标概要；未解析依赖只用左侧描边提示，不写额外文字
+    const status = svgEl("g", { class: "node-status" });
+    status.append(svgEl("rect", { width: 54, height: 15, rx: 5 }), svgEl("text", { x: 27, y: 11, "text-anchor": "middle" }));
+    g.appendChild(status);
+    // 状态单独显示在底部；未解析依赖保留描边提示。
     g.addEventListener("pointerdown", onNodePointerDown);
     g.addEventListener("pointerenter", () => { if (!state.drag) highlightNodes(collectRelated(info.id)); });
     g.addEventListener("pointerleave", () => { if (!state.drag) { state.highlight = null; clearHighlight(); } });
@@ -229,6 +232,10 @@
   }
 
   function updateNodeEl(g, info) {
+    const status = g.querySelector(".node-status");
+    status.setAttribute("transform", `translate(${info.w - 64} ${info.h - 20})`);
+    status.setAttribute("class", "node-status " + ({ "实现中": "in-progress", "已实现": "completed" }[info.status] || "not-started"));
+    status.querySelector("text").textContent = info.status;
     g.dataset.section = info.sectionId;
     g.querySelector(".node-box").setAttribute("width", info.w);
     g.querySelector(".node-box").setAttribute("height", info.h);
@@ -683,6 +690,7 @@
     el("nd-route").textContent = section ? section.path : "开发路线";
     el("nd-title").textContent = node.index_label;
     el("nd-summary").value = node.summary;
+    el("nd-status").value = node.status || "未实现";
     el("nd-body").value = node.body;
     el("nd-notes-group").hidden = !node.notes.length;
     renderRefRows(node);
@@ -911,6 +919,7 @@
       await op("update_node", {
         node_id: nodeId,
         summary: el("nd-summary").value,
+        status: el("nd-status").value,
         body: el("nd-body").value,
         refs,
         objects,
@@ -1329,6 +1338,7 @@
       await op("update_node", {
         node_id: state.editingId,
         summary: el("nd-summary").value,
+        status: el("nd-status").value,
         body: el("nd-body").value,
         refs,
         objects,

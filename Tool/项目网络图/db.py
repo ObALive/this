@@ -25,7 +25,7 @@ from pathlib import Path
 
 import model as M
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
 TOOL_NAME = "项目网络图"
 
 SNAPSHOT_INTERVAL_SECONDS = 120
@@ -95,7 +95,8 @@ CREATE TABLE IF NOT EXISTS nodes (
     summary          TEXT NOT NULL DEFAULT '',
     body             TEXT NOT NULL DEFAULT '',
     manual           TEXT NOT NULL DEFAULT '{}',
-    summary_is_auto  INTEGER NOT NULL DEFAULT 1
+    summary_is_auto  INTEGER NOT NULL DEFAULT 1,
+    status           TEXT NOT NULL DEFAULT '未实现' CHECK(status IN ('未实现', '实现中', '已实现'))
 );
 
 -- 条目声明的依赖引用，target_id 为空表示未解析
@@ -176,6 +177,7 @@ SELECT n.id,
        n.body,
        n.summary_is_auto,
        n.manual,
+       n.status,
        CASE WHEN n.manual IS NULL OR n.manual IN ('', '{}') THEN 1 ELSE 0 END AS auto_position,
        (SELECT COUNT(*) FROM node_refs r WHERE r.node_id = n.id) AS ref_count,
        (SELECT COUNT(*) FROM node_refs r WHERE r.node_id = n.id AND r.target_id IS NULL) AS unresolved_ref_count,
@@ -306,6 +308,12 @@ def ensure_schema(path) -> None:
     conn = connect(target)
     try:
         conn.executescript(SCHEMA)
+        columns = {row["name"] for row in conn.execute("PRAGMA table_info(nodes)")}
+        if "status" not in columns:
+            conn.execute("ALTER TABLE nodes ADD COLUMN status TEXT NOT NULL DEFAULT '未实现' CHECK(status IN ('未实现', '实现中', '已实现'))")
+            conn.execute("DROP VIEW IF EXISTS v_node")
+            conn.executescript(SCHEMA)
+        conn.execute("INSERT OR REPLACE INTO meta(key,value) VALUES('schema_version',?)", (str(SCHEMA_VERSION),))
         conn.commit()
     finally:
         conn.close()
@@ -353,6 +361,7 @@ def model_payload(model: M.Model) -> dict:
                 "body": n.body,
                 "notes": list(n.notes),
                 "manual": dict(n.manual or {}),
+                "status": M.node_status(n.status),
                 "refs": [
                     {
                         "raw": r.raw,
@@ -433,8 +442,10 @@ def load_model_dict(path) -> dict:
                 }
             )
 
+        columns = {row["name"] for row in conn.execute("PRAGMA table_info(nodes)")}
+        status_column = "status" if "status" in columns else "'未实现' AS status"
         for row in conn.execute(
-            "SELECT id, section_id, number, summary, body, manual"
+            "SELECT id, section_id, number, summary, body, manual, " + status_column +
             " FROM nodes ORDER BY seq"
         ):
             payload["nodes"].append(
@@ -446,6 +457,7 @@ def load_model_dict(path) -> dict:
                     "body": row["body"],
                     "notes": notes.get(row["id"], []),
                     "manual": _json_or(row["manual"], {}),
+                    "status": row["status"],
                     "refs": refs.get(row["id"], []),
                     "objects": objects.get(row["id"], []),
                 }
@@ -497,6 +509,8 @@ def save_model(
     `reason` 记录本次写入来源（操作名或迁移标记），写入 `meta.last_reason`；
     `backup` 为假时不动快照表，用于首次建库。
     """
+    # 所有程序写库入口（含导入、恢复历史和外部脚本）统一执行依赖约束。
+    M.prune_inherited_dependencies(model)
     target = Path(path)
     ensure_schema(target)
     conn = connect(target)
@@ -508,6 +522,16 @@ def save_model(
     finally:
         conn.close()
     return target
+
+
+def clean_inherited_dependencies(path, model: M.Model) -> list[dict]:
+    """清理旧库时先保存完整旧模型快照，供恢复与核对。"""
+    before = model_payload(model)
+    removed = M.prune_inherited_dependencies(model)
+    if removed:
+        append_snapshot(path, before, reason="上游依赖约束清理前")
+        save_model(path, model, reason=f"上游依赖约束清理 {len(removed)} 条", force_snapshot=True)
+    return removed
 
 
 def _replace_all(conn: sqlite3.Connection, model: M.Model, reason: str) -> None:
@@ -552,7 +576,7 @@ def _replace_all(conn: sqlite3.Connection, model: M.Model, reason: str) -> None:
             )
         cur.execute(
             "INSERT INTO nodes (id, seq, section_id, number, summary, body, manual,"
-            " summary_is_auto) VALUES (?,?,?,?,?,?,?,?)",
+            " summary_is_auto, status) VALUES (?,?,?,?,?,?,?,?,?)",
             (
                 node.id,
                 index,
@@ -562,6 +586,7 @@ def _replace_all(conn: sqlite3.Connection, model: M.Model, reason: str) -> None:
                 node.body or "",
                 json.dumps(dict(node.manual or {}), ensure_ascii=False),
                 1 if node.summary_is_auto else 0,
+                M.node_status(node.status),
             ),
         )
 

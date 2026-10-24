@@ -1,0 +1,43 @@
+[
+  {
+    "database": "Tool\\项目网络图\\数据\\N01_完整依赖清理新图_v2.sqlite",
+    "backup": "Output\\项目网络图依赖清理\\20261024-014000-包含自身及节点状态\\N01_完整依赖清理新图_v2.sqlite",
+    "removed_count": 3,
+    "removed": [
+      {
+        "node_id": "n39",
+        "target_id": "n36",
+        "raw": "时间轴/逻辑1",
+        "covered_by_node_id": "n39",
+        "covered_by_target_id": "n38",
+        "node_label": "角色行为/角色属性 6",
+        "target_label": "时间轴/逻辑 1"
+      },
+      {
+        "node_id": "n22",
+        "target_id": "n36",
+        "raw": "时间轴/逻辑1",
+        "covered_by_node_id": "n22",
+        "covered_by_target_id": "n38",
+        "node_label": "敌人ai 1",
+        "target_label": "时间轴/逻辑 1"
+      },
+      {
+        "node_id": "n32",
+        "target_id": "n36",
+        "raw": "时间轴/逻辑1",
+        "covered_by_node_id": "n32",
+        "covered_by_target_id": "n38",
+        "node_label": "战斗进入与布置 3",
+        "target_label": "时间轴/逻辑 1"
+      }
+    ],
+    "nodes": 149,
+    "statuses": {
+      "未实现": 149,
+      "实现中": 0,
+      "已实现": 0
+    },
+    "reachability_preserved": true
+  }
+]

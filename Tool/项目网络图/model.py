@@ -134,6 +134,15 @@ class ObjectItem:
         return asdict(self)
 
 
+NODE_STATUSES = ("未实现", "实现中", "已实现")
+
+
+def node_status(value: str) -> str:
+    if value not in NODE_STATUSES:
+        raise ValueError("节点状态必须为：未实现、实现中、已实现")
+    return value
+
+
 @dataclass
 class Node:
     """网络图节点：一条实现目标。"""
@@ -147,6 +156,7 @@ class Node:
     objects: list[ObjectItem] = field(default_factory=list)
     notes: list[str] = field(default_factory=list)
     manual: dict = field(default_factory=dict)
+    status: str = "未实现"
 
     # -- 派生 ---------------------------------------------------------------
     @property
@@ -165,6 +175,7 @@ class Node:
             "objects": [o.to_dict() for o in self.objects],
             "notes": list(self.notes),
             "manual": dict(self.manual),
+            "status": self.status,
         }
 
 
@@ -529,6 +540,49 @@ def resolve_refs(model: Model) -> None:
             ref.number = number
 
 
+def prune_inherited_dependencies(model: Model) -> list[dict]:
+    """删除已被同路线上游覆盖的显式依赖；按路线条目顺序，不按编号大小。"""
+    resolve_refs(model)
+    by_id = {node.id: node for node in model.nodes}
+    routes = {section.id: model.section_nodes(section.id) for section in model.sections}
+    ranks = {node.id: index for nodes in routes.values() for index, node in enumerate(nodes)}
+    removed = []
+    for nodes in routes.values():
+        # 每个目标路线记住上游已要求的最靠后节点及其声明者。
+        inherited = {}
+        for node in nodes:
+            # 自身可以覆盖较早目标；每个目标路线至少保留一个最强要求。
+            own = {}
+            for ref in node.refs:
+                target = by_id.get(ref.target_id)
+                if target and target.id in ranks:
+                    previous = own.get(target.section_id)
+                    if previous is None or ranks[target.id] > previous[0]:
+                        own[target.section_id] = (ranks[target.id], ref, target.id)
+            retained = []
+            for ref in node.refs:
+                target = by_id.get(ref.target_id)
+                covered = inherited.get(target.section_id) if target else None
+                local = own.get(target.section_id) if target else None
+                if not covered or (local and local[0] > covered[0]):
+                    covered = (local[0], node.id, local[2]) if local and local[1] is not ref else None
+                if covered and target.id in ranks and ranks[target.id] <= covered[0]:
+                    removed.append({"node_id": node.id, "target_id": target.id,
+                                    "raw": ref.raw, "covered_by_node_id": covered[1],
+                                    "covered_by_target_id": covered[2]})
+                else:
+                    retained.append(ref)
+            node.refs = retained
+            # 将保留的最强要求传给后续节点。
+            for ref in retained:
+                target = by_id.get(ref.target_id)
+                if target and target.id in ranks:
+                    previous = inherited.get(target.section_id)
+                    if previous is None or ranks[target.id] > previous[0]:
+                        inherited[target.section_id] = (ranks[target.id], node.id, target.id)
+    return removed
+
+
 def sync_ref_raw(model: Model, ref: Ref) -> None:
     """编号或章节名变化后，把已绑定引用的文本改写成新的规范写法。"""
     target = model.node(ref.target_id) if ref.target_id else None
@@ -686,6 +740,7 @@ def model_from_dict(data: dict) -> Model:
             body=n.get("body", ""),
             notes=list(n.get("notes", []) or []),
             manual=dict(n.get("manual", {}) or {}),
+            status=node_status(n.get("status", "未实现")),
         )
         for r in n.get("refs", []) or []:
             node.refs.append(
@@ -1091,6 +1146,8 @@ def move_node(model: Model, node_id: str, direction: str, log: list[str] | None 
 
 def update_node(model: Model, node_id: str, payload: dict, log: list[str] | None = None) -> Node:
     """更新条目内容。正文被改写时会重新解析括号内容。"""
+    if "status" in payload:
+        node_status(payload["status"])
     node = model.node(node_id)
     if node is None:
         raise ValueError(f"未知的条目：{node_id}")
@@ -1133,6 +1190,8 @@ def update_node(model: Model, node_id: str, payload: dict, log: list[str] | None
 
     if "manual" in payload:
         node.manual = dict(payload["manual"] or {})
+    if "status" in payload:
+        node.status = node_status(payload["status"])
 
     resolve_refs(model)
     sync_all_refs(model)
@@ -1251,6 +1310,15 @@ def move_section(model: Model, section_id: str, direction: str, log: list[str] |
 
 
 def apply_op(model: Model, op: str, args: dict) -> dict:
+    result = _apply_op(model, op, args)
+    removed = prune_inherited_dependencies(model)
+    if removed:
+        result.setdefault("log", []).append(f"已自动清理 {len(removed)} 条被同路线上游覆盖的重复依赖")
+        result["pruned_dependencies"] = removed
+    return result
+
+
+def _apply_op(model: Model, op: str, args: dict) -> dict:
     """统一的操作入口，供 HTTP 服务与测试调用。"""
     args = args or {}
     log: list[str] = []
