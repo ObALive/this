@@ -1,0 +1,433 @@
+{
+  "date": "2026-10-24",
+  "documents": [
+    "10_对象与场景显示代码设计案.md",
+    "20_固定属性取值代码设计案.md",
+    "30_动作执行与交接代码设计案.md",
+    "40_点击移动与范围高亮代码设计案.md",
+    "50_共享时间轴与行动回排代码设计案.md",
+    "README.md"
+  ],
+  "node_coverage": [
+    {
+      "route": "逻辑",
+      "number": 1,
+      "summary": "共享时间轴调度与行动回排",
+      "document": "50_共享时间轴与行动回排代码设计案.md"
+    },
+    {
+      "route": "角色技能",
+      "number": 1,
+      "summary": "制作元动作",
+      "document": "30_动作执行与交接代码设计案.md"
+    },
+    {
+      "route": "角色移动",
+      "number": 0,
+      "summary": "制作元对象和相关组件约定",
+      "document": "10_对象与场景显示代码设计案.md"
+    },
+    {
+      "route": "角色移动",
+      "number": 1,
+      "summary": "点击地格移动",
+      "document": "40_点击移动与范围高亮代码设计案.md"
+    },
+    {
+      "route": "角色移动",
+      "number": 2,
+      "summary": "高亮渲染可移动的地格",
+      "document": "40_点击移动与范围高亮代码设计案.md"
+    },
+    {
+      "route": "角色属性",
+      "number": 1,
+      "summary": "固定属性",
+      "document": "20_固定属性取值代码设计案.md"
+    }
+  ],
+  "checked_links": [
+    {
+      "document": "10_对象与场景显示代码设计案.md",
+      "target": "../系统设计文档/01-通用系统/30_元对象与组件设计补充说明.md",
+      "exists": true
+    },
+    {
+      "document": "10_对象与场景显示代码设计案.md",
+      "target": "../架构设计文档/架构设计案.md",
+      "exists": true
+    },
+    {
+      "document": "10_对象与场景显示代码设计案.md",
+      "target": "20_固定属性取值代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "10_对象与场景显示代码设计案.md",
+      "target": "30_动作执行与交接代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "10_对象与场景显示代码设计案.md",
+      "target": "40_点击移动与范围高亮代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "10_对象与场景显示代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/MetaObjects/MetaObjectDefinition.cs",
+      "exists": true
+    },
+    {
+      "document": "10_对象与场景显示代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/MetaObjects/MetaObjectInstance.cs",
+      "exists": true
+    },
+    {
+      "document": "10_对象与场景显示代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/MetaObjects/MetaObjectComponent.cs",
+      "exists": true
+    },
+    {
+      "document": "10_对象与场景显示代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/MetaObjects/MetaObjectPreset.cs",
+      "exists": true
+    },
+    {
+      "document": "10_对象与场景显示代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/MetaObjects/SceneCoordinateComponent.cs",
+      "exists": true
+    },
+    {
+      "document": "10_对象与场景显示代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/MetaObjects/SceneTextureComponent.cs",
+      "exists": true
+    },
+    {
+      "document": "10_对象与场景显示代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/MetaObjects/MovementFacingComponent.cs",
+      "exists": true
+    },
+    {
+      "document": "10_对象与场景显示代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Scenes/PersistanceScene.unity",
+      "exists": true
+    },
+    {
+      "document": "10_对象与场景显示代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/GameData/MetaObjects/Player.asset",
+      "exists": true
+    },
+    {
+      "document": "20_固定属性取值代码设计案.md",
+      "target": "../系统设计文档/06-战斗/10-战斗总览/10_角色属性表.csv",
+      "exists": true
+    },
+    {
+      "document": "20_固定属性取值代码设计案.md",
+      "target": "../系统设计文档/06-战斗/20-时间轴与行动顺序/20_时间轴与行动顺序设计.md",
+      "exists": true
+    },
+    {
+      "document": "20_固定属性取值代码设计案.md",
+      "target": "40_点击移动与范围高亮代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "20_固定属性取值代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/MetaObjects/AttributeComponent.cs",
+      "exists": true
+    },
+    {
+      "document": "20_固定属性取值代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Debug/DebugPanel.cs",
+      "exists": true
+    },
+    {
+      "document": "20_固定属性取值代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Player/MovementRange.cs",
+      "exists": true
+    },
+    {
+      "document": "20_固定属性取值代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/BattleBehaviorDefinition.cs",
+      "exists": true
+    },
+    {
+      "document": "20_固定属性取值代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/GameData/MetaObjects/Player.asset",
+      "exists": true
+    },
+    {
+      "document": "20_固定属性取值代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/GameData/Battle/Unit_02_Timeline.asset",
+      "exists": true
+    },
+    {
+      "document": "20_固定属性取值代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/GameData/Battle/Unit_03_Timeline.asset",
+      "exists": true
+    },
+    {
+      "document": "30_动作执行与交接代码设计案.md",
+      "target": "../系统设计文档/01-通用系统/70-元动作/70_元动作设计补充说明.md",
+      "exists": true
+    },
+    {
+      "document": "30_动作执行与交接代码设计案.md",
+      "target": "../架构设计文档/架构设计案.md",
+      "exists": true
+    },
+    {
+      "document": "30_动作执行与交接代码设计案.md",
+      "target": "40_点击移动与范围高亮代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "30_动作执行与交接代码设计案.md",
+      "target": "50_共享时间轴与行动回排代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "30_动作执行与交接代码设计案.md",
+      "target": "10_对象与场景显示代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "30_动作执行与交接代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/MetaActionDefinition.cs",
+      "exists": true
+    },
+    {
+      "document": "30_动作执行与交接代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/MetaActionInstance.cs",
+      "exists": true
+    },
+    {
+      "document": "30_动作执行与交接代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/MetaActionComponents.cs",
+      "exists": true
+    },
+    {
+      "document": "30_动作执行与交接代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/MetaActionLifecycle.cs",
+      "exists": true
+    },
+    {
+      "document": "30_动作执行与交接代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/MetaObjects/MovementActionComponent.cs",
+      "exists": true
+    },
+    {
+      "document": "30_动作执行与交接代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/GameData/Battle/MovementAction.asset",
+      "exists": true
+    },
+    {
+      "document": "30_动作执行与交接代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/GameData/Battle/MovementTiming.asset",
+      "exists": true
+    },
+    {
+      "document": "40_点击移动与范围高亮代码设计案.md",
+      "target": "../系统设计文档/06-战斗/30-战场与战棋规则/30_战场与战棋规则设计.md",
+      "exists": true
+    },
+    {
+      "document": "40_点击移动与范围高亮代码设计案.md",
+      "target": "../架构设计文档/架构设计案.md",
+      "exists": true
+    },
+    {
+      "document": "40_点击移动与范围高亮代码设计案.md",
+      "target": "30_动作执行与交接代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "40_点击移动与范围高亮代码设计案.md",
+      "target": "10_对象与场景显示代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "40_点击移动与范围高亮代码设计案.md",
+      "target": "30_动作执行与交接代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "40_点击移动与范围高亮代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/TilemapManager.cs",
+      "exists": true
+    },
+    {
+      "document": "40_点击移动与范围高亮代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Player/GridClickInput.cs",
+      "exists": true
+    },
+    {
+      "document": "40_点击移动与范围高亮代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Player/MovementRange.cs",
+      "exists": true
+    },
+    {
+      "document": "40_点击移动与范围高亮代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Player/CharacterMovementController.cs",
+      "exists": true
+    },
+    {
+      "document": "40_点击移动与范围高亮代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Player/MovementRangeOverlay.cs",
+      "exists": true
+    },
+    {
+      "document": "40_点击移动与范围高亮代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Scenes/PersistanceScene.unity",
+      "exists": true
+    },
+    {
+      "document": "40_点击移动与范围高亮代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Scenes/01.Field.unity",
+      "exists": true
+    },
+    {
+      "document": "40_点击移动与范围高亮代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/GameData/Movement/MovementRangeTile.asset",
+      "exists": true
+    },
+    {
+      "document": "40_点击移动与范围高亮代码设计案.md",
+      "target": "D:/myspace/Git/mygame/ProjectSettings/TagManager.asset",
+      "exists": true
+    },
+    {
+      "document": "50_共享时间轴与行动回排代码设计案.md",
+      "target": "../系统设计文档/06-战斗/20-时间轴与行动顺序/20_时间轴与行动顺序设计.md",
+      "exists": true
+    },
+    {
+      "document": "50_共享时间轴与行动回排代码设计案.md",
+      "target": "../架构设计文档/架构设计案.md",
+      "exists": true
+    },
+    {
+      "document": "50_共享时间轴与行动回排代码设计案.md",
+      "target": "30_动作执行与交接代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "50_共享时间轴与行动回排代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/GameManager.cs",
+      "exists": true
+    },
+    {
+      "document": "50_共享时间轴与行动回排代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/BattleTimelineController.cs",
+      "exists": true
+    },
+    {
+      "document": "50_共享时间轴与行动回排代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/TimeLineManager.cs",
+      "exists": true
+    },
+    {
+      "document": "50_共享时间轴与行动回排代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/BattleTimelineConfiguration.cs",
+      "exists": true
+    },
+    {
+      "document": "50_共享时间轴与行动回排代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/GameData/Battle/DemoTimeline.asset",
+      "exists": true
+    },
+    {
+      "document": "50_共享时间轴与行动回排代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/BattleBehaviorDefinition.cs",
+      "exists": true
+    },
+    {
+      "document": "50_共享时间轴与行动回排代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/GameData/Battle/MovementTiming.asset",
+      "exists": true
+    },
+    {
+      "document": "50_共享时间轴与行动回排代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Debug/DebugPanel.cs",
+      "exists": true
+    },
+    {
+      "document": "50_共享时间轴与行动回排代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Scenes/PersistanceScene.unity",
+      "exists": true
+    },
+    {
+      "document": "50_共享时间轴与行动回排代码设计案.md",
+      "target": "D:/myspace/Git/mygame/ProjectSettings/EditorBuildSettings.asset",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "10_对象与场景显示代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "20_固定属性取值代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "30_动作执行与交接代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "40_点击移动与范围高亮代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "50_共享时间轴与行动回排代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "D:/myspace/Git/mygame",
+      "exists": true
+    }
+  ],
+  "link_count": 69,
+  "changed_protected": [],
+  "changed_source": [],
+  "guid_targets": {
+    "96734cc7bf4ed9a49b0ae90b297ac3ba": "Assets/GameData/Battle/DemoTimeline.asset",
+    "3935da40321e1734dae35f496e8bb526": "Assets/GameData/Battle/MovementAction.asset",
+    "5cabb2fdfe008324984abcefaaf485c8": "Assets/GameData/Battle/MovementTiming.asset",
+    "596d9e11bc4d5e044a15e5d0cfd21dc9": "Assets/GameData/Battle/Unit_02_Timeline.asset",
+    "788de14946752004887de6beac1456fd": "Assets/GameData/Battle/Unit_03_Timeline.asset",
+    "85a0a22df9b38384c99bf9cbf15bac86": "Assets/GameData/MetaObjects/Player.asset",
+    "998a365e0b6889f4bbbaf92a4781d90e": "Assets/GameData/Movement/MovementRangeFrame.png",
+    "e14b245e45ba9fe48bd48741aef7ea26": "Assets/GameData/Movement/MovementRangeTile.asset",
+    "a803a687c9f0927489ebbe02a80597c1": "Assets/M Studio/Art/Characters/Player/Body/QinRuofu/asfzxfzxd_0.controller",
+    "cb046c5fa066b3943879537c2f3f6a5f": "Assets/M Studio/Art/Characters/Player/Body/QinRuofu/asfzxfzxd_0.prefab"
+  },
+  "referenced_asset_hashes": {
+    "Assets/GameData/Battle/DemoTimeline.asset": "057bc79b8d7f885c50b883979f5b5a082723f7960c76b1e9816a97cfade5cc7c",
+    "Assets/GameData/Battle/MovementAction.asset": "1380e00c269fb7bd0c811a1b28af86ff8f7eb5273498027f5a96d9751a975034",
+    "Assets/GameData/Battle/MovementTiming.asset": "da80020878f7cafcd3c27a7fb22d4bf9142fee53ae7de7d17e3e0094ff6c40be",
+    "Assets/GameData/Battle/Unit_02_Timeline.asset": "f9ac88fe26f707af7defd69dc04fcbcb074e97ea94bed98e562622baa486a1b2",
+    "Assets/GameData/Battle/Unit_03_Timeline.asset": "784d0eb45d4584fffd0e90c38d1ed58d526e6123e0c06e00985910aa62d25203",
+    "Assets/GameData/MetaObjects/Player.asset": "6a0f62fc9e39134b687aeb96b6116225e3fafbdbceac98575e3f7751c1f868e1",
+    "Assets/GameData/Movement/MovementRangeFrame.png": "a8bbf762ac65ea6f7db7126c2875c296d3daa7d25ffad59f7b4c8d7e041db237",
+    "Assets/GameData/Movement/MovementRangeTile.asset": "19330668174b3fd15d7c5024c7c54f5ff86b7b30470adcf6c244be1dfde56467",
+    "Assets/M Studio/Art/Characters/Player/Body/QinRuofu/asfzxfzxd_0.controller": "d368b8b8191dde8878506de1c79e9edc7d0c36e196f44c1f17725caa1942ef5a",
+    "Assets/M Studio/Art/Characters/Player/Body/QinRuofu/asfzxfzxd_0.prefab": "a4afcd95a50687f9a44176d80c54ad77f32bb99f4a1880335f1633afc12231ce"
+  },
+  "static_bindings": "三角色标识→场景承载fileID→定义GUID；显示预制体→Animator Controller GUID",
+  "git_diff_check": true,
+  "failures": [],
+  "manual_review": "结合正文阅读核查目的、流程、关键判断、协作、失败、边界、定位及状态；不以本脚本替代语义验收。",
+  "not_run": [
+    "Unity编译",
+    "工程自动测试",
+    "游戏播放",
+    "播放器构建"
+  ]
+}
