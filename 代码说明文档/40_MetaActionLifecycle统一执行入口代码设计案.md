@@ -6,10 +6,10 @@ MetaActionLifecycle 是动作内部统一的同步执行与结束交接器。Met
 | --- | --- |
 | 解释范围 | Assembly-CSharp，全局命名空间；MetaActionLifecycle、MetaActionPhase，及其持有/调用边界 |
 | 源码依据 | MetaActionLifecycle.TryExecute/Reject/Terminate；MetaActionInstance 的 lifecycle 字段与 TryExecute/Dispose |
-| 核对基线 | c744a32b59973f9888d69447bbd2775fccf064f4；2026-10-24；相关源码无未提交差异 |
+| 核对基线 | 工程 8468fb91c225447ff0a329a020d7fcd7fe5e7857；2026-10-26；相关源码无未提交差异 |
 | 关联设计 | [元动作 §4.3 角色行为生命周期](../系统设计文档/01-通用系统/70-元动作/70_元动作设计补充说明.md) |
 | 状态 | 已核对：结构、统一入口与源码行为 |
-| 更新日期 | 2026-10-24 |
+| 更新日期 | 2026-10-26 |
 
 ## 结构地位、所有者与作用域
 
@@ -17,7 +17,7 @@ MetaActionLifecycle 是 sealed 普通 C# 类，直接隐式继承 System.Object�
 
 MetaActionPhase 是同文件的 enum，表示 Idle、Executing、Completed、Rejected、Failed、Terminated。Phase 与执行阶段的 LastError 实际存储在执行器；动作实例公开 Phase 转读它，但动作实例还保存自己的 LastError，用于包含受理前错误。
 
-TimeLineManager 引用在 TryExecute 进入时暂存为 activeTimeline，finally 清空，仅供执行期间终止时 Stop 使用。执行器不拥有整场战斗的参战表，也不选择下一行动者；这些状态在[TimeLineManager](50_TimeLineManager与战斗装配类型代码设计案.md)。这里的“统一”指当前动作通用的生命周期执行协议，当前实际接入的效果是移动。
+TimeLineManager 引用在 TryExecute 进入时暂存为 activeTimeline，finally 清空，仅供执行期间终止时 Stop 使用。执行器不拥有整场战斗的参战表，也不选择下一行动者；这些状态在[TimeLineManager](50_TimeLineManager与战斗装配类型代码设计案.md)。这里的“统一”指当前动作通用的生命周期执行协议，当前实际接入的效果是移动与待机：两者都以生效委托进入同一路径，待机不修改领域状态，只以成功结果结束行动。
 
 ## 统一入口和方法声明归属
 
@@ -28,6 +28,7 @@ TimeLineManager 引用在 TryExecute 进入时暂存为 activeTimeline，finally
 | MetaActionLifecycle.Reject | 动作实例的受理前 Reject | 未执行且未终止时记录拒绝阶段，不进入效果 |
 | MetaActionLifecycle.Terminate | MetaActionInstance.Dispose | 执行中停止关联时间轴，清空引用并进入终止阶段 |
 | MovementEffectComponent.Apply | 动作实例传入的生效委托 | 调用移动能力；本身没有权力调用 CompleteAction |
+| WaitEffectComponent.Apply | 动作实例传入的生效委托 | 不做领域修改，恒返回成功；结束与回排仍由执行器完成 |
 
 ```mermaid
 sequenceDiagram

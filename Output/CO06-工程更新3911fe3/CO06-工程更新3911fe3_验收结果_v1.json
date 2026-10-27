@@ -1,0 +1,889 @@
+{
+  "date": "2026-10-24",
+  "source_head": "3911fe3e2c0559187b6a25fffb25d7ca55c4354c",
+  "documents": [
+    "00_程序集与类型关系总览代码设计案.md",
+    "10_MetaObject类型与组件底座代码设计案.md",
+    "20_对象组件与场景承载类型代码设计案.md",
+    "30_MetaAction派生类型与动作组件代码设计案.md",
+    "40_MetaActionLifecycle统一执行入口代码设计案.md",
+    "50_TimeLineManager与战斗装配类型代码设计案.md",
+    "60_地图与移动适配类型代码设计案.md",
+    "70_UnitDetailsPanel与移动选择界面代码设计案.md",
+    "README.md"
+  ],
+  "types": [
+    {
+      "type": "MetaObjectDefinition",
+      "source": "Assets/Script/MetaObjects/MetaObjectDefinition.cs",
+      "document": "10_MetaObject类型与组件底座代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "MetaObjectInstance",
+      "source": "Assets/Script/MetaObjects/MetaObjectInstance.cs",
+      "document": "10_MetaObject类型与组件底座代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "MessageSubscription",
+      "source": "Assets/Script/MetaObjects/MetaObjectInstance.cs",
+      "document": "10_MetaObject类型与组件底座代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "MetaObjectComponentDefinition",
+      "source": "Assets/Script/MetaObjects/MetaObjectComponentDefinition.cs",
+      "document": "10_MetaObject类型与组件底座代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "MetaObjectComponent",
+      "source": "Assets/Script/MetaObjects/MetaObjectComponent.cs",
+      "document": "10_MetaObject类型与组件底座代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "MetaObjectPreset",
+      "source": "Assets/Script/MetaObjects/MetaObjectPreset.cs",
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "SceneCoordinateComponentDefinition",
+      "source": "Assets/Script/MetaObjects/SceneCoordinateComponent.cs",
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "SceneCoordinateComponent",
+      "source": "Assets/Script/MetaObjects/SceneCoordinateComponent.cs",
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "HorizontalFacing",
+      "source": "Assets/Script/MetaObjects/SceneTextureComponent.cs",
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "SceneTextureComponentDefinition",
+      "source": "Assets/Script/MetaObjects/SceneTextureComponent.cs",
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "SceneTextureComponent",
+      "source": "Assets/Script/MetaObjects/SceneTextureComponent.cs",
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "MovementFacingComponentDefinition",
+      "source": "Assets/Script/MetaObjects/MovementFacingComponent.cs",
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "MovementFacingComponent",
+      "source": "Assets/Script/MetaObjects/MovementFacingComponent.cs",
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "CharacterAttribute",
+      "source": "Assets/Script/MetaObjects/AttributeComponent.cs",
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "AttributeComponentDefinition",
+      "source": "Assets/Script/MetaObjects/AttributeComponent.cs",
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "AttributeComponent",
+      "source": "Assets/Script/MetaObjects/AttributeComponent.cs",
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "CellChanged",
+      "source": "Assets/Script/MetaObjects/CellChanged.cs",
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "MovementCompleted",
+      "source": "Assets/Script/MetaObjects/MovementCompleted.cs",
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "MetaActionDefinition",
+      "source": "Assets/Script/Battle/MetaActionDefinition.cs",
+      "document": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "MetaActionInstance",
+      "source": "Assets/Script/Battle/MetaActionInstance.cs",
+      "document": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "MetaActionComponent",
+      "source": "Assets/Script/Battle/MetaActionComponents.cs",
+      "document": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "MetaActionComponentDefinition",
+      "source": "Assets/Script/Battle/MetaActionComponents.cs",
+      "document": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "ActionResult",
+      "source": "Assets/Script/Battle/MetaActionComponents.cs",
+      "document": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "ActionTargetKind",
+      "source": "Assets/Script/Battle/MetaActionComponents.cs",
+      "document": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "IMovementCapability",
+      "source": "Assets/Script/Battle/MetaActionComponents.cs",
+      "document": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "ActionExecutionContext",
+      "source": "Assets/Script/Battle/MetaActionComponents.cs",
+      "document": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "ActionTargetComponentDefinition",
+      "source": "Assets/Script/Battle/MetaActionComponents.cs",
+      "document": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "ActionTargetComponent",
+      "source": "Assets/Script/Battle/MetaActionComponents.cs",
+      "document": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "ActionRecoveryComponentDefinition",
+      "source": "Assets/Script/Battle/MetaActionComponents.cs",
+      "document": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "ActionRecoveryComponent",
+      "source": "Assets/Script/Battle/MetaActionComponents.cs",
+      "document": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "ActionEffectComponent",
+      "source": "Assets/Script/Battle/MetaActionComponents.cs",
+      "document": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "MovementEffectComponentDefinition",
+      "source": "Assets/Script/Battle/MetaActionComponents.cs",
+      "document": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "MovementEffectComponent",
+      "source": "Assets/Script/Battle/MetaActionComponents.cs",
+      "document": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "ActionHolderComponent",
+      "source": "Assets/Script/MetaObjects/MovementActionComponent.cs",
+      "document": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "MovementActionComponentDefinition",
+      "source": "Assets/Script/MetaObjects/MovementActionComponent.cs",
+      "document": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "MovementActionComponent",
+      "source": "Assets/Script/MetaObjects/MovementActionComponent.cs",
+      "document": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "MetaActionPhase",
+      "source": "Assets/Script/Battle/MetaActionLifecycle.cs",
+      "document": "40_MetaActionLifecycle统一执行入口代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "MetaActionLifecycle",
+      "source": "Assets/Script/Battle/MetaActionLifecycle.cs",
+      "document": "40_MetaActionLifecycle统一执行入口代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "TimelineParticipant",
+      "source": "Assets/Script/Battle/TimeLineManager.cs",
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "TimelineMarker",
+      "source": "Assets/Script/Battle/TimeLineManager.cs",
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "TimeLineManager",
+      "source": "Assets/Script/Battle/TimeLineManager.cs",
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "Entry",
+      "source": "Assets/Script/Battle/TimeLineManager.cs",
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "BattleTimelineController",
+      "source": "Assets/Script/Battle/BattleTimelineController.cs",
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "Binding",
+      "source": "Assets/Script/Battle/BattleTimelineController.cs",
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "BattleTimelineConfiguration",
+      "source": "Assets/Script/Battle/BattleTimelineConfiguration.cs",
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "Unit",
+      "source": "Assets/Script/Battle/BattleTimelineConfiguration.cs",
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "BattleBehaviorDefinition",
+      "source": "Assets/Script/Battle/BattleBehaviorDefinition.cs",
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "ActionTiming",
+      "source": "Assets/Script/Battle/BattleBehaviorDefinition.cs",
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "GameManager",
+      "source": "Assets/Script/GameManager.cs",
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "DebugPanel",
+      "source": "Assets/Script/Debug/DebugPanel.cs",
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "MapCellData",
+      "source": "Assets/Script/TilemapManager.cs",
+      "document": "60_地图与移动适配类型代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "TilemapManager",
+      "source": "Assets/Script/TilemapManager.cs",
+      "document": "60_地图与移动适配类型代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "TileTerrainMapping",
+      "source": "Assets/Script/TilemapManager.cs",
+      "document": "60_地图与移动适配类型代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "GridClickInput",
+      "source": "Assets/Script/Player/GridClickInput.cs",
+      "document": "60_地图与移动适配类型代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "CellMoveResult",
+      "source": "Assets/Script/Player/CharacterMovementController.cs",
+      "document": "60_地图与移动适配类型代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "CharacterMovementController",
+      "source": "Assets/Script/Player/CharacterMovementController.cs",
+      "document": "60_地图与移动适配类型代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "MovementCapability",
+      "source": "Assets/Script/Player/CharacterMovementController.cs",
+      "document": "60_地图与移动适配类型代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "MovementRange",
+      "source": "Assets/Script/Player/MovementRange.cs",
+      "document": "60_地图与移动适配类型代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "MovementRangeOverlay",
+      "source": "Assets/Script/Player/MovementRangeOverlay.cs",
+      "document": "60_地图与移动适配类型代码设计案.md",
+      "present": true
+    },
+    {
+      "type": "UnitDetailsPanel",
+      "source": "Assets/Script/UI/UnitDetailsPanel.cs",
+      "document": "70_UnitDetailsPanel与移动选择界面代码设计案.md",
+      "present": true
+    }
+  ],
+  "links": [
+    {
+      "document": "00_程序集与类型关系总览代码设计案.md",
+      "target": "../架构设计文档/架构设计案.md",
+      "exists": true
+    },
+    {
+      "document": "00_程序集与类型关系总览代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assembly-CSharp.csproj",
+      "exists": true
+    },
+    {
+      "document": "00_程序集与类型关系总览代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assembly-CSharp-Editor.csproj",
+      "exists": true
+    },
+    {
+      "document": "00_程序集与类型关系总览代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assembly-CSharp-firstpass.csproj",
+      "exists": true
+    },
+    {
+      "document": "00_程序集与类型关系总览代码设计案.md",
+      "target": "10_MetaObject类型与组件底座代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "00_程序集与类型关系总览代码设计案.md",
+      "target": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "00_程序集与类型关系总览代码设计案.md",
+      "target": "40_MetaActionLifecycle统一执行入口代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "00_程序集与类型关系总览代码设计案.md",
+      "target": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "00_程序集与类型关系总览代码设计案.md",
+      "target": "70_UnitDetailsPanel与移动选择界面代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "10_MetaObject类型与组件底座代码设计案.md",
+      "target": "../系统设计文档/01-通用系统/30_元对象与组件设计补充说明.md",
+      "exists": true
+    },
+    {
+      "document": "10_MetaObject类型与组件底座代码设计案.md",
+      "target": "../架构设计文档/架构设计案.md",
+      "exists": true
+    },
+    {
+      "document": "10_MetaObject类型与组件底座代码设计案.md",
+      "target": "20_对象组件与场景承载类型代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "10_MetaObject类型与组件底座代码设计案.md",
+      "target": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "10_MetaObject类型与组件底座代码设计案.md",
+      "target": "20_对象组件与场景承载类型代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "10_MetaObject类型与组件底座代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/MetaObjects/MetaObjectDefinition.cs",
+      "exists": true
+    },
+    {
+      "document": "10_MetaObject类型与组件底座代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/MetaObjects/MetaObjectComponentDefinition.cs",
+      "exists": true
+    },
+    {
+      "document": "10_MetaObject类型与组件底座代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/MetaObjects/MetaObjectInstance.cs",
+      "exists": true
+    },
+    {
+      "document": "10_MetaObject类型与组件底座代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/MetaObjects/MetaObjectComponent.cs",
+      "exists": true
+    },
+    {
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "target": "../系统设计文档/01-通用系统/30_元对象与组件设计补充说明.md",
+      "exists": true
+    },
+    {
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "target": "../系统设计文档/06-战斗/10-战斗总览/10_角色属性表.csv",
+      "exists": true
+    },
+    {
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "target": "10_MetaObject类型与组件底座代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "target": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "target": "70_UnitDetailsPanel与移动选择界面代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/MetaObjects/MetaObjectPreset.cs",
+      "exists": true
+    },
+    {
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/MetaObjects/SceneCoordinateComponent.cs",
+      "exists": true
+    },
+    {
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/MetaObjects/CellChanged.cs",
+      "exists": true
+    },
+    {
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/MetaObjects/MovementCompleted.cs",
+      "exists": true
+    },
+    {
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/MetaObjects/SceneTextureComponent.cs",
+      "exists": true
+    },
+    {
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/MetaObjects/MovementFacingComponent.cs",
+      "exists": true
+    },
+    {
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/MetaObjects/AttributeComponent.cs",
+      "exists": true
+    },
+    {
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Scenes/PersistanceScene.unity",
+      "exists": true
+    },
+    {
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/GameData/MetaObjects/Player.asset",
+      "exists": true
+    },
+    {
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/GameData/Battle/Unit_02_Timeline.asset",
+      "exists": true
+    },
+    {
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/GameData/Battle/Unit_03_Timeline.asset",
+      "exists": true
+    },
+    {
+      "document": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "target": "../系统设计文档/01-通用系统/70-元动作/70_元动作设计补充说明.md",
+      "exists": true
+    },
+    {
+      "document": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "target": "60_地图与移动适配类型代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "target": "40_MetaActionLifecycle统一执行入口代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/MetaActionDefinition.cs",
+      "exists": true
+    },
+    {
+      "document": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/MetaActionInstance.cs",
+      "exists": true
+    },
+    {
+      "document": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/MetaActionComponents.cs",
+      "exists": true
+    },
+    {
+      "document": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/MetaObjects/MovementActionComponent.cs",
+      "exists": true
+    },
+    {
+      "document": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/GameData/Battle/MovementAction.asset",
+      "exists": true
+    },
+    {
+      "document": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/GameData/Battle/MovementTiming.asset",
+      "exists": true
+    },
+    {
+      "document": "40_MetaActionLifecycle统一执行入口代码设计案.md",
+      "target": "../系统设计文档/01-通用系统/70-元动作/70_元动作设计补充说明.md",
+      "exists": true
+    },
+    {
+      "document": "40_MetaActionLifecycle统一执行入口代码设计案.md",
+      "target": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "40_MetaActionLifecycle统一执行入口代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/MetaActionLifecycle.cs",
+      "exists": true
+    },
+    {
+      "document": "40_MetaActionLifecycle统一执行入口代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/MetaActionInstance.cs",
+      "exists": true
+    },
+    {
+      "document": "40_MetaActionLifecycle统一执行入口代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/TimeLineManager.cs",
+      "exists": true
+    },
+    {
+      "document": "40_MetaActionLifecycle统一执行入口代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/MetaActionComponents.cs",
+      "exists": true
+    },
+    {
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "target": "../系统设计文档/06-战斗/20-时间轴与行动顺序/20_时间轴与行动顺序设计.md",
+      "exists": true
+    },
+    {
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "target": "../架构设计文档/架构设计案.md",
+      "exists": true
+    },
+    {
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "target": "40_MetaActionLifecycle统一执行入口代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "target": "70_UnitDetailsPanel与移动选择界面代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/TimeLineManager.cs",
+      "exists": true
+    },
+    {
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/BattleTimelineController.cs",
+      "exists": true
+    },
+    {
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Scenes/PersistanceScene.unity",
+      "exists": true
+    },
+    {
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/BattleTimelineConfiguration.cs",
+      "exists": true
+    },
+    {
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/GameData/Battle/DemoTimeline.asset",
+      "exists": true
+    },
+    {
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/BattleBehaviorDefinition.cs",
+      "exists": true
+    },
+    {
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/GameData/Battle/MovementTiming.asset",
+      "exists": true
+    },
+    {
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/GameManager.cs",
+      "exists": true
+    },
+    {
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Debug/DebugPanel.cs",
+      "exists": true
+    },
+    {
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/ProjectSettings/EditorBuildSettings.asset",
+      "exists": true
+    },
+    {
+      "document": "60_地图与移动适配类型代码设计案.md",
+      "target": "../系统设计文档/06-战斗/30-战场与战棋规则/30_战场与战棋规则设计.md",
+      "exists": true
+    },
+    {
+      "document": "60_地图与移动适配类型代码设计案.md",
+      "target": "../架构设计文档/架构设计案.md",
+      "exists": true
+    },
+    {
+      "document": "60_地图与移动适配类型代码设计案.md",
+      "target": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "60_地图与移动适配类型代码设计案.md",
+      "target": "40_MetaActionLifecycle统一执行入口代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "60_地图与移动适配类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/TilemapManager.cs",
+      "exists": true
+    },
+    {
+      "document": "60_地图与移动适配类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Player/GridClickInput.cs",
+      "exists": true
+    },
+    {
+      "document": "60_地图与移动适配类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Player/CharacterMovementController.cs",
+      "exists": true
+    },
+    {
+      "document": "60_地图与移动适配类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Player/MovementRange.cs",
+      "exists": true
+    },
+    {
+      "document": "60_地图与移动适配类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Player/MovementRangeOverlay.cs",
+      "exists": true
+    },
+    {
+      "document": "60_地图与移动适配类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Scenes/01.Field.unity",
+      "exists": true
+    },
+    {
+      "document": "60_地图与移动适配类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Scenes/PersistanceScene.unity",
+      "exists": true
+    },
+    {
+      "document": "60_地图与移动适配类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/GameData/Movement/MovementRangeTile.asset",
+      "exists": true
+    },
+    {
+      "document": "60_地图与移动适配类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/ProjectSettings/TagManager.asset",
+      "exists": true
+    },
+    {
+      "document": "70_UnitDetailsPanel与移动选择界面代码设计案.md",
+      "target": "../系统设计文档/06-战斗/20-时间轴与行动顺序/20_时间轴与行动顺序设计.md",
+      "exists": true
+    },
+    {
+      "document": "70_UnitDetailsPanel与移动选择界面代码设计案.md",
+      "target": "../架构设计文档/架构设计案.md",
+      "exists": true
+    },
+    {
+      "document": "70_UnitDetailsPanel与移动选择界面代码设计案.md",
+      "target": "60_地图与移动适配类型代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "70_UnitDetailsPanel与移动选择界面代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/UI/UnitDetailsPanel.cs",
+      "exists": true
+    },
+    {
+      "document": "70_UnitDetailsPanel与移动选择界面代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Scenes/UI.unity",
+      "exists": true
+    },
+    {
+      "document": "70_UnitDetailsPanel与移动选择界面代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/GameData/UI/UnitDetails SDF.asset",
+      "exists": true
+    },
+    {
+      "document": "70_UnitDetailsPanel与移动选择界面代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/GameData/UI/UnitDetails.ttf",
+      "exists": true
+    },
+    {
+      "document": "70_UnitDetailsPanel与移动选择界面代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/GameManager.cs",
+      "exists": true
+    },
+    {
+      "document": "70_UnitDetailsPanel与移动选择界面代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Debug/DebugPanel.cs",
+      "exists": true
+    },
+    {
+      "document": "70_UnitDetailsPanel与移动选择界面代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Player/CharacterMovementController.cs",
+      "exists": true
+    },
+    {
+      "document": "70_UnitDetailsPanel与移动选择界面代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Player/GridClickInput.cs",
+      "exists": true
+    },
+    {
+      "document": "70_UnitDetailsPanel与移动选择界面代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assembly-CSharp.csproj",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "00_程序集与类型关系总览代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "00_程序集与类型关系总览代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "10_MetaObject类型与组件底座代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "20_对象组件与场景承载类型代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "40_MetaActionLifecycle统一执行入口代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "60_地图与移动适配类型代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "70_UnitDetailsPanel与移动选择界面代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "D:/myspace/Git/mygame",
+      "exists": true
+    }
+  ],
+  "checks": {
+    "普通鼠标须先选择": true,
+    "右键优先": true,
+    "范围不再逐帧主动刷新": true,
+    "显示重绘版本复位": true,
+    "按钮语义只选择": true
+  },
+  "changed_readonly": {
+    "protected": [],
+    "assets": []
+  },
+  "ui_font_guid": "3e2ea7fb08197d249a0a4dbdff44ac4d",
+  "errors": [],
+  "range": "原六项节点继续覆盖；UI与协作变化根据用户跟进工程更新的明确授权纳入，未回写网络图状态",
+  "not_run": [
+    "Unity编译",
+    "工程测试/UnitDetailsVerification",
+    "游戏播放",
+    "播放器构建"
+  ]
+}

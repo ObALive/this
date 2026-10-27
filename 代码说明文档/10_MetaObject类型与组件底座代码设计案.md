@@ -6,17 +6,17 @@ MetaObject 四个核心类型将共享配置、运行对象、组件配置与运
 | --- | --- |
 | 解释范围 | Assembly-CSharp，全局命名空间；MetaObjectDefinition、MetaObjectInstance、MetaObjectComponentDefinition、MetaObjectComponent，以及嵌套订阅记录 |
 | 源码依据 | `Assets/Script/MetaObjects/MetaObject*.cs`；CreateInstance、AddComponent、Attach/Bind/Detach、Publish、Dispose |
-| 核对基线 | c744a32b59973f9888d69447bbd2775fccf064f4；2026-10-24；相关源码无未提交差异 |
+| 核对基线 | 工程 8468fb91c225447ff0a329a020d7fcd7fe5e7857；2026-10-26；底座脚本无未提交差异；量表与技能槽组件在核对日期为工作区状态 |
 | 关联设计 | [元对象与组件 §4.1](../系统设计文档/01-通用系统/30_元对象与组件设计补充说明.md)、[架构设计案 §5、§7.11](../架构设计文档/架构设计案.md) |
 | 状态 | 已核对：结构与源码行为 |
-| 更新日期 | 2026-10-24 |
+| 更新日期 | 2026-10-26 |
 
 ## 类层级与组合
 
 | 声明类型 | 直接基类或接口 | 持有内容与主要职责 |
 | --- | --- | --- |
 | MetaObjectDefinition | UnityEngine.ScriptableObject | 共享静态资产，持有 MetaObjectComponentDefinition 清单和识别信息；派生类为 MetaActionDefinition |
-| MetaObjectComponentDefinition | 普通抽象类，隐式 System.Object | 定义 CreateComponent 工厂；对象配置与动作配置均从它派生，不是运行组件 |
+| MetaObjectComponentDefinition | 普通抽象类，隐式 System.Object | 定义 CreateComponent 工厂；对象配置与动作配置均从它派生，不是运行组件；技能槽与量表的配置也派生于此 |
 | MetaObjectInstance | 普通类，隐式 System.Object | 按具体 Type 持有 MetaObjectComponent 字典，另持有订阅表；派生类为 MetaActionInstance |
 | MetaObjectComponent | 普通抽象类，隐式 System.Object | 保存 Owner 和 Preset 引用，提供生命周期钩子与受保护的对象内消息入口 |
 | MetaObjectInstance.MessageSubscription | 私有嵌套类 | 由实例订阅表持有，记录订阅组件、委托和有效标记；不是另一个可挂载组件 |
