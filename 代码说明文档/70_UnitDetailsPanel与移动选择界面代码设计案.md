@@ -1,88 +1,80 @@
 # UnitDetailsPanel 与移动选择界面代码设计案
 
-UnitDetailsPanel 是战斗底部的信息与操作面板：它展示当前行动者的姓名与三项属性、场上角色的生命摘要，并提供移动按钮与四个技能按钮。面板只把“选择哪个动作”转发给角色身上的场景适配器，把目的格确认留给地图输入；它不保存技能、行动机会或生命，因此查看与选择都不会自行推进战斗。
+UnitDetailsPanel 是战斗底部的信息与操作面板，显示当前行动者的姓名、三项属性以及全场角色的生命摘要，并提供独立移动按钮和四个技能按钮。面板将选择转发给角色场景适配器，地图输入或无目标确认再触发槽位的报文发送。
 
 | 项目 | 内容 |
 | --- | --- |
-| 解释范围 | Assembly-CSharp，全局命名空间；UnitDetailsPanel 的界面引用、时间轴绑定、属性与生命读取、移动/技能按钮、反馈和清理，以及 UI.unity 静态装配 |
-| 源码依据 | UnitDetailsPanel.BindTimeline/Refresh/RefreshHealth/SelectMovement/SelectSkill/OnEnable/OnDisable；GameManager.Start；CharacterMovementController.SelectMovement；SkillSelectionController.SelectSlot |
-| 核对基线 | 工程 7362b95addd908be4f96110c2c51ad0300af8e58；2026-10-27；UnitDetailsPanel 的生命摘要、UI.unity 的 HealthSummary/BaseSkills 与面板高度 236 已由该提交收录，相关文件无未提交差异 |
+| 解释范围 | Assembly-CSharp，全局命名空间；UnitDetailsPanel 的界面引用、时间轴绑定、属性和生命读取、移动与技能按钮、UI.unity 装配及 DebugPanel 协作 |
+| 源码依据 | UnitDetailsPanel.BindTimeline/Refresh/RefreshHealth/SelectMovement/SelectSkill/OnEnable/OnDisable；GameManager.Start；文件入口见文末实现定位 |
+| 核对基线 | 工程提交 `65c2ff5e40cec060988b74091e189e09fdaa9e13`；2026-10-29 核对时工程工作区干净 |
 | 关联设计 | [时间轴与行动顺序 §3.6](../系统设计文档/06-战斗/20-时间轴与行动顺序/20_时间轴与行动顺序设计.md)、[架构设计案 §7.12](../架构设计文档/架构设计案.md) |
-| 状态 | 已核对：结构、源码与静态绑定；实际画面、字体和交互未运行验证 |
-| 更新日期 | 2026-10-27 |
+| 状态 | 已核对：源码声明、调用链与静态资产绑定 |
+| 更新日期 | 2026-10-29 |
 
-## 类归属与界面对象关系
+## 类型、引用与状态归属
 
-UnitDetailsPanel 是 sealed MonoBehaviour，位于 `Assets/Script/UI/UnitDetailsPanel.cs`，被 Assembly-CSharp.csproj 的 Compile 项包含，未声明 namespace。它使用 uGUI 的 Button/Image 和 TextMeshPro 的 TMP_Text；这不是 MetaObjectComponent 派生类型，也不在角色运行对象的组件字典中。
+UnitDetailsPanel 是 Assembly-CSharp 全局命名空间中的 sealed MonoBehaviour，依赖 uGUI Button/Image 和 TextMeshPro TMP_Text。UI.unity 持有 Canvas、面板与按钮物体，面板序列化引用指向这些场景组件。
 
-| 成员或场景对象 | 归属/关系 | 实际作用 |
-| --- | --- | --- |
-| details、hint | 面板引用两个 TMP_Text；由 UI 场景创建和持有 | 属性正文与操作提示 |
-| healthSummary | 面板引用的 TMP_Text | 全场角色生命摘要，独立于当前行动者 |
-| moveLabel、moveButton、moveBackground | 面板引用移动按钮 GameObject 上的文本、Button 和 Image | 移动按钮文字、可交互状态与选中底色 |
-| skillButtons、skillLabels | 面板引用四个按钮及各自子文本 | 技能槽选择与名称/后摇显示；长度按场景配置 |
-| timeline | GameManager 调用 BindTimeline 注入 BattleTimelineController 引用 | 查询 Runtime 是否运行及 CurrentActor，不拥有时间轴 |
-| selectedMovement | 面板记住经移动按钮选择成功的 CharacterMovementController | 行动者切换、重绑或禁用时清理旧选择；真实选择标记仍属于控制器 |
-| healthActors、nextHealthScan、healthText | 面板私有的角色清单缓存、重扫时刻与拼接缓冲 | 生命摘要的扫描与格式化，不写回任何角色 |
-| UnitDetailsCanvas / UnitDetails / BaseSkills | UI 场景中的父 Canvas、面板 GameObject 与技能按钮容器 | 屏幕覆盖式 uGUI；CanvasScaler/GraphicRaycaster 承接缩放与界面命中 |
+| 引用或缓存 | 作用 |
+| --- | --- |
+| details、hint、healthSummary | 当前行动者属性、操作提示、场上角色生命摘要 |
+| moveLabel、moveButton、moveBackground | 移动文案、可交互状态和选择底色 |
+| skillButtons、skillLabels | 四槽按钮、名称与后摇文本 |
+| timeline | GameManager 注入的 BattleTimelineController，用于读取 Runtime 和 CurrentActor |
+| selectedMovement | 面板记住的移动适配器，供行动者变化、重绑和禁用时取消选择 |
+| healthActors、nextHealthScan、healthText | 角色清单、重扫时刻与文本缓冲 |
 
-关系是场景组合与组件引用，不是面板继承了 Button 或 TMP_Text。`IsMoveHighlighted` 通过记住的控制器查询 IsMovementSelected；`DisplayedDetails`、`DisplayedHealth` 读取文本。三者都是查询属性，不提供动作、属性或生命的写入口。技能选择状态也不在面板中，而由运行时补加的 SkillSelectionController 持有。
+角色属性和生命由运行组件持有；移动选择由 CharacterMovementController 持有，技能选择由 SkillSelectionController 持有；时间轴由 Runtime 持有。DisplayedDetails、DisplayedHealth 和 IsMoveHighlighted 提供只读显示查询。
 
-## 方法声明、订阅与启动
+## 绑定、订阅与清理
 
-| 实际声明方法 | 主要调用方与下游 | 结构地位 |
-| --- | --- | --- |
-| GameManager.Start | Unity → 所有已加载的 UnitDetailsPanel.BindTimeline → 时间轴启动 | 面板依赖注入的启动编排，先绑定再授予首个机会 |
-| UnitDetailsPanel.OnEnable / OnDisable | Unity → 按钮 onClick 添加/移除 SelectMovement、SelectSkill | 动态订阅与成对清理；场景按钮没有持久化业务回调 |
-| UnitDetailsPanel.BindTimeline | GameManager 或外部绑定 → 取消旧移动与技能选择、Refresh | 清旧引用并接受新时间轴 |
-| UnitDetailsPanel.Update / Refresh | Unity 或绑定/按钮后刷新 | 刷新生命摘要，再从当前行动者重取属性、移动与技能状态 |
-| UnitDetailsPanel.SelectMovement | Button.onClick → 当前角色控制器 SelectMovement | 移动选择请求入口，不调用 TryMoveToCell |
-| UnitDetailsPanel.SelectSkill | Button.onClick → 当前角色 SkillSelectionController.SelectSlot | 技能槽选择请求入口，不直接执行动作 |
-| UnitDetailsPanel.RefreshHealth | Refresh 每帧调用 | 扫描、过滤并拼出全场生命摘要 |
-| CharacterMovementController.SelectMovement / CancelMovementSelection | 面板、输入和时间轴清理 | 真正持有并清理移动选择，详见[移动适配类型](60_地图与移动适配类型代码设计案.md) |
-| SkillSelectionController.SelectSlot / Confirm / CancelSelection | 面板、数字键、场景点击与清理 | 真正持有技能选择与机会校验，详见[技能槽专题](80_基础技能槽与待机动作代码设计案.md) |
+GameManager.Start 在场景加载完成并等待一帧后，为面板调用 BindTimeline，再启动时间轴。BindTimeline 先取消记住的移动选择和绑定角色的技能选择，清空引用及生命清单缓存，保存时间轴并 Refresh。Update 每帧刷新。
 
-BindTimeline 先清理由面板记住的旧控制器选择与旧角色的技能选择，再清空 selectedMovement 与生命清单缓存、保存 timeline 并刷新。绑定发生在 TryStartBattle 之前，首次刷新可以显示等待机会；Update 继续读取启动后的当前行动者。禁用时移除两类按钮监听、取消当前角色的技能选择与面板记住的移动选择，避免留下失去界面的选择状态。
+OnEnable 给移动按钮和各技能按钮添加监听，为各槽保存捕获索引的委托；OnDisable 使用相同委托解除监听，取消移动与技能选择并清空缓存。场景按钮的持久化业务回调列表为空，业务订阅由面板生命周期建立。
 
-## 详情读取与按钮状态
+SelectMovement 查询当前行动者并调用其 SelectMovement，成功后记住控制器；SelectSkill 调用当前角色的 SelectSlot。二者随后刷新显示，动作确认由选择适配器和地图输入继续处理。入口与结果见 [60 移动](60_地图与移动适配类型代码设计案.md) 和 [80 技能槽](80_基础技能槽与待机动作代码设计案.md)。
 
-Refresh 先读取生命摘要，再判断 timeline、Runtime 存在且正在运行，才取得 CurrentActor 并取其移动控制器与 AttributeComponent。已记住的控制器与当前控制器不同，会先取消旧选择。面板显示当前行动者，而不是任意查看对象，也不改变 ElectedObject。
+## 当前行动者与按钮显示
 
-无属性组件时详情显示等待行动机会；正常时读取定义的 DisplayName 和行动力、力量、行动速度当前值。汇总抛出 OverflowException 时显示属性溢出并禁用移动按钮。它不捕获任意异常，当前装配要求 actor.Definition 和所有序列化界面引用有效，缺失时没有通用容错替代。
+Refresh 先刷新生命摘要，再要求 timeline.Runtime 正在运行，取得 CurrentActor 与属性、移动和技能适配器。行动者对应的移动适配器变化时取消记住的选择。缺少属性时显示等待行动机会；正常时显示定义名称、行动力、力量和行动速度。属性汇总 OverflowException 形成溢出提示并使移动按钮不可交互。
 
-移动按钮可用需移动控制器存在、CanSelectMovement 成立且有属性组件。可选择检查不等于地图、坐标、范围全部就绪，因此按钮可用仍可能在后续目标查询阶段没有可选格。Refresh 对属性溢出只改变显示和按钮可用性，不主动调用 CancelMovementSelection。
+移动按钮要求移动适配器可选择且属性存在。选中时文案为“移动 · 已选择”，背景为青绿色，其余为“移动”和深色。选择资格与范围查询是两道条件，地图或坐标缺失会在目标查询阶段体现。
 
-按下移动按钮成功后记录控制器，并显示“移动 · 已选择”；重复选择同一有效动作保持选择。所选背景设为青绿色，未选为深色。具体 RGB 是源码写入 Image 的配置输入，Button 的 Selectable 过渡也会影响最终显示，实际画面未运行验证。
+技能按钮逐槽读取动作和定义，有效动作显示序号、名称和后摇，缺少动作显示“空槽”；交互资格同时要求技能适配器可控制当前角色及动作定义有效。选中槽使用青绿色。当前三份角色四槽均为待机，后摇均为 10。
 
-技能按钮的状态与当前角色绑定：没有当前行动者或没有槽组件时，四个按钮显示“空槽”且不可用；有槽时逐个读取动作与定义，可交互要求技能适配器 CanSelect 成立且该槽动作通过定义校验，标签显示“序号 · 显示名”和“后摇 数值”，动作缺失则显示“空槽”。被选中的槽按钮用同一青绿色底。由于待机是无指向动作，当前选中槽时提示为“再次选择该技能或左键空白场景释放 · 右键取消”；若选中的是地格指向槽，则提示改为点选高亮地格。当前三份角色只配置待机，所以地格分支在现有场景中不会出现。
+提示随选择状态显示动作选择、点选高亮地格确认或再次确认无目标技能。无目标技能可再次点击同一按钮、按同一数字键或左键点未被 UI 遮挡的场景位置确认。成功与机会变化触发相应选择清理。
 
-普通鼠标路径随后由移动控制器允许目标查询与高亮，同格按松确认后才进入动作；无指向技能则在未被界面遮挡的位置按松即确认。右键优先取消而不生效；成功、机会改变、实例重建、禁用、重绑或行动者切换会清理相应选择。指针离格/失焦只取消按压，不必然退出选择；完整边界见移动适配与技能槽专题。
+## 全场生命摘要
 
-## 生命摘要的读取与显示
+RefreshHealth 每 0.5 个不受缩放影响的秒重扫 MetaObjectPreset，并按定义 MetaObjectId 的 Ordinal 顺序排列清单。每次 Refresh 都从清单中角色的当前实例读取量表，筛选启用、已绑定且 MeterId 精确等于 Health 的角色，拼为 `HP  名称 当前值 / 上限`；空集合显示 `HP -`。
 
-`RefreshHealth` 每次刷新先取场景中所有 MetaObjectPreset，按定义的 MetaObjectId 排序并缓存 0.5 秒；随后跳过未激活、未绑定或没有量表的承载，只接受用途标识严格等于 `Health` 的量表，把“显示名 当前值 / 上限”拼成一行写入 healthSummary，没有可显示角色时写 `HP -`。它不依赖当前行动者或时间轴，因此战斗开始前也会列出全部符合条件的角色；清单是全场扫描而非参战名单。
+摘要清单的范围是场景中符合筛选条件的角色，独立于参战登记和当前行动者。数值每帧重读，新增角色最迟随下一次清单重扫进入。量表规则与三名角色测试值见 [75 量表专题](75_量表组件与生命显示代码设计案.md)。
 
-这段显示与量表的数值规则分开：面板只读当前值与上限，不调用 Modify、不缓存数值，也不订阅变化事件，靠每帧重读。量表的创建、增减与边界见[量表专题](75_量表组件与生命显示代码设计案.md)。当前三份角色分别显示 100/100、120/150、60/80。
+## UI 场景与字体
 
-## UI 场景和字体绑定
+UnitDetailsCanvas 使用 Screen Space Overlay，排序 20，CanvasScaler 参考分辨率 1280×720，宽高匹配 0.5，带 GraphicRaycaster。UnitDetails 贴屏幕底边，高度为 236 参考像素。HealthSummary 位于面板顶部，四个技能按钮位于 BaseSkills 容器，各自带 Label 子文本。
 
-UI.unity 中 UnitDetailsPanel 的八个序列化字段已落实到本场景：details 1538517151、hint 166982040、healthSummary 488543080、moveLabel 474455404、moveButton 2050392728、moveBackground 2050392729；skillButtons 为 228922413、1967859605、2036563005、775289352，skillLabels 为 1875193678、1949239004、58925814、446884971。移动按钮与其背景同属 Move 对象；四个技能按钮为 Skill1—Skill4，标签分别是各按钮下的 Label 子文本。
+UnitDetailsPanel 字段接线为 details 1538517151、hint 166982040、healthSummary 488543080、moveLabel 474455404、moveButton 2050392728、moveBackground 2050392729；技能按钮为 228922413、1967859605、2036563005、775289352，标签为 1875193678、1949239004、58925814、446884971。按钮和标签按相同索引配对，按钮具有 Image 背景。
 
-父级 UnitDetailsCanvas 是 Screen Space Overlay，CanvasScaler 参考分辨率为 1280×720、宽高匹配 0.5，带 GraphicRaycaster。面板 UnitDetails 贴在底边，当前高度 236 参考像素；HealthSummary 是面板顶部一条横向拉伸文本，锚点约为横向 0.025—0.975、纵向 0.847—1；四个技能按钮放在面板内的 BaseSkills 容器下。所有文本引用同一 `UnitDetails SDF.asset`，其 GUID 为 3e2ea7fb08197d249a0a4dbdff44ac4d；工程同时保存 UnitDetails.ttf，并在技能文案扩展时重新烘焙字形；生命摘要沿用现有字形，未再改动字体资产。
+面板文字使用 UnitDetails SDF.asset，GUID 为 3e2ea7fb08197d249a0a4dbdff44ac4d；对应 TTF 也保存在 GameData/UI。字体覆盖与多分辨率布局属于实际运行核验范围。
 
-按钮的持久化 OnClick 列表为空，业务监听由 OnEnable 添加、OnDisable 移除，因此场景不保存业务回调。绑定有效仅证明资产来源可定位，不能据此确认字形覆盖、分辨率适配或点击遮挡已经运行通过。
+DebugPanel 检测到启用面板时由底部面板承担属性详情显示，调试面板保留时间轴与调试入口，并依据面板高度和 Canvas 缩放计算自身缩放；底部面板缺席时通过 DrawCharacterDetails 绘制属性。遮挡判断使用同一实际区域计算。
 
-DebugPanel 发现启用的面板后隐藏旧 IMGUI 属性详情，保留时间轴调试并调整调试区缩放；没有启用面板时回退到旧详情。其检测与缩放依赖场景 RectTransform/Canvas 结构，不会替面板补齐缺失引用。
+## 装配条件与验证范围
 
-## 实现定位与当前边界
+面板要求属性展示时 actor.Definition 有效，移动引用与各文本完成接线，技能按钮与标签数量一致且索引在槽容量内，按钮具备 Image。当前 UI 资产提供四对按钮和标签。可见布局、字形覆盖、分辨率适配和点击观感需要运行场景核验；静态绑定支持本文的组件与数据来源结论。
 
-- [UnitDetailsPanel.cs](D:/myspace/Git/mygame/Assets/Script/UI/UnitDetailsPanel.cs)：面板声明、引用、按钮订阅、属性/技能刷新、生命摘要与失败处理。
-- [UI.unity](D:/myspace/Git/mygame/Assets/Scenes/UI.unity)：Canvas、面板、BaseSkills、按钮/文本与字段绑定。
-- [UnitDetails SDF.asset](<D:/myspace/Git/mygame/Assets/GameData/UI/UnitDetails SDF.asset>)、[UnitDetails.ttf](D:/myspace/Git/mygame/Assets/GameData/UI/UnitDetails.ttf)：字体资源。
-- [GameManager.cs](D:/myspace/Git/mygame/Assets/Script/GameManager.cs)、[DebugPanel.cs](D:/myspace/Git/mygame/Assets/Script/Debug/DebugPanel.cs)：启动接线和旧调试显示协作。
-- [CharacterMovementController.cs](D:/myspace/Git/mygame/Assets/Script/Player/CharacterMovementController.cs)、[SkillSelectionController.cs](D:/myspace/Git/mygame/Assets/Script/Player/SkillSelectionController.cs)、[GridClickInput.cs](D:/myspace/Git/mygame/Assets/Script/Player/GridClickInput.cs)：选择状态、互斥与地图输入清理。
-- [Assembly-CSharp.csproj](D:/myspace/Git/mygame/Assembly-CSharp.csproj)：运行程序集成员和 Unity.TextMeshPro 引用依据。
+## 实现定位
 
-当前面板除姓名与三项属性外，还提供技能选择与生命摘要，但没有通用多技能菜单、任意查看对象选择、独立目标预览确认页，也没有生命变化的操作入口。四个技能按钮当前都指向同一待机动作，属于槽位验证而非正式构筑。装配上要求技能按钮与标签数量一致、按钮上存在 Image 背景，否则刷新会索引越界或取色失败；这些是当前场景满足、代码未兜底的前提。
+| 源码或资产 | 主要定位 |
+| --- | --- |
+| [UnitDetailsPanel.cs](D:/myspace/Git/mygame/Assets/Script/UI/UnitDetailsPanel.cs) | 绑定、监听、Refresh、生命扫描与按钮 |
+| [UI.unity](D:/myspace/Git/mygame/Assets/Scenes/UI.unity) | UnitDetailsCanvas、面板与字段绑定 |
+| [UnitDetails SDF.asset](<D:/myspace/Git/mygame/Assets/GameData/UI/UnitDetails SDF.asset>) | TMP 字体资产 |
+| [UnitDetails.ttf](D:/myspace/Git/mygame/Assets/GameData/UI/UnitDetails.ttf) | 字体资源 |
+| [GameManager.cs](D:/myspace/Git/mygame/Assets/Script/GameManager.cs) | 面板绑定时序 |
+| [DebugPanel.cs](D:/myspace/Git/mygame/Assets/Script/Debug/DebugPanel.cs) | 属性详情切换、缩放及遮挡区域 |
+| [CharacterMovementController.cs](D:/myspace/Git/mygame/Assets/Script/Player/CharacterMovementController.cs) | 移动选择 |
+| [SkillSelectionController.cs](D:/myspace/Git/mygame/Assets/Script/Player/SkillSelectionController.cs) | 技能选择与确认 |
 
-接口和场景绑定已静态核对；本轮没有运行编辑器验证脚本或游戏，也不把工程中已有验证脚本的存在当作验证通过。
+核对依据为上述提交的源码、工程配置与静态资产。文档状态表示所述实现已完成对照；编译、播放、画面与交互的运行验证属于独立验证范围。

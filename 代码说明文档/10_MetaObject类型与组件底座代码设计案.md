@@ -1,60 +1,69 @@
 # MetaObject 类型与组件底座代码设计案
 
-MetaObject 四个核心类型将共享配置、运行对象、组件配置与运行组件分开。它们提供动作派生体系复用的对象构成和生命周期底座，使角色与动作都能从配置建立各自的运行组件，而不把全部能力塞进同一个类。
+元对象底座将共享配置与个体状态分开：定义资产描述组件清单，运行实例持有各自组件与对象内部消息订阅。它统一处理挂载、场景绑定、卸载和释放，让坐标、属性、量表与动作容器按相同生命周期协作。
 
 | 项目 | 内容 |
 | --- | --- |
-| 解释范围 | Assembly-CSharp，全局命名空间；MetaObjectDefinition、MetaObjectInstance、MetaObjectComponentDefinition、MetaObjectComponent，以及嵌套订阅记录 |
-| 源码依据 | `Assets/Script/MetaObjects/MetaObject*.cs`；CreateInstance、AddComponent、Attach/Bind/Detach、Publish、Dispose |
-| 核对基线 | 工程 7362b95addd908be4f96110c2c51ad0300af8e58；2026-10-27；底座脚本无未提交差异；量表组件由该提交收录 |
+| 解释范围 | Assembly-CSharp，全局命名空间；MetaObjectDefinition、MetaObjectInstance、MetaObjectComponentDefinition、MetaObjectComponent 的工厂、组件归属与同步消息 |
+| 源码依据 | MetaObjectDefinition.CreateInstance；MetaObjectInstance.AddComponent/RemoveComponent/Publish/Dispose；MetaObjectComponent.Attach/Bind/Unbind/Detach；文件入口见文末实现定位 |
+| 核对基线 | 工程提交 `65c2ff5e40cec060988b74091e189e09fdaa9e13`；2026-10-29 核对时工程工作区干净 |
 | 关联设计 | [元对象与组件 §4.1](../系统设计文档/01-通用系统/30_元对象与组件设计补充说明.md)、[架构设计案 §5、§7.11](../架构设计文档/架构设计案.md) |
-| 状态 | 已核对：结构与源码行为 |
-| 更新日期 | 2026-10-27 |
+| 状态 | 已核对：源码声明、调用链与静态资产绑定 |
+| 更新日期 | 2026-10-29 |
 
-## 类层级与组合
+## 类型归属与持有关系
 
-| 声明类型 | 直接基类或接口 | 持有内容与主要职责 |
+这些类型均由 `Assembly-CSharp.csproj` 收入运行程序集。`MetaObjectDefinition` 继承 ScriptableObject，保存标识、显示名与 SerializeReference 组件定义清单。`MetaObjectComponentDefinition` 是可序列化抽象配置类，通过抽象方法 `CreateComponent` 创建组件。
+
+`MetaObjectInstance` 是普通 C# 类，持有“具体 Type → MetaObjectComponent”的字典和私有消息订阅。`MetaObjectComponent` 是普通 C# 抽象基类，保存 Owner 与 Preset 引用。配置资产共享；每次工厂调用建立独立运行实例与组件。
+
+`MetaObjectId` 表示定义标识；`RuntimeId` 在运行实例创建时生成 Guid 的 N 格式字符串，区分使用相同定义的多个角色或动作。Router 报文以 RuntimeId 引用运行个体，并携带定义标识供读取。
+
+## 定义创建与组件挂载
+
+`MetaObjectDefinition.CreateInstance` 先调用可重写的 `CreateRuntime`，再按清单创建并挂载组件。普通定义产生 MetaObjectInstance，动作定义通过派生工厂产生 MetaActionInstance。配置侧的 `IsActionComponent` 与定义侧的 `IsActionDefinition` 需要一致；运行挂载还按 `component is MetaActionComponent` 与实例 IsAction 复核归属。
+
+空配置项记录警告并跳过，工厂返回空组件时记录错误并跳过。创建或挂载抛异常时，定义工厂释放已经建立的实例并向上传播异常。清单为空时可以形成空实例，因此业务可用性由具体入口继续核对。
+
+`AddComponent` 使用实际具体类型作为键。相同组件实例重复添加时返回 false 并保持生命周期；相同具体类型的另一实例进入时先移出和 Detach 前一组件，再挂载新组件，返回 false；新增类型返回 true。组件正在归属另一元对象、实例正在 Dispose、挂载回调重入相同类型时抛异常。挂载回调失败会移出该组件并执行 Detach；已完成的卸载结果保留。
+
+查询 `GetComponent<T>`、`TryGetComponent<T>` 和 `HasComponent<T>` 按 typeof(T) 精确匹配。动作实例在读取构造器时另行使用类型筛选，具体校验见 [30 动作专题](30_MetaAction派生类型与动作组件代码设计案.md)。
+
+## 生命周期与资源清理
+
+| 底座入口 | 回调与可用状态 | 责任 |
 | --- | --- | --- |
-| MetaObjectDefinition | UnityEngine.ScriptableObject | 共享静态资产，持有 MetaObjectComponentDefinition 清单和识别信息；派生类为 MetaActionDefinition |
-| MetaObjectComponentDefinition | 普通抽象类，隐式 System.Object | 定义 CreateComponent 工厂；对象配置与动作配置均从它派生，不是运行组件；技能槽与量表的配置也派生于此 |
-| MetaObjectInstance | 普通类，隐式 System.Object | 按具体 Type 持有 MetaObjectComponent 字典，另持有订阅表；派生类为 MetaActionInstance |
-| MetaObjectComponent | 普通抽象类，隐式 System.Object | 保存 Owner 和 Preset 引用，提供生命周期钩子与受保护的对象内消息入口 |
-| MetaObjectInstance.MessageSubscription | 私有嵌套类 | 由实例订阅表持有，记录订阅组件、委托和有效标记；不是另一个可挂载组件 |
+| Attach | 先设置 Owner，再 OnAttached | 建立组件归属与对象内部订阅 |
+| Bind | 必要时先 Unbind，再设置 Preset 并 OnBind | 将运行组件连接到场景承载 |
+| Unbind | OnUnbind，finally 清空 Preset | 释放场景关联，保留组件归属 |
+| Detach | 停用该组件的全部订阅，Unbind、OnDetached，finally 清空 Owner | 解除场景与对象归属，处理派生资源 |
 
-MetaObjectInstance 与 MetaObjectComponent 是组合关系，二者互不继承；组件的 Owner 是归属引用。MetaObjectComponentDefinition.CreateComponent 创建运行组件，两类对象也互不继承。MetaObjectDefinition.CreateInstance 创建 MetaObjectInstance，定义资产不是运行实例本身。组件实际族与场景承载见[对象侧类型](20_对象组件与场景承载类型代码设计案.md)，动作派生见[MetaAction 类型](30_MetaAction派生类型与动作组件代码设计案.md)。
+`RemoveComponent<T>` 先从字典移出组件，再执行 Detach；正在挂载的同类型受重入保护。`UnbindAll` 使用组件快照，逐项解除场景绑定。`Dispose` 先清空组件字典并停用全部订阅，再遍历组件执行 Detach；各组件异常集中为 AggregateException，让清理覆盖完整快照。清理期间的递归 Dispose 直接返回。
 
-## 创建与方法归属
+组件的状态保留策略取决于各自回调：属性在解绑时保留来源修正、卸载时清空；量表在解绑时保留值、卸载时清空外部监听；动作容器在解绑时终止所持动作；纹理组件解绑时释放显示实例。场景承载的创建与重建责任见 [20 场景专题](20_对象组件与场景承载类型代码设计案.md)。
 
-| 关键方法的声明类 | 调用方与下游 | 行为及结构地位 |
-| --- | --- | --- |
-| MetaObjectDefinition.CreateInstance | MetaObjectPreset、ActionHolderComponent → CreateRuntime、各配置 CreateComponent、实例 AddComponent | 共享的完整创建入口；派生动作定义继承此方法 |
-| MetaObjectDefinition.CreateRuntime | CreateInstance；MetaActionDefinition 重写 | 默认创建普通对象，派生工厂改为动作实例 |
-| MetaObjectComponentDefinition.CreateComponent | CreateInstance 调用；各具体配置重写 | 把静态配置变成独立运行组件 |
-| MetaObjectInstance.AddComponent / RemoveComponent | 定义创建或运行期调用方 → 组件 Attach/Detach | 按具体类型维护唯一组件；这些方法被动作实例继承 |
-| MetaObjectComponent.Attach / Bind / Unbind / Detach | 实例或场景承载 → OnAttached/OnBind/OnUnbind/OnDetached | 非虚内部调度入口调用受保护虚钩子；具体组件重写钩子 |
-| MetaObjectInstance.Dispose | 场景承载；MetaActionInstance 重写后调用 base | 整体释放组合组件和订阅 |
+## 对象内部消息
 
-CreateInstance 按组件配置逐项创建：空配置或空返回记录后跳过；配置侧别不匹配、创建或挂载抛异常会释放已建实例并抛出。IsActionDefinition 是定义侧虚属性，IsActionComponent 是配置侧判别；运行实例还以 IsAction 和实际组件是否为 MetaActionComponent 检查侧别。双方检查使动作组件与角色对象组件不能混挂。
+组件通过受保护的 Publish、Subscribe、Unsubscribe 调用 Owner 的内部方法。订阅与发布要求组件同时满足 Owner 引用和字典成员身份，订阅委托需要有效。同一组件的同一委托重复注册返回 false。
 
-AddComponent 按实际具体类型替换。同一组件重复添加不触发钩子；替换时先卸载旧组件，挂载新组件失败会移除并清理新组件，旧组件不会自动回滚恢复。拒绝清理中挂载、组件跨对象同时归属和同类型挂载回调重入。查询 GetComponent/TryGetComponent 按具体 T 精确取值，不会自动按抽象基类检索所有派生组件。
+发布按消息泛型 T 精确匹配，按订阅顺序同步执行当前订阅快照。新增订阅从下一次发布参与；取消或卸载使快照中的订阅立即失效。嵌套发布使用各自快照。处理器异常逐个记录到 Unity 日志，其余有效处理器继续执行，已经发生的业务修改保留。
 
-## 组件生命周期与场景边界
+`CellChanged` 与 `MovementCompleted` 是对象内部通知；前者说明坐标改变，后者说明主动移动完成。`MovementFacingComponent` 订阅主动移动通知并更新显示朝向。消息通道的寻址范围是当前 Owner；跨动作执行使用 [90 报文路由专题](90_ActionRouterManager与键值报文执行代码设计案.md) 的 Router 入口。
 
-Attach 先赋 Owner 再调用 OnAttached。Bind 赋 Preset 后调用 OnBind，切换承载时先 Unbind；Unbind 在 finally 清掉 Preset。Detach 在回调前后取消该组件的全部订阅，并保证 Owner 清空。对象整体 Dispose 先清空构成与订阅，再逐项卸载，收集清理异常后统一抛出。
+## 数据范围
 
-实例的 AddComponent 只挂载，不知道场景承载；运行期新增组件不自动完成 Bind。MetaObjectPreset 在 TryBind 遍历实例当前组件补做场景绑定，详见[场景承载](20_对象组件与场景承载类型代码设计案.md)。因此“组件已在字典中”和“组件已绑定到场景”是不同状态。
+底座的字典、组件实例、运行 ID 和订阅属于运行状态。共享定义保存创建输入，场景承载持有运行实例；持久化流程需要以实际保存入口为依据。本专题覆盖工厂、组件归属、同步通知和清理。
 
-## 对象内通信的声明与协作
+## 实现定位
 
-具体组件调用的 Publish/Subscribe/Unsubscribe 声明在 MetaObjectComponent，随后转发给 Owner 的内部泛型方法。实际订阅表属于 MetaObjectInstance，不属于全局事件总线；未挂载组件无法发布或订阅。
+| 源码或资产 | 主要定位 |
+| --- | --- |
+| [MetaObjectDefinition.cs](D:/myspace/Git/mygame/Assets/Script/MetaObjects/MetaObjectDefinition.cs) | CreateInstance、CreateRuntime、OnValidate |
+| [MetaObjectInstance.cs](D:/myspace/Git/mygame/Assets/Script/MetaObjects/MetaObjectInstance.cs) | RuntimeId、组件字典、消息分发与 Dispose |
+| [MetaObjectComponentDefinition.cs](D:/myspace/Git/mygame/Assets/Script/MetaObjects/MetaObjectComponentDefinition.cs) | CreateComponent 工厂约定 |
+| [MetaObjectComponent.cs](D:/myspace/Git/mygame/Assets/Script/MetaObjects/MetaObjectComponent.cs) | 生命周期入口与通信封装 |
+| [CellChanged.cs](D:/myspace/Git/mygame/Assets/Script/MetaObjects/CellChanged.cs) | 坐标变化载荷 |
+| [MovementCompleted.cs](D:/myspace/Git/mygame/Assets/Script/MetaObjects/MovementCompleted.cs) | 主动移动载荷 |
+| [Assembly-CSharp.csproj](D:/myspace/Git/mygame/Assembly-CSharp.csproj) | 程序集 Compile 依据 |
 
-消息按精确类型同步执行订阅快照，不自动向基类或接口分发，也不缓存重放。一次发布期间新增订阅下次才收到，已取消或卸载项立即失效。单个处理器抛错被记录，其他处理器继续；此前的业务修改不回滚。解绑保留对象内订阅，卸载自动清除；依赖场景的处理器须检查绑定状态。
-
-## 源码定位与边界
-
-- [MetaObjectDefinition.cs](D:/myspace/Git/mygame/Assets/Script/MetaObjects/MetaObjectDefinition.cs)：定义资产、创建模板和失败清理。
-- [MetaObjectComponentDefinition.cs](D:/myspace/Git/mygame/Assets/Script/MetaObjects/MetaObjectComponentDefinition.cs)：组件配置基类及工厂声明。
-- [MetaObjectInstance.cs](D:/myspace/Git/mygame/Assets/Script/MetaObjects/MetaObjectInstance.cs)：组件组合、消息记录、精确类型查询和整体释放。
-- [MetaObjectComponent.cs](D:/myspace/Git/mygame/Assets/Script/MetaObjects/MetaObjectComponent.cs)：Owner/Preset 归属与生命周期钩子。
-
-该底座没有提供实例存档、全局组件注册表或跨对象消息寻址。架构要求的强制注册与公共服务不能仅由本地字典机制证明已经落实；说明对当前结构的核对不代表这些设计要求已验收。
+核对依据为上述提交的源码、工程配置与静态资产。文档状态表示所述实现已完成对照；编译、播放、画面与交互的运行验证属于独立验证范围。

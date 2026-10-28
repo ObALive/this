@@ -1,58 +1,58 @@
 # 代码说明文档库
 
-本库以现有程序集、类和关键方法为解释对象，说明代码怎样组成、归属、派生和协作，以及这些结构怎样实现对象显示、属性与量表、技能槽与待机、移动选择、单位详情与共享时间轴。各类型的主要说明位置固定在下表；继承、组件持有、配置引用和方法调用分别标明。文档描述当前源码事实，不承担新增能力或替代码作技术决定的职责。
+本库解释工程中的元对象、角色组件、元动作、键值报文、场景执行器、时间轴、移动输入与底部 UI。说明以实际程序集、类型和关键方法为定位单位，分别表达继承、组件持有、资产引用和调用关系；功能行为以源码及静态资产为依据。
 
-## 阅读入口与覆盖范围
+| 项目 | 内容 |
+| --- | --- |
+| 本任务区 | D:/myspace/Git/this/ |
+| 工程目录 | [D:/myspace/Git/mygame/](D:/myspace/Git/mygame) |
+| 核对基线 | 工程提交 `65c2ff5e40cec060988b74091e189e09fdaa9e13`；核对时工程工作区干净 |
+| 核对方式 | 源码声明、工程 Compile/Reference、关键调用链与场景/资产序列化接线 |
+| 状态 | 已核对：各专题声明的源码与静态资产范围 |
+| 更新日期 | 2026-10-29 |
 
-从[程序集与类型关系总览](00_程序集与类型关系总览代码设计案.md)开始，可看到整体派生树与持有关系。理解动作执行时，先读[动作派生类型](30_MetaAction派生类型与动作组件代码设计案.md)，再读[生命周期执行器](40_MetaActionLifecycle统一执行入口代码设计案.md)，最后读[时间轴](50_TimeLineManager与战斗装配类型代码设计案.md)；理解角色对象侧能力时，先读[对象底座](10_MetaObject类型与组件底座代码设计案.md)与[对象组件](20_对象组件与场景承载类型代码设计案.md)，再按需读[量表](75_量表组件与生命显示代码设计案.md)与[技能槽](80_基础技能槽与待机动作代码设计案.md)；追踪玩家操作先读[地图与移动适配](60_地图与移动适配类型代码设计案.md)，最后读[单位详情面板](70_UnitDetailsPanel与移动选择界面代码设计案.md)。
+## 阅读入口
 
-覆盖范围是执行开始时全部已实现功能所涉及的对象、组件、动作、调度、移动、属性、量表与界面实现，以及解释所需的前置协作者；不含工程全部脚本，也不把未实现条目写成现有能力。各功能与说明位置的对应如下。
-
-| 已实现功能 | 主要说明位置 | 覆盖结论 |
-| --- | --- | --- |
-| 共享时间轴调度与行动回排 | [时间轴与战斗装配](50_TimeLineManager与战斗装配类型代码设计案.md)、[生命周期执行器](40_MetaActionLifecycle统一执行入口代码设计案.md) | 部分实现：机会授予、成功回排、同刻顺序与固定后摇已实现；速度补正未接入 |
-| 制作元动作 | [动作派生类型](30_MetaAction派生类型与动作组件代码设计案.md)、[生命周期执行器](40_MetaActionLifecycle统一执行入口代码设计案.md) | 已覆盖：定义/实例派生、组件树与统一执行入口 |
-| 待机动作与四槽技能容器 | [技能槽与待机动作](80_基础技能槽与待机动作代码设计案.md)、[单位详情面板](70_UnitDetailsPanel与移动选择界面代码设计案.md) | 部分实现：四槽、指向性、待机确认与回排成立；移动未纳入槽位，地格槽无配置实例 |
-| 制作元对象和相关组件约定 | [对象底座](10_MetaObject类型与组件底座代码设计案.md)、[对象组件](20_对象组件与场景承载类型代码设计案.md) | 已覆盖：定义/实例、组件生命周期与场景承载 |
-| 点击地格移动 | [地图与移动适配](60_地图与移动适配类型代码设计案.md) | 已覆盖：选择门槛、点击确认、动作受理与结果映射 |
-| 高亮渲染可移动的地格 | [地图与移动适配](60_地图与移动适配类型代码设计案.md) | 已覆盖：范围派生、覆盖层绘制与清理；最终观感未运行验证 |
-| 固定属性 | [对象组件](20_对象组件与场景承载类型代码设计案.md) | 部分实现：三项基础值、来源修正与详情读取成立；力量投掷与行动延迟未接线 |
-| 动态属性血量 | [量表与生命显示](75_量表组件与生命显示代码设计案.md)、[单位详情面板](70_UnitDetailsPanel与移动选择界面代码设计案.md) | 部分实现：量表与底部显示成立；伤害/恢复来源与生命状态未实现 |
-| 单位详情基础 UI | [单位详情面板](70_UnitDetailsPanel与移动选择界面代码设计案.md) | 已覆盖：属性、移动与技能按钮、生命摘要、提示与取消；实际画面未运行验证 |
+先读 [00 程序集与类型关系总览](00_程序集与类型关系总览代码设计案.md) 了解类型和持有结构。角色数据沿“对象底座 → 场景组件 → 量表”阅读；动作执行沿“动作构造 → 槽位发送 → 报文路由 → 生命周期 → 时间轴”阅读；玩家操作沿“面板选择 → 地图输入与范围 → 槽位执行”追踪。
 
 ## 文档索引
 
-| 编号 | 文档 | 解释对象 |
-| --- | --- | --- |
-| 00 | [程序集与类型关系总览](00_程序集与类型关系总览代码设计案.md) | 程序集归属、继承与持有骨架、统一入口与界面关系 |
-| 10 | [MetaObject 类型与组件底座](10_MetaObject类型与组件底座代码设计案.md) | 定义、实例、组件配置与运行组件、对象内消息 |
-| 20 | [对象组件与场景承载类型](20_对象组件与场景承载类型代码设计案.md) | MetaObjectPreset、坐标/纹理/转向/属性/量表/技能槽、静态装配 |
-| 30 | [MetaAction 派生类型与动作组件](30_MetaAction派生类型与动作组件代码设计案.md) | 动作派生、目标/后摇/效果组件、指向性与两种持有组件 |
-| 40 | [MetaActionLifecycle 统一执行入口](40_MetaActionLifecycle统一执行入口代码设计案.md) | 同步执行、生效、完成/拒绝/异常/终止的阶段交接 |
-| 50 | [TimeLineManager 与战斗装配类型](50_TimeLineManager与战斗装配类型代码设计案.md) | 行动标记、机会、回排、启动装配与调试 |
-| 60 | [地图与移动适配类型](60_地图与移动适配类型代码设计案.md) | 地图转换、选格输入、移动选择、范围与高亮 |
-| 70 | [UnitDetailsPanel 与移动选择界面](70_UnitDetailsPanel与移动选择界面代码设计案.md) | 详情显示、移动/技能按钮、生命摘要与场景绑定 |
-| 75 | [量表组件与生命显示](75_量表组件与生命显示代码设计案.md) | MetaObjectMeterComponent、数值入口、全场生命摘要 |
-| 80 | [基础技能槽与待机动作](80_基础技能槽与待机动作代码设计案.md) | 四槽容器、技能选择适配器、待机效果与确认/取消 |
+表中运行类型均属于 Assembly-CSharp、全局命名空间；程序集依据由 00 专题说明。各行基线 `65c2ff5` 对应上表完整提交，状态“已核对”涵盖文内声明范围。关键入口的完整源码链接集中在各专题实现定位表。
 
-## 源码基线与文档状态
+| 编号与说明文件 | 主要类与解释功能 | 关键源码位置与入口 | 核对基线 | 状态 | 更新日期 |
+| --- | --- | --- | --- | --- | --- |
+| [00 程序集与类型关系总览](00_程序集与类型关系总览代码设计案.md) | 实际程序集、继承、组合与统一入口作用域 | [Assembly-CSharp.csproj](D:/myspace/Git/mygame/Assembly-CSharp.csproj)：Compile/Reference | 65c2ff5 | 已核对 | 2026-10-29 |
+| [10 MetaObject 类型与组件底座](10_MetaObject类型与组件底座代码设计案.md) | MetaObjectDefinition、MetaObjectInstance、MetaObjectComponent：工厂、归属、生命周期与对象内部消息 | [MetaObjectInstance.cs](D:/myspace/Git/mygame/Assets/Script/MetaObjects/MetaObjectInstance.cs)：AddComponent、Publish、Dispose | 65c2ff5 | 已核对 | 2026-10-29 |
+| [20 对象组件与场景承载](20_对象组件与场景承载类型代码设计案.md) | MetaObjectPreset、坐标、纹理、朝向、属性：绑定与状态来源 | [MetaObjectPreset.cs](D:/myspace/Git/mygame/Assets/Script/MetaObjects/MetaObjectPreset.cs)：TryBind、Rebuild；AttributeComponent.GetValue | 65c2ff5 | 已核对 | 2026-10-29 |
+| [30 MetaAction 派生与动作构造](30_MetaAction派生类型与动作组件代码设计案.md) | MetaActionDefinition/Instance、ActionPacketBuilder：动作实例、技能参数、指向性与后摇 | [ActionPacketBuilders.cs](D:/myspace/Git/mygame/Assets/Script/Battle/ActionPacketBuilders.cs)：Build、Validate；MetaActionInstance.ExecutePacket | 65c2ff5 | 已核对 | 2026-10-29 |
+| [40 MetaActionLifecycle 统一执行入口](40_MetaActionLifecycle统一执行入口代码设计案.md) | 每动作的开始、成功、拒绝、终止与异常 | [MetaActionLifecycle.cs](D:/myspace/Git/mygame/Assets/Script/Battle/MetaActionLifecycle.cs)：TryExecute、Terminate | 65c2ff5 | 已核对 | 2026-10-29 |
+| [50 TimeLineManager 与战斗装配](50_TimeLineManager与战斗装配类型代码设计案.md) | 标记、机会、回排、配置、启动、调试及相机跟随 | [BattleTimelineController.cs](D:/myspace/Git/mygame/Assets/Script/Battle/BattleTimelineController.cs)：TryStartBattle、StopBattle；TimeLineManager.CompleteAction | 65c2ff5 | 已核对 | 2026-10-29 |
+| [60 地图与移动适配](60_地图与移动适配类型代码设计案.md) | TilemapManager、MovementRange、GridClickInput、CharacterMovementController、覆盖层：范围与输入 | [CharacterMovementController.cs](D:/myspace/Git/mygame/Assets/Script/Player/CharacterMovementController.cs)：TryMoveToCell；MovementEffectExecutor.Execute | 65c2ff5 | 已核对 | 2026-10-29 |
+| [70 UnitDetailsPanel 与选择界面](70_UnitDetailsPanel与移动选择界面代码设计案.md) | 当前行动者、属性、按钮、生命摘要和静态 UI 接线 | [UnitDetailsPanel.cs](D:/myspace/Git/mygame/Assets/Script/UI/UnitDetailsPanel.cs)：BindTimeline、Refresh、RefreshHealth | 65c2ff5 | 已核对 | 2026-10-29 |
+| [75 量表与生命显示](75_量表组件与生命显示代码设计案.md) | MetaObjectMeterComponent、MeterComponent：通用区间数值与 Health 应用 | [MetaObjectMeterComponent.cs](D:/myspace/Git/mygame/Assets/Script/MetaObjects/MetaObjectMeterComponent.cs)：Modify、ValueChanged | 65c2ff5 | 已核对 | 2026-10-29 |
+| [80 基础技能槽与待机](80_基础技能槽与待机动作代码设计案.md) | BasicSkillSlotsComponent、ActionHolderComponent、SkillSelectionController：独占动作、选择与确认 | [BasicSkillSlotsComponent.cs](D:/myspace/Git/mygame/Assets/Script/MetaObjects/BasicSkillSlotsComponent.cs)：Prepare、TryExecute、Terminate | 65c2ff5 | 已核对 | 2026-10-29 |
+| [90 ActionRouterManager 与键值报文](90_ActionRouterManager与键值报文执行代码设计案.md) | ActionPacket、ActionPacketOutlet、Router、共享执行器与日志 | [ActionPackets.cs](D:/myspace/Git/mygame/Assets/Script/Battle/ActionPackets.cs)：Snapshot、Send；ActionRouterManager.Send | 65c2ff5 | 已核对 | 2026-10-29 |
 
-工程根目录为 [mygame](D:/myspace/Git/mygame)，核对提交为 `7362b95addd908be4f96110c2c51ad0300af8e58`，核对日期为 2026-10-27；工作区无未提交差异。该提交在技能槽工作之后收录了量表组件与界面改动：新增 `MetaObjects/MetaObjectMeterComponent.cs` 与 `Editor/MeterVerification.cs`，修改 `Player.asset`、`Unit_02_Timeline.asset`、`Unit_03_Timeline.asset`（追加量表配置）、`UI.unity`（增加生命摘要与 BaseSkills 容器、面板高度改为 236）、`UnitDetailsPanel.cs`（生命摘要）与两份 csproj。`PersistanceScene.unity` 同期还包含与本库功能无关的比例约束字段改动，未作为功能依据。
+## 功能覆盖与实际配置
 
-范围内共 31 份脚本、67 个声明类型（含嵌套类型），程序集归属通过当前工程的 AssemblyName、Compile 项与 ProjectReference 核对，不以目录名或架构模块推定；所列类型均在全局命名空间。另有被量表组件复用、但不计入上述清单的既有 `MeterComponent` 等物品侧类型，其位置在量表专题登记。工程文件是编辑器生成的配置证据，不能作为本轮编译通过的证据。
+| 功能 | 当前实现与主要说明 |
+| --- | --- |
+| 元对象与组件 | 定义创建独立实例，按具体类型挂载组件，统一处理场景绑定与清理，对象内部同步消息见 10、20 |
+| 固定属性 | 行动力、力量、行动速度的基础值与按来源修正见 20；行动力供移动范围查询 |
+| 通用量表与生命应用 | 上下限、可变值、增减钳位、变化通知见 75；三角色 Health 分别为 100/100、120/150、60/80 |
+| 元动作与技能参数 | 每动作一个报文构造器，保存目标指向性与后摇，动作实例持有独立生命周期，见 30、40 |
+| 四槽技能与待机 | 三角色四槽均引用待机定义，各槽独占运行实例；移动使用独立容器和按钮，见 80 |
+| 键值报文与效果执行 | 构造器生成参数，槽位补来源与目标，Router 按操作选择同物体执行器并记录请求和结果，见 90 |
+| 共享时间轴 | 初始时刻 0、1、2，成功后按行为固定后摇回排，同刻按配置顺序；移动和待机后摇均为 10 游戏秒，见 50 |
+| 点击地格移动 | 查询现存地格，以行动力非负整数部分限定曼哈顿距离；同格有效按松确认，经报文提交坐标，见 60 |
+| 范围高亮与反馈 | 独立 Tilemap 绘制可选格，按普通、悬停和按压反馈，取消或失效时清理，见 60 |
+| 底部详情与选择 | 当前行动者三项属性、独立移动和四技能按钮、全场生命摘要与提示，见 70 |
+| 相机跟随 | 虚拟相机跟随当前行动者，平面位移统一阻尼，表现读取时间轴结果，见 50 |
 
-各专题的“已核对”表示声明范围内的结构、源码行为与静态绑定已对照当前工程，未执行编译、自动测试、游戏播放或播放器构建；工程内存在的编辑期验证脚本只作定位，不作为验证通过依据。
+## 实现与验证边界
 
-## 当前能力边界
+行为调度以配置后摇计算回排时刻，行动速度的延迟补正属于未实现能力。移动范围依据地格存在性与曼哈顿距离，路径、阻挡、占用和累计地形成本结算属于算法范围以外的能力。地格技能槽具备查询和发送代码路径，当前静态槽配置为待机；该分支的实际交互核验需要对应槽配置与场景运行。
 
-对象与动作骨架已能承载角色显示、属性、量表、移动与待机，但当前实现有明确缺口，阅读时不应把结构存在当成能力完备。
+量表提供通用数值与显示，伤害、治疗、生命状态和死亡规则属于未实现能力。Router 日志覆盖实际进入 Send 且通过请求快照阶段的路由处理，记录在时间轴完成之前形成；配置或机会在发送前被拒绝时由动作结果和 LastError 表达。战局回放、撤回、因果链自动构建和所有游戏数据写入的强制路由均未实现，日志范围见 90。
 
-行动顺序使用固定行为后摇：移动与待机都是 10 游戏秒，行动速度可查询但未参与补正；零后摇合法，同刻按配置顺序，没有自动公平轮换。移动以地图现存地格和曼哈顿距离筛选目的格，行动力取非负整数部分；路径连通、阻碍、地格占用与累计地形成本尚未接入。
-
-技能槽固定四槽，当前三份角色都只填待机，四个按钮指向同一动作；地格指向技能的槽内分支只有代码路径，没有配置实例。移动仍是独立的持有组件与独立按钮，没有占用槽位，因此“把移动归入技能范畴”在统一动作协议上成立、在槽容器上不成立。
-
-量表的上下限与当前值可读写，底部摘要会列出全场带 `Health` 的量表；但运行代码中没有造成伤害或恢复的入口，也没有三档生命状态、伤势、击倒或死亡处理，量表当前值不进入存档。
-
-普通鼠标流程必须先选择移动或技能，才查询并高亮目的格；同格按下/松开确认，右键取消选择，成功、机会变化或对象失效后清理选择。选择只保存到场景适配器，不改变行动资格、属性或生命；直接方法调用与调试移动仍走动作校验，不要求先完成按钮选择。
-
-元动作在源码中由 MetaAction 系列类型表达，没有名为 MetaSkill 的单独类型；MetaActionLifecycle 是每动作实例持有的同步执行器，TimeLineManager 是参战者顺序与机会的管理者。动作实例可重复执行，未实现设计所述的“即时性效果实例生效后销毁”一次性实例层。
+“已核对”表示解释与所列源码和静态资产一致。编译、测试、游戏播放、字体显示、多分辨率布局和实际交互属于独立运行验证范围。正文中的设计链接提供业务背景，具体实现以源码入口及其当前调用关系为准。

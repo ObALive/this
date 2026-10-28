@@ -1,0 +1,1262 @@
+{
+  "date": "2026-10-29",
+  "documents": 12,
+  "linksChecked": 168,
+  "sourceFilesChecked": 41,
+  "projectBaselineHashFiles": 94,
+  "projectFilesChanged": [],
+  "projectGitStatus": "",
+  "issues": [
+    "not Compile: Assets/Script/Battle/ActionEffectExecutor.cs",
+    "not Compile: Assets/Script/Battle/ActionPacketBuilders.cs",
+    "not Compile: Assets/Script/Battle/ActionPackets.cs",
+    "not Compile: Assets/Script/Battle/ActionRouterManager.cs",
+    "not Compile: Assets/Script/Battle/BattleBehaviorDefinition.cs",
+    "not Compile: Assets/Script/Battle/BattleTimelineConfiguration.cs",
+    "not Compile: Assets/Script/Battle/BattleTimelineController.cs",
+    "not Compile: Assets/Script/Battle/CinemachinePlanarFollow.cs",
+    "not Compile: Assets/Script/Battle/CurrentActorCameraFollow.cs",
+    "not Compile: Assets/Script/Battle/MetaActionComponents.cs",
+    "not Compile: Assets/Script/Battle/MetaActionDefinition.cs",
+    "not Compile: Assets/Script/Battle/MetaActionInstance.cs",
+    "not Compile: Assets/Script/Battle/MetaActionLifecycle.cs",
+    "not Compile: Assets/Script/Battle/MovementEffectExecutor.cs",
+    "not Compile: Assets/Script/Battle/TimeLineManager.cs",
+    "not Compile: Assets/Script/Battle/WaitEffectExecutor.cs",
+    "not Compile: Assets/Script/Components/ItemComponent.cs",
+    "not Compile: Assets/Script/Components/MeterComponentData_SO.cs",
+    "not Compile: Assets/Script/Debug/DebugPanel.cs",
+    "not Compile: Assets/Script/GameManager.cs",
+    "not Compile: Assets/Script/MetaObjects/AttributeComponent.cs",
+    "not Compile: Assets/Script/MetaObjects/BasicSkillSlotsComponent.cs",
+    "not Compile: Assets/Script/MetaObjects/CellChanged.cs",
+    "not Compile: Assets/Script/MetaObjects/MetaObjectComponent.cs",
+    "not Compile: Assets/Script/MetaObjects/MetaObjectComponentDefinition.cs",
+    "not Compile: Assets/Script/MetaObjects/MetaObjectDefinition.cs",
+    "not Compile: Assets/Script/MetaObjects/MetaObjectInstance.cs",
+    "not Compile: Assets/Script/MetaObjects/MetaObjectMeterComponent.cs",
+    "not Compile: Assets/Script/MetaObjects/MetaObjectPreset.cs",
+    "not Compile: Assets/Script/MetaObjects/MovementActionComponent.cs",
+    "not Compile: Assets/Script/MetaObjects/MovementCompleted.cs",
+    "not Compile: Assets/Script/MetaObjects/MovementFacingComponent.cs",
+    "not Compile: Assets/Script/MetaObjects/SceneCoordinateComponent.cs",
+    "not Compile: Assets/Script/MetaObjects/SceneTextureComponent.cs",
+    "not Compile: Assets/Script/Player/CharacterMovementController.cs",
+    "not Compile: Assets/Script/Player/GridClickInput.cs",
+    "not Compile: Assets/Script/Player/MovementRange.cs",
+    "not Compile: Assets/Script/Player/MovementRangeOverlay.cs",
+    "not Compile: Assets/Script/Player/SkillSelectionController.cs",
+    "not Compile: Assets/Script/TilemapManager.cs",
+    "not Compile: Assets/Script/UI/UnitDetailsPanel.cs"
+  ],
+  "links": [
+    {
+      "document": "00_程序集与类型关系总览代码设计案.md",
+      "target": "../架构设计文档/架构设计案.md",
+      "exists": true
+    },
+    {
+      "document": "00_程序集与类型关系总览代码设计案.md",
+      "target": "10_MetaObject类型与组件底座代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "00_程序集与类型关系总览代码设计案.md",
+      "target": "20_对象组件与场景承载类型代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "00_程序集与类型关系总览代码设计案.md",
+      "target": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "00_程序集与类型关系总览代码设计案.md",
+      "target": "40_MetaActionLifecycle统一执行入口代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "00_程序集与类型关系总览代码设计案.md",
+      "target": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "00_程序集与类型关系总览代码设计案.md",
+      "target": "60_地图与移动适配类型代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "00_程序集与类型关系总览代码设计案.md",
+      "target": "70_UnitDetailsPanel与移动选择界面代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "00_程序集与类型关系总览代码设计案.md",
+      "target": "75_量表组件与生命显示代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "00_程序集与类型关系总览代码设计案.md",
+      "target": "80_基础技能槽与待机动作代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "00_程序集与类型关系总览代码设计案.md",
+      "target": "90_ActionRouterManager与键值报文执行代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "00_程序集与类型关系总览代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assembly-CSharp.csproj",
+      "exists": true
+    },
+    {
+      "document": "00_程序集与类型关系总览代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assembly-CSharp-Editor.csproj",
+      "exists": true
+    },
+    {
+      "document": "00_程序集与类型关系总览代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/MetaObjects/MetaObjectDefinition.cs",
+      "exists": true
+    },
+    {
+      "document": "00_程序集与类型关系总览代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/ActionPackets.cs",
+      "exists": true
+    },
+    {
+      "document": "00_程序集与类型关系总览代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/ActionRouterManager.cs",
+      "exists": true
+    },
+    {
+      "document": "00_程序集与类型关系总览代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Scenes/PersistanceScene.unity",
+      "exists": true
+    },
+    {
+      "document": "10_MetaObject类型与组件底座代码设计案.md",
+      "target": "../系统设计文档/01-通用系统/30_元对象与组件设计补充说明.md",
+      "exists": true
+    },
+    {
+      "document": "10_MetaObject类型与组件底座代码设计案.md",
+      "target": "../架构设计文档/架构设计案.md",
+      "exists": true
+    },
+    {
+      "document": "10_MetaObject类型与组件底座代码设计案.md",
+      "target": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "10_MetaObject类型与组件底座代码设计案.md",
+      "target": "20_对象组件与场景承载类型代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "10_MetaObject类型与组件底座代码设计案.md",
+      "target": "90_ActionRouterManager与键值报文执行代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "10_MetaObject类型与组件底座代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/MetaObjects/MetaObjectDefinition.cs",
+      "exists": true
+    },
+    {
+      "document": "10_MetaObject类型与组件底座代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/MetaObjects/MetaObjectInstance.cs",
+      "exists": true
+    },
+    {
+      "document": "10_MetaObject类型与组件底座代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/MetaObjects/MetaObjectComponentDefinition.cs",
+      "exists": true
+    },
+    {
+      "document": "10_MetaObject类型与组件底座代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/MetaObjects/MetaObjectComponent.cs",
+      "exists": true
+    },
+    {
+      "document": "10_MetaObject类型与组件底座代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/MetaObjects/CellChanged.cs",
+      "exists": true
+    },
+    {
+      "document": "10_MetaObject类型与组件底座代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/MetaObjects/MovementCompleted.cs",
+      "exists": true
+    },
+    {
+      "document": "10_MetaObject类型与组件底座代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assembly-CSharp.csproj",
+      "exists": true
+    },
+    {
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "target": "../系统设计文档/01-通用系统/30_元对象与组件设计补充说明.md",
+      "exists": true
+    },
+    {
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "target": "../系统设计文档/06-战斗/10-战斗总览/10_角色属性表.csv",
+      "exists": true
+    },
+    {
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "target": "80_基础技能槽与待机动作代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "target": "75_量表组件与生命显示代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/MetaObjects/MetaObjectPreset.cs",
+      "exists": true
+    },
+    {
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/MetaObjects/SceneCoordinateComponent.cs",
+      "exists": true
+    },
+    {
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/MetaObjects/SceneTextureComponent.cs",
+      "exists": true
+    },
+    {
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/MetaObjects/MovementFacingComponent.cs",
+      "exists": true
+    },
+    {
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/MetaObjects/AttributeComponent.cs",
+      "exists": true
+    },
+    {
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/GameData/MetaObjects/Player.asset",
+      "exists": true
+    },
+    {
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/GameData/Battle/Unit_02_Timeline.asset",
+      "exists": true
+    },
+    {
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/GameData/Battle/Unit_03_Timeline.asset",
+      "exists": true
+    },
+    {
+      "document": "20_对象组件与场景承载类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Scenes/PersistanceScene.unity",
+      "exists": true
+    },
+    {
+      "document": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "target": "../系统设计文档/01-通用系统/70-元动作/70_元动作设计补充说明.md",
+      "exists": true
+    },
+    {
+      "document": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "target": "90_ActionRouterManager与键值报文执行代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "target": "40_MetaActionLifecycle统一执行入口代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/MetaActionDefinition.cs",
+      "exists": true
+    },
+    {
+      "document": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/MetaActionInstance.cs",
+      "exists": true
+    },
+    {
+      "document": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/MetaActionComponents.cs",
+      "exists": true
+    },
+    {
+      "document": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/ActionPacketBuilders.cs",
+      "exists": true
+    },
+    {
+      "document": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/ActionPackets.cs",
+      "exists": true
+    },
+    {
+      "document": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/GameData/Battle/MovementAction.asset",
+      "exists": true
+    },
+    {
+      "document": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/GameData/Battle/WaitAction.asset",
+      "exists": true
+    },
+    {
+      "document": "40_MetaActionLifecycle统一执行入口代码设计案.md",
+      "target": "../系统设计文档/01-通用系统/70-元动作/70_元动作设计补充说明.md",
+      "exists": true
+    },
+    {
+      "document": "40_MetaActionLifecycle统一执行入口代码设计案.md",
+      "target": "90_ActionRouterManager与键值报文执行代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "40_MetaActionLifecycle统一执行入口代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/MetaActionLifecycle.cs",
+      "exists": true
+    },
+    {
+      "document": "40_MetaActionLifecycle统一执行入口代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/MetaActionInstance.cs",
+      "exists": true
+    },
+    {
+      "document": "40_MetaActionLifecycle统一执行入口代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/TimeLineManager.cs",
+      "exists": true
+    },
+    {
+      "document": "40_MetaActionLifecycle统一执行入口代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/ActionPackets.cs",
+      "exists": true
+    },
+    {
+      "document": "40_MetaActionLifecycle统一执行入口代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/ActionRouterManager.cs",
+      "exists": true
+    },
+    {
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "target": "../系统设计文档/06-战斗/20-时间轴与行动顺序/20_时间轴与行动顺序设计.md",
+      "exists": true
+    },
+    {
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "target": "../架构设计文档/架构设计案.md",
+      "exists": true
+    },
+    {
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "target": "90_ActionRouterManager与键值报文执行代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/TimeLineManager.cs",
+      "exists": true
+    },
+    {
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/BattleTimelineController.cs",
+      "exists": true
+    },
+    {
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/BattleTimelineConfiguration.cs",
+      "exists": true
+    },
+    {
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/BattleBehaviorDefinition.cs",
+      "exists": true
+    },
+    {
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/GameManager.cs",
+      "exists": true
+    },
+    {
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/CurrentActorCameraFollow.cs",
+      "exists": true
+    },
+    {
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/CinemachinePlanarFollow.cs",
+      "exists": true
+    },
+    {
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Debug/DebugPanel.cs",
+      "exists": true
+    },
+    {
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/GameData/Battle/DemoTimeline.asset",
+      "exists": true
+    },
+    {
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/GameData/Battle/MovementTiming.asset",
+      "exists": true
+    },
+    {
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/GameData/Battle/WaitTiming.asset",
+      "exists": true
+    },
+    {
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Scenes/PersistanceScene.unity",
+      "exists": true
+    },
+    {
+      "document": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/ProjectSettings/EditorBuildSettings.asset",
+      "exists": true
+    },
+    {
+      "document": "60_地图与移动适配类型代码设计案.md",
+      "target": "../系统设计文档/06-战斗/30-战场与战棋规则/30_战场与战棋规则设计.md",
+      "exists": true
+    },
+    {
+      "document": "60_地图与移动适配类型代码设计案.md",
+      "target": "../架构设计文档/架构设计案.md",
+      "exists": true
+    },
+    {
+      "document": "60_地图与移动适配类型代码设计案.md",
+      "target": "20_对象组件与场景承载类型代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "60_地图与移动适配类型代码设计案.md",
+      "target": "40_MetaActionLifecycle统一执行入口代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "60_地图与移动适配类型代码设计案.md",
+      "target": "90_ActionRouterManager与键值报文执行代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "60_地图与移动适配类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/TilemapManager.cs",
+      "exists": true
+    },
+    {
+      "document": "60_地图与移动适配类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Player/MovementRange.cs",
+      "exists": true
+    },
+    {
+      "document": "60_地图与移动适配类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Player/GridClickInput.cs",
+      "exists": true
+    },
+    {
+      "document": "60_地图与移动适配类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Player/CharacterMovementController.cs",
+      "exists": true
+    },
+    {
+      "document": "60_地图与移动适配类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Player/MovementRangeOverlay.cs",
+      "exists": true
+    },
+    {
+      "document": "60_地图与移动适配类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/MovementEffectExecutor.cs",
+      "exists": true
+    },
+    {
+      "document": "60_地图与移动适配类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Scenes/01.Field.unity",
+      "exists": true
+    },
+    {
+      "document": "60_地图与移动适配类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Scenes/PersistanceScene.unity",
+      "exists": true
+    },
+    {
+      "document": "60_地图与移动适配类型代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/GameData/Movement/MovementRangeTile.asset",
+      "exists": true
+    },
+    {
+      "document": "70_UnitDetailsPanel与移动选择界面代码设计案.md",
+      "target": "../系统设计文档/06-战斗/20-时间轴与行动顺序/20_时间轴与行动顺序设计.md",
+      "exists": true
+    },
+    {
+      "document": "70_UnitDetailsPanel与移动选择界面代码设计案.md",
+      "target": "../架构设计文档/架构设计案.md",
+      "exists": true
+    },
+    {
+      "document": "70_UnitDetailsPanel与移动选择界面代码设计案.md",
+      "target": "60_地图与移动适配类型代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "70_UnitDetailsPanel与移动选择界面代码设计案.md",
+      "target": "80_基础技能槽与待机动作代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "70_UnitDetailsPanel与移动选择界面代码设计案.md",
+      "target": "75_量表组件与生命显示代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "70_UnitDetailsPanel与移动选择界面代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/UI/UnitDetailsPanel.cs",
+      "exists": true
+    },
+    {
+      "document": "70_UnitDetailsPanel与移动选择界面代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Scenes/UI.unity",
+      "exists": true
+    },
+    {
+      "document": "70_UnitDetailsPanel与移动选择界面代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/GameData/UI/UnitDetails SDF.asset",
+      "exists": true
+    },
+    {
+      "document": "70_UnitDetailsPanel与移动选择界面代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/GameData/UI/UnitDetails.ttf",
+      "exists": true
+    },
+    {
+      "document": "70_UnitDetailsPanel与移动选择界面代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/GameManager.cs",
+      "exists": true
+    },
+    {
+      "document": "70_UnitDetailsPanel与移动选择界面代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Debug/DebugPanel.cs",
+      "exists": true
+    },
+    {
+      "document": "70_UnitDetailsPanel与移动选择界面代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Player/CharacterMovementController.cs",
+      "exists": true
+    },
+    {
+      "document": "70_UnitDetailsPanel与移动选择界面代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Player/SkillSelectionController.cs",
+      "exists": true
+    },
+    {
+      "document": "75_量表组件与生命显示代码设计案.md",
+      "target": "../系统设计文档/01-通用系统/30_元对象与组件设计补充说明.md",
+      "exists": true
+    },
+    {
+      "document": "75_量表组件与生命显示代码设计案.md",
+      "target": "../系统设计文档/06-战斗/10-战斗总览/10_战斗总览设计.md",
+      "exists": true
+    },
+    {
+      "document": "75_量表组件与生命显示代码设计案.md",
+      "target": "70_UnitDetailsPanel与移动选择界面代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "75_量表组件与生命显示代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/MetaObjects/MetaObjectMeterComponent.cs",
+      "exists": true
+    },
+    {
+      "document": "75_量表组件与生命显示代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Components/MeterComponentData_SO.cs",
+      "exists": true
+    },
+    {
+      "document": "75_量表组件与生命显示代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Components/ItemComponent.cs",
+      "exists": true
+    },
+    {
+      "document": "75_量表组件与生命显示代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/UI/UnitDetailsPanel.cs",
+      "exists": true
+    },
+    {
+      "document": "75_量表组件与生命显示代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Scenes/UI.unity",
+      "exists": true
+    },
+    {
+      "document": "75_量表组件与生命显示代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/GameData/MetaObjects/Player.asset",
+      "exists": true
+    },
+    {
+      "document": "75_量表组件与生命显示代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/GameData/Battle/Unit_02_Timeline.asset",
+      "exists": true
+    },
+    {
+      "document": "75_量表组件与生命显示代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/GameData/Battle/Unit_03_Timeline.asset",
+      "exists": true
+    },
+    {
+      "document": "75_量表组件与生命显示代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Debug/DebugPanel.cs",
+      "exists": true
+    },
+    {
+      "document": "80_基础技能槽与待机动作代码设计案.md",
+      "target": "../系统设计文档/01-通用系统/70-元动作/70_元动作设计补充说明.md",
+      "exists": true
+    },
+    {
+      "document": "80_基础技能槽与待机动作代码设计案.md",
+      "target": "../系统设计文档/06-战斗/20-时间轴与行动顺序/20_时间轴与行动顺序设计.md",
+      "exists": true
+    },
+    {
+      "document": "80_基础技能槽与待机动作代码设计案.md",
+      "target": "90_ActionRouterManager与键值报文执行代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "80_基础技能槽与待机动作代码设计案.md",
+      "target": "60_地图与移动适配类型代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "80_基础技能槽与待机动作代码设计案.md",
+      "target": "70_UnitDetailsPanel与移动选择界面代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "80_基础技能槽与待机动作代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/MetaObjects/BasicSkillSlotsComponent.cs",
+      "exists": true
+    },
+    {
+      "document": "80_基础技能槽与待机动作代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/MetaObjects/MovementActionComponent.cs",
+      "exists": true
+    },
+    {
+      "document": "80_基础技能槽与待机动作代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Player/SkillSelectionController.cs",
+      "exists": true
+    },
+    {
+      "document": "80_基础技能槽与待机动作代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/ActionPackets.cs",
+      "exists": true
+    },
+    {
+      "document": "80_基础技能槽与待机动作代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/ActionPacketBuilders.cs",
+      "exists": true
+    },
+    {
+      "document": "80_基础技能槽与待机动作代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/WaitEffectExecutor.cs",
+      "exists": true
+    },
+    {
+      "document": "80_基础技能槽与待机动作代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/BattleTimelineController.cs",
+      "exists": true
+    },
+    {
+      "document": "80_基础技能槽与待机动作代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/GameData/Battle/WaitAction.asset",
+      "exists": true
+    },
+    {
+      "document": "80_基础技能槽与待机动作代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/GameData/Battle/WaitTiming.asset",
+      "exists": true
+    },
+    {
+      "document": "80_基础技能槽与待机动作代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/GameData/MetaObjects/Player.asset",
+      "exists": true
+    },
+    {
+      "document": "80_基础技能槽与待机动作代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/GameData/Battle/Unit_02_Timeline.asset",
+      "exists": true
+    },
+    {
+      "document": "80_基础技能槽与待机动作代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/GameData/Battle/Unit_03_Timeline.asset",
+      "exists": true
+    },
+    {
+      "document": "90_ActionRouterManager与键值报文执行代码设计案.md",
+      "target": "../架构设计文档/架构设计案.md",
+      "exists": true
+    },
+    {
+      "document": "90_ActionRouterManager与键值报文执行代码设计案.md",
+      "target": "60_地图与移动适配类型代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "90_ActionRouterManager与键值报文执行代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/ActionPackets.cs",
+      "exists": true
+    },
+    {
+      "document": "90_ActionRouterManager与键值报文执行代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/ActionPacketBuilders.cs",
+      "exists": true
+    },
+    {
+      "document": "90_ActionRouterManager与键值报文执行代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/ActionRouterManager.cs",
+      "exists": true
+    },
+    {
+      "document": "90_ActionRouterManager与键值报文执行代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/ActionEffectExecutor.cs",
+      "exists": true
+    },
+    {
+      "document": "90_ActionRouterManager与键值报文执行代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/MovementEffectExecutor.cs",
+      "exists": true
+    },
+    {
+      "document": "90_ActionRouterManager与键值报文执行代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/WaitEffectExecutor.cs",
+      "exists": true
+    },
+    {
+      "document": "90_ActionRouterManager与键值报文执行代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/MetaActionInstance.cs",
+      "exists": true
+    },
+    {
+      "document": "90_ActionRouterManager与键值报文执行代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/MetaActionLifecycle.cs",
+      "exists": true
+    },
+    {
+      "document": "90_ActionRouterManager与键值报文执行代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/MetaObjects/MetaObjectInstance.cs",
+      "exists": true
+    },
+    {
+      "document": "90_ActionRouterManager与键值报文执行代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assets/Scenes/PersistanceScene.unity",
+      "exists": true
+    },
+    {
+      "document": "90_ActionRouterManager与键值报文执行代码设计案.md",
+      "target": "D:/myspace/Git/mygame/Assembly-CSharp.csproj",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "D:/myspace/Git/mygame",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "00_程序集与类型关系总览代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "00_程序集与类型关系总览代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "D:/myspace/Git/mygame/Assembly-CSharp.csproj",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "10_MetaObject类型与组件底座代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/MetaObjects/MetaObjectInstance.cs",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "20_对象组件与场景承载类型代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/MetaObjects/MetaObjectPreset.cs",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "30_MetaAction派生类型与动作组件代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/ActionPacketBuilders.cs",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "40_MetaActionLifecycle统一执行入口代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/MetaActionLifecycle.cs",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "50_TimeLineManager与战斗装配类型代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/BattleTimelineController.cs",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "60_地图与移动适配类型代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Player/CharacterMovementController.cs",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "70_UnitDetailsPanel与移动选择界面代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/UI/UnitDetailsPanel.cs",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "75_量表组件与生命显示代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/MetaObjects/MetaObjectMeterComponent.cs",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "80_基础技能槽与待机动作代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/MetaObjects/BasicSkillSlotsComponent.cs",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "90_ActionRouterManager与键值报文执行代码设计案.md",
+      "exists": true
+    },
+    {
+      "document": "README.md",
+      "target": "D:/myspace/Git/mygame/Assets/Script/Battle/ActionPackets.cs",
+      "exists": true
+    }
+  ],
+  "sources": [
+    {
+      "file": "Assets/Script/Battle/ActionEffectExecutor.cs",
+      "inAssemblyCSharp": false,
+      "namespace": [],
+      "declarations": [
+        "ActionEffectExecutor"
+      ]
+    },
+    {
+      "file": "Assets/Script/Battle/ActionPacketBuilders.cs",
+      "inAssemblyCSharp": false,
+      "namespace": [],
+      "declarations": [
+        "ActionPacketBuilderDefinition",
+        "ActionPacketBuilder",
+        "MovementPacketBuilderDefinition",
+        "MovementPacketBuilder",
+        "WaitPacketBuilderDefinition",
+        "WaitPacketBuilder"
+      ]
+    },
+    {
+      "file": "Assets/Script/Battle/ActionPackets.cs",
+      "inAssemblyCSharp": false,
+      "namespace": [],
+      "declarations": [
+        "ActionPacket",
+        "ActionPacketRecord",
+        "ActionPacketOutlet"
+      ]
+    },
+    {
+      "file": "Assets/Script/Battle/ActionRouterManager.cs",
+      "inAssemblyCSharp": false,
+      "namespace": [],
+      "declarations": [
+        "ActionRouterManager",
+        "ActorBinding"
+      ]
+    },
+    {
+      "file": "Assets/Script/Battle/BattleBehaviorDefinition.cs",
+      "inAssemblyCSharp": false,
+      "namespace": [],
+      "declarations": [
+        "BattleBehaviorDefinition",
+        "ActionTiming"
+      ]
+    },
+    {
+      "file": "Assets/Script/Battle/BattleTimelineConfiguration.cs",
+      "inAssemblyCSharp": false,
+      "namespace": [],
+      "declarations": [
+        "BattleTimelineConfiguration",
+        "Unit"
+      ]
+    },
+    {
+      "file": "Assets/Script/Battle/BattleTimelineController.cs",
+      "inAssemblyCSharp": false,
+      "namespace": [],
+      "declarations": [
+        "BattleTimelineController",
+        "Binding"
+      ]
+    },
+    {
+      "file": "Assets/Script/Battle/CinemachinePlanarFollow.cs",
+      "inAssemblyCSharp": false,
+      "namespace": [],
+      "declarations": [
+        "CinemachinePlanarFollow"
+      ]
+    },
+    {
+      "file": "Assets/Script/Battle/CurrentActorCameraFollow.cs",
+      "inAssemblyCSharp": false,
+      "namespace": [],
+      "declarations": [
+        "CurrentActorCameraFollow"
+      ]
+    },
+    {
+      "file": "Assets/Script/Battle/MetaActionComponents.cs",
+      "inAssemblyCSharp": false,
+      "namespace": [],
+      "declarations": [
+        "MetaActionComponent",
+        "MetaActionComponentDefinition",
+        "ActionResult",
+        "ActionTargetKind",
+        "IMovementCapability",
+        "ActionExecutionContext"
+      ]
+    },
+    {
+      "file": "Assets/Script/Battle/MetaActionDefinition.cs",
+      "inAssemblyCSharp": false,
+      "namespace": [],
+      "declarations": [
+        "MetaActionDefinition"
+      ]
+    },
+    {
+      "file": "Assets/Script/Battle/MetaActionInstance.cs",
+      "inAssemblyCSharp": false,
+      "namespace": [],
+      "declarations": [
+        "MetaActionInstance"
+      ]
+    },
+    {
+      "file": "Assets/Script/Battle/MetaActionLifecycle.cs",
+      "inAssemblyCSharp": false,
+      "namespace": [],
+      "declarations": [
+        "MetaActionPhase",
+        "MetaActionLifecycle"
+      ]
+    },
+    {
+      "file": "Assets/Script/Battle/MovementEffectExecutor.cs",
+      "inAssemblyCSharp": false,
+      "namespace": [],
+      "declarations": [
+        "MovementEffectExecutor"
+      ]
+    },
+    {
+      "file": "Assets/Script/Battle/TimeLineManager.cs",
+      "inAssemblyCSharp": false,
+      "namespace": [],
+      "declarations": [
+        "TimelineParticipant",
+        "TimelineMarker",
+        "TimeLineManager",
+        "Entry"
+      ]
+    },
+    {
+      "file": "Assets/Script/Battle/WaitEffectExecutor.cs",
+      "inAssemblyCSharp": false,
+      "namespace": [],
+      "declarations": [
+        "WaitEffectExecutor"
+      ]
+    },
+    {
+      "file": "Assets/Script/Components/ItemComponent.cs",
+      "inAssemblyCSharp": false,
+      "namespace": [],
+      "declarations": [
+        "ItemComponentData",
+        "ItemComponent"
+      ]
+    },
+    {
+      "file": "Assets/Script/Components/MeterComponentData_SO.cs",
+      "inAssemblyCSharp": false,
+      "namespace": [],
+      "declarations": [
+        "MeterComponent",
+        "MeterComponentData",
+        "MeterComponentData_SO"
+      ]
+    },
+    {
+      "file": "Assets/Script/Debug/DebugPanel.cs",
+      "inAssemblyCSharp": false,
+      "namespace": [],
+      "declarations": [
+        "DebugPanel"
+      ]
+    },
+    {
+      "file": "Assets/Script/GameManager.cs",
+      "inAssemblyCSharp": false,
+      "namespace": [],
+      "declarations": [
+        "GameManager"
+      ]
+    },
+    {
+      "file": "Assets/Script/MetaObjects/AttributeComponent.cs",
+      "inAssemblyCSharp": false,
+      "namespace": [],
+      "declarations": [
+        "CharacterAttribute",
+        "AttributeComponentDefinition",
+        "AttributeComponent"
+      ]
+    },
+    {
+      "file": "Assets/Script/MetaObjects/BasicSkillSlotsComponent.cs",
+      "inAssemblyCSharp": false,
+      "namespace": [],
+      "declarations": [
+        "BasicSkillSlotsComponentDefinition",
+        "BasicSkillSlotsComponent"
+      ]
+    },
+    {
+      "file": "Assets/Script/MetaObjects/CellChanged.cs",
+      "inAssemblyCSharp": false,
+      "namespace": [],
+      "declarations": [
+        "CellChanged"
+      ]
+    },
+    {
+      "file": "Assets/Script/MetaObjects/MetaObjectComponent.cs",
+      "inAssemblyCSharp": false,
+      "namespace": [],
+      "declarations": [
+        "MetaObjectComponent"
+      ]
+    },
+    {
+      "file": "Assets/Script/MetaObjects/MetaObjectComponentDefinition.cs",
+      "inAssemblyCSharp": false,
+      "namespace": [],
+      "declarations": [
+        "MetaObjectComponentDefinition"
+      ]
+    },
+    {
+      "file": "Assets/Script/MetaObjects/MetaObjectDefinition.cs",
+      "inAssemblyCSharp": false,
+      "namespace": [],
+      "declarations": [
+        "MetaObjectDefinition"
+      ]
+    },
+    {
+      "file": "Assets/Script/MetaObjects/MetaObjectInstance.cs",
+      "inAssemblyCSharp": false,
+      "namespace": [],
+      "declarations": [
+        "MetaObjectInstance",
+        "MessageSubscription"
+      ]
+    },
+    {
+      "file": "Assets/Script/MetaObjects/MetaObjectMeterComponent.cs",
+      "inAssemblyCSharp": false,
+      "namespace": [],
+      "declarations": [
+        "MetaObjectMeterComponentDefinition",
+        "MetaObjectMeterComponent"
+      ]
+    },
+    {
+      "file": "Assets/Script/MetaObjects/MetaObjectPreset.cs",
+      "inAssemblyCSharp": false,
+      "namespace": [],
+      "declarations": [
+        "MetaObjectPreset"
+      ]
+    },
+    {
+      "file": "Assets/Script/MetaObjects/MovementActionComponent.cs",
+      "inAssemblyCSharp": false,
+      "namespace": [],
+      "declarations": [
+        "ActionHolderComponent",
+        "MovementActionComponentDefinition",
+        "MovementActionComponent"
+      ]
+    },
+    {
+      "file": "Assets/Script/MetaObjects/MovementCompleted.cs",
+      "inAssemblyCSharp": false,
+      "namespace": [],
+      "declarations": [
+        "MovementCompleted"
+      ]
+    },
+    {
+      "file": "Assets/Script/MetaObjects/MovementFacingComponent.cs",
+      "inAssemblyCSharp": false,
+      "namespace": [],
+      "declarations": [
+        "MovementFacingComponentDefinition",
+        "MovementFacingComponent"
+      ]
+    },
+    {
+      "file": "Assets/Script/MetaObjects/SceneCoordinateComponent.cs",
+      "inAssemblyCSharp": false,
+      "namespace": [],
+      "declarations": [
+        "SceneCoordinateComponentDefinition",
+        "SceneCoordinateComponent"
+      ]
+    },
+    {
+      "file": "Assets/Script/MetaObjects/SceneTextureComponent.cs",
+      "inAssemblyCSharp": false,
+      "namespace": [],
+      "declarations": [
+        "HorizontalFacing",
+        "SceneTextureComponentDefinition",
+        "SceneTextureComponent"
+      ]
+    },
+    {
+      "file": "Assets/Script/Player/CharacterMovementController.cs",
+      "inAssemblyCSharp": false,
+      "namespace": [],
+      "declarations": [
+        "CellMoveResult",
+        "CharacterMovementController",
+        "MovementCapability"
+      ]
+    },
+    {
+      "file": "Assets/Script/Player/GridClickInput.cs",
+      "inAssemblyCSharp": false,
+      "namespace": [],
+      "declarations": [
+        "GridClickInput"
+      ]
+    },
+    {
+      "file": "Assets/Script/Player/MovementRange.cs",
+      "inAssemblyCSharp": false,
+      "namespace": [],
+      "declarations": [
+        "MovementRange"
+      ]
+    },
+    {
+      "file": "Assets/Script/Player/MovementRangeOverlay.cs",
+      "inAssemblyCSharp": false,
+      "namespace": [],
+      "declarations": [
+        "MovementRangeOverlay"
+      ]
+    },
+    {
+      "file": "Assets/Script/Player/SkillSelectionController.cs",
+      "inAssemblyCSharp": false,
+      "namespace": [],
+      "declarations": [
+        "SkillSelectionController"
+      ]
+    },
+    {
+      "file": "Assets/Script/TilemapManager.cs",
+      "inAssemblyCSharp": false,
+      "namespace": [],
+      "declarations": [
+        "MapCellData",
+        "TilemapManager",
+        "TileTerrainMapping"
+      ]
+    },
+    {
+      "file": "Assets/Script/UI/UnitDetailsPanel.cs",
+      "inAssemblyCSharp": false,
+      "namespace": [],
+      "declarations": [
+        "UnitDetailsPanel"
+      ]
+    }
+  ]
+}
