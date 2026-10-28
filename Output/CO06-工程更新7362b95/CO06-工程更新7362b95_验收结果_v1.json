@@ -1,0 +1,145 @@
+{
+ "checks": [
+  {
+   "desc": "文档库正文与索引齐全",
+   "detail": {
+    "extra": [],
+    "missing": []
+   },
+   "id": "A1",
+   "pass": true
+  },
+  {
+   "desc": "各专题具备规范元数据表字段",
+   "detail": {},
+   "id": "A2",
+   "pass": true
+  },
+  {
+   "desc": "全部文档登记当前提交与核对日期",
+   "detail": {},
+   "id": "A3",
+   "pass": true
+  },
+  {
+   "desc": "文档内链接与源码路径可解析",
+   "detail": {
+    "broken": [],
+    "checked": 171
+   },
+   "id": "A4",
+   "pass": true
+  },
+  {
+   "desc": "全部范围内声明类型在正文出现",
+   "detail": {
+    "absent": [],
+    "types": 67
+   },
+   "id": "A5",
+   "pass": true
+  },
+  {
+   "desc": "九项已实现功能均登记于索引与覆盖记录",
+   "detail": {
+    "coverage": [],
+    "readme": []
+   },
+   "id": "A6",
+   "pass": true
+  },
+  {
+   "desc": "正文不含库路径、图名与节点标识",
+   "detail": {},
+   "id": "A7",
+   "pass": true
+  },
+  {
+   "desc": "文档声明与基线的脚本/类型计数一致",
+   "detail": {
+    "actual": [
+     31,
+     67
+    ],
+    "declared_ok": true
+   },
+   "id": "A8",
+   "pass": true
+  },
+  {
+   "desc": "文档无行尾空白、制表符与结尾换行异常",
+   "detail": {},
+   "id": "A9",
+   "pass": true
+  },
+  {
+   "desc": "工程、网络图、规范、旧库与设计库未被改写",
+   "detail": {},
+   "id": "A10",
+   "pass": true
+  },
+  {
+   "desc": "核对基线的源码与资产散列未变",
+   "detail": {},
+   "id": "A11",
+   "pass": true
+  },
+  {
+   "desc": "UI 字段、字体与空持久化回调描述可追溯",
+   "detail": {
+    "empty_calls": true,
+    "font_in_doc": true,
+    "fonts": [
+     "3e2ea7fb08197d249a0a4dbdff44ac4d"
+    ],
+    "missing": []
+   },
+   "id": "A12",
+   "pass": true
+  },
+  {
+   "desc": "新增实现的关键符号进入说明",
+   "detail": [],
+   "id": "A13",
+   "pass": true
+  },
+  {
+   "desc": "部分实现的功能有显式结论",
+   "detail": {
+    "partial": [
+     "共享时间轴调度与行动回排",
+     "待机动作",
+     "固定属性",
+     "动态属性血量"
+    ]
+   },
+   "id": "A14",
+   "pass": true
+  },
+  {
+   "desc": "已跟踪文档无空白错误",
+   "detail": "warning: in the working copy of '代码说明文档/00_程序集与类型关系总览代码设计案.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of '代码说明文档/10_MetaObject类型与组件底座代码设计案.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of '代码说明文档/20_对象组件与场景承载类型代码设计案.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of '代码说明文档/30_MetaAction派生类型与动作组件代码设计案.md', LF will be replaced by CRLF the next time Git touches it",
+   "id": "A15",
+   "pass": true
+  }
+ ],
+ "date": "2026-10-27",
+ "documents": [
+  "README.md",
+  "00_程序集与类型关系总览代码设计案.md",
+  "10_MetaObject类型与组件底座代码设计案.md",
+  "20_对象组件与场景承载类型代码设计案.md",
+  "30_MetaAction派生类型与动作组件代码设计案.md",
+  "40_MetaActionLifecycle统一执行入口代码设计案.md",
+  "50_TimeLineManager与战斗装配类型代码设计案.md",
+  "60_地图与移动适配类型代码设计案.md",
+  "70_UnitDetailsPanel与移动选择界面代码设计案.md",
+  "75_量表组件与生命显示代码设计案.md",
+  "80_基础技能槽与待机动作代码设计案.md"
+ ],
+ "summary": {
+  "failed": [],
+  "passed": 15,
+  "total": 15
+ }
+}

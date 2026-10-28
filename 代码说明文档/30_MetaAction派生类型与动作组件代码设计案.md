@@ -6,10 +6,10 @@
 | --- | --- |
 | 解释范围 | Assembly-CSharp，全局命名空间；动作定义、实例、组件派生与配置、两种持有组件、执行上下文及能力接口 |
 | 源码依据 | MetaActionDefinition、MetaActionInstance、MetaActionComponents、MovementActionComponent、BasicSkillSlotsComponent 的声明及调用 |
-| 核对基线 | 工程 8468fb91c225447ff0a329a020d7fcd7fe5e7857；2026-10-26；相关脚本与动作资产无未提交差异 |
+| 核对基线 | 工程 7362b95addd908be4f96110c2c51ad0300af8e58；2026-10-27；相关脚本与动作资产无未提交差异 |
 | 关联设计 | [元动作 §4.3、§4.4](../系统设计文档/01-通用系统/70-元动作/70_元动作设计补充说明.md) |
 | 状态 | 已核对：类型关系、源码与静态配置 |
-| 更新日期 | 2026-10-26 |
+| 更新日期 | 2026-10-27 |
 
 ## 动作与对象的三组派生
 
@@ -59,7 +59,7 @@ ActionHolderComponent.OnAttached 创建动作；OnUnbind/OnDetached 终止并清
 
 ActionExecutionContext 是普通 sealed class，保存角色运行实例、机会编号、目的格、IMovementCapability 与可选 TimeLineManager 引用，供一次受理使用；它不创建或拥有这些角色和时间轴。无指向动作的目的格为空、移动能力为空，动作侧不得据此查询地格。IMovementCapability 是接口，声明有效性、目标查询、校验和实际移动，具体实现为 CharacterMovementController 的私有嵌套类 MovementCapability，详见[移动适配](60_地图与移动适配类型代码设计案.md)。
 
-ActionResult 枚举表示 Succeeded、NoChange、NotReady、InvalidTarget、OutOfRange、OutOfTurn、Rejected、Failed 等受理结果，ActionTargetKind 枚举当前有 Cell 与 None：前者要求目的格并通过移动能力校验，后者不需要目标。CapabilityId 是从唯一效果组件推得的字符串，当前为 Movement 或 Wait；它只是效果能力的名称，不构成完整技能分类系统。
+ActionResult 枚举表示 Succeeded、NoChange、NotReady、InvalidTarget、OutOfRange、OutOfTurn、Rejected、None 等受理结果，ActionTargetKind 枚举当前有 Cell 与 None：前者要求目的格并通过移动能力校验，后者不需要目标。CapabilityId 是从唯一效果组件推得的字符串，当前为 Movement 或 Wait；它只是效果能力的名称，不构成完整技能分类系统。
 
 ## 关键方法归属与入口
 

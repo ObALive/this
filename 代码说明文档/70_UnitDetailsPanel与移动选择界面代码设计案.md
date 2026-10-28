@@ -6,10 +6,10 @@ UnitDetailsPanel 是战斗底部的信息与操作面板：它展示当前行动
 | --- | --- |
 | 解释范围 | Assembly-CSharp，全局命名空间；UnitDetailsPanel 的界面引用、时间轴绑定、属性与生命读取、移动/技能按钮、反馈和清理，以及 UI.unity 静态装配 |
 | 源码依据 | UnitDetailsPanel.BindTimeline/Refresh/RefreshHealth/SelectMovement/SelectSkill/OnEnable/OnDisable；GameManager.Start；CharacterMovementController.SelectMovement；SkillSelectionController.SelectSlot |
-| 核对基线 | 工程 8468fb91c225447ff0a329a020d7fcd7fe5e7857，并入核对日期时的工作区改动（UnitDetailsPanel.cs 增加生命摘要，UI.unity 增加 HealthSummary/BaseSkills 与面板高度 236）；2026-10-26 |
+| 核对基线 | 工程 7362b95addd908be4f96110c2c51ad0300af8e58；2026-10-27；UnitDetailsPanel 的生命摘要、UI.unity 的 HealthSummary/BaseSkills 与面板高度 236 已由该提交收录，相关文件无未提交差异 |
 | 关联设计 | [时间轴与行动顺序 §3.6](../系统设计文档/06-战斗/20-时间轴与行动顺序/20_时间轴与行动顺序设计.md)、[架构设计案 §7.12](../架构设计文档/架构设计案.md) |
 | 状态 | 已核对：结构、源码与静态绑定；实际画面、字体和交互未运行验证 |
-| 更新日期 | 2026-10-26 |
+| 更新日期 | 2026-10-27 |
 
 ## 类归属与界面对象关系
 
@@ -56,7 +56,7 @@ Refresh 先读取生命摘要，再判断 timeline、Runtime 存在且正在运�
 
 技能按钮的状态与当前角色绑定：没有当前行动者或没有槽组件时，四个按钮显示“空槽”且不可用；有槽时逐个读取动作与定义，可交互要求技能适配器 CanSelect 成立且该槽动作通过定义校验，标签显示“序号 · 显示名”和“后摇 数值”，动作缺失则显示“空槽”。被选中的槽按钮用同一青绿色底。由于待机是无指向动作，当前选中槽时提示为“再次选择该技能或左键空白场景释放 · 右键取消”；若选中的是地格指向槽，则提示改为点选高亮地格。当前三份角色只配置待机，所以地格分支在现有场景中不会出现。
 
-普通鼠标路径随后由移动控制器或技能适配器允许目标查询与高亮，同格按松确认后才进入动作。右键优先取消而不生效；成功、机会改变、实例重建、禁用、重绑或行动者切换会清理相应选择。指针离格/失焦只取消按压，不必然退出选择；完整边界见移动适配与技能槽专题。
+普通鼠标路径随后由移动控制器允许目标查询与高亮，同格按松确认后才进入动作；无指向技能则在未被界面遮挡的位置按松即确认。右键优先取消而不生效；成功、机会改变、实例重建、禁用、重绑或行动者切换会清理相应选择。指针离格/失焦只取消按压，不必然退出选择；完整边界见移动适配与技能槽专题。
 
 ## 生命摘要的读取与显示
 
@@ -66,9 +66,9 @@ Refresh 先读取生命摘要，再判断 timeline、Runtime 存在且正在运�
 
 ## UI 场景和字体绑定
 
-UI.unity 中 UnitDetailsPanel 的九个引用已落实到本场景：details 1538517151、hint 166982040、healthSummary 488543080、moveLabel 474455404、moveButton 2050392728、moveBackground 2050392729；skillButtons 为 228922413、1967859605、2036563005、775289352，skillLabels 为 1875193678、1949239004、58925814、446884971。移动按钮与其背景同属 Move 对象；四个技能按钮为 Skill1—Skill4，标签分别是各按钮下的 Label 子文本。
+UI.unity 中 UnitDetailsPanel 的八个序列化字段已落实到本场景：details 1538517151、hint 166982040、healthSummary 488543080、moveLabel 474455404、moveButton 2050392728、moveBackground 2050392729；skillButtons 为 228922413、1967859605、2036563005、775289352，skillLabels 为 1875193678、1949239004、58925814、446884971。移动按钮与其背景同属 Move 对象；四个技能按钮为 Skill1—Skill4，标签分别是各按钮下的 Label 子文本。
 
-父级 UnitDetailsCanvas 是 Screen Space Overlay，CanvasScaler 参考分辨率为 1280×720、宽高匹配 0.5，带 GraphicRaycaster。面板 UnitDetails 贴在底边，当前高度 236 参考像素；HealthSummary 是面板顶部一条横向拉伸文本，锚点约为横向 0.025—0.975、纵向 0.847—1；四个技能按钮放在面板内的 BaseSkills 容器下。所有文本引用同一 `UnitDetails SDF.asset`，其 GUID 为 3e2ea7fb08197d249a0a4dbdff44ac4d；工程同时保存 UnitDetails.ttf，并在本轮为新增文案重新烘焙字形。
+父级 UnitDetailsCanvas 是 Screen Space Overlay，CanvasScaler 参考分辨率为 1280×720、宽高匹配 0.5，带 GraphicRaycaster。面板 UnitDetails 贴在底边，当前高度 236 参考像素；HealthSummary 是面板顶部一条横向拉伸文本，锚点约为横向 0.025—0.975、纵向 0.847—1；四个技能按钮放在面板内的 BaseSkills 容器下。所有文本引用同一 `UnitDetails SDF.asset`，其 GUID 为 3e2ea7fb08197d249a0a4dbdff44ac4d；工程同时保存 UnitDetails.ttf，并在技能文案扩展时重新烘焙字形；生命摘要沿用现有字形，未再改动字体资产。
 
 按钮的持久化 OnClick 列表为空，业务监听由 OnEnable 添加、OnDisable 移除，因此场景不保存业务回调。绑定有效仅证明资产来源可定位，不能据此确认字形覆盖、分辨率适配或点击遮挡已经运行通过。
 
@@ -83,6 +83,6 @@ DebugPanel 发现启用的面板后隐藏旧 IMGUI 属性详情，保留时间�
 - [CharacterMovementController.cs](D:/myspace/Git/mygame/Assets/Script/Player/CharacterMovementController.cs)、[SkillSelectionController.cs](D:/myspace/Git/mygame/Assets/Script/Player/SkillSelectionController.cs)、[GridClickInput.cs](D:/myspace/Git/mygame/Assets/Script/Player/GridClickInput.cs)：选择状态、互斥与地图输入清理。
 - [Assembly-CSharp.csproj](D:/myspace/Git/mygame/Assembly-CSharp.csproj)：运行程序集成员和 Unity.TextMeshPro 引用依据。
 
-当前面板提供四项只读属性之外的技能选择与生命摘要，但没有通用多技能菜单、任意查看对象选择、独立目标预览确认页，也没有生命变化的操作入口。四个技能按钮当前都指向同一待机动作，属于槽位验证而非正式构筑。装配上要求技能按钮与标签数量一致、按钮上存在 Image 背景，否则刷新会索引越界或取色失败；这些是当前场景满足、代码未兜底的前提。
+当前面板除姓名与三项属性外，还提供技能选择与生命摘要，但没有通用多技能菜单、任意查看对象选择、独立目标预览确认页，也没有生命变化的操作入口。四个技能按钮当前都指向同一待机动作，属于槽位验证而非正式构筑。装配上要求技能按钮与标签数量一致、按钮上存在 Image 背景，否则刷新会索引越界或取色失败；这些是当前场景满足、代码未兜底的前提。
 
 接口和场景绑定已静态核对；本轮没有运行编辑器验证脚本或游戏，也不把工程中已有验证脚本的存在当作验证通过。

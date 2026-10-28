@@ -6,10 +6,10 @@ MetaObject 四个核心类型将共享配置、运行对象、组件配置与运
 | --- | --- |
 | 解释范围 | Assembly-CSharp，全局命名空间；MetaObjectDefinition、MetaObjectInstance、MetaObjectComponentDefinition、MetaObjectComponent，以及嵌套订阅记录 |
 | 源码依据 | `Assets/Script/MetaObjects/MetaObject*.cs`；CreateInstance、AddComponent、Attach/Bind/Detach、Publish、Dispose |
-| 核对基线 | 工程 8468fb91c225447ff0a329a020d7fcd7fe5e7857；2026-10-26；底座脚本无未提交差异；量表与技能槽组件在核对日期为工作区状态 |
+| 核对基线 | 工程 7362b95addd908be4f96110c2c51ad0300af8e58；2026-10-27；底座脚本无未提交差异；量表组件由该提交收录 |
 | 关联设计 | [元对象与组件 §4.1](../系统设计文档/01-通用系统/30_元对象与组件设计补充说明.md)、[架构设计案 §5、§7.11](../架构设计文档/架构设计案.md) |
 | 状态 | 已核对：结构与源码行为 |
-| 更新日期 | 2026-10-26 |
+| 更新日期 | 2026-10-27 |
 
 ## 类层级与组合
 

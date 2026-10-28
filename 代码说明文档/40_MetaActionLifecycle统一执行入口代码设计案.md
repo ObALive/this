@@ -6,10 +6,10 @@ MetaActionLifecycle 是动作内部统一的同步执行与结束交接器。Met
 | --- | --- |
 | 解释范围 | Assembly-CSharp，全局命名空间；MetaActionLifecycle、MetaActionPhase，及其持有/调用边界 |
 | 源码依据 | MetaActionLifecycle.TryExecute/Reject/Terminate；MetaActionInstance 的 lifecycle 字段与 TryExecute/Dispose |
-| 核对基线 | 工程 8468fb91c225447ff0a329a020d7fcd7fe5e7857；2026-10-26；相关源码无未提交差异 |
+| 核对基线 | 工程 7362b95addd908be4f96110c2c51ad0300af8e58；2026-10-27；相关源码无未提交差异 |
 | 关联设计 | [元动作 §4.3 角色行为生命周期](../系统设计文档/01-通用系统/70-元动作/70_元动作设计补充说明.md) |
 | 状态 | 已核对：结构、统一入口与源码行为 |
-| 更新日期 | 2026-10-26 |
+| 更新日期 | 2026-10-27 |
 
 ## 结构地位、所有者与作用域
 

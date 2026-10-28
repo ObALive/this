@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""CO06 工程更新 8468fb9 取证：只读收集本轮核对基线。"""
+"""CO06 工程更新 7362b95 取证：只读收集本轮核对基线。"""
 import hashlib
 import json
 import os
@@ -10,7 +10,7 @@ import sys
 
 ROOT = r"D:/myspace/Git/this"
 GAME = r"D:/myspace/Git/mygame"
-OUT = os.path.join(ROOT, "Output", "CO06-工程更新8468fb9")
+OUT = os.path.join(ROOT, "Output", "CO06-工程更新7362b95")
 DB = os.path.join(ROOT, "Tool/项目网络图/数据/N01_完整依赖清理新图_v2.sqlite")
 
 SOURCES = [
@@ -338,7 +338,7 @@ def main():
     for path in SOURCE_TREES:
         data["protected"][path.replace(GAME, "<SOURCE>")] = tree_digest(path)
 
-    with open(os.path.join(OUT, "CO06-工程更新8468fb9_基线_v1.json"), "w", encoding="utf-8", newline="\n") as f:
+    with open(os.path.join(OUT, "CO06-工程更新7362b95_基线_v1.json"), "w", encoding="utf-8", newline="\n") as f:
         json.dump(data, f, ensure_ascii=False, indent=1, sort_keys=True)
         f.write("\n")
 

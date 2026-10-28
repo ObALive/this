@@ -6,10 +6,10 @@ TimeLineManager 是参战单位行动标记与当前机会的权威持有者。B
 | --- | --- |
 | 解释范围 | Assembly-CSharp，全局命名空间；调度、时机配置、场景控制器、启动与调试相关类及嵌套记录 |
 | 源码依据 | TimeLineManager、BattleTimelineController、BattleTimelineConfiguration、BattleBehaviorDefinition、GameManager、DebugPanel |
-| 核对基线 | 工程 8468fb91c225447ff0a329a020d7fcd7fe5e7857；2026-10-26；相关脚本与配置无未提交差异 |
+| 核对基线 | 工程 7362b95addd908be4f96110c2c51ad0300af8e58；2026-10-27；相关脚本与配置无未提交差异 |
 | 关联设计 | [时间轴与行动顺序 §3](../系统设计文档/06-战斗/20-时间轴与行动顺序/20_时间轴与行动顺序设计.md)、[架构设计案 §7.12、§9.5](../架构设计文档/架构设计案.md) |
 | 状态 | 已核对：结构、源码与静态绑定 |
-| 更新日期 | 2026-10-26 |
+| 更新日期 | 2026-10-27 |
 
 ## 类归属与数据所有权
 
