@@ -6,10 +6,10 @@ TimeLineManager 保存全体参战者的行动标记，选取最早标记授予�
 | --- | --- |
 | 解释范围 | Assembly-CSharp，全局命名空间；TimeLineManager、TimelineParticipant/Marker、BattleTimelineConfiguration、BattleBehaviorDefinition、ActionTiming、BattleTimelineController、GameManager 与相机跟随 |
 | 源码依据 | TimeLineManager 构造、BeginAction/CompleteAction/TryPreview；BattleTimelineController.TryStartBattle/StopBattle；GameManager.Start；CurrentActorCameraFollow.LateUpdate；文件入口见文末实现定位 |
-| 核对基线 | 工程提交 `65c2ff5e40cec060988b74091e189e09fdaa9e13`；2026-10-29 核对时工程工作区干净 |
+| 核对基线 | 工程提交 `bf1b4d8caf90a8d6e10de503f1e682b96bb3b936`；2026-10-30 核对源码与静态资产 |
 | 关联设计 | [时间轴与行动顺序 §3](../系统设计文档/06-战斗/20-时间轴与行动顺序/20_时间轴与行动顺序设计.md)、[架构设计案 §7.12、§9.5](../架构设计文档/架构设计案.md) |
 | 状态 | 已核对：源码声明、调用链与静态资产绑定 |
-| 更新日期 | 2026-10-29 |
+| 更新日期 | 2026-10-30 |
 
 ## 归属、数据与配置
 
@@ -21,19 +21,19 @@ DemoTimeline 配置 CHAR_PLAYER、CHAR_UNIT_02、CHAR_UNIT_03，初始时刻分�
 
 ## 排序、预览与回排
 
-TimeLineManager 构造要求非空参战清单，每项 ID 有效、运行实例有效，且 ID 与实例各自唯一；初始时刻为非负有限值。构造后 SelectNext 选取最早标记，将 CurrentTime 定为该时刻，OpportunityId 增加一次。同刻按初始化配置顺序确定优先级。
+TimeLineManager 构造时按配置顺序登记参战实例与初始时刻。SelectNext 选取最早标记，将 CurrentTime 定为该时刻，OpportunityId 增加一次。同刻按初始化配置顺序确定优先级。
 
-TryPreview 要求当前角色与执行锁条件有效，机会序号可继续增长，并使用 ActionTiming.NextTime 计算“CurrentTime + recovery”。currentTime 和 recovery 都须非负有限，相加溢出时拒绝。0 后摇有效；同刻优先级保持配置顺序，因此同一单位可能连续取得机会。
+TryPreview 通过 CanAct 判断当前角色及执行占用，使用 ActionTiming.NextTime 计算“CurrentTime + recovery”。预览与实际回排共用相加公式。0 后摇对应当前时刻；同刻优先级保持配置顺序，因此同一单位可能连续取得机会。
 
-BeginAction 先核对机会编号，再复用 TryPreview，将结果写入 preparedNext 并设置 IsExecuting。CompleteAction 将行动者标记提交为 preparedNext，解锁后重新 SelectNext。AbortAction 释放执行锁，当前标记和机会保持。Stop 将 IsRunning、IsExecuting 置 false，内部标记可供快照读取。固定后摇计算以行为配置为输入，属性中的行动速度由属性与显示链路读取。
+BeginAction 核对机会编号及 CanAct，受理时计算 preparedNext、设置 IsExecuting 并返回 Succeeded；机会不符返回 OutOfTurn。CompleteAction 将行动者标记提交为 preparedNext，解锁后重新 SelectNext。AbortAction 释放执行锁，当前标记和机会保持。Stop 将 IsRunning、IsExecuting 置 false，内部标记可供快照读取。固定后摇计算以行为配置为输入，属性中的行动速度由属性与显示链路读取。
 
 ## 战斗启动与场景接线
 
-GameManager.Start 顺序检查 startupScenes：已加载则继续，可从构建设置加载则以 Additive 方式等待加载，否则记录错误并结束协程。加载完成后等待一帧，给全部 UnitDetailsPanel 调用 BindTimeline，再调用 TryStartBattle。EditorBuildSettings 启用 PersistanceScene、01.Field 和 UI。
+GameManager.Start 顺序读取 startupScenes：已加载则继续，其余以 Additive 方式等待加载。加载完成后等待一帧，给全部 UnitDetailsPanel 调用 BindTimeline，再调用 TryStartBattle。EditorBuildSettings 启用 PersistanceScene、01.Field 和 UI。
 
-BattleTimelineController.TryStartBattle 要求自身启用且当前 Runtime 允许启动，并核对：Router 已引用且启用；配置有参战者；场景 Binding 的 ID 唯一、角色启用、绑定完成、实例存在且带 CharacterMovementController；绑定数量与配置一致；每个参战者有有效移动动作。它调用移动容器及技能槽 Prepare，创建 TimelineParticipant 清单并建立 TimeLineManager。
+BattleTimelineController.TryStartBattle 在自身启用、Runtime 尚未运行时启动。它按 Binding 建立角色映射，依参战配置取得场景角色，调用移动容器及技能槽 Prepare，创建 TimelineParticipant 清单并建立 TimeLineManager。
 
-装配成功后保存场景角色和登记实例映射，清空 Router 的来源绑定；对带基础槽的角色按需添加 SkillSelectionController，再通过 CharacterMovementController.BindTimeline 绑定移动与技能适配器。来源运行实例及其移动能力在槽位确认发送时由 ActionPacketOutlet.Send 调用 ActionRouterManager.RegisterActor 登记到 Router。最后清理指针和选择并返回成功。参数、状态和数值异常转为 LastError 与 false。
+装配成功后保存场景角色和登记实例映射，清空 Router 的来源绑定；对带基础槽的角色按需添加 SkillSelectionController，再通过 CharacterMovementController.BindTimeline 绑定移动与技能适配器。来源运行实例及其移动能力在槽位确认发送时由 ActionPacketOutlet.Send 调用 ActionRouterManager.RegisterActor 登记到 Router。最后清理指针和选择并返回成功。装配中的配置访问和创建异常沿调用栈传播。
 
 PersistanceScene 中 BattleTimelineController.actionRouter 引用 ActionRouter 上的 Manager；同物体有启用的移动和待机执行器。此配置提供按 operation 分发的实际落点，字段与结果见 [90 Router 专题](90_ActionRouterManager与键值报文执行代码设计案.md)。
 

@@ -5,11 +5,11 @@
 | 项目 | 内容 |
 | --- | --- |
 | 解释范围 | Assembly-CSharp，全局命名空间；MetaActionDefinition、MetaActionInstance、MetaActionComponent、ActionPacketBuilder 及移动/待机构造器、ActionExecutionContext 与 ActionResult |
-| 源码依据 | MetaActionDefinition.CreateRuntime；MetaActionInstance.ValidateDefinition/BuildPacket/TryQueryTargets/ExecutePacket；ActionPacketBuilder.Build/Validate；文件入口见文末实现定位 |
-| 核对基线 | 工程提交 `65c2ff5e40cec060988b74091e189e09fdaa9e13`；2026-10-29 核对时工程工作区干净 |
+| 源码依据 | MetaActionDefinition.CreateRuntime；MetaActionInstance.BuildPacket/TryQueryTargets/ExecutePacket；ActionPacketBuilder.Build；文件入口见文末实现定位 |
+| 核对基线 | 工程提交 `bf1b4d8caf90a8d6e10de503f1e682b96bb3b936`；2026-10-30 核对源码与静态资产 |
 | 关联设计 | [元动作 §4.3、§4.4](../系统设计文档/01-通用系统/70-元动作/70_元动作设计补充说明.md) |
 | 状态 | 已核对：源码声明、调用链与静态资产绑定 |
-| 更新日期 | 2026-10-29 |
+| 更新日期 | 2026-10-30 |
 
 ## 派生关系与作用域
 
@@ -30,9 +30,9 @@ classDiagram
   ActionPacketBuilderDefinition --> BattleBehaviorDefinition : 后摇资产引用
 ```
 
-类型均属于 Assembly-CSharp，全局命名空间。MetaActionDefinition 继承并使用 MetaObjectDefinition.CreateInstance，重写 CreateRuntime 返回 MetaActionInstance，IsActionDefinition 为 true。MetaActionComponentDefinition 的 IsActionComponent 重写固定为 true，底座据此核对配置侧归属。
+类型均属于 Assembly-CSharp，全局命名空间。MetaActionDefinition 继承并使用 MetaObjectDefinition.CreateInstance，重写 CreateRuntime 返回 MetaActionInstance，IsActionDefinition 为 true。MetaActionComponentDefinition 的 IsActionComponent 重写固定为 true，运行挂载由 AddComponent 按实际组件类型判断归属。
 
-MetaActionInstance 是角色动作容器持有的普通 C# 实例；ActionPacketBuilder 是其中的普通 C# 组件。ActionEffectExecutor 则继承 MonoBehaviour，挂在 Router GameObject 上，其主要结构见 [90 Router 专题](90_ActionRouterManager与键值报文执行代码设计案.md)。每个角色每个槽持有自己的构造器和生命周期，场景内同种操作使用唯一匹配的执行器。
+MetaActionInstance 是角色动作容器持有的普通 C# 实例；ActionPacketBuilder 是其中的普通 C# 组件。ActionEffectExecutor 则继承 MonoBehaviour，挂在 Router GameObject 上，其主要结构见 [90 Router 专题](90_ActionRouterManager与键值报文执行代码设计案.md)。每个角色每个槽持有自己的构造器和生命周期，场景内各操作按配置使用对应执行器。
 
 ## 技能参数与构造器
 
@@ -43,29 +43,29 @@ ActionPacketBuilderDefinition 保存 targetKind 与 timing 引用；创建时传
 | MovementPacketBuilder | Movement | Cell | MovementAction 引用 MovementTiming，后摇 10 游戏秒 |
 | WaitPacketBuilder | Wait | None | WaitAction 引用 WaitTiming，后摇 10 游戏秒 |
 
-Validate 通过 ActionTiming.NextTime 检查后摇配置存在、有限、非负且可计算，并检查指向性枚举有效。具体构造器还要求各自的指向性匹配。目标配置与后摇配置都属于构造器的技能参数，来源和实际目标由槽位补齐。
+目标配置与后摇配置属于构造器的技能参数，来源和实际目标由槽位补齐。构造器直接读取 timing.Recovery，并按配置的指向性生成报文。
 
-## 动作实例的查询与校验
+## 动作实例的参数与目标查询
 
-`ValidateDefinition` 要求动作有效、恰好一个 ActionPacketBuilder 且 ComponentCount 为 1，再调用构造器 Validate。缺少构造器或组件构成不符时返回错误。CapabilityId 读取构造器 Operation，TargetKind 与 Recovery 读取构造器参数；BuildPacket 先校验再调用 Build。
+CapabilityId 读取构造器 Operation，TargetKind 与 Recovery 读取构造器参数；BuildPacket 直接调用构造器 Build。构造器通过组件字典中的 ActionPacketBuilder 类型筛选取得。
 
-`TryQueryTargets` 面向地格动作，要求动作有效、定义有效、指向性为 Cell，且移动能力有效，再调用 IMovementCapability.TryGetTargets。能力接口提供 IsValid、TryGetTargets、Validate；其场景实现由 CharacterMovementController 提供，用于目标查询与提交时校验。位置写入发生在 MovementEffectExecutor。
+`TryQueryTargets` 面向地格动作，要求动作相态为 Terminated 以外的状态且指向性为 Cell，再调用 IMovementCapability.TryGetTargets。能力接口提供 IsValid、TryGetTargets、Validate；其场景实现由 CharacterMovementController 提供，负责目标查询与提交时的移动业务判定。位置写入发生在 MovementEffectExecutor。
 
 ## 上下文、发送与执行结果
 
-ActionExecutionContext 是同步调用使用的普通对象，保存 Actor、OpportunityId、Destination、Movement、Timeline 和 Router 引用。槽位核对 Actor 为自身 Owner，将这些本局引用转换为报文的运行标识与基础值。上下文的场景引用留在调用层与 Router 的来源登记中。
+ActionExecutionContext 是同步调用使用的普通对象，保存 Actor、OpportunityId、Destination、Movement、Timeline、Router 以及 Object 指向性的 Target 引用。槽位核对 Actor 为自身 Owner，将这些本局引用转换为报文的运行标识与基础值。上下文的场景引用留在调用层与 Router 的来源登记中。
 
-移动容器继承的 TryExecute、基础技能槽的 TryExecute 都调用 ActionPacketOutlet.Send；发送出口调用 BuildPacket 并补齐上下文，然后调用 MetaActionInstance.ExecutePacket。该内部入口读取报文 double recovery，核对动作与行动者有效，并在绑定时间轴时核对当前行动者、执行锁和机会编号，再将发送委托交给自身生命周期。
+移动容器继承的 TryExecute、基础技能槽的 TryExecute 都调用 ActionPacketOutlet.Send；发送出口调用 BuildPacket 并补齐上下文，再调用 MetaActionInstance.ExecutePacket。该内部入口通过 `ActionPacket.Get<double>` 读取 recovery，将发送委托交给自身生命周期。时间轴在 BeginAction 中判断当前机会。
 
-生命周期仅将 ActionResult.Succeeded 视为效果成功。执行器成功且生命周期完成，动作返回 Succeeded；执行器成功但生命周期因执行期间终止而未完成时，动作返回 Rejected。LastError 从生命周期读取。配置或 Router 缺失等入口问题通过 Reject 登记动作错误，具体字段和日志覆盖见 Router 专题。
+生命周期仅将 ActionResult.Succeeded 视为效果成功。发送结果为 None（含委托尚未执行）或 Succeeded 时，动作入口使用 lifecycle.Result 表达最终受理和完成结果；其余执行器结果直接返回。LastError 从生命周期读取，字段和日志覆盖见 Router 专题。
 
 | ActionResult | 当前语义 |
 | --- | --- |
 | None | 默认结果值 |
 | Succeeded | 效果成功并由调用链确认完成 |
 | NoChange | 目的格等于当前位置 |
-| NotReady | 动作、来源、能力、配置或执行器就绪条件缺失 |
-| InvalidTarget | 报文指向性、地格格式或地图目标校验失败 |
+| NotReady | 动作处于执行中或终止状态、槽位行动者不匹配，或移动能力尚未就绪 |
+| InvalidTarget | 目的地格未记录在地图中 |
 | OutOfRange | 目标超出当前查询范围 |
 | OutOfTurn | 当前行动者、机会编号或执行锁条件不符 |
 | Rejected | 受理或完成条件拒绝 |
@@ -82,7 +82,7 @@ Completed 与 Rejected 动作可以在有效条件下再次受理，容器持有
 | 源码或资产 | 主要定位 |
 | --- | --- |
 | [MetaActionDefinition.cs](D:/myspace/Git/mygame/Assets/Script/Battle/MetaActionDefinition.cs) | 动作定义与运行工厂重写 |
-| [MetaActionInstance.cs](D:/myspace/Git/mygame/Assets/Script/Battle/MetaActionInstance.cs) | 动作组件校验、参数查询、ExecutePacket、Dispose |
+| [MetaActionInstance.cs](D:/myspace/Git/mygame/Assets/Script/Battle/MetaActionInstance.cs) | 构造器读取、参数查询、ExecutePacket、Dispose |
 | [MetaActionComponents.cs](D:/myspace/Git/mygame/Assets/Script/Battle/MetaActionComponents.cs) | 基类、接口、上下文与枚举 |
 | [ActionPacketBuilders.cs](D:/myspace/Git/mygame/Assets/Script/Battle/ActionPacketBuilders.cs) | 构造器配置、Build、Validate |
 | [ActionPackets.cs](D:/myspace/Git/mygame/Assets/Script/Battle/ActionPackets.cs) | ActionPacketOutlet.Send 与字段常量 |
@@ -90,3 +90,6 @@ Completed 与 Rejected 动作可以在有效条件下再次受理，容器持有
 | [WaitAction.asset](D:/myspace/Git/mygame/Assets/GameData/Battle/WaitAction.asset) | WaitPacketBuilderDefinition 的单项组件配置 |
 
 核对依据为上述提交的源码、工程配置与静态资产。文档状态表示所述实现已完成对照；编译、播放、画面与交互的运行验证属于独立验证范围。
+
+
+对象指向性、TargetRange 与 FixedDamage 构造器的实际调用链见 [95 对象指向与固定伤害](95_对象指向与固定伤害代码设计案.md)；Cell 查询继续使用 IMovementCapability。

@@ -5,11 +5,11 @@ MetaActionLifecycle 把一次同步动作的开始、效果返回、成功回排
 | 项目 | 内容 |
 | --- | --- |
 | 解释范围 | Assembly-CSharp，全局命名空间；MetaActionLifecycle、MetaActionPhase 与 MetaActionInstance.ExecutePacket 对时间轴和 Router 的编排 |
-| 源码依据 | MetaActionLifecycle.TryExecute/Reject/Terminate；MetaActionInstance.ExecutePacket；TimeLineManager.BeginAction/CompleteAction/AbortAction/Stop；文件入口见文末实现定位 |
-| 核对基线 | 工程提交 `65c2ff5e40cec060988b74091e189e09fdaa9e13`；2026-10-29 核对时工程工作区干净 |
+| 源码依据 | MetaActionLifecycle.TryExecute/Terminate；MetaActionInstance.ExecutePacket；TimeLineManager.BeginAction/CompleteAction/AbortAction/Stop；文件入口见文末实现定位 |
+| 核对基线 | 工程提交 `bf1b4d8caf90a8d6e10de503f1e682b96bb3b936`；2026-10-30 核对源码与静态资产 |
 | 关联设计 | [元动作 §4.3 角色行为生命周期](../系统设计文档/01-通用系统/70-元动作/70_元动作设计补充说明.md) |
 | 状态 | 已核对：源码声明、调用链与静态资产绑定 |
-| 更新日期 | 2026-10-29 |
+| 更新日期 | 2026-10-30 |
 
 ## 类与入口的结构地位
 
@@ -17,9 +17,8 @@ MetaActionLifecycle 是 Assembly-CSharp 的普通 C# sealed 类，由 MetaAction
 
 | 声明方法 | 调用关系与职责 |
 | --- | --- |
-| MetaActionInstance.ExecutePacket | 槽位发送出口调用；核对报文后摇与机会，提供将 ActionResult 转成成功判定的委托 |
-| MetaActionLifecycle.TryExecute | 调用 BeginAction、发送委托和 CompleteAction/AbortAction；维护本动作 Phase 与 LastError |
-| MetaActionLifecycle.Reject | 动作预检查登记拒绝；Executing 或 Terminated 阶段保持原阶段 |
+| MetaActionInstance.ExecutePacket | 槽位发送出口调用；读取报文后摇，提供将 ActionResult 转成成功判定的委托 |
+| MetaActionLifecycle.TryExecute | 调用 BeginAction、发送委托和 CompleteAction/AbortAction；维护本动作 Phase、Result 与 LastError |
 | MetaActionLifecycle.Terminate | 生命周期终止；执行中同时停止 activeTimeline |
 | TimeLineManager.BeginAction | 检查机会并准备下一时刻，设置执行锁 |
 | TimeLineManager.CompleteAction / AbortAction | 分别提交回排并授予机会、释放锁并保留当前机会 |
@@ -48,15 +47,15 @@ sequenceDiagram
   A-->>S: Succeeded
 ```
 
-动作已经 Executing 或 Terminated 时 TryExecute 返回 false。委托或角色缺失时转 Rejected。绑定时间轴时先 BeginAction；机会、行动者、锁或后摇检查失败则登记拒绝，生效委托保持未调用状态。允许时间轴参数为空，此时执行使用同一阶段规则，效果通过 Router 完成。
+动作已经 Executing 或 Terminated 时 TryExecute 返回 false，Result 为 NotReady。绑定时间轴时先调用 BeginAction；当前机会不符时，Phase 转 Rejected，Result 承接 OutOfTurn，生效委托保持未调用状态。时间轴参数可以为空，此时执行使用同一相态规则，效果通过 Router 完成。
 
-BeginAction 成功后保存临时 activeTimeline，Phase 进入 Executing，清空 LastError 并同步调用委托。委托返回 true 后还要确认生命周期及时间轴保持有效，再 CompleteAction 并转 Completed。activeTimeline 在 finally 中清空，长期持有的状态只有本动作阶段与错误信息。
+BeginAction 成功后保存临时 activeTimeline，Phase 进入 Executing，清空 LastError 并同步调用委托。委托返回 true 后还要确认生命周期及时间轴保持有效，再 CompleteAction 并转 Completed。activeTimeline 在 finally 中清空，本动作保留 Phase、Result 与 LastError 供调用方读取。
 
 ## 拒绝、终止与异常
 
 | 情形 | 生命周期结果 | 时间轴与已发生效果 |
 | --- | --- | --- |
-| BeginAction 失败 | Rejected，记录校验错误 | 当前标记和机会保留 |
+| BeginAction 失败 | Phase 为 Rejected，Result 承接时间轴结果并记录原因 | 当前标记和机会保留 |
 | 发送委托返回 false | Rejected，记录行为未生效 | AbortAction 解锁，当前机会保留 |
 | 委托执行期间动作终止或时间轴停止 | Terminated，记录执行期间终止 | 停止授予后续机会，已发生变化保留 |
 | 委托、Router 日志写入或完成步骤抛异常 | Failed，记录异常并重新抛出 | Stop 停止调度，已发生变化保留 |
@@ -64,7 +63,7 @@ BeginAction 成功后保存临时 activeTimeline，Phase 进入 Executing，清�
 
 Terminate 在 Executing 时调用 activeTimeline.Stop，随后转 Terminated。MetaActionInstance.Dispose 同时调用该入口和元对象底座清理。Completed 与 Rejected 动作可以再次进入 TryExecute；已终止动作通过容器 Prepare 建立新的实例。
 
-Router 的请求结果记录在 Send 的 finally 中形成，发生在 CompleteAction 之前。因此路由结果中的 Succeeded 表示执行器成功；动作整体是否 Completed 还取决于后续生命周期。Send 以前的机会或配置拒绝由动作错误信息表达，日志覆盖的精确边界见 [90 Router 专题](90_ActionRouterManager与键值报文执行代码设计案.md)。
+Router 的请求结果记录在 Send 的 finally 中形成，发生在 CompleteAction 之前。因此路由结果中的 Succeeded 表示执行器成功；动作整体是否 Completed 还取决于后续生命周期。Send 以前的机会拒绝由动作结果与错误信息表达，日志覆盖的精确边界见 [90 Router 专题](90_ActionRouterManager与键值报文执行代码设计案.md)。
 
 ## 时间与表现边界
 
@@ -74,8 +73,8 @@ Router 的请求结果记录在 Send 的 finally 中形成，发生在 CompleteA
 
 | 源码或资产 | 主要定位 |
 | --- | --- |
-| [MetaActionLifecycle.cs](D:/myspace/Git/mygame/Assets/Script/Battle/MetaActionLifecycle.cs) | 阶段、TryExecute、Reject、Terminate |
-| [MetaActionInstance.cs](D:/myspace/Git/mygame/Assets/Script/Battle/MetaActionInstance.cs) | ExecutePacket 的机会检查与返回值合并 |
+| [MetaActionLifecycle.cs](D:/myspace/Git/mygame/Assets/Script/Battle/MetaActionLifecycle.cs) | 相态、Result、TryExecute、Terminate |
+| [MetaActionInstance.cs](D:/myspace/Git/mygame/Assets/Script/Battle/MetaActionInstance.cs) | ExecutePacket 的参数读取与生命周期结果承接 |
 | [TimeLineManager.cs](D:/myspace/Git/mygame/Assets/Script/Battle/TimeLineManager.cs) | 开始、回排、解锁与停止 |
 | [ActionPackets.cs](D:/myspace/Git/mygame/Assets/Script/Battle/ActionPackets.cs) | 槽位发送出口 |
 | [ActionRouterManager.cs](D:/myspace/Git/mygame/Assets/Script/Battle/ActionRouterManager.cs) | 同步 Send、finally 记录与异常传播 |
